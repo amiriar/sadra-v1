@@ -436,12 +436,13 @@
 }
 
 .contact_corporates{
-    background-color: red;
     width: 70%;
     display: flex;
     align-content: center;
     justify-content: space-evenly;
 }
+
+
 
 /* Part Four Contact slider responsive */
 
@@ -449,18 +450,62 @@
     .Contact_slider{
         padding: 80px 0px ;
     }
-    .Contact_slider{
-    }
     .Contact_slider h1{
         font-size: 34px;
         max-width: 400px;
         padding: 5px;
     }
     .contact_corporates{
-        background-color: blue;
         width: 100%;
-        display: flex;
-        align-content: center;
-        justify-content: space-evenly;
+        align-items: center;
+
     }
+    .contact_corporates svg {
+        width: 5rem;
+    }
+}
+
+/* Part Five */
+
+.popular_Tutorial{
+    padding: 100px 200px;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.popular_Tutorial .popular_Icon{
+    display: flex;
+    align-items: center;
+    color: var(--prime-green);   
+    margin: 0px 0px 24px 0px;
+    
+}
+.popular_Icon h2{
+    font-size: 24px;
+}
+
+.data_pop_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Box_1 {
+    max-width: 35%;
+    text-align: right;
+    margin-left: 15%;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    color: var(--Gray-500);
+}
+
+.Box_2 h1{
+    text-align: right;
+    width: 350px;
 }

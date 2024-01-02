@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <Layout>
-            {/* <Home/> */}
+            <Home/>
             <Blog/>
       </Layout>
     </>

@@ -144,11 +144,29 @@ const Home = () => {
       <button onClick={sliderHandler2}  name='right' id='contact_Btn2' ><FaArrowRight style={{color : "white" , width : 30  , height : 30 }} /></button>
       </div>
 
-    {/* <div className='contact_corporates'>
-      <Tapci />
-      <Tapci />
-      <Tapci />
-    </div> */}
+    <div className='contact_corporates'>
+      <Tapci className="icons_contact"/>
+      <Tapci className="icons_contact"/>
+      <Tapci className="icons_contact"/>
+    </div>
+    </div>
+    {/* Part Five */}
+
+    <div className='popular_Tutorial'>
+      <div className='popular_Icon'>
+        <h2>دوره‌های محبوب</h2>
+        <Line/>
+      </div>
+
+    <div className='data_pop_container'>
+      <div className='Box_1'>
+        <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از 100 دوره شما را از پایه راهنمایی می کند.</p>
+      </div>
+
+      <div className='Box_2'>
+        <h1>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h1>
+      </div>
+    </div>
 
     </div>
 
