@@ -5,11 +5,12 @@
     font-style: normal;
     font-weight: 00;
     line-height: 24px;
-    max-width: 100%;
+    max-width: 1920px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 12px 124px;
+    margin: 0 auto;
 }
 
 .List_Logo{
@@ -43,6 +44,7 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
+    font-family: inherit;
 }
 
 .burgur{
