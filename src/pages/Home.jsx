@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // Styles 
 import './Home.css';
-import image from '/public/assets/manLaptop.png'
+import image from '/assets/manLaptop.png'
 // Components
 import SearchBox from '../components/modules/SearchBox';
 import Line from '../components/modules/Line';
@@ -10,13 +10,13 @@ import VideoPlayer from '../components/modules/VideoPlayer';
 // Icons
 import { FaSearch } from "react-icons/fa";
 import { Mokhaberat , Tapci } from '../components/layouts/svg/workingCorporate';
-import Hamrah from '/public/assets/hamrahaval.png'
+import Hamrah from '/assets/hamrahaval.png'
 import { TiMessages } from "react-icons/ti";
 import { CiCalendar } from "react-icons/ci";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 // Media
-import Video from '/public/assets/Media.mp4'
+import Video from '/assets/Media.mp4'
 import ContactSlider from '../components/modules/HomePageModule/ContactSlider';
 import { contacts } from '../components/modules/HomePageModule/Contact';
 import { Stack } from '@mui/material';
@@ -72,7 +72,7 @@ const Home = () => {
             <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
             <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
             <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
-            <SearchBox/>
+            <SearchBox firstWidth={'75%'}/>
         </div>
     </div>
 

@@ -3,12 +3,11 @@ import React from 'react'
 import './SearchBox.css'
 import { FaSearch } from "react-icons/fa";
 
-const SearchBox = () => {
+const SearchBox = ({firstWidth}) => {
   return (
     <>
-    <div className="search_Container">
+    <div className="search_Container" style={{width:firstWidth}}>
         <button className='search_Btn'><FaSearch  className='search-icon' /></button>
-        
         <div>
           <select className='select_options'>
             <option>دوره‌ها</option>

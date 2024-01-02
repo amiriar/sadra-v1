@@ -24,7 +24,7 @@ const BlogCard = ({ imageData, date, title, description, authorName, authorDescr
                 </Typography>
 
                 {/* Hashtags */}
-                <div style={{ position: 'absolute', top: 15, right: 5}}>
+                <div style={{ position: 'absolute', top: 15, right: 10}}>
                     {hashtags && hashtags.map((tag, index) => (
                         <Typography key={index} variant="body2" fontFamily={'Yekan, sans-serif'} style={{ display: 'inline', marginRight: 5, color: '#009688',background: 'rgba(0, 0, 0, 0.65)', borderRadius:"0.5rem",padding: '0.3rem 0.6rem' }}>
                             #{tag}

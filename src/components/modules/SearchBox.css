@@ -1,13 +1,11 @@
 .search_Container{
     background-color: var(--Neutral-10);
-    width: 75%;
     padding: 8px 24px 8px 8px;
     border-radius: 100px;
     background-color: var(--Neutral-11);
     display: flex;
     align-items: center;
     justify-content: space-between;
-
 }
 .search_Btn{
     color: var(--neutral--20);

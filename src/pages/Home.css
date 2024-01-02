@@ -27,7 +27,6 @@
     flex-direction: column;
     align-items: flex-end;
     padding: 10%;
-
 }
 .Data_Container h1{
     color: var(--neutral--20);
