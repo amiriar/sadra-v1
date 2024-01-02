@@ -67,6 +67,8 @@
     height: auto;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -75,4 +77,5 @@
     border-radius: 3.125rem;
     border: 1px solid var(--Base-white, #FFF);
     color: inherit;
+    transform: rotate(0.165deg);
 }

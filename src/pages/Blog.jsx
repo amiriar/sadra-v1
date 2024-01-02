@@ -110,7 +110,7 @@ function Blog() {
 
     ]
 
-    const tags = ['دورکاری','کامپوترها','یادگیری_ماشین','طراحی_گرافیک','رابط_کاربری','تکنولوژی','بازی','پایگاه_داده','هوش_مصنوعی','امنیت','بیت_کوین','فرانت_اند','بک_اند','سیو']
+    const tags = ['دورکاری','کامپوترها','یادگیری_ماشین','طراحی_گرافیک','رابط_کاربری','تکنولوژی','پایگاه_داده','هوش_مصنوعی','امنیت','بیت_کوین','فرانت_اند','بک_اند','سیو','ارز_دیجیتال','فارکس','کریپتو','بازی']
     let tagsCounter = 0;
 
     return (
@@ -126,15 +126,8 @@ function Blog() {
                         {
                             tags.map((tag) => {
                                 tagsCounter+=1
-                                return tagsCounter < 12 ? <Link to={`/${tag}`} className='tag'>#{tag}</Link> : null
+                                return tagsCounter < 20 ? <Link to={`/${tag}`} className='tag'>#{tag}</Link> : null
                             })
-                        }
-                        {
-                            tagsCounter > 12 ?
-                            tags.map((tag) => {
-                                <Link to={`/${tag}`} className='tag'>#{tag}</Link>
-                            })
-                            : console.log('finish')
                         }
                     </div>
                 </div>
