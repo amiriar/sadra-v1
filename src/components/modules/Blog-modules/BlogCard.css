@@ -12,12 +12,6 @@
     font-display: auto;
 }
 
-.blogCardsContainer {
-    max-width: 1440px;
-    margin: 0 auto;
-    direction: rtl;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+.needFont {
     font-family: 'Yekan', sans-serif;
-    position: relative;
 }
