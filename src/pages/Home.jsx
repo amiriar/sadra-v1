@@ -7,8 +7,13 @@ import image from '/public/assets/manLaptop.png'
 import SearchBox from '../components/modules/SearchBox';
 import Line from '../components/modules/Line';
 import VideoPlayer from '../components/modules/VideoPlayer';
+// MUI 
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
 // Icons
-import { FaSearch } from "react-icons/fa";
 import { Mokhaberat , Tapci } from '../components/layouts/svg/workingCorporate';
 import Hamrah from '/public/assets/hamrahaval.png'
 import { TiMessages } from "react-icons/ti";
@@ -19,7 +24,6 @@ import { FaArrowRight } from "react-icons/fa";
 import Video from '/public/assets/Media.mp4'
 import ContactSlider from '../components/modules/HomePageModule/ContactSlider';
 import { contacts } from '../components/modules/HomePageModule/Contact';
-import { Stack } from '@mui/material';
 // Variabels
 
                   
@@ -43,23 +47,14 @@ const Home = () => {
 
   } 
 
-  // useEffect(()=> {
-  //   if(index > 3 ){
-  //     setIndex(0)
-  //     return ;
-  //   }
- 
-  // } , [index , people])
+  const [value, setValue] = React.useState('1');
 
-  // useEffect(()=>{
-  //   let slider = setInterval(() => {
-  //     setIndex(index + 1)
-      
-  //   }, 500);
-  //   return ()=> {
-  //     clearInterval(slider)
-  //   }
-  // } , [index])
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+
+
 
   return (
     <>
@@ -167,6 +162,28 @@ const Home = () => {
         <h1>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h1>
       </div>
     </div>
+
+    <Box sx={{ width: '100%', typography: 'body1' }}>
+      <TabContext value={value}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <Tab label="Item One" value="1" />
+            <Tab label="Item Two" value="2" />
+            <Tab label="Item 3" value="3" />
+            <Tab label="Item 4" value="4" />
+            <Tab label="Item 5" value="5" />
+            <Tab label="Item 6" value="6" />
+            
+          </TabList>
+        </Box>
+        <TabPanel value="1">Item One</TabPanel>
+        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="4">Item four</TabPanel>
+        <TabPanel value="5">Item Three</TabPanel>
+        <TabPanel value="6">Item Three</TabPanel>
+      </TabContext>
+    </Box>
 
     </div>
 
