@@ -1,19 +1,17 @@
-import React from 'react'
-
-// Components & Pages
-import Layout from './components/layouts/Layout'
-import Home from './pages/Home'
-import Blog from './pages/Blog'
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import Layout from './components/layouts/Layout';
+import AppRoutes from './components/routes/AppRoutes';
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Layout>
-            {/* <Home/> */}
-            <Blog/>
+        <AppRoutes />
       </Layout>
-    </>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;
