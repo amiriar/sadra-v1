@@ -1,16 +1,9 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, Avatar, Typography, Divider } from '@mui/material';
 
-const BlogCard = ({ imageData, date, title, description, author }) => {
+const BlogCard = ({ imageData, date, title, description, authorName, authorDescription, authorPicture }) => {
     return (
-        <Card>
-        {/* Card Header */}
-        <CardHeader
-            avatar={<Avatar src={author.picture} alt={author.name} />}
-            title={author.name}
-            subheader={author.description}
-        />
-
+        <Card style={{ marginBottom: 20, textAlign:"right" }}>
         {/* Card Content */}
         <CardContent>
             {/* Image */}
@@ -36,14 +29,14 @@ const BlogCard = ({ imageData, date, title, description, author }) => {
         <Divider />
 
         {/* Author Information */}
-        <CardContent>
-            <Avatar src={author.picture} alt={author.name} style={{ marginRight: 10 }} />
+        <CardContent style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', textAlign:"right" }}>
             <div>
-            <Typography variant="subtitle1">{author.name}</Typography>
+            <Typography variant="subtitle1">{authorName}</Typography>
             <Typography variant="body2" color="textSecondary">
-                {author.description}
+                {authorDescription}
             </Typography>
             </div>
+            <Avatar src={authorPicture} alt={authorName} style={{ marginLeft: 10 }} />
         </CardContent>
         </Card>
     );
