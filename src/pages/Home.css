@@ -1,0 +1,463 @@
+@font-face {
+    font-family: 'Yekan';
+    src:	url('/assets/fonts/Yekan.eot');
+    src:	url('/assets/fonts/Yekan.eot?#iefix') format('embedded-opentype'),
+        url('/assets/fonts/Yekan.woff2') format('woff2'), 
+        url('/assets/fonts/Yekan.woff') format('woff'),
+        url('/assets/fonts/Yekan.otf') format('opentype'),
+        url('/assets/fonts/Yekan.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    font-display: auto;
+}
+
+.Home{
+    max-width: 100%;
+    background-color: var(--primary-black);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--neutral--20);
+}
+.image_container{
+    width: 40%;
+}
+.image_container img{
+    min-width: 100%;
+    max-height: calc(100vh - 72px);
+    object-fit: cover;
+    overflow: hidden;
+}
+.Data_Container{
+    text-align: right;
+    background-color: var(--primary-black);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10%;
+
+}
+.Data_Container h1{
+    color: var(--neutral--20);
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+.Data_Container h2{
+    
+    margin-bottom: 28px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+}
+.Data_Container p{
+    max-width: 69%;
+    margin-bottom: 70px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+}
+
+
+/* Media Query */
+
+@media (max-width : 740px) {
+    .Home{
+        flex-direction: column-reverse;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .image_container{
+        width: 100%;
+    }
+    .image_container img{
+        overflow: hidden;
+        height: 450px;
+    }
+    .Data_Container{
+        text-align: center;
+        align-items: center;
+    }
+    .search_Container{
+        width: 100%;
+    
+    }
+}
+
+@media (max-width : 600px) {
+    .Data_Container h1{
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px;
+        line-height: 45px;
+    }
+    .Data_Container h2{
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+        width: 100%;
+    }
+    .Data_Container p{
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 18px;
+    }
+    .search_Container{
+        background-color: var(--Neutral-11);
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    
+    }
+    .select_options{
+        display: none;
+    }
+    .search_Btn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}
+
+/* Part Two */
+
+.Home_corporations{
+    max-width: 100%;
+    margin : 60px 0px 20px 0px ;
+    padding: 84px 124px 100px 124px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.Home_corporations p{
+    color: var(--Gray-700, #344054);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.companiese{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1%;
+    
+}
+
+.companiese svg{
+    width: 100%;
+}
+
+/* part Two Responsive */
+
+@media (max-width : 760px) {
+    .Home_corporations{
+       margin : 30px 0px 0px 0px ;
+       padding: 84px 0px 100px 0px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       flex-direction: column;
+       flex-wrap: wrap;
+       overflow: hidden;
+    }
+
+    .companiese{
+        width: 100%;
+    }
+    .companiese svg{
+        width: 100%;
+    }
+    .Home_corporations p{
+        text-align: center;
+        padding: 15px;
+    }
+
+}
+
+/* Why Us */
+
+.why_Container{
+    max-width: 100%;
+    padding: 1% 10%;
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+
+.why_us{
+  min-width: 100%;
+   max-width: 100%;
+}
+.why_us_Icons{
+    display: flex;
+    align-items: center;
+}
+.why_us_Icons h2{
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 24px;
+    color: var(--prime-green);
+    margin-right: 5px;
+}
+
+.why_us h1:nth-child(2){
+    color: var(--Neutral-90);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px;
+    margin-bottom: 16px;
+}
+
+.why_us p:nth-child(3){
+    color: var(--Neutral-70);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+    margin-bottom: 24px;
+}
+
+.Box_Container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-bottom: 8%;
+}
+.data_Box1 , .data_Box2{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 40%;
+    max-width: 40%;
+    background-color: var(--Primary-900);
+    padding: 32px 16px;
+    height: 156px;
+    border-radius: 12px;
+}
+
+.data_Box1 h1 , .data_Box2 h1{
+    font-size: 34px;
+    line-height: 52px;
+    color: var(--Neutral-10);
+    margin-top: 15px;
+}
+
+
+.box_test{
+    font-size: 34px;
+    line-height: 52px;
+        
+}
+.data_Box1 p , .data_Box2 p{
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--Neutral-10);
+}
+
+.Icon{
+    position: absolute;
+    color: white;
+    top: 10%;
+    width: 35px;
+    height: 35px;
+    right: 2.5%;
+}
+
+
+/* Why us Responsive */
+
+@media (max-width : 740px) {
+ .why_Container{
+   text-align: center;
+   padding: 0;
+ }
+ .why_Container .why_us_Icons{
+    text-align: center;
+    justify-content: center;
+    margin: 9px;
+ }
+ .why_Container h1:nth-child(2){
+    font-size: 34px;
+ }
+ .why_Container p:nth-child(3){
+    margin: 10px 35px;
+ }
+ .Box_Container{
+    flex-direction: column;
+    margin: 0px 15px 0px 47px;
+}
+ .data_Box1  , .data_Box2 {
+    text-align: right;
+    min-width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    
+}
+
+
+    
+}
+
+/* Part Three Media Video */
+
+.learn_container{
+    margin: 0% 9%;
+    max-width: 100%;
+    display: flex;
+    text-align: right;
+    flex-direction: column;
+}
+
+.learn_container h1{
+    margin-bottom: 10px;
+}
+
+.learn_container p {
+    font-size: 18px;
+    color: var(--Neutral-70);
+    margin: 10px 0px 20px 0px;
+
+}
+.learn_icon{
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: var(--prime-green);
+    margin-bottom: 15px;
+}
+
+.Video_Container{
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Part Three media Responsive  */
+
+
+@media (max-width : 740px) {
+    .learn_container{
+        margin: 60px 0px;
+        padding: 15px;
+
+    }
+    
+    .learn_icon{
+        justify-content: center;
+        margin-left: 10%;
+        text-align: justify;
+    }
+}
+
+
+
+/* Contact Slider Part Four */
+
+
+.Contact_slider{
+    max-width: 100%;
+    margin-top: 60px;
+    padding: 80px 124px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--primary-black);
+}
+
+.success_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--prime-green);
+}
+.success_container h2{
+    margin-right: 10px;
+}
+
+.Contact_slider h1{
+    margin-top: 30px;
+    font-size: 40px;
+    font-weight: 700;
+    display: inline-flex;
+    color: var(--Neutral-10);
+    height: 112px;
+    text-align: center;
+}
+
+.contact_container{
+    width: 100%;
+    display: flex;
+    position: relative;
+    min-height: 400px;
+    max-height: 400px;
+
+}
+.contact_container p{
+    width: 80%;
+}
+#contact_Btn1{
+    position: absolute;
+    z-index: 1000;
+    left: 12%;
+}
+
+#contact_Btn2{
+    right: 12%;
+    position: absolute;
+}
+
+.contact_corporates{
+    background-color: red;
+    width: 70%;
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+/* Part Four Contact slider responsive */
+
+@media (max-width : 740px) {
+    .Contact_slider{
+        padding: 80px 0px ;
+    }
+    .Contact_slider{
+    }
+    .Contact_slider h1{
+        font-size: 34px;
+        max-width: 400px;
+        padding: 5px;
+    }
+    .contact_corporates{
+        background-color: blue;
+        width: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: space-evenly;
+    }
+}

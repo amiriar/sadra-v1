@@ -1,0 +1,5 @@
+video{
+    max-width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 30px;
+}
