@@ -7,12 +7,15 @@ import image from '/public/assets/manLaptop.png'
 import SearchBox from '../components/modules/SearchBox';
 import Line from '../components/modules/Line';
 import VideoPlayer from '../components/modules/VideoPlayer';
+import CardPopTu from '../components/modules/HomePageModule/CardPopTu';
+import CardEvent from '../components/modules/HomePageModule/CardEvent';
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
+import { Button } from '@mui/material';
 // Icons
 import { Mokhaberat , Tapci } from '../components/layouts/svg/workingCorporate';
 import Hamrah from '/public/assets/hamrahaval.png'
@@ -20,10 +23,15 @@ import { TiMessages } from "react-icons/ti";
 import { CiCalendar } from "react-icons/ci";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import { FaLongArrowAltLeft } from "react-icons/fa";
 // Media
 import Video from '/public/assets/Media.mp4'
 import ContactSlider from '../components/modules/HomePageModule/ContactSlider';
 import { contacts } from '../components/modules/HomePageModule/Contact';
+import { Stack } from '@mui/system';
+import { CardData , RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
+import imageAbout from '/public/assets/image_about_us.png'
+import {eventData} from '../components/modules/HomePageModule/EventsContent'
 // Variabels
 
                   
@@ -162,30 +170,106 @@ const Home = () => {
         <h1>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h1>
       </div>
     </div>
-
-    <Box sx={{ width: '100%', typography: 'body1' }}>
+    
+    <Box  sx={{ minHeight : '602px' ,  width: '100%', typography: 'body1', direction : "rtl" , mt : "6rem"}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Item One" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item 3" value="3" />
-            <Tab label="Item 4" value="4" />
-            <Tab label="Item 5" value="5" />
-            <Tab label="Item 6" value="6" />
-            
+          <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
+
+            <Tab label={RenderCategory[0].CatTitle} value={RenderCategory[0].id.toString()} />
+            <Tab label={RenderCategory[1].CatTitle} value={RenderCategory[1].id.toString()} />
+            <Tab label={RenderCategory[2].CatTitle} value={RenderCategory[2].id.toString()} />
+            <Tab label={RenderCategory[3].CatTitle} value={RenderCategory[3].id.toString()} />
+            <Tab label={RenderCategory[4].CatTitle} value={RenderCategory[4].id.toString()} />
+            <Tab label={RenderCategory[5].CatTitle} value={RenderCategory[5].id.toString()} />
+
+            {/* {
+              RenderCategory.map(item => {
+              <Tab label={item.CatTitle} value={item.id.toString()} />
+                console.log(item.id.toString())
+              })
+            } */}
+
           </TabList>
         </Box>
-        <TabPanel value="1">Item One</TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
-        <TabPanel value="4">Item four</TabPanel>
-        <TabPanel value="5">Item Three</TabPanel>
-        <TabPanel value="6">Item Three</TabPanel>
+        <TabPanel value="1" >
+        <div style={{display : "flex" , alignContent : "center" , justifyContent : "space-evenly" , flexWrap : "wrap"}}>
+          {
+            CardData.map((Item)=> <CardPopTu key={Item.id} {...Item}  />)
+          }
+        </div>
+
+        <div className='more_btn_con'>
+        <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >دوره‌های بیشتر</Button>
+        </div>
+
+        </TabPanel>
+        <TabPanel value="2">طراحی UI/UX</TabPanel>
+        <TabPanel value="3">طراحی گرافیک</TabPanel>
+        <TabPanel value="4">
+        <Stack backgroundColor="red" flexWrap="warp" spacing={20} direction="row">
+          {
+            CardData.map((Item)=> <CardPopTu key={Item.id} id={Item} {...Item}  />)
+          }
+
+        </Stack>
+        </TabPanel>
+        <TabPanel value="5">فرانت‌اند</TabPanel>
+        <TabPanel value="6">بک‌اند</TabPanel>
       </TabContext>
-    </Box>
+     </Box>
+    </div>
+<div className='mobile_reverse'>
+    <div className='home_about_con'>
+        <div className='about_image_con'>
+          <div className='about_data'>
+           <div>
+            <h2>54M</h2>
+            <p>دانش‌آموز در حال استفاده از این سامانه</p>
+           </div>
+           <div>
+              <h2>3.2K+</h2>
+              <p>دوره موجود در دسته‌بندی‌های مختلف</p>
+           </div>
+           <div>
+            <h2>600</h2>
+            <p>مربی مجرب که به شما آموزش می‌دهند</p>
+           </div>
+          </div>
+
+        <div className='about_img_container'>
+          <img src={imageAbout} alt='man' />
+        </div>
+      </div>
+      <div className='about_text'>
+        <div className='about_icons'>
+          <h1>درباره  ما</h1>
+          <Line/>
+        </div>
+        <h1>افزایش رشد فردی و تقویت استعداد شما</h1>
+        <p>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
+        <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >بیشتر بدانیم</Button>
+      </div>
 
     </div>
+
+{/* part Seven  */}
+
+    <div className='event_container'>
+          <div className='event_icons'>
+            <button><p><FaLongArrowAltLeft style={{margin : 12}} />رویدادهای بیشتر </p></button>
+            <h2>رویدادهای آینده</h2>
+          </div>
+
+          <div className='event_card_data'>
+            {
+              eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
+            }
+          </div>
+
+    </div>
+
+</div> 
 
     </>
   )
