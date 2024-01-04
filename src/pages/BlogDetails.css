@@ -235,12 +235,12 @@
 .blogCardsContainer {
     max-width: 1440px;
     margin: 0px auto;
-
+    display: flex;
+    
     font-family: 'Yekan', sans-serif;
     position: relative;
     /* font-size: 2rem; */
 }
 .BlogRelatablePostsCards{
-    background-color: red;
     display: inline-block;
 }

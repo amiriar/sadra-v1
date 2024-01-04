@@ -1,0 +1,187 @@
+{
+    "PopularEvent" : [
+        {
+            "id" : 1 ,
+            "title" : "UI Design"
+        } ,
+        {
+            "id" : 2 ,
+            "title" : "UX Design"
+        } ,
+        {
+            "id" : 3 ,
+            "title" : "Front-end"
+        }
+    ]  ,
+
+    "tutorilEvent" : [
+        {
+            "id" : 1 ,
+            "title" : "دوره‌ ها " ,
+            "quantity" : 0 ,
+            "EventsData" : false
+
+        } ,
+       
+        {
+            "id" : 2 ,
+            "title" : "رویدادها " ,
+            "quantity" : 120 ,
+
+            "EventsData" : [
+                {
+                    "id" : 1 ,
+                    "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
+                    "Master" : "مدرس استاد علی بابایی" , 
+                    "image" : "/public/assets/1.png" ,
+                    "price" : 128 , 
+                    "offer" : false , 
+                    "place" :  
+                    {
+                        "city" : "تهران" ,
+                        "status" : "حضوری"
+                    }
+                    ,
+                    "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    } 
+                } ,
+        
+                
+               {
+                
+                "id" : 2 ,
+                "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
+                "Master" : "مدرس استاد علی بابایی" , 
+                "image" : "/public/assets/2.png" ,
+                "price" : "رایگان" , 
+                "offer" : true , 
+                "place" : 
+                    {
+                        "city" : "تهران" ,
+                        "status" : "حضوری"
+                    }
+                 , 
+                "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    }}
+                 , 
+        
+               { "id" : 3 ,
+                "cardName" : "Product Design Basic Essentials Principals" ,
+                "Master" : "مدرس استاد علی بابایی" , 
+                "image" : "/public/assets/3.png" ,
+                "price" : 128 , 
+                "offer" : false , 
+                "place" : 
+                    {
+                        "city" : "" ,
+                        "status" : "غیرحضوری"
+                    }
+                 , 
+                "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    }}
+                 , 
+        
+                {"id" : 4 ,
+                "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
+                "Master" : "مدرس استاد علی بابایی" , 
+                "image" : "/public/assets/4.png" ,
+                "price" : "" , 
+                "offer" : true , 
+                "place" : 
+                    {
+                        "city" : "تهران" ,
+                        "status" : "حضوری"
+                    }
+                 , 
+                "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    }
+                }
+                 , 
+                {"id" : 5 ,
+                "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
+                "Master" : "مدرس استاد علی بابایی" , 
+                "image" : "/public/assets/5.png" ,
+                "price" : 128 , 
+                "offer" : false , 
+                "place" : 
+                    {
+                        "city" : "تهران" ,
+                        "status" : "حضوری"
+                    }
+                 , 
+                "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    }}
+                 , 
+        
+               { "id" : 6 ,
+                "cardName" : "Product Design Basic Essentials Principals" ,
+                "image" : "/public/assets/6.png" ,
+                "Master" : "مدرس استاد علی بابایی" , 
+                "price" : 128 , 
+                "offer" : false , 
+                "place" : 
+                    {
+                        "city" : "" ,
+                        "status" : "غیرحضوری"
+                    }
+                 , 
+                "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    }
+                }
+        
+                
+        
+        
+            ]
+           
+        } ,
+        
+        {
+            "id" : 3 ,
+            "title" : "مدرس‌ها " ,
+            "quantity" : 360 , 
+            "EventsData" : false
+        } ,
+        {
+            "id" : 4 ,
+            "title" : "test" , 
+            "quantity" : 360 ,
+            "EventsData" : false
+            
+
+        }
+    ] 
+
+
+  
+
+
+   
+
+}
+
+
