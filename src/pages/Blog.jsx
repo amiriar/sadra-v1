@@ -16,117 +16,117 @@ function Blog() {
     const cardData = [
         {
             id:1,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/1.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:2,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/2.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:3,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/3.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:4,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/4.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:5,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/5.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:6,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/6.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:7,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/7.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:8,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/8.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']
         },
         {
             id:9,
-            imageData:"/assets/prof2.jpg",
+            imageData:"/assets/blog-images/9.jpeg",
             date: todaysDate,
             title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
             description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
             author:{
                 name:"حسین اشرفی پور",
-                picture:"/assets/prof.jpg",
+                picture:"/assets/blog-images/author.jpeg",
                 description:"طراح رابط کاربری و تجربه کاربر"
             },
             hashtags:['تکنولوژی','رابط کاربری']

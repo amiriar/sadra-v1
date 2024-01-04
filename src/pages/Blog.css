@@ -14,12 +14,25 @@
 
 .blogCardsContainer {
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 50px auto 50px auto;
     direction: rtl;
     margin-bottom: 2rem;
     margin-top: 2rem;
     font-family: 'Yekan', sans-serif;
     position: relative;
+    /* font-size: 2rem; */
+}
+.blogCardsContainer #titleBlog {
+    font-size: 1.5rem;
+}
+#descBlog{
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left: 10px;
+}
+#blogImage{
+    aspect-ratio: 1.9/1.4 !important;
+    object-fit: cover;
 }
 
 .hero{
@@ -78,4 +91,56 @@
     border: 1px solid var(--Base-white, #FFF);
     color: inherit;
     transform: rotate(0.165deg);
+}
+
+@media (max-width : 1440px) {
+    .blogCardsContainer {
+        max-width: 1200px;
+    }
+    .blogCardsContainer #titleBlog {
+        font-size: 1.2rem;
+    }
+}
+@media (max-width : 1230px) {
+    .blogCardsContainer {
+        max-width: 1000px;
+    }
+    .blogCardsContainer #titleBlog {
+        font-size: 1.1rem;
+    }
+    #tagsBlog{
+        font-size: 0.75rem;
+    }
+}
+@media (max-width : 1000px) {
+    .blogCardsContainer {
+        margin-left: 20px;
+        margin-right: 20px;
+        font-size: 1rem;
+    }
+}
+@media (max-width : 950px) {
+    .blogCardsContainer #titleBlog {
+        font-size: 1rem;
+    }
+    #blogImage{
+        aspect-ratio: 2/1.2 !important;
+    }
+    #tagsBlog{
+        font-size: 0.65rem;
+    }
+}
+@media (max-width : 600px) {
+    .blogCardsContainer {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .blogCardsContainer #titleBlog {
+        font-size: 1.2rem;
+    }
+}
+@media (max-width : 400px) {
+    .blogCardsContainer #titleBlog {
+        font-size: 1rem;
+    }
 }
