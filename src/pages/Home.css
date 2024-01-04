@@ -900,6 +900,7 @@
     color: var(--Gray-900);
     margin-top: 15px;
     margin-bottom: 80px;
+    
 }
 
 @keyframes slide {
@@ -981,4 +982,21 @@
     gap: 32px;
     animation: slide2 infinite linear;
 
+}
+
+
+/* Responsive */
+
+@media (max-width : 920px) {
+    .Comments_container h1{
+        font-size: 32px;
+        
+    }
+}
+
+@media (max-width : 720px) {
+    .Comments_container h1{
+        font-size: 24px;
+        
+    }
 }
