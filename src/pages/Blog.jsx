@@ -164,6 +164,7 @@ function Blog() {
                     <Grid item key={index} xs={12} sm={6} md={4}>
                         {/* Adjust the xs, sm, and md values to control the number of cards per row */}
                         <BlogCard
+                            id={card.id}
                             imageData={card.imageData}
                             date={card.date}
                             title={card.title}
