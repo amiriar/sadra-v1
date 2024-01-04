@@ -66,3 +66,15 @@
     line-height: 24px;
     color: var(--Gray-600)
 }
+
+
+
+/* Responsive mobile */
+
+@media (max-width : 740px) {
+    .comment_card{
+        min-width: 327px;
+        max-width: 327px;
+    }
+    
+}
