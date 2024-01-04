@@ -66,12 +66,12 @@ const Home = () => {
 
   return (
     <>
-    <div className='Home'>
+    <div className='Home' id='maxWidth'>
         <div className='image_container'>
             <img src={image} alt={image} />
         </div>
 
-        <div className='Data_Container'>
+        <div className='Data_Container' >
             <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
             <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
             <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
@@ -79,7 +79,7 @@ const Home = () => {
         </div>
     </div>
 
-    <div className='Home_corporations'>
+    <div className='Home_corporations' id='maxWidth'>
         <p>فارغ التحصیلان دوره‌های ما، در . بهترین شرکت‌های کشور مشغول به کارند</p>
     <div className='companiese'>
         <Mokhaberat />
@@ -90,50 +90,50 @@ const Home = () => {
 
     {/* Why US */}
 
-    <div className='why_Container'>
-     <div className='why_us'>
+    <div className='why_Container' id='maxWidth'>
+      <div className='why_us'>
 
-      <div className='why_us_Icons'>
-      <Line/>
-      <h2>چرا ما</h2>
-      </div>
+        <div className='why_us_Icons' id='maxWidth'>
+          <Line/>
+          <h2>چرا ما</h2>
+        </div>
 
-      <h1>شرکت در دوره‌ها مساوی با ورود قطعی به بازار کار</h1>
-      <p>صدرا، از متدهایی استفاده می‌کنه که مسیر یادگیری برای شما هموارتر می‌کنه و نیروی کاری تربیت می‌کنه که صدرا با افتخار به شرکت‌های موفق معرفی می‌کنه و اشتغال به کار شما رو، بعد از دوره تضمین می‌کنه.</p>
-      
-    <div className='Box_Container'>
-      <div className='data_Box1'>
-        <h1 style={{color : '#fff'}} >پشتیبانی بعد از اتمام دوره</h1>
-        <p style={{color : '#fff'}}>اگر در طول دوره‌ یا بعد از اتمام آن مشکل دارید، امکان گفت و گو و رفع مشکل برای شما وجود دارد.</p>
-        <CiCalendar className='Icon' />
-      </div>
+        <h1>شرکت در دوره‌ها مساوی با ورود قطعی به بازار کار</h1>
+        <p>صدرا، از متدهایی استفاده می‌کنه که مسیر یادگیری برای شما هموارتر می‌کنه و نیروی کاری تربیت می‌کنه که صدرا با افتخار به شرکت‌های موفق معرفی می‌کنه و اشتغال به کار شما رو، بعد از دوره تضمین می‌کنه.</p>
+        
+        <div className='Box_Container' >
+          <div className='data_Box1'>
+            <h1 style={{color : '#fff'}} >پشتیبانی بعد از اتمام دوره</h1>
+            <p style={{color : '#fff'}}>اگر در طول دوره‌ یا بعد از اتمام آن مشکل دارید، امکان گفت و گو و رفع مشکل برای شما وجود دارد.</p>
+            <CiCalendar className='Icon' />
+          </div>
 
 
-      <div className='data_Box2'>
-        <h1 style={{color : '#fff'}}>دوره‌های آفلاین</h1>
-        <p style={{color : '#fff'}}>اگر امکان شرکت در دوره‌های حضوری یا آنلاین را ندارید، امکان استفاده از ویدیوهای ضبط شده برای شما دوره‌ها وجود دارد.</p>
-        <TiMessages className='Icon' />
-      </div>
-    </div>
-     </div>    
+          <div className='data_Box2'>
+            <h1 style={{color : '#fff'}}>دوره‌های آفلاین</h1>
+            <p style={{color : '#fff'}}>اگر امکان شرکت در دوره‌های حضوری یا آنلاین را ندارید، امکان استفاده از ویدیوهای ضبط شده برای شما دوره‌ها وجود دارد.</p>
+            <TiMessages className='Icon' />
+          </div>
+        </div>
+      </div>    
     </div>
 
 {/* part Three Media vidoe */}
 
-    <div className='learn_container'>
-     <div className='learn_icon'>
-       <h2>آموزش ما</h2>
-       <Line/>
+    <div className='learn_container' id='maxWidth'>
+      <div className='learn_icon'>
+        <h2>آموزش ما</h2>
+        <Line/>
       </div>
 
-    <h1>استفاده از متدهای جدید آموزشی</h1>
-    <p>صدرا، از استانداردها و چارچوب‌های سفارشی جدید آموزشی استفاده می‌کنه ترکیبی از ترکیبی از CSTA ،ISTE ،PBLو ADIF است که در حال حاضر در آمریکا و کانادا در حال اجراست و باعث سهولت در یادگیری دانشجویان و دانش‌آموزان شده و پیشرفت آن‌ها به وضوح، قابل رویت است.</p>
-    <div className='Video_Container'>
-    <VideoPlayer video={Video} poster={image} />
-    </div>
+      <h1>استفاده از متدهای جدید آموزشی</h1>
+      <p>صدرا، از استانداردها و چارچوب‌های سفارشی جدید آموزشی استفاده می‌کنه ترکیبی از ترکیبی از CSTA ،ISTE ،PBLو ADIF است که در حال حاضر در آمریکا و کانادا در حال اجراست و باعث سهولت در یادگیری دانشجویان و دانش‌آموزان شده و پیشرفت آن‌ها به وضوح، قابل رویت است.</p>
+      <div className='Video_Container'>
+        <VideoPlayer video={Video} poster={image} />
+      </div>
     </div>
 
-    <div className='Contact_slider'>
+    <div className='Contact_slider' id='maxWidth'>
       <div className='success_container'>
         <h2>داستان‌های موفقیت</h2>
         <Line/>
@@ -147,15 +147,15 @@ const Home = () => {
       <button onClick={sliderHandler2}  name='right' id='contact_Btn2' ><FaArrowRight style={{color : "white" , width : 30  , height : 30 }} /></button>
       </div>
 
-    <div className='contact_corporates'>
-      <Tapci className="icons_contact"/>
-      <Tapci className="icons_contact"/>
-      <Tapci className="icons_contact"/>
-    </div>
+      <div className='contact_corporates'>
+        <Tapci className="icons_contact"/>
+        <Tapci className="icons_contact"/>
+        <Tapci className="icons_contact"/>
+      </div>
     </div>
     {/* Part Five */}
 
-    <div className='popular_Tutorial'>
+    <div className='popular_Tutorial' id='maxWidth'>
       <div className='popular_Icon'>
         <h2>دوره‌های محبوب</h2>
         <Line/>
@@ -217,59 +217,59 @@ const Home = () => {
         <TabPanel value="5">فرانت‌اند</TabPanel>
         <TabPanel value="6">بک‌اند</TabPanel>
       </TabContext>
-     </Box>
+      </Box>
     </div>
-<div className='mobile_reverse'>
-    <div className='home_about_con'>
-        <div className='about_image_con'>
-          <div className='about_data'>
-           <div>
-            <h2>54M</h2>
-            <p>دانش‌آموز در حال استفاده از این سامانه</p>
-           </div>
-           <div>
-              <h2>3.2K+</h2>
-              <p>دوره موجود در دسته‌بندی‌های مختلف</p>
-           </div>
-           <div>
-            <h2>600</h2>
-            <p>مربی مجرب که به شما آموزش می‌دهند</p>
-           </div>
+    <div className='mobile_reverse' id='maxWidth'>
+        <div className='home_about_con'>
+            <div className='about_image_con'>
+              <div className='about_data'>
+              <div>
+                <h2>54M</h2>
+                <p>دانش‌آموز در حال استفاده از این سامانه</p>
+              </div>
+              <div>
+                  <h2>3.2K+</h2>
+                  <p>دوره موجود در دسته‌بندی‌های مختلف</p>
+              </div>
+              <div>
+                <h2>600</h2>
+                <p>مربی مجرب که به شما آموزش می‌دهند</p>
+              </div>
+              </div>
+
+            <div className='about_img_container'>
+              <img src={imageAbout} alt='man' />
+            </div>
+          </div>
+          <div className='about_text'>
+            <div className='about_icons'>
+              <h1>درباره  ما</h1>
+              <Line/>
+            </div>
+            <h1>افزایش رشد فردی و تقویت استعداد شما</h1>
+            <p>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
+            <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >بیشتر بدانیم</Button>
           </div>
 
-        <div className='about_img_container'>
-          <img src={imageAbout} alt='man' />
         </div>
-      </div>
-      <div className='about_text'>
-        <div className='about_icons'>
-          <h1>درباره  ما</h1>
-          <Line/>
+
+    {/* part Seven  */}
+
+        <div className='event_container'>
+              <div className='event_icons'>
+                <button><p><FaLongArrowAltLeft style={{margin : 12}} />رویدادهای بیشتر </p></button>
+                <h2>رویدادهای آینده</h2>
+              </div>
+
+              <div className='event_card_data'>
+                {
+                  eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
+                }
+              </div>
+
         </div>
-        <h1>افزایش رشد فردی و تقویت استعداد شما</h1>
-        <p>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
-        <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >بیشتر بدانیم</Button>
-      </div>
 
-    </div>
-
-{/* part Seven  */}
-
-    <div className='event_container'>
-          <div className='event_icons'>
-            <button><p><FaLongArrowAltLeft style={{margin : 12}} />رویدادهای بیشتر </p></button>
-            <h2>رویدادهای آینده</h2>
-          </div>
-
-          <div className='event_card_data'>
-            {
-              eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
-            }
-          </div>
-
-    </div>
-
-</div> 
+    </div> 
 
     </>
   )

@@ -49,3 +49,7 @@ button{
 body{
   font-family: 'Yekan', sans-serif !important;
 }
+#maxWidth{
+  max-width: 1920px;
+  margin: 0 auto;
+}

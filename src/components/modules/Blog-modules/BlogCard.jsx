@@ -13,7 +13,7 @@ const BlogCard = ({ id, imageData, date, title, description, authorName, authorD
 
     return (
         <div onClick={clickHandler}>
-            <Card style={{ marginBottom: 20, borderRadius: '0.5rem', textAlign: "right", boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.10)", position: "relative" }}>
+            <Card style={{ cursor:'pointer',marginBottom: 20, borderRadius: '0.5rem', textAlign: "right", boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.10)", position: "relative" }}>
                 {/* Card Content */}
                 <CardContent style={{ padding: 0 }}>
                     {/* Image */}

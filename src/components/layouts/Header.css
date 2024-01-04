@@ -1,14 +1,15 @@
 .NavBar{
     background-color: var(--primary-black);
+    max-width: 1920px !important;
     color: var(--base-white);
     font-size: 16px;
     font-style: normal;
     font-weight: 00;
     line-height: 24px;
-    max-width: 1920px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-sizing: border-box;
     padding: 12px 124px;
     margin: 0 auto;
 }

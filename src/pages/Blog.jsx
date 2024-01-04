@@ -7,135 +7,10 @@ import './Blog.css'
 import SearchBox from '../components/modules/SearchBox';
 import { Link } from 'react-router-dom';
 
+// DB:
+import BlogDB from '../utils/BlogDB.json'
+
 function Blog() {
-    const today = new Date();
-    const month = today.getMonth() + 1;
-    const year = today.getFullYear();
-    const date = today.getDate();
-    const todaysDate =  `${month}/${date}/${year}`;
-    const cardData = [
-        {
-            id:1,
-            imageData:"/assets/blog-images/1.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:2,
-            imageData:"/assets/blog-images/2.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:3,
-            imageData:"/assets/blog-images/3.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:4,
-            imageData:"/assets/blog-images/4.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:5,
-            imageData:"/assets/blog-images/5.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:6,
-            imageData:"/assets/blog-images/6.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:7,
-            imageData:"/assets/blog-images/7.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:8,
-            imageData:"/assets/blog-images/8.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        {
-            id:9,
-            imageData:"/assets/blog-images/9.jpeg",
-            date: todaysDate,
-            title:"آناتومی یک صفحه وب و عناصر اساسی آن 1",
-            description:"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-            author:{
-                name:"حسین اشرفی پور",
-                picture:"/assets/blog-images/author.jpeg",
-                description:"طراح رابط کاربری و تجربه کاربر"
-            },
-            hashtags:['تکنولوژی','رابط کاربری']
-        },
-        
-        
-
-    ]
-
     const tags = ['دورکاری','کامپوترها','یادگیری_ماشین','طراحی_گرافیک','رابط_کاربری','تکنولوژی','پایگاه_داده','هوش_مصنوعی','امنیت','بیت_کوین','فرانت_اند','بک_اند','سیو','ارز_دیجیتال','فارکس','کریپتو','بازی']
     let tagsCounter = 0;
 
@@ -160,7 +35,7 @@ function Blog() {
             </div>
             <div className='blogCardsContainer'> 
                 <Grid container spacing={3}>
-                    {cardData.map((card, index) => (
+                    {BlogDB.map((card, index) => (
                     <Grid item key={index} xs={12} sm={6} md={4}>
                         {/* Adjust the xs, sm, and md values to control the number of cards per row */}
                         <BlogCard
