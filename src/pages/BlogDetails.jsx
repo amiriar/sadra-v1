@@ -110,8 +110,8 @@ function BlogDetails() {
                         <h3 dir='rtl'>پست های مرتبط</h3>
                         <div className='blogCardsContainer' dir='rtl'>
                             {
-                                <Grid display={'flex'} container spacing={3}>
-                                    <Grid item key={reliablePost1.id} xs={12} sm={6} md={4}>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost1.id}
                                             imageData={reliablePost1.imageData}
@@ -123,6 +123,8 @@ function BlogDetails() {
                                             authorPicture={reliablePost1.author.picture}
                                             hashtags={reliablePost1.hashtags}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost2.id}
                                             imageData={reliablePost2.imageData}
@@ -134,6 +136,8 @@ function BlogDetails() {
                                             authorPicture={reliablePost2.author.picture}
                                             hashtags={reliablePost2.hashtags}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost3.id}
                                             imageData={reliablePost3.imageData}
