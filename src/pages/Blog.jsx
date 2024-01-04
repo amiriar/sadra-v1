@@ -16,7 +16,7 @@ function Blog() {
 
     return (
         <>
-            <div className='hero'>
+            <div className='hero' style={{maxWidth:"1920px", margin:"0 auto"}}>
                 <div className='Data_Container_hero'>
                     <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
                     <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
@@ -33,7 +33,7 @@ function Blog() {
                     </div>
                 </div>
             </div>
-            <div className='blogCardsContainer'> 
+            <div className='blogCardsContainer' style={{marginTop:"5rem", marginBottom:"2rem"}}> 
                 <Grid container spacing={3}>
                     {
                         BlogDB.map((card, index) => (
@@ -51,7 +51,7 @@ function Blog() {
                                     hashtags={card.hashtags}
                                 />
                             </Grid>
-                            ))
+                        ))
                     }
                 </Grid>
             </div>

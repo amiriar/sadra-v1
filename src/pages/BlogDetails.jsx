@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 //css:
 import './BlogDetails.css'
+import Line from '../components/modules/Line'
 
 // DB:
 import BlogDB from '../utils/BlogDB.json'
@@ -56,9 +57,9 @@ function BlogDetails() {
             <div className='mainContentBlogDetails'>
                 <div className='ContentTextBlogDetails'>    
                     <div>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription1}</p>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription2}</p>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription3}</p>
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription1}</p><br />
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription2}</p><br />
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription3}</p><br />
                     </div>
                     <div className='BlogDetailsPictures'>
                         <img src={BlogPost.descriptionImage1} alt={BlogPost.descriptionImage2} className='BlogDetailsPicture' />
@@ -66,7 +67,7 @@ function BlogDetails() {
                     </div>
                     <div className='BlogDetailsSummery'>
                         <p dir='rtl' style={{color: "#475467"}}>{BlogPost.detailsDescription4}</p>
-                        <h1 dir='rtl' style={{color:"#4CA773"}}>"{BlogPost.title}"</h1>
+                        <h1 dir='rtl' className='middleBlogHeader' style={{color:"#4CA773"}}>"{BlogPost.title}"</h1>
                         <p dir='rtl' style={{color: "#475467"}}>{BlogPost.detailsDescription4}</p>
                     </div>
                     <div className='BlogPostInfo'>
@@ -154,11 +155,13 @@ function BlogDetails() {
                     </div>
                 </div>
                 <div className='timeProgressBlogDetails' dir='rtl'>
-                    <span>1402/1/4</span>
-                    <span>----</span>
-                    <span>4 دقیقه</span>
-                    <VerticalProgressBar bgcolor={"#6AD095"} progress={"60"} width={"5px"}/>
-                    <span id="dissapear">پایان</span>
+                    <div style={{display:"flex", alignItems:"center"}}>
+                        <span>{BlogPost.date}</span>&nbsp;
+                        <span><Line/></span>&nbsp;
+                        <span>{BlogPost.timeToRead} دقیقه</span>
+                    </div>
+                    <VerticalProgressBar bgcolor={"#6AD095"} progress={BlogPost.timeToRead} width={"5px"}/>
+                    <span id="dissapear" style={{marginRight:"4rem"}}>پایان</span>
                 </div>
             </div>
         </div>
