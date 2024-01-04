@@ -266,11 +266,8 @@ const Home = () => {
                   eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
                 }
               </div>
-
         </div>
-
-    </div> 
-
+    </div>
     </>
   )
 }
