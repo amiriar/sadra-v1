@@ -129,14 +129,19 @@
     }
 }
 
+
+@media (max-width : 1000px) {
+    #hashtagsDetails{
+        justify-content: center !important;
+    }
+}
+
 #hashtagsDetails{
     display: flex;
     justify-content: right;
 }
 
 #hashtagsDetails a{
-    display: flex;
-    justify-content: right;
     border-radius: 0.5rem;
     background: rgba(255, 255, 255, 0.60);
     color: #000;
