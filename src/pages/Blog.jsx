@@ -35,22 +35,24 @@ function Blog() {
             </div>
             <div className='blogCardsContainer'> 
                 <Grid container spacing={3}>
-                    {BlogDB.map((card, index) => (
-                    <Grid item key={index} xs={12} sm={6} md={4}>
-                        {/* Adjust the xs, sm, and md values to control the number of cards per row */}
-                        <BlogCard
-                            id={card.id}
-                            imageData={card.imageData}
-                            date={card.date}
-                            title={card.title}
-                            description={card.description}
-                            authorName={card.author.name}
-                            authorDescription={card.author.description}
-                            authorPicture={card.author.picture}
-                            hashtags={card.hashtags}
-                        />
-                    </Grid>
-                    ))}
+                    {
+                        BlogDB.map((card, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                {/* Adjust the xs, sm, and md values to control the number of cards per row */}
+                                <BlogCard
+                                    id={card.id}
+                                    imageData={card.imageData}
+                                    date={card.date}
+                                    title={card.title}
+                                    description={card.description}
+                                    authorName={card.author.name}
+                                    authorDescription={card.author.description}
+                                    authorPicture={card.author.picture}
+                                    hashtags={card.hashtags}
+                                />
+                            </Grid>
+                            ))
+                    }
                 </Grid>
             </div>
         </>

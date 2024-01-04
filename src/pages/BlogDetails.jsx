@@ -19,8 +19,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 
-// variables:
-let counter = 0;
 
 function BlogDetails() {
     const { id } = useParams()
@@ -107,7 +105,7 @@ function BlogDetails() {
                         </div>
                     </div>
                     <div className='BlogRelatablePosts'>
-                        <h3 dir='rtl'>پست های مرتبط</h3>
+                        <h3 dir='rtl' style={{marginBottom:"2rem"}}>پست های مرتبط</h3>
                         <div className='blogCardsContainer' dir='rtl'>
                             {
                                 <Grid container spacing={3}>
@@ -157,13 +155,12 @@ function BlogDetails() {
                 </div>
                 <div className='timeProgressBlogDetails' dir='rtl'>
                     <span>1402/1/4</span>
-                    {/* <span><Line/></span> */}
+                    <span>----</span>
                     <span>4 دقیقه</span>
                     <VerticalProgressBar bgcolor={"#6AD095"} progress={"60"} width={"5px"}/>
                     <span id="dissapear">پایان</span>
                 </div>
             </div>
-
         </div>
     )
 }

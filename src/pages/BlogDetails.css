@@ -229,7 +229,7 @@
 
 .BlogRelatablePosts{
     box-sizing: border-box !important;
-    padding: 3rem 7rem;
+    /* padding: 3rem 7rem; */
     width: 100%;
 }
 .blogCardsContainer {
