@@ -9,6 +9,7 @@
     border: 1px solid var(--Neutral-40);
     margin: 15px;
     margin-bottom: 30px;
+    background-color: var(--base-white);
 }
 
 .Card .image_con{

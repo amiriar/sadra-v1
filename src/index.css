@@ -32,11 +32,13 @@
   --Gray-900 : #101828 ;
   --Gray-500 : #667085;
   --Gray-100 : #F2F4F7 ;
+  --Gray-600 : #475467 ;
 }
 
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   text-decoration: none;
   outline: none;
   border: none;

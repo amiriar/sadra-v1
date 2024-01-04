@@ -9,6 +9,7 @@ import Line from '../components/modules/Line';
 import VideoPlayer from '../components/modules/VideoPlayer';
 import CardPopTu from '../components/modules/HomePageModule/CardPopTu';
 import CardEvent from '../components/modules/HomePageModule/CardEvent';
+import CommentCard from '../components/modules/HomePageModule/CommentCard';
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -32,6 +33,7 @@ import { Stack } from '@mui/system';
 import { CardData , RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
 import imageAbout from '/public/assets/image_about_us.png'
 import {eventData} from '../components/modules/HomePageModule/EventsContent'
+import Comments from '../components/modules/HomePageModule/CommentsData';
 // Variabels
 
                   
@@ -268,6 +270,42 @@ const Home = () => {
               </div>
         </div>
     </div>
+
+
+  {/* Part Eight */}
+          
+  <div className='Comments_container'>
+    <div className='Icons_comments'>
+      <Line/>
+      <h2>نظرات شما</h2>
+    </div>
+
+    <h1>نظرات همراهان قبلی صدرا</h1>
+
+<div className='test'>
+    <div className='comment_card_container'>
+      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+
+      <div className='comment_card_container2'>
+      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+      </div>
+    </div>
+
+    
+   <hr/>
+
+   <div className='comment_card_container3'>
+      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+
+      <div className='comment_card_container4'>
+      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+      </div>
+    </div>
+
+</div>
+
+  </div>
+            
     </>
   )
 }
