@@ -883,6 +883,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 .Icons_comments{
@@ -910,6 +912,10 @@
 }
 .test div{
     display: flex;
+}
+
+.test {
+    max-width: 1920px !important;
 }
 
 .comment_card_container{
