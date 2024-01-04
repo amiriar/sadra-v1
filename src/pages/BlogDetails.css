@@ -231,13 +231,11 @@
     box-sizing: border-box !important;
     padding: 3rem 7rem;
     width: 100%;
-    height: 100%;
 }
 .blogCardsContainer {
     max-width: 1440px;
     margin: 0px auto;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+
     font-family: 'Yekan', sans-serif;
     position: relative;
     /* font-size: 2rem; */
