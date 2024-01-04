@@ -2,6 +2,7 @@ import React from 'react'
 
 // MUI parts
 import { Box, Drawer, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const SideBar = ({isOpen , setIsopen}) => {
   return (
@@ -10,10 +11,11 @@ const SideBar = ({isOpen , setIsopen}) => {
             <Typography variant='h6' component="div">
 
             <ul style={{marginTop : 150}} >
-                <li style={{margin : 30}}>صفحه اصلی</li>
-                <li style={{margin : 30}}>رویدادها</li>
-                <li style={{margin : 30}}>کلاس‌ها</li>
-                <li style={{margin : 30}}>تماس با ما</li>
+              <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/'}>صفحه اصلی</Link></li>
+              <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/events'}>رویدادها</Link></li>
+              <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/classes'}>کلاس‌ها</Link></li>
+              <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/blog'}>بلاگ</Link></li>
+              <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/contact'}>تماس با ما</Link></li>
             </ul>
 
             </Typography>
