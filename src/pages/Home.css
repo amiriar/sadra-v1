@@ -388,6 +388,7 @@
 
 .learn_container{
     margin: 0% 9%;
+    padding: 3% 10%;
     max-width: 100%;
     display: flex;
     text-align: right;
@@ -787,7 +788,7 @@
 .event_icons{
     
     width: 100%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: space-between;
 }
@@ -871,3 +872,107 @@
     }
 }
 
+
+/* part Eight Comments */
+
+.Comments_container{
+    overflow: hidden;
+    max-width: 100%;
+    padding: 2% 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Icons_comments{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    color: var(--prime-green);
+}   
+
+.Comments_container h1{
+    font-size: 52px;
+    color: var(--Gray-900);
+    margin-top: 15px;
+    margin-bottom: 80px;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(77%);
+    }
+    100%{
+        transform: translateX(-62%);
+    }
+}
+.test div{
+    display: flex;
+}
+
+.comment_card_container{
+    text-align: right;
+    max-width: 1900px;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+    animation: 25s slide infinite linear;
+}
+
+
+@keyframes slide2 {
+    0% {
+        transform: translateX(50%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+.comment_card_container2{
+    gap: 32px;
+    animation:  slide2 infinite linear;
+
+}
+
+
+
+
+@keyframes slide {
+    0% {
+        transform: translateX(77%);
+    }
+    100%{
+        transform: translateX(-62%);
+    }
+}
+.test div{
+    display: flex;
+}
+
+.comment_card_container3{
+    text-align: right;
+    max-width: 1900px;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 32px;
+    animation: 50s slide infinite linear;
+}
+
+
+@keyframes slide2 {
+    0% {
+        transform: translateX(50%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+.comment_card_container4{
+    gap: 32px;
+    animation: slide2 infinite linear;
+
+}
