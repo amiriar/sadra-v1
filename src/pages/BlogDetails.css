@@ -1,0 +1,228 @@
+@media (max-width : 1000px) {
+    .image_container_blog_details{
+        min-width: 100% !important;
+    }
+    #imageResponsive{
+        min-width: 50rem !important;
+        max-height: 60vh !important;
+        object-fit: cover;
+    }
+}
+@media (max-width : 830px) {
+    #imageResponsive{
+        min-width: 40rem !important;
+        max-height: 60vh !important;
+        object-fit: cover;
+    }
+}
+@media (max-width : 675px) {
+    #imageResponsive{
+        min-width: 30rem !important;
+        max-height: 52vh !important;
+        object-fit: cover;
+    }
+
+}
+@media (max-width : 520px) {
+    #imageResponsive{
+        min-width: 25rem !important;
+        max-height: 40vh !important;
+        object-fit: cover;
+    }
+}
+@media (max-width : 430px) {
+    #imageResponsive{
+        min-width: 20rem !important;
+        max-height: 35vh !important;
+        object-fit: cover;
+    }
+}
+@media (max-width : 330px) {
+    #imageResponsive{
+        min-width: 18rem !important;
+        max-height: 30vh !important;
+        object-fit: cover;
+    }
+}
+
+@media (max-width : 1000px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 8rem !important;
+    }
+}
+
+@media (max-width : 980px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 7.2rem !important;
+    }
+}
+
+@media (max-width : 902px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 9rem !important;
+    }
+}
+
+@media (max-width : 835px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 9.6rem !important;
+    }
+}
+
+@media (max-width : 715px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 9.4rem !important;
+    }
+}
+@media (max-width : 685px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 9rem !important;
+    }
+}
+
+@media (max-width : 620px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 8.8rem !important;
+    }
+}
+@media (max-width : 600px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 5rem !important;
+    }
+}
+@media (max-width : 576px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 4.8rem !important;
+    }
+}
+@media (max-width : 550px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 4rem !important;
+    }
+}
+@media (max-width : 485px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 4.2rem !important;
+    }
+}
+@media (max-width : 350px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 4rem !important;
+    }
+}
+@media (max-width : 317px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 5.3rem !important;
+    }
+}
+
+#hashtagsDetails{
+    display: flex;
+    justify-content: right;
+}
+
+#hashtagsDetails a{
+    display: flex;
+    justify-content: right;
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.60);
+    color: #000;
+    padding: 0.3125rem 0.625rem !important;
+}
+
+.mainContentBlogDetails {
+    margin-top: 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.ContentTextBlogDetails {
+    flex: 15; /* Takes up 70% of the available space */
+    padding: 10px; /* Add any additional styling you need */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+.timeProgressBlogDetails {
+    flex: 2; /* Takes up 30% of the available space */
+    padding: 10px; /* Add any additional styling you need */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+/* Media query for screens smaller than 768px */
+@media screen and (max-width: 1000px) {
+    .mainContentBlogDetails {
+        padding: 0 1rem; /* Adjust padding for smaller screens */
+        flex-direction: column-reverse;
+        margin-top: 10rem !important;
+    }
+
+    .ContentTextBlogDetails {
+        flex: 100%; /* Take up full width on smaller screens */
+    }
+
+    .timeProgressBlogDetails {
+        flex: 100%; /* Take up full width on smaller screens */
+        margin-top: 1rem; /* Add some space between the two elements on smaller screens */
+    }
+    #dissapear{
+        display: none;
+    }
+}
+
+
+.BlogDetailsPictures{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.BlogDetailsPicture{
+    aspect-ratio: 2/1.3 !important;
+    height: auto;
+    width: 49%;
+    border-radius: 0.625rem !important;
+}
+.BlogDetailsSummery{
+    margin-bottom: 2.5rem;
+}
+.image_container_blog_details{
+    height: 100%;
+    width: 100% !important;
+}
+#imageResponsive{
+    object-position: 100% 50% !important;
+}
+.BlogPostInfo{
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.authorInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    margin-bottom: 6rem;
+}
+.authorIcons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
