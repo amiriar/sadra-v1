@@ -41,6 +41,32 @@
     font-weight: 400;
 }
 
+.successVideoInformation{
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    color: var(--Gray-50);
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    z-index: 500000;
+}
+.successVideoContainer {
+    background-color: none;
+}
+.successVideo {
+    border-radius: 0.625rem;
+}
+.successBoxShadow{
+    border-radius: 0.5rem;
+    width: 100%;
+    bottom: 8px;
+    position: absolute;
+    height: 90px;
+    background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 100%), transparent 50% / cover no-repeat;
+    z-index: 10;
+}
+
 @media (max-width : 1300px) {
     .successMain{
         margin: 4rem 1.5rem;

@@ -29,11 +29,11 @@ function StudentSuccess() {
                 <div
                     className='successMainContent'
                     dir='rtl'
-                    style={{ maxWidth: '1920px', margin: '0  auto',overflow: 'hidden'}}
+                    style={{ maxWidth: '1920px', margin: '0 auto',overflow: 'hidden'}}
                 >
                 <Masonry
                     columns={{ sm: 1, md: 2, lg: 2, xl:3 }}
-                    gutter={4}
+                    gutter={2}
                     style={{ width: '100%' }}
                 >
                     {StudentDB.map((item) => (
