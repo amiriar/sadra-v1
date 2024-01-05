@@ -5,7 +5,7 @@
             "src": "../../assets/Media.mp4",
             "title":"زهرا فراهانی",
             "job":"طراح رابط کاربری و تجربه کاربر",
-            "thumbnail":"../../assets/thumbnail1.jpg"
+            "thumbnail":"../../assets/Student-Success/thumb3.png"
         },
         "author":{
             "picture":"",
@@ -25,13 +25,13 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../assets/ImageprofCommet.png",
-            "name":"نام نویسنده",
+            "picture":"../../public/assets/Student-Success/author3.jpeg",
+            "name":"شراره میهن دوست",
             "job":"Front-End Developer"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
         "additionalPicture":"",
-        "date":"1/1/1403"
+        "date":"1402/08/28"
     },
     {
         "id":3,
@@ -43,12 +43,12 @@
         },
         "author":{
             "picture":"../../assets/ImageprofCommet.png",
-            "name":"نام نویسنده",
-            "job":"Front-End Developer"
+            "name":"حسین اشرفی پور",
+            "job":"طراح رابط کاربری و تجربه کاربر"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
-        "date":"1/1/1403"
+        "additionalPicture":"../../assets/Student-Success/additional3.png",
+        "date":"1402/08/28"
     },
     {
         "id":4,
@@ -59,13 +59,13 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../assets/ImageprofCommet.png",
-            "name":"نام نویسنده",
-            "job":"Front-End Developer"
+            "picture":"../../public/assets/Student-Success/author4.png",
+            "name":"حسین اشرفی پور",
+            "job":"طراح رابط کاربری و تجربه کاربر"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
-        "date":"1/1/1403"
+        "additionalPicture":"../../assets/Student-Success/additional2.png",
+        "date":"1402/08/28"
     },
     {
         "id":5,
@@ -76,12 +76,12 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../assets/ImageprofCommet.png",
-            "name":"نام نویسنده",
+            "picture":"../../public/assets/Student-Success/author2.jpeg",
+            "name":"میهن عباسی",
             "job":"Front-End Developer"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
+        "additionalPicture":"",
         "date":"8/28/1403"
     },
     {
@@ -90,7 +90,7 @@
             "src": "../../assets/Media.mp4",
             "title":"سهیل فرهادی",
             "job":"Software Engineer",
-            "thumbnail":"../../assets/thumbnail1.jpg"
+            "thumbnail":"../../assets/Student-Success/thumb2.jpeg"
         },
         "author":{
             "picture":"",
@@ -110,21 +110,21 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../assets/ImageprofCommet.png",
+            "picture":"../../assets/Student-Success/author4.png",
             "name":"شراره میهن دوست",
             "job":"Front-End Developer"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
+        "additionalPicture":"../../assets/Student-Success/adittional1.jpeg",
         "date":"1/1/1403"
     },
     {
         "id":8,
         "video":{
             "src": "../../assets/Media.mp4",
-            "title":"Video Title",
-            "job":"job description",
-            "thumbnail":"../../assets/thumbnail1.jpg"
+            "title":"زهرا فراهانی",
+            "job":"طراح رابط کاربری و تجربه کاربر",
+            "thumbnail":"../../assets/Student-Success/thumb3.png"
         },
         "author":{
             "picture":"../../assets/ImageprofCommet.png",
@@ -139,9 +139,9 @@
         "id":9,
         "video":{
             "src": "../../assets/Media.mp4",
-            "title":"زهرا فراهانی",
-            "job":"طراح رابط کاربری و تجربه کاربر",
-            "thumbnail":"../../assets/thumbnail1.jpg"
+            "title":"پوریا شهسواری",
+            "job":"Data Scientist, DPR Construction",
+            "thumbnail":"../../public/assets/Student-Success/thumb1.jpeg"
         },
         "author":{
             "picture":"",
@@ -150,23 +150,6 @@
         },
         "description":"",
         "additionalPicture":"",
-        "date":"1/1/1403"
-    },
-    {
-        "id":10,
-        "video":{
-            "src": "",
-            "title":"",
-            "job":"",
-            "thumbnail":""
-        },
-        "author":{
-            "picture":"../../assets/ImageprofCommet.png",
-            "name":"الناز شاکردوست",
-            "job":"Software Engineer"
-        },
-        "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
         "date":"1/1/1403"
     },
     {
@@ -195,12 +178,12 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../assets/ImageprofCommet.png",
+            "picture":"../../assets/Student-Success/author3.jpeg",
             "name":"شراره میهن دوست",
             "job":"Front-End Developer"
         },
         "description":"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون.",
-        "additionalPicture":"../../assets/blog-images/1.jpeg",
+        "additionalPicture":"../../assets/Student-Success/additional3.png",
         "date":"1/1/1403"
     },
     {

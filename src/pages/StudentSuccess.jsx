@@ -55,7 +55,7 @@ function StudentSuccess() {
                             }}
                         >
                             <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box'}}>
-                                <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 10, objectFit:'cover',marginTop:10, height:"45px",width:"45px"}} />
+                                <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 15, objectFit:'cover',marginTop:5, height:"3.125rem",width:"3.125rem"}} />
                                 <div style={{display:'flex', flexDirection:"column"}}>
                                     <Typography fontFamily={'Yekan,sans-serif'} variant="h6">{item.author.name}</Typography>
                                     <Typography fontFamily={'Yekan,sans-serif'} variant="subtitle1">{item.author.job}</Typography>

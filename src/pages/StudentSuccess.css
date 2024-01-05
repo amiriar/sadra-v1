@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     max-width: 1920px;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 .successHeroImage{
     height: 41rem;
@@ -17,6 +17,11 @@
 
 .successMain{
     margin: 6rem 3rem;
+    max-width: 1920px;
+    margin: 5rem auto;
+}
+.successMainContent{
+    margin: 0rem 5rem !important;
 }
 .successHeroContent{
     display: flex;
@@ -67,15 +72,35 @@
     z-index: 10;
 }
 
+@media (max-width : 1700px) {
+    .successMainContent{
+        margin: 0rem 4rem !important;
+    }
+}
+@media (max-width : 1500px) {
+    .successMainContent{
+        margin: 0rem 2rem !important;
+    }
+}
 @media (max-width : 1300px) {
     .successMain{
         margin: 4rem 1.5rem;
+    }
+    .successMainContent{
+        margin: 0rem 1rem !important;
+    }
+    .successPostDesc{
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
     }
 }
 
 @media (max-width : 950px) {
     .successMain{
         margin: 2em 1rem;
+    }
+    .successMainContent{
+        margin: 0rem 0rem !important;
     }
     .successHeroImage{
         display: none;
@@ -129,7 +154,4 @@
     .successMain{
         margin: 3rem 0.5rem;
     }
-}
-
-@media (max-width : 450px) {
 }
