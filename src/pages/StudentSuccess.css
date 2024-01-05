@@ -136,6 +136,9 @@
     }
 }
 @media (max-width : 500px) {
+    .responsiveVideoTexts{
+        font-size: 0.875rem !important;
+    }
     .successHeroContent{
         width: 80%;
     }

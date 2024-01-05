@@ -39,7 +39,7 @@ function VideoComponent({ video }) {
                 style={{ display: isPlaying ? 'none' : 'block' }}
             ></div>
             <div className='successVideoInformation' style={{ display: isPlaying ? 'none' : 'flex' }}>
-                <div>
+                <div className='responsiveVideoTexts'>
                     <Typography fontFamily={'Yekan,sans-serif'} variant='h6'>
                         {video.title}
                     </Typography>
