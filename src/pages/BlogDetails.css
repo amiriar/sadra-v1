@@ -252,13 +252,13 @@
 .blogCardsContainer {
     max-width: 1920px;
     margin: 0px auto;
-    margin-bottom: 2rem;
+    display: flex;
+        margin-bottom: 2rem;
     display: flex;
     font-family: 'Yekan', sans-serif;
     /* font-size: 2rem; */
 }
 .BlogRelatablePostsCards{
-    background-color: red;
     display: inline-block;
 }
 .middleBlogHeader{

@@ -34,6 +34,7 @@ import { CardData , RenderCategory } from '../components/modules/HomePageModule/
 import imageAbout from '/public/assets/image_about_us.png'
 import {eventData} from '../components/modules/HomePageModule/EventsContent'
 import Comments from '../components/modules/HomePageModule/CommentsData';
+import { Link } from 'react-router-dom';
 // Variabels
 
                   
@@ -178,19 +179,11 @@ const Home = () => {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
 
-            <Tab label={RenderCategory[0].CatTitle} value={RenderCategory[0].id.toString()} />
-            <Tab label={RenderCategory[1].CatTitle} value={RenderCategory[1].id.toString()} />
-            <Tab label={RenderCategory[2].CatTitle} value={RenderCategory[2].id.toString()} />
-            <Tab label={RenderCategory[3].CatTitle} value={RenderCategory[3].id.toString()} />
-            <Tab label={RenderCategory[4].CatTitle} value={RenderCategory[4].id.toString()} />
-            <Tab label={RenderCategory[5].CatTitle} value={RenderCategory[5].id.toString()} />
-
-            {/* {
-              RenderCategory.map(item => {
-              <Tab label={item.CatTitle} value={item.id.toString()} />
-                console.log(item.id.toString())
-              })
-            } */}
+            {
+              RenderCategory.map((item , index) => (
+                <Tab label={item.CatTitle} value={index.toString()} />
+              ))
+            }
 
           </TabList>
         </Box>
@@ -259,7 +252,7 @@ const Home = () => {
 
         <div className='event_container'>
               <div className='event_icons'>
-                <button><p><FaLongArrowAltLeft style={{margin : 12}} />رویدادهای بیشتر </p></button>
+                <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events">رویدادهای بیشتر</Link></p></button>
                 <h2>رویدادهای آینده</h2>
               </div>
 
