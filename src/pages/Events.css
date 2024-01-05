@@ -132,8 +132,6 @@
     margin: 20px 0px;
 }
 
-.searchItem input{
-}
 
 .container{
     display: block;
@@ -230,8 +228,17 @@
 
 
 
+#mobile_setting{
+    display: none;
+}
 
+.mobileS_de{
+    display: none;
+}
 
+.mobileS_active{
+    background-color: red;
+}
 
   /* Responsive */
 
@@ -263,9 +270,15 @@
     }
     .tutorialBox{
         padding: 0px;
+        padding-top: 60px;
     }
     .eventBody{
         padding: 2% 10%;
+    }
+    #mobile_setting{
+        display: inline-block;
+        position: absolute;
+        left: 0;
     }
 }
 

@@ -9,6 +9,11 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import EventCar from '../components/modules/EventModules/EventCar';
 import MenuIcon from '../components/layouts/svg/MenuIcon';
+import MobileSettingIcon from '../components/layouts/svg/MobileSettingIcon';
+// import { Box, Drawer, Typography } from '@mui/material'
+import { Drawer, Typography } from '@mui/material'
+
+
 // Styles
 import './Events.css'
 
@@ -21,9 +26,9 @@ const Events = () => {
   const [status , setStatus] = useState(true)
   const [status2 , setStatus2] = useState(true)
   const [status3 , setStatus3] = useState(true)
-  
   const CardData = EventDb.tutorilEvent[1].EventsData
-  
+  const [setting , setSetting] = useState(false)
+  const [isOpen , setIsopen] = useState(false)
   const [value, setValue] = React.useState('1');
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -39,6 +44,10 @@ const Events = () => {
 
   const statusHandler3 = ()=>{
     setStatus3(e => !e)
+  }
+
+  const mobileSetting = ()=>{
+    setSetting(e => !e);
   }
 
 
@@ -113,7 +122,7 @@ const Events = () => {
                <label className='container'>
                <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
                <input type="checkbox"  />
-               <span class="checkmark"></span>
+               <span className="checkmark"></span>
                </label>
               </li>
                          
@@ -135,7 +144,7 @@ const Events = () => {
                <label className='container'>
                <p id='lable_text'>(18) رایگان</p>
                <input type="checkbox"  />
-               <span class="checkmark"></span>
+               <span className="checkmark"></span>
                </label>
           </li>
 
@@ -143,7 +152,7 @@ const Events = () => {
                <label className='container'>
                <p id='lable_text'>(18) تخفیف‌دارها</p>
                <input type="checkbox"  />
-               <span class="checkmark"></span>
+               <span className="checkmark"></span>
                </label>
           </li>
 
@@ -165,25 +174,91 @@ const Events = () => {
               <label className='container'>
                 <p id='lable_text'>(18) رویدادهای آینده</p>
                 <input type="checkbox"  />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
           </li>
           <li className='searchItem'>
               <label className='container'>
                 <p id='lable_text'>(18) رویدادهای گذشته </p>
                 <input type="checkbox"  />
-                <span class="checkmark"></span>
+                <span className="checkmark"></span>
               </label>
           </li>
         </ul>
   </div>
 </div>
+</div>
 
-      </div>
 
-     </div>
-     
+    <button onClick={mobileSetting} id='mobile_setting'><MobileSettingIcon/></button>
+    <div className={setting ? "mobileS_active" : "mobileS_de"}>
+    <Drawer anchor='left' open={setting} onClose={()=> setSetting(false)}>
+          <Box p={2} width='250px' textAlign='center' role='presentation'>
+            <Typography variant='h6' component="div">
+
+
+            <ul>
+            {
+              RenderCategory.map((item , index)=>(
+               
+               <li className='searchItem'>
+               <label className='container'>
+               <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
+               <input type="checkbox"  />
+               <span className="checkmark"></span>
+               </label>
+              </li>
+                         
+
+               ))
+            }
+          </ul>
+
+
+        <ul>
+          <li className='searchItem'>
+               <label className='container'>
+               <p id='lable_text'>(18) رایگان</p>
+               <input type="checkbox"  />
+               <span className="checkmark"></span>
+               </label>
+          </li>
+
+          <li className='searchItem'>
+               <label className='container'>
+               <p id='lable_text'>(18) تخفیف‌دارها</p>
+               <input type="checkbox"  />
+               <span className="checkmark"></span>
+               </label>
+          </li>
+        </ul>   
+
+
+        <ul>
+          <li className='searchItem'>
+              <label className='container'>
+                <p id='lable_text'>(18) رویدادهای آینده</p>
+                <input type="checkbox"  />
+                <span className="checkmark"></span>
+              </label>
+          </li>
+          <li className='searchItem'>
+              <label className='container'>
+                <p id='lable_text'>(18) رویدادهای گذشته </p>
+                <input type="checkbox"  />
+                <span className="checkmark"></span>
+              </label>
+          </li>
+        </ul>
+
+            </Typography>
+          </Box>
+       </Drawer>
     </div>
+
+</div>   
+</div>
+
   )
 }
 
