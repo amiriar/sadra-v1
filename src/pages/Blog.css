@@ -21,6 +21,7 @@
     font-family: 'Yekan', sans-serif;
     position: relative;
     /* font-size: 2rem; */
+    padding: 0 7.75rem;
 }
 .blogCardsContainer #titleBlog {
     font-size: 1.5rem;
@@ -111,12 +112,20 @@
     #tagsBlog{
         font-size: 0.75rem;
     }
+    .blogCardsContainer {
+        padding: 0 5.75rem;
+    }
 }
 @media (max-width : 1000px) {
     .blogCardsContainer {
         margin-left: 20px;
         margin-right: 20px;
         font-size: 1rem;
+    }
+}
+@media (max-width : 1100px) {
+    .blogCardsContainer {
+        padding: 0 3.75rem;
     }
 }
 @media (max-width : 950px) {
@@ -130,10 +139,16 @@
         font-size: 0.65rem;
     }
 }
+@media (max-width : 800px) {
+    .blogCardsContainer {
+        padding: 0 2.75rem;
+    }
+}
 @media (max-width : 600px) {
     .blogCardsContainer {
         margin-left: 20px;
         margin-right: 20px;
+        padding: 0 1.75rem;
     }
     .blogCardsContainer #titleBlog {
         font-size: 1.2rem;
@@ -142,5 +157,8 @@
 @media (max-width : 400px) {
     .blogCardsContainer #titleBlog {
         font-size: 1rem;
+    }
+    .blogCardsContainer {
+        padding: 0 0.875rem;
     }
 }

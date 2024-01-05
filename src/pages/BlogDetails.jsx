@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 //css:
 import './BlogDetails.css'
+import Line from '../components/modules/Line'
 
 // DB:
 import BlogDB from '../utils/BlogDB.json'
@@ -19,8 +20,6 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 
-// variables:
-let counter = 0;
 
 function BlogDetails() {
     const { id } = useParams()
@@ -58,9 +57,9 @@ function BlogDetails() {
             <div className='mainContentBlogDetails'>
                 <div className='ContentTextBlogDetails'>    
                     <div>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription1}</p>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription2}</p>
-                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription3}</p>
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription1}</p><br />
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription2}</p><br />
+                        <p style={{color: "#475467"}} dir='rtl'>{BlogPost.detailsDescription3}</p><br />
                     </div>
                     <div className='BlogDetailsPictures'>
                         <img src={BlogPost.descriptionImage1} alt={BlogPost.descriptionImage2} className='BlogDetailsPicture' />
@@ -68,7 +67,7 @@ function BlogDetails() {
                     </div>
                     <div className='BlogDetailsSummery'>
                         <p dir='rtl' style={{color: "#475467"}}>{BlogPost.detailsDescription4}</p>
-                        <h1 dir='rtl' style={{color:"#4CA773"}}>"{BlogPost.title}"</h1>
+                        <h1 dir='rtl' className='middleBlogHeader' style={{color:"#4CA773"}}>"{BlogPost.title}"</h1>
                         <p dir='rtl' style={{color: "#475467"}}>{BlogPost.detailsDescription4}</p>
                     </div>
                     <div className='BlogPostInfo'>
@@ -107,11 +106,11 @@ function BlogDetails() {
                         </div>
                     </div>
                     <div className='BlogRelatablePosts'>
-                        <h3 dir='rtl'>پست های مرتبط</h3>
+                        <h3 dir='rtl' style={{marginBottom:"2rem"}}>پست های مرتبط</h3>
                         <div className='blogCardsContainer' dir='rtl'>
                             {
-                                <Grid display={'flex'} container spacing={3}>
-                                    <Grid item key={reliablePost1.id} xs={12} sm={6} md={4}>
+                                <Grid container spacing={3}>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost1.id}
                                             imageData={reliablePost1.imageData}
@@ -123,6 +122,8 @@ function BlogDetails() {
                                             authorPicture={reliablePost1.author.picture}
                                             hashtags={reliablePost1.hashtags}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost2.id}
                                             imageData={reliablePost2.imageData}
@@ -134,6 +135,8 @@ function BlogDetails() {
                                             authorPicture={reliablePost2.author.picture}
                                             hashtags={reliablePost2.hashtags}
                                         />
+                                    </Grid>
+                                    <Grid item xs={12} sm={6} md={4}>
                                         <BlogCard
                                             id={reliablePost3.id}
                                             imageData={reliablePost3.imageData}
@@ -152,14 +155,15 @@ function BlogDetails() {
                     </div>
                 </div>
                 <div className='timeProgressBlogDetails' dir='rtl'>
-                    <span>1402/1/4</span>
-                    {/* <span><Line/></span> */}
-                    <span>4 دقیقه</span>
-                    <VerticalProgressBar bgcolor={"#6AD095"} progress={"60"} width={"5px"}/>
-                    <span id="dissapear">پایان</span>
+                    <div style={{display:"flex", alignItems:"center"}}>
+                        <span>{BlogPost.date}</span>&nbsp;
+                        <span><Line/></span>&nbsp;
+                        <span>{BlogPost.timeToRead} دقیقه</span>
+                    </div>
+                    <VerticalProgressBar bgcolor={"#6AD095"} progress={BlogPost.timeToRead} width={"5px"}/>
+                    <span id="dissapear" style={{marginRight:"4rem"}}>پایان</span>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -69,7 +69,7 @@
 @media (max-width : 835px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 9.6rem !important;
+        margin-top: 9.2rem !important;
     }
 }
 
@@ -85,47 +85,48 @@
         margin-top: 9rem !important;
     }
 }
+@media (max-width : 675px) {
+    #heroBlogDetails{
+        margin-bottom: 7rem !important;
+        margin-top: 7rem !important;
+    }
+}
 
 @media (max-width : 620px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 8.8rem !important;
+        margin-top: 6.5rem !important;
     }
 }
 @media (max-width : 600px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 5rem !important;
+        margin-top: 2.5rem !important;
     }
 }
 @media (max-width : 576px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 4.8rem !important;
+        margin-top: 2.3rem !important;
     }
 }
 @media (max-width : 550px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 4rem !important;
+        margin-top: 2.5rem !important;
     }
 }
-@media (max-width : 485px) {
+@media (max-width : 520px) {
     #heroBlogDetails{
         margin-bottom: 7rem !important;
-        margin-top: 4.2rem !important;
+        margin-top: 0rem !important;
     }
 }
-@media (max-width : 350px) {
-    #heroBlogDetails{
-        margin-bottom: 7rem !important;
-        margin-top: 4rem !important;
-    }
-}
-@media (max-width : 317px) {
-    #heroBlogDetails{
-        margin-bottom: 7rem !important;
-        margin-top: 5.3rem !important;
+
+
+@media (max-width : 1000px) {
+    #hashtagsDetails{
+        justify-content: center !important;
     }
 }
 
@@ -135,8 +136,6 @@
 }
 
 #hashtagsDetails a{
-    display: flex;
-    justify-content: right;
     border-radius: 0.5rem;
     background: rgba(255, 255, 255, 0.60);
     color: #000;
@@ -150,6 +149,7 @@
     box-sizing: border-box;
     text-align: justify;
     text-justify: inter-word;
+    padding: 0 7.75rem;
 }
 
 .ContentTextBlogDetails {
@@ -190,7 +190,24 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
+    flex-wrap: wrap !important;
     justify-content: space-between;
+}
+
+@media (max-width: 700px) {
+    .BlogDetailsPictures{
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    .BlogDetailsPicture{
+        aspect-ratio: 2/1.3 !important;
+        width: 100% !important;
+        height: 400px !important;
+        border-radius: 0.625rem !important;
+    }
+    .mainContentBlogDetails p{
+        font-size: 0.875rem;
+    }
 }
 .BlogDetailsPicture{
     aspect-ratio: 2/1.3 !important;
@@ -229,18 +246,38 @@
 
 .BlogRelatablePosts{
     box-sizing: border-box !important;
-    padding: 3rem 7rem;
+    /* padding: 3rem 7rem; */
     width: 100%;
 }
 .blogCardsContainer {
-    max-width: 1440px;
+    max-width: 1920px;
     margin: 0px auto;
+<<<<<<< HEAD
     display: flex;
     
+=======
+    margin-bottom: 2rem;
+    display: flex;
+>>>>>>> 88615ba239309d6fbca09a40c30124862272f7bd
     font-family: 'Yekan', sans-serif;
-    position: relative;
     /* font-size: 2rem; */
 }
 .BlogRelatablePostsCards{
     display: inline-block;
+}
+.middleBlogHeader{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+@media screen and (max-width: 800px) {
+    .middleBlogHeader{
+        font-size: 2rem;
+    }
+}
+@media screen and (max-width: 600px) {
+    .middleBlogHeader{
+        font-size: 1.5rem;
+    }
 }
