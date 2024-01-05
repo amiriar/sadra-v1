@@ -15,8 +15,8 @@
     background-position: 100% 30%;
 }
 
-.successHeroImageSmall{
-    
+.successMain{
+    margin: 6rem 3rem;
 }
 .successHeroContent{
     display: flex;
@@ -41,11 +41,15 @@
     font-weight: 400;
 }
 
+@media (max-width : 1300px) {
+    .successMain{
+        margin: 4rem 1.5rem;
+    }
+}
+
 @media (max-width : 950px) {
-    .successHeroContent{
-        position: static;
-        height: 20.5rem;
-        margin-right: 5rem;
+    .successMain{
+        margin: 2em 1rem;
     }
     .successHeroImage{
         display: none;
@@ -60,8 +64,6 @@
         background-size: cover;
         background-position: 50% 30%;
     }
-}
-@media (max-width : 950px) {
     .successHeroContent{
         position: static;
         height: 20.5rem;
@@ -94,4 +96,14 @@
         color: var(--Gray-300);
         font-size: 0.75rem;
     }
+    .successMainImage{
+        height: 25rem !important;
+        background-position: 100% 50%;
+    }
+    .successMain{
+        margin: 3rem 0.5rem;
+    }
+}
+
+@media (max-width : 450px) {
 }
