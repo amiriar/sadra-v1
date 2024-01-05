@@ -36,8 +36,8 @@ function StudentSuccess() {
                                     item.video.src ? (
                                         <VideoComponent video={item.video} />
                                     ) : (
-                                        <Paper spacing={2} textAlign={'center'} sx={{boxSizing:"border-box", padding:"1.5rem 1.25rem", background:"red"}}>
-                                            <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box' ,padding:"0rem 1.25rem"}}>
+                                        <Paper spacing={2} textAlign={'center'} sx={{boxSizing:"border-box", padding:"1.5rem 1.25rem",textJustify:"inter-word",textAlign:"justify"}}>
+                                            <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box'}}>
                                                 <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 10, objectFit:'cover', marginRight:10,marginTop:10, height:"45px",width:"45px"}} />
                                                 <div style={{display:'flex', flexDirection:"column"}}>
                                                     <Typography fontFamily={'Yekan,sans-serif'} variant="h6">{item.author.name}</Typography>
@@ -53,7 +53,7 @@ function StudentSuccess() {
                                             </div>
                                                 <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.description}</Typography>
                                                 <Divider/>
-                                                <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem", textAlign:"left"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
+                                                <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem", textAlign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
                                         </Paper>
                                     )
                                 }
