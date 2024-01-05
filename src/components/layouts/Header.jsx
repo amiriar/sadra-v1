@@ -10,7 +10,7 @@ import {Logo} from './svg/Logo';
 import Logo2 from './svg/Logo2';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 const Header = () => {
   const [isOpen , setIsopen] = useState(false)
 
@@ -23,11 +23,11 @@ const Header = () => {
       <div className='List_Logo'>
       <div>
           <ul>
-              <li><Link className='link' to={'/contact'}>تماس با ما</Link></li>
-              <li><Link className='link' to={'/blog'}>بلاگ</Link></li>
-              <li><Link className='link' to={'/events'}>رویدادها</Link></li>
-              <li><Link className='link' to={'/classes'}>کلاس‌ها</Link></li>
-              <li><Link className='link' to={'/'}>صفحه اصلی</Link></li>
+              <li><NavLink className='link' to={'/contact'}>تماس با ما</NavLink></li>
+              <li><NavLink className='link' to={'/blog'}>بلاگ</NavLink></li>
+              <li><NavLink className='link' to={'/events'}>رویدادها</NavLink></li>
+              <li><NavLink className='link' to={'/classes'}>کلاس‌ها</NavLink></li>
+              <li><NavLink className='link' to={'/'}>صفحه اصلی</NavLink></li>
           </ul>
       </div>
 
