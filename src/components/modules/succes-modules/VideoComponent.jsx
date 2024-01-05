@@ -1,8 +1,9 @@
 import { Paper, Typography } from '@mui/material';
 import React, { useRef, useState } from 'react';
 import { IoPlayOutline } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
-function VideoComponent({ video }) {
+function VideoComponent({ UrlAutorName,video }) {
     const videoRef = useRef();
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -10,6 +11,7 @@ function VideoComponent({ video }) {
         if (videoRef.current.paused) {
             videoRef.current.play();
             setIsPlaying(true);
+            console.log(UrlAutorName);
         } else {
             videoRef.current.pause();
             setIsPlaying(false);
@@ -19,6 +21,12 @@ function VideoComponent({ video }) {
     const handleVideoEnded = () => {
         setIsPlaying(false);
     };
+
+    const navigate = useNavigate()
+
+    function clickHandlerUrl({ name }) {
+        navigate(`/student/${name}`)
+    }
 
     return (
         <div style={{ position: 'relative' }} className='successVideoContainer'>
@@ -39,7 +47,7 @@ function VideoComponent({ video }) {
                 style={{ display: isPlaying ? 'none' : 'block' }}
             ></div>
             <div className='successVideoInformation' style={{ display: isPlaying ? 'none' : 'flex' }}>
-                <div className='responsiveVideoTexts'>
+                <div className='responsiveVideoTexts' onClick={() => clickHandlerUrl({name: UrlAutorName.name})}>
                     <Typography fontFamily={'Yekan,sans-serif'} variant='h6'>
                         {video.title}
                     </Typography>

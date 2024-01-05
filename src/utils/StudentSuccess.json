@@ -9,8 +9,8 @@
         },
         "author":{
             "picture":"",
-            "name":"",
-            "job":""
+            "name":"زهرا فراهانی",
+            "job":"طراح رابط کاربری و تجربه کاربر"
         },
         "description":"",
         "additionalPicture":"",
@@ -94,8 +94,8 @@
         },
         "author":{
             "picture":"",
-            "name":"",
-            "job":""
+            "name":"سهیل فرهادی",
+            "job":"Software Engineer"
         },
         "description":"",
         "additionalPicture":"",
@@ -141,12 +141,12 @@
             "src": "../../assets/Media.mp4",
             "title":"پوریا شهسواری",
             "job":"Data Scientist, DPR Construction",
-            "thumbnail":"../../public/assets/Student-Success/thumb1.jpeg"
+            "thumbnail":"../../assets/Student-Success/thumb1.jpeg"
         },
         "author":{
             "picture":"",
-            "name":"",
-            "job":""
+            "name":"پوریا شهسواری",
+            "job":"Data Scientist, DPR Construction"
         },
         "description":"",
         "additionalPicture":"",

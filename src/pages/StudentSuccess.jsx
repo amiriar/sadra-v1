@@ -8,9 +8,15 @@ import './StudentSuccess.css'
 //DB
 import StudentDB from '../utils/StudentSuccess.json'
 import VideoComponent from '../components/modules/succes-modules/VideoComponent';
+import { Link, useNavigate } from 'react-router-dom';
 
 function StudentSuccess() {
 
+    const navigate = useNavigate()
+
+    function clickHandler({ name }) {
+        navigate(`/student/${name}`)
+    }
 
     return (
         <div>
@@ -39,7 +45,7 @@ function StudentSuccess() {
                     {StudentDB.map((item) => (
                     <div key={item.id}>
                         {item.video.src ? (
-                            <VideoComponent video={item.video} />
+                            <VideoComponent UrlAutorName={item.author} video={item.video} />
                         ) : (
                         <Paper
                             spacing={2}
@@ -54,7 +60,9 @@ function StudentSuccess() {
                             borderRadius: '0.625rem',
                             }}
                         >
-                            <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box'}}>
+                            <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box', cursor:"pointer"}} onClick={() => clickHandler({name: item.author.name})}>
+                                {/* <Link to={'/'}>
+                                </Link> */}
                                 <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 15, objectFit:'cover',marginTop:5, height:"3.125rem",width:"3.125rem"}} />
                                 <div style={{display:'flex', flexDirection:"column"}}>
                                     <Typography fontFamily={'Yekan,sans-serif'} variant="h6">{item.author.name}</Typography>

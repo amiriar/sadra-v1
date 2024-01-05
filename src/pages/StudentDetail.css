@@ -1,0 +1,89 @@
+.StuDetailsHero{
+    height: 60vh;
+    width: 100%;
+    max-width: 1920px;
+    margin: 3.5rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url('../../assets/Student-detail/stuDetailBg.png');
+    background-position: 100% 50%;
+}
+.StuDetailsHeroInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    width: 60%;
+}
+.stuSuccessStrightLine{
+    border-right: 2px solid #347654;
+    height: 100%; /* Set the height to the desired value */
+    margin-left: 0.75rem;
+}
+.StuDetailsHeroInfoDesc{
+    font-size: 1.25rem;
+    width: 80%;
+    color: var(--Gray-600);
+}
+.StuDetailsHeroImgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+.StuDetailsHeroInfoPs{
+    font-size: 1.125rem;
+}
+.StuDetailsHeroInfoPsSpan{
+    color: var(--Primary-800);
+    font-size: 1.125rem;
+}
+.stuCoureses{
+    background-color: var(--Primary-700);
+    width: fit-content;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    color: var(--Gray-50);
+    margin-bottom: 1.5rem;
+}
+.stuName{
+    color: var(--Gray-800);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+.StuDetailsHeroImgDiv{
+    display: flex;
+    height: 450px;
+    width: 400px;
+    border-radius: 0.675rem;
+    padding: 1rem;
+    background-color: var(--Neutral-40);
+}
+.StuDetailsHeroImgDiv img{
+    object-fit: cover;
+    object-position: 50% 50%;
+    border-radius: 0.675rem;
+}
+/* StuDetailsHero
+StuDetailsHeroInfo
+stuSuccessStrightLine
+StuDetailsHeroImgContainer
+StuDetailsHeroImgDiv */
+
+.StuOtherStus{
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: var(--Gray-100);
+}
+
+.StuOtherStusDiv{
+    width: 20%;
+    background-color: var(--Neutral-40);
+    border-radius: 1rem;
+}
+
+.StuOtherStusDiv img{
+    padding: 20px;
+}
