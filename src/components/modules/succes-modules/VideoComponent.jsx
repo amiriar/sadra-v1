@@ -5,7 +5,7 @@ function VideoComponent({ video }) {
     return (
         <>
             <Paper elevation={3} >
-                <video controls width="100%">
+                <video controls width="100%" poster={video.thumbnail}>
                     <source src={video.src} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>

@@ -36,7 +36,7 @@ function StudentSuccess() {
                                     item.video.src ? (
                                         <VideoComponent video={item.video} />
                                     ) : (
-                                        <Paper spacing={2} textAlign={'center'} sx={{boxSizing:"border-box", padding:"1.5rem 1.25rem",textJustify:"inter-word",textAlign:"justify"}}>
+                                        <Paper spacing={2} textAlign={'center'} sx={{boxSizing:"border-box", padding:"1.5rem 1.25rem",textJustify:"inter-word",textAlign:"justify",boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',borderRadius: '0.625rem'}}>
                                             <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box'}}>
                                                 <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 10, objectFit:'cover', marginRight:10,marginTop:10, height:"45px",width:"45px"}} />
                                                 <div style={{display:'flex', flexDirection:"column"}}>
@@ -53,7 +53,7 @@ function StudentSuccess() {
                                             </div>
                                                 <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.description}</Typography>
                                                 <Divider/>
-                                                <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem", textAlign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
+                                                <Typography sx={{fontSize:"1rem", textAlign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
                                         </Paper>
                                     )
                                 }
