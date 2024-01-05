@@ -1,5 +1,5 @@
 .eventContainer{
-    width: 100%;
+    max-width: 100%;
     text-align: right;
 }
 .eventHeader{
@@ -29,45 +29,334 @@
 /* Part Two */
 
 .eventBody{
+    max-height: 100%;
+    padding: 2% 5%;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 5% 10%;
-    background-color: lightblue;
+    position: relative;
 }
 
 .tutorialBox{
     width: 75%;
+    height: 100%;
     display: flex;
-    padding: 5px 60px;
+    padding: 5px 120px;
+    margin-right: 5%;
     flex-direction: column-reverse;
 }
 
 
 
-.search_container{
-    width: 20%;
-
-    min-height: 100%;
-    max-height: 100%;
-    background-color: red;
-
-}
 
 .EventCardCon{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .event_card_info{
-    background-color: red;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 
 #foundData{
     font-size: 28px 0px;
     padding: 12px;
     color: var(--Neutral-90);
 }
+
+#sortFilter{
+    display: flex;
+}
+
+#sortFilter p{
+    font-size: 16px;
+    color: var(--Neutral-70);
+}
+
+#sortFilter select {
+    padding: 0px 15px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--Neutral-100);
+}
+
+
+.search_container{
+    /* position: sticky; */
+    margin-top: 1.5%;
+    margin-right: 15px;
+    right: 1%;
+    top: 15%;    
+    max-width: 20%;
+    bottom: 2%;
+    height: 90%;
+    padding: 0px 20px;
+    text-align: right;
+    color: var(--Gray-900);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    border-radius: 15px;
+    border: 1px solid var(--Gray-400) ;
+}
+
+#text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#text p {
+    color: var(--Gray-900);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+}
+
+.sortItem{
+    margin: 20px 0px;
+    color: var(--Gray-500);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.searchItem{
+    margin: 20px 0px;
+}
+
+
+.container{
+    display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border-radius: 5px;
+
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: var(--prime-green);
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+  #lable_text{
+    margin-right: 25px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--Gray-500);
+  }
+
+  #menu_Btn{
+    cursor: pointer;
+  }
+
+
+.sortDeactive{
+    display: none;
+}
+
+  .sortActive{
+    display: inline-block;
+  }
+
+
+
+
+#mobile_setting{
+    display: none;
+}
+
+.mobileS_de{
+    display: none;
+}
+
+.mobileS_active{
+    background-color: red;
+}
+
+  /* Responsive */
+
+@media (max-width : 1680px) {
+    .eventBody{
+        max-height: 100%;
+        padding: 2% 0%;
+        justify-content: center;
+    }
+    .tutorialBox{
+        width: 100%;
+        display: flex;
+        padding: 0% 4% 0% 0%;
+        margin-right: 0%;
+        flex-direction: column-reverse;
+        font-size: 16px;
+
+    }
+
+    .eventBody li{
+        font-size: 10px !important;
+    }
+    
+}
+
+@media (max-width : 940px) {
+    .search_container{
+        display: none;
+    }
+    .tutorialBox{
+        padding: 0px;
+        padding-top: 60px;
+    }
+    .eventBody{
+        padding: 2% 10%;
+    }
+    #mobile_setting{
+        display: inline-block;
+        position: absolute;
+        left: 0;
+    }
+}
+
+
+@media (max-width : 835px) {
+    .eventBody{
+        padding: 0%  4% 0% 0%;
+    }
+    .event_card_info{
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 34px;
+        margin: 0px;
+
+    }
+}
+
+@media (max-width : 768px) {
+    .eventBody{
+        padding: 0%  4% 0% 0%;
+    }
+    .event_card_info{
+        font-size: 10px;
+        padding: 0px;
+        margin: 0px;
+    }
+    .event_card_info p{
+        font-size: 1px;
+    }
+    #sortFilter select {
+        padding: 0px 1px;
+        font-size: 10px;
+    }
+    .tutorialBox{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+   
+}
+
+
+@media (max-width : 695px) {
+    .eventBody{
+        padding: 0%  0% 0% 0%;
+    }
+}
+
+@media (max-width : 668px) {
+    .tutorialBox{
+        width: 100%;
+        height: 100%;
+        flex-direction: column-reverse;
+    }
+    
+}
+
+@media (max-width : 395px) {
+    .event_card_info{
+        font-size: 8px;
+    }
+    .event_card_info p{
+        font-size: 5px;
+    }
+}
+
+@media (max-width : 375px) {
+    .tutorialBox{
+        width: 100%;
+        height: 100%;
+        
+    }
+    #pain{
+        font-size: 2px;
+    }
+    
+}
+
+

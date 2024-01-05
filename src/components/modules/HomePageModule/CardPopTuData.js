@@ -59,31 +59,42 @@ const RenderCategory = [
     {
         id : 1 , 
         CatTitle : "طراحی UI/UX"
+        , 
+        quantity : 160 
     } ,
     
     {
         id : 2 , 
         CatTitle : "طراحی گرافیک"
+        , 
+        quantity : 160 
     } ,
 
     {
         id : 3 , 
         CatTitle : "انیمیشن و 3D"
+        , 
+        quantity : 160 
     } ,
 
     {
         id : 4 , 
         CatTitle : "فرانت‌اند"
+        , 
+        quantity : 160 
     } ,
 
     {
         id : 5 , 
         CatTitle : "بک‌اند"
+        , 
+        quantity : 160 
     } ,
 
     {
         id : 6 , 
-        CatTitle : "IOT"
+        CatTitle : "IOT" , 
+        quantity : 160 
     } ,
 ]
 
