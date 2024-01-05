@@ -43,7 +43,7 @@ function BlogDetails() {
                         <div className='tags' dir='rtl' id='hashtagsDetails' style={{marginBottom:"1rem"}}>
                             {
                                 BlogPost.hashtags.map((tag) => (
-                                    <Link className='link' to={`/${tag}`} key={tag}>#{tag}</Link>
+                                    <Link className='link' to={`/blog/tags/${tag}`} key={tag}>#{tag}</Link>
                                 ))
                             }
                         </div>
@@ -105,8 +105,20 @@ function BlogDetails() {
                             </div>
                         </div>
                     </div>
-                    <div className='BlogRelatablePosts'>
-                        <h3 dir='rtl' style={{marginBottom:"2rem"}}>پست های مرتبط</h3>
+                    
+                </div>
+                <div className='timeProgressBlogDetails' dir='rtl'>
+                    <div style={{display:"flex", alignItems:"center"}}>
+                        <span>{BlogPost.date}</span>&nbsp;
+                        <span><Line/></span>&nbsp;
+                        <span>{BlogPost.timeToRead} دقیقه</span>
+                    </div>
+                    <VerticalProgressBar bgcolor={"#6AD095"} progress={BlogPost.timeToRead} width={"5px"}/>
+                    <span id="dissapear" style={{marginRight:"4rem"}}>پایان</span>
+                </div>
+            </div>
+            <div className='BlogRelatablePosts'>
+                        <h3 dir='rtl' style={{marginBottom:"2rem", marginRight:"1.5rem", fontSize:"1.125rem"}}>پست های مرتبط</h3>
                         <div className='blogCardsContainer' dir='rtl'>
                             {
                                 <Grid container spacing={3}>
@@ -153,17 +165,6 @@ function BlogDetails() {
                             }
                         </div>
                     </div>
-                </div>
-                <div className='timeProgressBlogDetails' dir='rtl'>
-                    <div style={{display:"flex", alignItems:"center"}}>
-                        <span>{BlogPost.date}</span>&nbsp;
-                        <span><Line/></span>&nbsp;
-                        <span>{BlogPost.timeToRead} دقیقه</span>
-                    </div>
-                    <VerticalProgressBar bgcolor={"#6AD095"} progress={BlogPost.timeToRead} width={"5px"}/>
-                    <span id="dissapear" style={{marginRight:"4rem"}}>پایان</span>
-                </div>
-            </div>
         </div>
     )
 }

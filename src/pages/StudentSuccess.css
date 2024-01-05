@@ -1,0 +1,97 @@
+.successHero{
+    background-color: #1c1c1c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.successHeroImage{
+    height: 41rem;
+    background-image: url('../../assets/Student-Success/enlarge_bg-hero.png');
+    background-repeat: no-repeat;
+    filter: brightness(50%);
+    background-size: cover;
+    background-position: 100% 30%;
+}
+
+.successHeroImageSmall{
+    
+}
+.successHeroContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    width: 500px;
+    margin-right: 7rem;
+}
+.successHeroContentHeader{
+    color: var(--neutral--20);
+    font-size: 2.5rem;
+}
+.successHeroContentText{
+    margin-top: 1.5rem;
+    color: var(--Gray-300);
+    font-size: 1.125rem;
+}
+.successPostDesc{
+    line-height: 1.125rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+@media (max-width : 950px) {
+    .successHeroContent{
+        position: static;
+        height: 20.5rem;
+        margin-right: 5rem;
+    }
+    .successHeroImage{
+        display: none;
+    }
+    .successHeroImageSmall{
+        display: block;
+        background-image: url('../../assets/Student-Success/enlarge_bg-hero3.png');
+        width: 100%;
+        filter: brightness(50%);
+        height: 21rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 30%;
+    }
+}
+@media (max-width : 950px) {
+    .successHeroContent{
+        position: static;
+        height: 20.5rem;
+        margin-right: 0rem;
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+        text-align: center;
+    }
+    .successHeroContentHeader{
+        font-size: 2.125rem;
+    }
+}
+@media (max-width : 650px) {
+    .successHeroContent{
+        width: 95%;
+    }
+}
+@media (max-width : 500px) {
+    .successHeroContent{
+        width: 80%;
+    }
+    .successHeroContentHeader{
+        font-size: 1.5rem;
+    }
+    .successHeroContentText{
+        margin-top: 1.5rem;
+        color: var(--Gray-300);
+        font-size: 0.75rem;
+    }
+}

@@ -23,12 +23,10 @@ function Blog() {
                     <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
                     <SearchBox firstWidth={'100%'} />
                     <div className='tags' dir='rtl'>
-                        
                         {
-                            tags.map((tag) => {
-                                tagsCounter+=1
-                                return tagsCounter < 20 ? <Link to={`/${tag}`} className='tag'>#{tag}</Link> : null
-                            })
+                            tags.map((tag) => (
+                                <Link to={`/blog/tags/${tag}`} className='tag'>#{tag}</Link>
+                            ))
                         }
                     </div>
                 </div>

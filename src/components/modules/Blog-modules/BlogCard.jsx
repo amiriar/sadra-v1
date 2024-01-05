@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, Avatar, Typography, Divider } from '@mui/material';
 import './BlogCard.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BlogCard = ({ id, imageData, date, title, description, authorName, authorDescription, authorPicture, hashtags }) => {
 
