@@ -170,7 +170,28 @@
             "id" : 4 ,
             "title" : "test" , 
             "quantity" : 360 ,
-            "EventsData" : false
+            "EventsData" : [
+                {
+                    "id" : 1 ,
+                    "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
+                    "Master" : "مدرس استاد علی بابایی" , 
+                    "image" : "/public/assets/1.png" ,
+                    "price" : 128 , 
+                    "offer" : false , 
+                    "place" :  
+                    {
+                        "city" : "تهران" ,
+                        "status" : "حضوری"
+                    }
+                    ,
+                    "time" : 
+                    {
+                        "year" : "1402" , 
+                        "month" : "آبان " , 
+                        "day" : "25" 
+                    } 
+                    } 
+                ]
             
 
         }

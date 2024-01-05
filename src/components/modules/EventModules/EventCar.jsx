@@ -16,13 +16,13 @@ const EventCar = ({id, cardName ,Master, image, price, place , time}) => {
 
           <div className='more_detail'>
          
+            <p>{Master}</p>
 
             <span id='prices'>
             <h2>{price}</h2>
             {/* {price === "رایگان" ? null : <p id='toman'>هزارتومان</p>} */}
             </span>
 
-            <p>{Master}</p>
           </div>
 
 
