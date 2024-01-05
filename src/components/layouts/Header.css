@@ -97,3 +97,9 @@
         font-size: 30px;
     }
 }
+
+
+.active {
+    color: var(--base-white);
+    font-weight: 900;
+}
