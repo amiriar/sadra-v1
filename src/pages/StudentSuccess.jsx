@@ -26,8 +26,8 @@ function StudentSuccess() {
                     <div className='successHeroImageSmall'></div>
             </div>
 
-            <div className='successMain'>
-                <div className='successMainContent' dir='rtl' style={{margin:"6rem"}}>
+            {/* <div className='successMain'>
+                <div className='successMainContent' dir='rtl' style={{margin:"6rem", maxWidth:'1920px', margin:"0  auto"}}>
                     <Grid container spacing={2} fontFamily={'Yekan,sans-serif'}>
                         {
                             StudentDB.map((item) => (
@@ -61,6 +61,59 @@ function StudentSuccess() {
                             ))
                         }
                     </Grid>
+                </div>
+            </div> */}
+             <div className='successMain'>
+                <div
+                className='successMainContent'
+                dir='rtl'
+                style={{ margin: '6rem', maxWidth: '1920px', margin: '0  auto' }}
+                >
+                <Masonry
+                    columns={{ sm: 1, md: 2, lg: 3 }}
+                    gutter={2}
+                    style={{ width: '100%' }}
+                >
+                    {StudentDB.map((item) => (
+                    <div key={item.id}>
+                        {item.video.src ? (
+                        <VideoComponent video={item.video} />
+                        ) : (
+                        <Paper
+                            spacing={2}
+                            textAlign={'center'}
+                            sx={{
+                            boxSizing: 'border-box',
+                            padding: '1.5rem 1.25rem',
+                            textJustify: 'inter-word',
+                            textAlign: 'justify',
+                            boxShadow:
+                                '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
+                            borderRadius: '0.625rem',
+                            }}
+                        >
+                            <div style={{display:"flex", justifyContent:"right", marginBottom:"1rem",marginTop:"1rem", boxSizing:'border-box'}}>
+                                <Avatar src={item.author.picture} alt={item.author.name} style={{ marginLeft: 10, objectFit:'cover', marginRight:10,marginTop:10, height:"45px",width:"45px"}} />
+                                <div style={{display:'flex', flexDirection:"column"}}>
+                                    <Typography fontFamily={'Yekan,sans-serif'} variant="h6">{item.author.name}</Typography>
+                                    <Typography fontFamily={'Yekan,sans-serif'} variant="subtitle1">{item.author.job}</Typography>
+                                </div>
+                            </div>
+                            <div style={{display:'flex', justifyContent:"center"}}>
+                                {
+                                    item.additionalPicture ? 
+                                    <img src={item.additionalPicture} alt={item.additionalPicture} style={{borderRadius:"0.5rem",height:"500px", width:"95%", objectFit:"cover", objectPosition:"100% 50%", marginBottom:"1rem"}} />
+                                    : null
+                                }
+                            </div>
+                            <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.description}</Typography>
+                            <Divider/>
+                            <Typography sx={{fontSize:"1rem", textAlign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
+                        </Paper>
+                        )}
+                    </div>
+                    ))}
+                </Masonry>
                 </div>
             </div>
         </div>
