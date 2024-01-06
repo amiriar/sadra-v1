@@ -5,12 +5,14 @@ import Blog from '../../pages/Blog';
 import BlogDetails from '../../pages/BlogDetails';
 import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
+import EventDetail from '../../pages/EventDetail';
 const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogDetails />} />
+            <Route path='/event/:id' element={<EventDetail/>} />
             <Route path="/events" element={<Events />} />
             <Route path="/classes" element={<Home />} />
             <Route path="/contact" element={<Home />} />
