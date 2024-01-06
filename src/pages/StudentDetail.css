@@ -78,6 +78,7 @@
     padding: 0.5rem 1rem;
     color: var(--Gray-50);
     margin-bottom: 1.5rem;
+    text-align: right;
 }
 .stuName{
     color: var(--Gray-800);
@@ -181,11 +182,24 @@
 }
 @media (max-width: 1200px) {
     .StuDetailsHero {
+        text-align: center;
         grid-template-columns: 1fr;
         grid-template-areas:
             "info"
             "img";
         padding: 0rem 2rem;
+        margin-bottom: 20rem;
+    }
+    .stuCoureses{
+        width: 100%;
+        display: inline;
+        text-align: center;
+    }
+    .stuName{
+        margin-bottom: 1rem !important;
+    }
+    .StuDetailsHeroImgContainer{
+        margin-top: 4rem !important;
     }
 }
 
