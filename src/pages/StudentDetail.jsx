@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 //css
 import './StudentDetail.css'
@@ -6,18 +7,24 @@ import { useParams } from 'react-router-dom';
 
 //DB
 import StudentDB from '../utils/StudentDataDB.json'
-import { Divider } from '@mui/material';
+import { Divider, Grid } from '@mui/material';
+import StudentCard from '../components/modules/succes-modules/StudentCard';
 
 const StudentDetail = () => {
+
+    const navigate = useNavigate()
+
+    function clickHandler({ name }) {
+        navigate(`/student/${name}`)
+    }
 
     const { name } = useParams()
     const targetStudent = StudentDB.find((stu) => stu.name === name)
     const firstFourStudents = StudentDB.slice(0, 4);
-    console.log(firstFourStudents);
     
     return (
         <div>
-            <div className='StuDetailsHero' dir='rtl' style={{padding:"0 4rem"}}>
+            <div className='StuDetailsHero' dir='rtl'>
                 <div className='StuDetailsHeroInfo'>
                     <div>
                         <div>
@@ -41,7 +48,7 @@ const StudentDetail = () => {
                 </div>
             </div>
 
-            <div className='StuDetailsMain' dir='rtl' style={{padding:"0 4rem"}}>
+            <div className='StuDetailsMain' dir='rtl'>
                 <div className='StuFirstSection'>
                     <h3>درباره من</h3>
                     <p>{targetStudent.about}</p>
@@ -63,16 +70,32 @@ const StudentDetail = () => {
                 </div>
             </div>
 
-            <div className='StuOtherStus' dir='rtl' style={{padding:"0 4rem", marginBottom:"5rem"}}>
-                {
-                    firstFourStudents.map((stu) => (
-                        <div className='StuOtherStusDiv'>
-                            <img src={stu.titlePicture} alt={stu.titlePicture} />
-                            <h4>{stu.name}</h4>
-                            <p>{stu.afterJob}</p>
-                        </div>
-                    ))
-                }
+            <div className='StuOtherStusContainer' dir='rtl'>
+                <h1 style={{fontSize: '2.125rem',fontStyle: 'normal',fontWeight: 500, textAlign:"center", marginTop:"1.5rem",marginBottom:"2rem"}}>با دانشجویان دیگر ما هم آشنا بشید</h1>
+                <div className='StuOtherStus'>
+                    <Grid container spacing={2}>
+                        {firstFourStudents.map((student) => (
+                            <Grid item xs={12} sm={6} md={6} lg={3} key={student.name} onClick={() => clickHandler({name: student.name})}>
+                                <StudentCard student={student} />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </div>
+            </div>
+
+            <div className='StuExtraInformation' dir='rtl'>
+                <div className='StuExtraInformationText'>
+                    <h2>چی باعث شد دوره خودتون رو در صدرا بگذرونید ؟</h2>
+                    <p>{targetStudent.whatMadeYouChooseSadra}</p>
+                </div>
+                <div className='StuExtraInformationVideo'>
+                    {/* video */}
+                    <video src={targetStudent.videoOnOpinion} controls poster={targetStudent.videoOnOpinionPoster}></video>
+                </div>
+                <div className='StuExtraInformationText'>
+                    <h2>نظرت در باره بوت کمپ طراحی رابط کاربری صدرا به ما می‌گی؟</h2>
+                    <p>{targetStudent.opinionOnSadra}</p>
+                </div>
             </div>
         </div>
     )
