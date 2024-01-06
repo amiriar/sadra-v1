@@ -152,7 +152,7 @@
 .StuExtraInformation{
     max-width: 1920px;
     margin: 0 auto;
-    padding: 3.5rem 5rem;
+    padding: 3.5rem 4rem !important;
 }
 
 .StuExtraInformationText{
@@ -229,10 +229,13 @@
 }
 @media (max-width : 1100px) {
     .StuExtraInformation{
-        padding: 3.5rem 3rem;
+        padding: 3.5rem 2rem;
     }
 }
 @media (max-width : 700px) {
+    .stuCoureses{
+        font-size: 0.875rem;
+    }
     .StuDetailsHero {
         text-align: center;
         grid-template-columns: 1fr;
@@ -240,7 +243,7 @@
             "info"
             "img";
         padding: 0rem 2rem;
-        margin-bottom: 35rem;
+        margin-bottom: 30rem;
     }
     .StuDetailsHeroImgDiv {
         object-fit: cover;
@@ -248,7 +251,7 @@
         height: 550px;
     }
     .StuExtraInformation{
-        margin: 1.5rem 0.8rem;
+        margin: 1.5rem 0rem !important;
     }
     .StuExtraInformationText h2{
         font-size: 1rem;
@@ -261,6 +264,16 @@
     }
 }
 @media (max-width : 500px) {
+    .StuExtraInformationVideo{
+        margin: 0.5rem 0rem;
+        height: 200px;
+    }
+    .StuExtraInformationVideo video{
+        box-sizing: border-box;
+        margin: 0.5rem 0rem;
+        border-radius: 1rem;
+        height: 200px;
+    }
     .StuDetailsMain h3{
         font-size: 1rem;
     }
@@ -274,7 +287,7 @@
             "info"
             "img";
         padding: 0rem 2rem;
-        margin-bottom: 40rem;
+        margin-bottom: 29rem;
     }
     .StuDetailsHeroImgDiv {
         object-fit: cover;
@@ -282,7 +295,8 @@
         height: 450px;
     }
     .StuExtraInformation{
-        margin: 3.5rem -1rem !important;
+        margin: 3.5rem 0 !important;
+        padding: 0 2rem !important;
     }
     .StuExtraInformationText h2{
         font-size: 1rem;
@@ -298,7 +312,7 @@
         height: 400px;
     }
     .StuExtraInformation{
-        margin: 0rem -1.5rem !important;
+        padding: 0 1rem !important;
     }
     .StuExtraInformationText h2{
         font-size: 0.875rem;
