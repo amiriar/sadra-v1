@@ -3,7 +3,7 @@ import React from 'react'
 
 function StudentCard({ student }) {
     return (
-        <Card sx={{padding:"1.5rem"}}>
+        <Card sx={{padding:"1.5rem", cursor:"pointer"}}>
             <CardMedia
                 component="img"
                 alt={student.name}

@@ -73,7 +73,7 @@ const StudentDetail = () => {
             <div className='StuOtherStusContainer' dir='rtl'>
                 <h1 style={{fontSize: '2.125rem',fontStyle: 'normal',fontWeight: 500, textAlign:"center", marginTop:"1.5rem",marginBottom:"2rem"}}>با دانشجویان دیگر ما هم آشنا بشید</h1>
                 <div className='StuOtherStus'>
-                    <Grid container spacing={2}>
+                    <Grid container spacing={2} >
                         {firstFourStudents.map((student) => (
                             <Grid item xs={12} sm={6} md={6} lg={3} key={student.name} onClick={() => clickHandler({name: student.name})}>
                                 <StudentCard student={student} />
