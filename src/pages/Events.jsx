@@ -20,6 +20,8 @@ import './Events.css'
 // DB
 import EventDb from '../utils/EventDb.json'
 import { RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
+
+
 const Events = () => {
   const popularEvnet = EventDb.PopularEvent ;
   const TabData = EventDb.tutorilEvent ;
@@ -56,18 +58,16 @@ const Events = () => {
 
   return (
     <div className='eventContainer'>
-     <div className='eventHeader'>
-       <h1>رویدادهای صدرا</h1>
-       <p>صدرا با فراهم کردن شرایطی ایده‌آل، سالانه رویدادهای زیادی در حوزه‌ی تکنولوژی در شهرهای بزرگی مثل تهران، اصفهان، مشهد و شیراز برگزار می‌کند که مدرسان این رویدادها از بهترین‌ مدرسان کشور بوده و آماده‌ی انتقال دانش خود به دانشجویان می‌باشند. </p>
-       <SearchBox dir="ltr" />
-       {/* populars */}
-      <span id='popStyle'> {popularEvnet && popularEvnet.map((item , index) => <span key={index} >{`${item.title} , `}</span> )} : محبوب‌ها</span>
-     </div>
+      <div className='eventHeader'>
+        <h1>رویدادهای صدرا</h1>
+        <p>صدرا با فراهم کردن شرایطی ایده‌آل، سالانه رویدادهای زیادی در حوزه‌ی تکنولوژی در شهرهای بزرگی مثل تهران، اصفهان، مشهد و شیراز برگزار می‌کند که مدرسان این رویدادها از بهترین‌ مدرسان کشور بوده و آماده‌ی انتقال دانش خود به دانشجویان می‌باشند. </p>
+        <SearchBox dir="ltr" />
+        {/* populars */}
+        <span id='popStyle'> {popularEvnet && popularEvnet.map((item , index) => <span key={index} >{`${item.title} , `}</span> )} : محبوب‌ها</span>
+      </div>
 
     <div className='eventBody'>
       <div className='tutorialBox'>
-
-
 
     <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
       <TabContext value={value}>
@@ -77,28 +77,27 @@ const Events = () => {
               <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
               
             ) )}
-           
+          
           </TabList>
         </Box>
-         {
+        {
           EventDb.tutorilEvent.map((item , index) => (
             <TabPanel value={item.id.toString()}>
-            <div className='event_card_info'>
-              {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
-              <div id='sortFilter' >
-                <p id='pain'>مرتب‌سازی براساس :</p>
-                <select>
-                  <option value="poular" >محبوب‌ترین‌ها</option>
-                </select>
+              <div className='event_card_info'>
+                {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
+                <div id='sortFilter' >
+                  <p id='pain'>مرتب‌سازی براساس :</p>
+                  <select>
+                    <option value="poular" >محبوب‌ترین‌ها</option>
+                  </select>
+                </div>
               </div>
-            </div>
-        <div className='EventCardCon'>
-              {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
-        </div>
-
+              <div className='EventCardCon'>
+                    {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
+              </div>
             </TabPanel>
           ))
-         }
+        }
       </TabContext>
     </Box>
 
@@ -109,7 +108,7 @@ const Events = () => {
 
       {/* Sorting */}
       <div id='text'>
-       <button onClick={statusHandler} id='menu_Btn' ><MenuIcon/></button>
+        <button onClick={statusHandler} id='menu_Btn' ><MenuIcon/></button>
         <p>دسته‌بندی‌ ها</p>
       </div>
 
@@ -117,76 +116,68 @@ const Events = () => {
           <ul>
             {
               RenderCategory.map((item , index)=>(
-               
-               <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
-              </li>
-                         
-
-               ))
+                <li className='searchItem'>
+                  <label className='container'>
+                  <span id='lable_text'>({item.quantity})</span><span id='lable_text' dir='rtl'>{item.CatTitle}</span>
+                  <input type="checkbox"  />
+                  <span className="checkmark"></span>
+                  </label>
+                </li>
+              ))
             }
           </ul>
       </div>
 
       <div className='prices'>
       <div id='text'>
-       <button onClick={statusHandler2} id='menu_Btn' ><MenuIcon/></button>
+        <button onClick={statusHandler2} id='menu_Btn' ><MenuIcon/></button>
         <p>قیمت</p>
       </div>
 
       <div className={status2 ? "sortActive" : "sortDeactive"}>
           <ul>
-          <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>(18) رایگان</p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
-          </li>
-
-          <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>(18) تخفیف‌دارها</p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
-          </li>
-
+            <li className='searchItem'>
+              <label className='container'>
+              <p id='lable_text'>(18) رایگان</p>
+              <input type="checkbox"  />
+              <span className="checkmark"></span>
+              </label>
+            </li>
+            <li className='searchItem'>
+              <label className='container'>
+              <p id='lable_text'>(18) تخفیف‌دارها</p>
+              <input type="checkbox"  />
+              <span className="checkmark"></span>
+              </label>
+            </li>
           </ul>
-
       </div>
     </div>
 
-
-
-<div className='times'>
-    <div id='text'>
-       <button onClick={statusHandler3} id='menu_Btn' ><MenuIcon/></button>
-        <p>زمان</p>
-      </div>
-  <div className={status3 ? "sortActive" : "sortDeactive"}>
-        <ul>
-          <li className='searchItem'>
-              <label className='container'>
-                <p id='lable_text'>(18) رویدادهای آینده</p>
-                <input type="checkbox"  />
-                <span className="checkmark"></span>
-              </label>
-          </li>
-          <li className='searchItem'>
-              <label className='container'>
-                <p id='lable_text'>(18) رویدادهای گذشته </p>
-                <input type="checkbox"  />
-                <span className="checkmark"></span>
-              </label>
-          </li>
-        </ul>
+  <div className='times'>
+      <div id='text'>
+        <button onClick={statusHandler3} id='menu_Btn' ><MenuIcon/></button>
+          <p>زمان</p>
+        </div>
+    <div className={status3 ? "sortActive" : "sortDeactive"}>
+          <ul>
+            <li className='searchItem'>
+                <label className='container'>
+                  <p id='lable_text'>(18) رویدادهای آینده</p>
+                  <input type="checkbox"  />
+                  <span className="checkmark"></span>
+                </label>
+            </li>
+            <li className='searchItem'>
+                <label className='container'>
+                  <p id='lable_text'>(18) رویدادهای گذشته </p>
+                  <input type="checkbox"  />
+                  <span className="checkmark"></span>
+                </label>
+            </li>
+          </ul>
+    </div>
   </div>
-</div>
 </div>
 
 
@@ -195,8 +186,6 @@ const Events = () => {
     <Drawer anchor='left' open={setting} onClose={()=> setSetting(false)}>
           <Box p={2} width='250px' textAlign='center' role='presentation'>
             <Typography variant='h6' component="div">
-
-
             <ul>
             {
               RenderCategory.map((item , index)=>(
