@@ -188,7 +188,7 @@
             "info"
             "img";
         padding: 0rem 2rem;
-        margin-bottom: 20rem;
+        margin-bottom: 30rem;
     }
     .stuCoureses{
         width: 100%;
@@ -200,6 +200,18 @@
     }
     .StuDetailsHeroImgContainer{
         margin-top: 4rem !important;
+    }
+    .StuDetailsHeroImgDiv img {
+        object-fit: cover;
+        object-position: 50% 30%;
+    }
+    .StuDetailsHeroImgDiv {
+        object-fit: cover;
+        object-position: 50% 30%;
+        height: 600px;
+    }
+    .mt2{
+        margin-top: 2rem;
     }
 }
 

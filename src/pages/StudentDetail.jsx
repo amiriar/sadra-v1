@@ -31,7 +31,7 @@ const StudentDetail = () => {
                             <h1 className='stuName'>{targetStudent?.name}</h1>
                             <h2 className='stuCoureses'>{targetStudent?.courese}</h2>
                         </div>
-                        <div>
+                        <div className='mt2'>
                             <p className='StuDetailsHeroInfoPs'><span className='StuDetailsHeroInfoPsSpan'>قبل از صدرا:</span>&nbsp;&nbsp;&nbsp; {targetStudent.beforeJob}</p>
                             <p className='StuDetailsHeroInfoPs'><span className='StuDetailsHeroInfoPsSpan'>بعد &nbsp;از صدرا:</span>&nbsp;&nbsp;&nbsp; {targetStudent.afterJob}</p>
                         </div>
