@@ -22,7 +22,7 @@ import EventDb from '../utils/EventDb.json'
 import { RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
 
 import { Link } from 'react-router-dom';
->>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
+
 const Events = () => {
   const popularEvnet = EventDb.PopularEvent ;
   const TabData = EventDb.tutorilEvent ;
@@ -77,34 +77,42 @@ const Events = () => {
             {TabData.map((item)=> (
               <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
               
-            ) )}
+            ))}
           
           </TabList>
         </Box>
-          {
-            EventDb.tutorilEvent.map((item , index) => (
-              <TabPanel value={item.id.toString()}>
-                <div className='event_card_info'>
-                  {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
-                  <div id='sortFilter' >
-                    <p id='pain'>مرتب‌سازی براساس :</p>
-                    <select>
-                      <option value="poular" >محبوب‌ترین‌ها</option>
-                    </select>
-                  </div>
+        {
+          EventDb.tutorilEvent.map((item , index) => (
+            <TabPanel value={item.id.toString()}>
+              <div className='event_card_info'>
+                {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
+                <div id='sortFilter' >
+                  <p id='pain'>مرتب‌سازی براساس :</p>
+                  <select>
+                    <option value="poular" >محبوب‌ترین‌ها</option>
+                  </select>
                 </div>
-                <div className='EventCardCon'>
-                      {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
-                </div>
-
-              </TabPanel>
               </div>
               <div className='EventCardCon'>
-                    {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
+                    {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
               </div>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+            </div>
+>>>>>>> 10cb814bf0dfe4a8cf90eea19b5430415e5c52f9
+        <div className='EventCardCon'>
+              {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
+        </div>
 
-            ))
-          }
+<<<<<<< HEAD
+=======
+>>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
+>>>>>>> 10cb814bf0dfe4a8cf90eea19b5430415e5c52f9
+            </TabPanel>
+          ))
+        }
       </TabContext>
     </Box>
 
