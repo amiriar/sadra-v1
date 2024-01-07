@@ -77,7 +77,7 @@ const Events = () => {
             {TabData.map((item)=> (
               <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
               
-            ) )}
+            ))}
           
           </TabList>
         </Box>
@@ -86,7 +86,7 @@ const Events = () => {
             <TabPanel value={item.id.toString()}>
               <div className='event_card_info'>
                 {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
-                <div id='sortFilter' >
+                 <div id='sortFilter' >
                   <p id='pain'>مرتب‌سازی براساس :</p>
                   <select>
                     <option value="poular" >محبوب‌ترین‌ها</option>
