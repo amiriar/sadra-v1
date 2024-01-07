@@ -7,6 +7,10 @@ import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
 import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
+import AdminDashboard from '../admin/AdminDashboard';
+import Auth from '../../pages/Auth';
+
+
 const AppRoutes = () => {
     return (
         <Routes>
@@ -19,6 +23,8 @@ const AppRoutes = () => {
             <Route path="/contact" element={<Home />} />
             <Route path="/success" element={<StudentSuccess />} />
             <Route path="/student/:name" element={<StudentDetail />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin" element={<AdminDashboard />} />
         </Routes> 
     );
 };

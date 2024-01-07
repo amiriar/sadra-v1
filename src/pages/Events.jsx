@@ -20,12 +20,8 @@ import './Events.css'
 // DB
 import EventDb from '../utils/EventDb.json'
 import { RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
-<<<<<<< HEAD
-
-
-=======
 import { Link } from 'react-router-dom';
->>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
+
 const Events = () => {
   const popularEvnet = EventDb.PopularEvent ;
   const TabData = EventDb.tutorilEvent ;
@@ -99,14 +95,6 @@ const Events = () => {
               <div className='EventCardCon'>
                     {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
               </div>
-<<<<<<< HEAD
-=======
-            </div>
-        <div className='EventCardCon'>
-              {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
-        </div>
-
->>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
             </TabPanel>
           ))
         }
