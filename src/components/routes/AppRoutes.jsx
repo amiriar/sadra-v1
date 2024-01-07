@@ -20,6 +20,7 @@ const AppRoutes = () => {
             <Route path="/student/:name" element={<StudentDetail />} />
             {/* <Route path="/auth" element={<Auth />} /> */}
             {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+            
         </Routes> 
     );
 };
