@@ -7,6 +7,7 @@ import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
 import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
+
 const AppRoutes = () => {
     return (
         <Routes>

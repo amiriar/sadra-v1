@@ -26,6 +26,7 @@
 #lessColor{
     color: var(--Gray-400);
     margin: 0px 7px;
+    
 }
 .Head_container .direction span:nth-child(){
     color: var(--base-white);
@@ -40,6 +41,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    
 }
 /* Pain Timer */
 .timer{
@@ -70,11 +72,309 @@
 }
 
 .Event_detail_body{
-    background-color: red;
     max-width: 100%;
-    padding: 56px 80px 24px 32%;
+    padding: 56px 80px 24px 15%;
+    position: relative;
+}
+.DetailTextRight{
+    position: relative;
+    padding-right: 10px;
+    /* width: ; */
+    max-width: 100%;
+
 }
 .DetailTextRight h1{
     font-size: 34px;
     color: var(--Gray-900);
+    margin-bottom: 16px;
+}
+.DetailOne{
+    max-width: 78%;
+}
+.Box_Text1{
+    border-bottom: 1px solid var(--Neutral-40, #E0E0E0);
+}
+.Box_Text1 h2 {
+    font-size: 18px;
+    color: var(--Gray-800);
+    font-weight: 700;
+    padding: 16px 0px;
+
+
+}
+.Box_Text1 p{
+    margin-top: 10px;
+    padding-bottom: 32px;
+    color: var(--Gray-500);
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+/*absolute Card */
+
+.DetailCardLeft{
+    border-radius: 16px;
+    border: 1px solid var(--Neutral-40);
+    background: var(--Neutral-10);
+}
+
+.DetailCardLeft{
+    position: absolute;
+    display: flex;
+    width: 30%;
+    max-width: 420px;
+    max-height: 100%;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    top: -15%;
+    left: 4%;
+    border-radius: 16px;
+
+
+}
+
+.DetailCardLeft img{
+    width: 356px;
+    height: 202px;
+    border-radius: 0px;
+    margin-bottom: 24px;
+
+}
+.cardDetail1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    text-align: right;
+}
+.cardDetail1 span{
+    height: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.cardDetail1 span span:first-child{
+    font-size: 34px;
+    color: var(--Gray-900)
+}
+.cardDetail1 span span:last-child{
+    font-size: 16px;
+    color: var(--Gray-900)
+}
+.cardDetail1 p{
+    color: var(--Gray-500);
+}
+
+.DetailCardLeft > Button{
+    background-color: var(--Primary-500);
+    color: var(--base-white);
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 1000px;
+    width: 100%;
+    height: 50px;
+}
+
+.DetailCardLeft > Button:hover {
+    background-color: green;
+}
+
+.rendomLine{
+    width: 100%;
+    height: 1.5px;
+    background: #EAECF0;
+}
+.cardDetailMore{
+}
+
+.cardDetailMore h2{
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--Gray-700);
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+.cardDetailMore p{
+    font-size: 16px;
+    color: var(--Gray-600)
+}
+
+.Eventtime{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+}
+.Eventtime span{
+    margin: 5px;
+}
+
+#DateIcon {
+    width: 25px;
+    height: 30px;
+}
+
+.EventtimeHour{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.EventtimeHour span {
+    padding: 8px;
+}
+
+.videoContainer h2{
+    padding: 15px 0px;
+    margin: 10px 0px;
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--Neutral-90)
+}
+
+.videoContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+.textContainer{
+    width: 100%;
+}
+
+.Teacher_container h2{
+    color: var(--Neutral-90);
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 52px;
+}
+
+
+
+
+
+
+
+
+/* Responsive  */
+
+@media (max-width : 1440px) {
+    .DetailCardLeft {
+        position: absolute;
+        display: flex;
+        width: 30%;
+        max-width: 420px;
+        height: auto;
+        max-height: 100%;
+        padding: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        top: -15%;
+        left: 2%;
+    
+    
+    }
+
+    .DetailTextRight{
+        position: relative;
+        padding-right: 10px;
+        max-width: 90%;
+    }
+    .Head_container .head_content #headH1{
+        font-weight: 500;
+        font-size: 34px;
+        margin-bottom: 10px;
+    }
+    .Head_container .head_content #headParag{
+        font-size: 14px;
+        color: var(--Neutral-40);
+        padding: 10px 50px;
+        
+    }
+    .DetailTextRight{
+        position: relative;
+        padding-right: 10px;
+        max-width: 100%;
+        margin-right: 8px;
+    }
+    .videoContainer , .Teacher_container{
+        text-align: center;
+    }
+    
+}
+
+@media (max-width : 768px) {
+    .DetailCardLeft {
+        position: relative;
+        display: flex;
+        width: 1768px;
+        height: 40%;
+        max-width: 100%;
+        max-height: 10%;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    .Event_detail_body{
+        max-width: 100%;
+        padding: 40px 4% 0px 0px;
+        position: 0;
+    }
+    .Head_container{
+        background-color: var(--primary-black);
+        color: var(--neutral--20);
+        padding: 56px 0% 35px 0%;
+        text-align: center;
+        justify-content: center;
+    }
+    .timer{
+        align-items: center;
+        justify-content: center;
+    }
+    .moremoreDetail , .Eventtime , .EventtimeHour{
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+
+    }
+    .Head_container .head_content #headH1{
+        font-weight: 500;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .Head_container .head_content #headParag{
+        font-size: 12px;
+        color: var(--Neutral-40);
+        padding: 10px 50px;
+        
+    }
+}
+
+
+.teachersBox{
+    margin: 40px 0px;
+    width: 100%;
+}
+
+.teachersBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: scroll;
 }

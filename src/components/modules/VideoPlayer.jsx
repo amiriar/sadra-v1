@@ -8,7 +8,7 @@ const VideoPlayer = (props) => {
       <video
         controls
         poster={props.poster}
-        src={props.video}
+        src={props.video} 
       />
     </div>
   )

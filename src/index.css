@@ -15,7 +15,9 @@
 :root{
   --base-white : #FFFFFF ;
   --neutral--20  : #F9F9F9;
+  /* --Neutral-10 : #FFFFFF; */
   --prime-green : #4CA773;
+  --Primary-500 : #4CA773;
   --Primary-100 : #32BCA3;
   --Primary-700 : #295E43;
   --Primary-800 : #214D39;

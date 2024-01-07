@@ -2,24 +2,34 @@ import React, { useState , useRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 // Styles
 import './EventDetailStyle.css';
-import { Card, Typography } from '@mui/material';
+import { Button, Card, Typography } from '@mui/material';
 // icons
 import { IoIosArrowBack } from "react-icons/io";
+import GreenLine from '../components/layouts/svg/GreenLine';
+import GreenDot from '../components/layouts/svg/GreenDot';
+import { CiCalendar } from "react-icons/ci";
+import { CiClock2 } from "react-icons/ci";
 // DB
 import EventDb from '../utils/EventDb.json';
-
+// Component
+import VideoPlayer from '../components/modules/VideoPlayer'
+import EventDetailTeacherCard from '../components/modules/EventDetailModule/EventDetailTeacherCard';
 
 const EventDetail = () => {
  const {id} = useParams();
  const eventdetailId = parseInt(id , 10);
  const findData = EventDb.tutorilEvent[1].EventsData;
  const data = findData.find((item) => item.id === eventdetailId);
- const TimeData = data.time
+ const TimeData = data.time;
  const CardDirection = data.cardName;
  const CardDirection1 = EventDb.tutorilEvent[1].title;
- console.log(data)
-
- // Method two
+ const descriptiontitleCard = data.descriptiontitleCard
+ const CardImage = data.thumbnail
+ const CardMaster = data.Master
+ const CardPrice = data.price
+ const teachers = data.teachers
+console.log()
+// Method two
 //  const CardData = EventDb.tutorilEvent[1];
 //  const TimeData = CardData.EventsData[id - 1].time;
 //  const CardDirection = CardData.EventsData[id - 1].cardName;
@@ -99,12 +109,108 @@ const EventDetail = () => {
 
 
     <div className='Event_detail_body'>
-        <div className='DetailOne'>
-            <div className='DetailTextRight'>
-                <h1>چه چیزی یاد می‌گیریم؟</h1>
-                <p>تحقیقات مبانی ({CardDirection}) </p>
+
+    <div className='DetailCardLeft'>
+               <img src={CardImage} />
+               <div className='cardDetail1'>
+                <p>{CardMaster}</p>
+                <span>
+                   <span>{CardPrice}</span>
+                   <span>هزار تومان</span>
+                </span>
+               </div>
+
+            <Button variant="contained">همین حالا ثبت نام کن</Button>
+
+            <div className='rendomLine'></div>
+
+          <div className='cardDetailMore'>
+                <h2>توضیحات رویداد</h2>
+                <p>{descriptiontitleCard}</p>
             </div>
+
+            <div className='moremoreDetail'>
+                <h2>جزئیات رویداد</h2>
+                
+                <div className='Eventtime'>
+                    <CiCalendar id='DateIcon' />
+                   <span> {TimeData.year} </span>
+                   <span> {TimeData.month} </span>
+                   <span> {TimeData.day} </span>
+                </div>
+
+                <div className='EventtimeHour'>
+                    <CiClock2 id='DateIcon' />
+                   <span>{TimeData.hour}:{TimeData.minuts}</span> - <span>{TimeData.EndHour}:{TimeData.EndMinuts}</span>
+                </div>
+                
+            </div>
+          </div>
+    
+        <div className='DetailOne'>
+        
+          <div className='DetailTextRight'>
+            <GreenLine/>
+            <eventDetailGreenLine/>
+                <h1>چه چیزی یاد می‌گیریم؟</h1>
+             {/* <div className='Box_Text1'>
+                
+                <h2>{CardDirection} </h2>
+                <p>{description2}</p>
+             </div>
+             <div className='Box_Text1'>
+             <GreenDot/>
+                <h2>{CardDirection} </h2>
+                <p>{description3}</p>
+             </div>
+             <div className='Box_Text1'>
+                <GreenDot/>
+                <h2>{CardDirection} </h2>
+                <p>{description4}</p>
+             </div>
+             <div className='Box_Text1'>
+                <GreenDot/>
+                <h2>{CardDirection} </h2>
+                <p>{description5}</p>
+             </div> */}
+
+            {
+                data.DescriptionsData.map(item =>(
+                
+                <div className='Box_Text1' key={item.id}>
+                <GreenDot/>
+                <h2>{CardDirection} </h2>
+                <p>{item.description}</p>
+                </div>
+                
+                ))
+            }
+          </div>
         </div>
+
+             {/* Card */}
+
+            <div className='videoContainer'>
+                <div className='textContainer'>
+                <h2>مروری بر دوره‌های پیشین</h2>
+                </div>
+                <VideoPlayer video={data.video} poster="" />
+            </div>
+
+
+            <div className='Teacher_container'>
+                <h2>مدرسان دوره</h2>
+
+                <div className='teachersBox'>
+                    
+                    {
+                        teachers.map(item => (
+                            <EventDetailTeacherCard key={item.id} {...item}/>
+                        ))
+                    }
+                </div>
+            </div>
+
     </div>
 
 </div>
