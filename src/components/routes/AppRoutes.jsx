@@ -5,11 +5,8 @@ import Blog from '../../pages/Blog';
 import BlogDetails from '../../pages/BlogDetails';
 import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
-<<<<<<< HEAD
 import StudentDetail from '../../pages/StudentDetail';
-=======
 import EventDetail from '../../pages/EventDetail';
->>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
 const AppRoutes = () => {
     return (
         <Routes>
