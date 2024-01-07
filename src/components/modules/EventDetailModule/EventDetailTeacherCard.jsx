@@ -1,6 +1,5 @@
 import React from 'react'
 import './EventDetailCard.css'
-import image from '/public/assets/prof.jpg'
 const EventDetailTeacherCard = ({name , career , techerProfile}) => {
   return (
     <div className='detailCard'>

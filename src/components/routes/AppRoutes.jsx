@@ -8,6 +8,7 @@ import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
 import Auth from '../../pages/Auth';
 import AdminDashboard from '../admin/AdminDashboard'
+import Employment from '../../pages/Employment';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -22,6 +23,7 @@ const AppRoutes = () => {
             <Route path="/student/:name" element={<StudentDetail />} />
             <Route path="/auth" element={<Auth/>} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/employment" element={<Employment/>} />
         </Routes> 
     );
 };
