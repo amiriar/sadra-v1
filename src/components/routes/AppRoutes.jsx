@@ -5,6 +5,8 @@ import Blog from '../../pages/Blog';
 import BlogDetails from '../../pages/BlogDetails';
 import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
+import EventDetail from '../../pages/EventDetail';
+import StudentDetail from '../../pages/StudentDetail';
 import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
 import AdminDashboard from '../admin/AdminDashboard';
