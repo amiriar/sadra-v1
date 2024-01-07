@@ -127,7 +127,7 @@ const Events = () => {
           </div>
         </div>
         <div className='EventCardCon'>
-          {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
+          {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
         </div>
       </TabPanel>
     ))}
