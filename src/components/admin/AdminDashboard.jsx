@@ -10,7 +10,7 @@ const AdminDashboard = () => {
         <div>
             {
                 isAuthenticated ?
-                <button className='login_Btn' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>خروج</button>
+                <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>خروج</button>
                 :
                 <h1>به صفحه اصلی برگرد</h1>
             }
