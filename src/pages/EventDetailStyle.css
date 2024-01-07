@@ -1,0 +1,80 @@
+.Events_container{
+    /* background-color: var(--primary-black); */
+    max-width: 1920px;
+    margin: 0 auto;
+    direction: rtl;
+    text-align: right;
+}
+.Head_container{
+    background-color: var(--primary-black);
+    color: var(--neutral--20);
+    padding: 56px 80px 56px 32%;
+}
+.head_content{
+    margin: 32px 0px;
+}
+.Head_container .head_content #headH1{
+    font-weight: 500;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.Head_container .head_content #headParag{
+    font-size: 20px;
+    color: var(--Neutral-40);
+    
+}
+#lessColor{
+    color: var(--Gray-400);
+    margin: 0px 7px;
+}
+.Head_container .direction span:nth-child(){
+    color: var(--base-white);
+    font-weight: 700;
+    font-size: 14px;
+}
+#pain{
+    margin: 0px 7px;
+
+}
+.direction {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Pain Timer */
+.timer{
+    font-size: 40px;
+    display: flex;
+    direction: ltr;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 32px;
+}
+
+.timeSpan{
+    font-size: 16px;
+    color: var(--Neutral-40);
+}
+.timePara{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.dayes_container , .hour_container , .minuts_container , .secound_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.Event_detail_body{
+    background-color: red;
+    max-width: 100%;
+    padding: 56px 80px 24px 32%;
+}
+.DetailTextRight h1{
+    font-size: 34px;
+    color: var(--Gray-900);
+}

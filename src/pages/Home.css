@@ -830,9 +830,7 @@
         padding: 5% 0%;
         margin-bottom: 15px;
     }
-    .event_icons {
-        
-    }
+ 
     .event_icons h2 {
         font-size: 24px;
         padding: 5px 12px;
@@ -846,11 +844,7 @@
 
 
 @media (max-width : 740px) {
-    .event_container{
-    }
-    .event_icons {
-        
-    }
+
     .event_icons h2 {
         font-size: 24px;
         padding: 5px 0px;
