@@ -12,31 +12,15 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Link, useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-//auth
-import { useAuth0 } from '@auth0/auth0-react';
 
 const Header = () => {
 
-  const { loginWithRedirect , isAuthenticated } = useAuth0()
-  
   const [isOpen , setIsopen] = useState(false)
-
-  const navigate = useNavigate()
-  const clickHandler = () => {
-    navigate('/admin')
-  }
 
   return (
     <div className='NavBar'>
       <div className='login_Btn_con'>
-        {
-          isAuthenticated 
-          ? 
-          <button className='login_Btn' style={{cursor:"pointer"}} onClick={clickHandler()}>داشبورد</button>
-          :
           <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => loginWithRedirect()}>ثبت نام و ورود</button>
-
-        }
         <RxHamburgerMenu className='burgur' onClick={()=> setIsopen(e => !e)} />
       </div>    
       <div className='List_Logo'>
