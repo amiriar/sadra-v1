@@ -3,16 +3,20 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
-    const { logout, isAuthenticated } = useAuth0()
-    const navigate = useNavigate()
+    const { logout, isAuthenticated, user } = useAuth0()
+    console.log(user);
+
     return (
         <div>
             {
                 isAuthenticated ?
-                <button className='login_Btn' onClick={() => logout()}>خروج</button>
+                <button className='login_Btn' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>خروج</button>
                 :
                 <h1>به صفحه اصلی برگرد</h1>
             }
+            <p>name: {user?.name}</p>
+            <p>nickname: {user?.nickname}</p>
+            <img src={user.picture} alt="pic" style={{height:"200px", width:"250px"}} />
         </div>
     );
 };

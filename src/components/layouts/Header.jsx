@@ -17,7 +17,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const Header = () => {
 
-  const { loginWithRedirect, isAuthenticated } = useAuth0()
+  const { loginWithRedirect , isAuthenticated } = useAuth0()
   
   const [isOpen , setIsopen] = useState(false)
 
@@ -32,7 +32,7 @@ const Header = () => {
         {
           isAuthenticated 
           ? 
-          <button className='login_Btn' style={{cursor:"pointer"}} onClick={clickHandler}>داشبورد</button>
+          <button className='login_Btn' style={{cursor:"pointer"}} onClick={clickHandler()}>داشبورد</button>
           :
           <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => loginWithRedirect()}>ثبت نام و ورود</button>
 
