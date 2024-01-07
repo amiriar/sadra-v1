@@ -6,6 +6,7 @@ import BlogDetails from '../../pages/BlogDetails';
 import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
 import EventDetail from '../../pages/EventDetail';
+import StudentDetail from '../../pages/StudentDetail';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -17,6 +18,7 @@ const AppRoutes = () => {
             <Route path="/classes" element={<Home />} />
             <Route path="/contact" element={<Home />} />
             <Route path="/success" element={<StudentSuccess />} />
+            <Route path="/student/:name" element={<StudentDetail />} />
         </Routes> 
     );
 };

@@ -1,0 +1,16 @@
+[
+    {
+        "id":1,
+        "name":"امیررضا",
+        "lastName":"عبدالرحیمی",
+        "isAdmin": true,
+        "lastDateIn":"1/1/1402"
+    },
+    {
+        "id":2,
+        "name":"آروین",
+        "lastName":"ذاکری",
+        "isAdmin": false,
+        "lastDateIn":"1/1/1402"
+    }
+]

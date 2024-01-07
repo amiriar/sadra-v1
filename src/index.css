@@ -17,6 +17,8 @@
   --neutral--20  : #F9F9F9;
   --prime-green : #4CA773;
   --Primary-100 : #32BCA3;
+  --Primary-700 : #295E43;
+  --Primary-800 : #214D39;
   --Primary-900 : #0F2B21;
   --primary-black : #1C1C1C;
   --Neutral-40 : #E0E0E0;
@@ -33,6 +35,7 @@
   --Gray-300 : #D0D5DD;
   --Gray-100 : #F2F4F7 ;
   --Gray-600 : #475467 ;
+  --Gray-50 : #F9FAFB ;
 }
 
 *{

@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     max-width: 1920px;
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 .successHeroImage{
     height: 41rem;
@@ -15,8 +15,13 @@
     background-position: 100% 30%;
 }
 
-.successHeroImageSmall{
-    
+.successMain{
+    margin: 6rem 3rem;
+    max-width: 1920px;
+    margin: 5rem auto;
+}
+.successMainContent{
+    margin: 0rem 5rem !important;
 }
 .successHeroContent{
     display: flex;
@@ -41,11 +46,63 @@
     font-weight: 400;
 }
 
+.successVideoInformation{
+    position: absolute;
+    bottom: 40px;
+    right: 30px;
+    color: var(--Gray-50);
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    z-index: 500000;
+    cursor: pointer;
+}
+.successVideoContainer {
+    background-color: none;
+}
+.successVideo {
+    border-radius: 0.625rem;
+}
+.successBoxShadow{
+    border-radius: 0.5rem;
+    width: 100%;
+    bottom: 8px;
+    position: absolute;
+    height: 90px;
+    background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0.00) 100%), transparent 50% / cover no-repeat;
+    z-index: 10;
+}
+
+
+@media (max-width : 1700px) {
+    .successMainContent{
+        margin: 0rem 4rem !important;
+    }
+}
+@media (max-width : 1500px) {
+    .successMainContent{
+        margin: 0rem 2rem !important;
+    }
+}
+@media (max-width : 1300px) {
+    .successMain{
+        margin: 4rem 1.5rem;
+    }
+    .successMainContent{
+        margin: 0rem 1rem !important;
+    }
+    .successPostDesc{
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+    }
+}
+
 @media (max-width : 950px) {
-    .successHeroContent{
-        position: static;
-        height: 20.5rem;
-        margin-right: 5rem;
+    .successMain{
+        margin: 2em 1rem;
+    }
+    .successMainContent{
+        margin: 0rem 0rem !important;
     }
     .successHeroImage{
         display: none;
@@ -60,8 +117,6 @@
         background-size: cover;
         background-position: 50% 30%;
     }
-}
-@media (max-width : 950px) {
     .successHeroContent{
         position: static;
         height: 20.5rem;
@@ -83,6 +138,9 @@
     }
 }
 @media (max-width : 500px) {
+    .responsiveVideoTexts{
+        font-size: 0.875rem !important;
+    }
     .successHeroContent{
         width: 80%;
     }
@@ -93,5 +151,12 @@
         margin-top: 1.5rem;
         color: var(--Gray-300);
         font-size: 0.75rem;
+    }
+    .successMainImage{
+        height: 25rem !important;
+        background-position: 100% 50%;
+    }
+    .successMain{
+        margin: 3rem 0.5rem;
     }
 }
