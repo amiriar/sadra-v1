@@ -70,7 +70,7 @@ const Events = () => {
     <div className='eventBody'>
       <div className='tutorialBox'>
 
-    <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
+    {/* <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
@@ -96,25 +96,44 @@ const Events = () => {
               <div className='EventCardCon'>
                     {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
               </div>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
             </div>
->>>>>>> 10cb814bf0dfe4a8cf90eea19b5430415e5c52f9
-        <div className='EventCardCon'>
-              {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
-        </div>
-
-<<<<<<< HEAD
-=======
->>>>>>> a0c052424370e8b505298027458e2a7a4de51f6c
->>>>>>> 10cb814bf0dfe4a8cf90eea19b5430415e5c52f9
+          <div className='EventCardCon'>
+                {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
+          </div>
             </TabPanel>
           ))
         }
       </TabContext>
+    </Box> */}
+
+<Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
+  <TabContext value={value}>
+    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+      <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
+        {TabData.map((item)=> (
+          <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
+        ))}
+      </TabList>
     </Box>
+    {EventDb.tutorilEvent.map((item , index) => (
+      <TabPanel value={item.id.toString()} key={item.id}> {/* Added key prop */}
+        <div className='event_card_info'>
+          {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیچ نتیجه‌ای یافت نشد</h1>}
+          <div id='sortFilter'>
+            <p id='pain'>مرتب‌سازی براساس :</p>
+            <select>
+              <option value="popular">محبوب‌ترین‌ها</option>
+            </select>
+          </div>
+        </div>
+        <div className='EventCardCon'>
+          {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
+        </div>
+      </TabPanel>
+    ))}
+  </TabContext>
+</Box>
+
 
     </div>
 
