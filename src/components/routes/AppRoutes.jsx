@@ -1,4 +1,3 @@
-// src/routes.js
 import { Route, Routes } from 'react-router-dom';
 import Home from '../../pages/Home';
 import Blog from '../../pages/Blog';
@@ -7,7 +6,6 @@ import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
 import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
-
 const AppRoutes = () => {
     return (
         <Routes>
@@ -20,6 +18,8 @@ const AppRoutes = () => {
             <Route path="/contact" element={<Home />} />
             <Route path="/success" element={<StudentSuccess />} />
             <Route path="/student/:name" element={<StudentDetail />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/admin" element={<AdminDashboard />} />
         </Routes> 
     );
 };

@@ -9,16 +9,19 @@ import SideBar from './Drawer';
 import {Logo} from './svg/Logo';
 import Logo2 from './svg/Logo2';
 import { RxHamburgerMenu } from "react-icons/rx";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
+
+
 const Header = () => {
+
   const [isOpen , setIsopen] = useState(false)
 
   return (
     <div className='NavBar'>
       <div className='login_Btn_con'>
-          <button className='login_Btn'>ثبت نام و ورود</button>
-          <RxHamburgerMenu className='burgur' onClick={()=> setIsopen(e => !e)} />
+          <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => loginWithRedirect()}>ثبت نام و ورود</button>
+        <RxHamburgerMenu className='burgur' onClick={()=> setIsopen(e => !e)} />
       </div>    
       <div className='List_Logo'>
       <div>
