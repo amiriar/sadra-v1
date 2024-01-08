@@ -1,4 +1,3 @@
-// server.js
 import express from 'express';
 import mysql from 'mysql2/promise';
 import cors from 'cors';
@@ -23,7 +22,7 @@ const db = mysql.createPool({
 
 app.get('/blog/data', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM blog ORDER BY `id` ASC');
+        const [rows] = await db.query('SELECT * FROM blog ORDER BY `id` DESC');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching data:', error);
