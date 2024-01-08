@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@mui/material/Grid';
 import BlogCard from '../components/modules/Blog-modules/BlogCard';
 
@@ -11,6 +11,24 @@ import { Link } from 'react-router-dom';
 import BlogDB from '../utils/BlogDB.json'
 
 function Blog() {
+
+    const [data, setData] = useState([]);
+    console.log(data);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:3001/api/data');
+                const jsonData = await response.json();
+                setData(jsonData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
+
     const tags = ['دورکاری','کامپوترها','یادگیری_ماشین','طراحی_گرافیک','رابط_کاربری','تکنولوژی','پایگاه_داده','هوش_مصنوعی','امنیت','بیت_کوین','فرانت_اند','بک_اند','سیو','ارز_دیجیتال','فارکس','کریپتو','بازی']
 
     return (
@@ -24,7 +42,7 @@ function Blog() {
                     <div className='tags' dir='rtl'>
                         {
                             tags.map((tag) => (
-                                <Link to={`/blog/tags/${tag}`} className='tag'>#{tag}</Link>
+                                <Link key={tag} to={`/blog/tags/${tag}`} className='tag'>#{tag}</Link>
                             ))
                         }
                     </div>
@@ -32,10 +50,9 @@ function Blog() {
             </div>
             <div className='blogCardsContainer' style={{marginTop:"5rem", marginBottom:"2rem"}}> 
                 <Grid container spacing={3}>
-                    {
+                    {/* {
                         BlogDB.map((card, index) => (
                             <Grid item key={index} xs={12} sm={6} md={4}>
-                                {/* Adjust the xs, sm, and md values to control the number of cards per row */}
                                 <BlogCard
                                     id={card.id}
                                     imageData={card.imageData}
@@ -46,6 +63,23 @@ function Blog() {
                                     authorDescription={card.author.description}
                                     authorPicture={card.author.picture}
                                     hashtags={card.hashtags}
+                                />
+                            </Grid>
+                        ))
+                    } */}
+                    {
+                        data?.map((card, index) => (
+                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                <BlogCard
+                                    id={card.id}
+                                    imageData={card.imageData}
+                                    date={card.date}
+                                    title={card.title}
+                                    description={card.description}
+                                    authorName={card.authorName}
+                                    authorDescription={card.authorDescription}
+                                    authorPicture={card.authorPicture}
+                                    // hashtags={card.hashtags}
                                 />
                             </Grid>
                         ))
