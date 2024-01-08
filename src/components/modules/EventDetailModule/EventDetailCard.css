@@ -10,7 +10,7 @@
     background: var(--Neutral-10, #FFF);
     min-width: 250px;
     max-width: 250px;
-    height: 250px;
+    height: auto;
     align-items: center;
     gap: 32px;
 }
