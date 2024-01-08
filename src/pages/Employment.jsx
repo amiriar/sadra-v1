@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 // Styles
 import './Employment.css'
 // Components
@@ -20,7 +20,6 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // DataBase
 import CareerOpportunities from '../utils/CareerOpportunities.json'
 import WhysUsDB from '../utils/WhysUsDB.json'
@@ -35,9 +34,25 @@ const Employment = () => {
     setValue(newValue);
   };
 
+ const [data , setData] = useState([]);
+
   useEffect(()=> {
     setValue(1)
+    const fetchData = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/employment/data');
+          const jsonData = await response.json();
+          setData(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+
+  fetchData();
+
   } , [])
+
+ console.log(data)
 
   return (
     <div className='Employment_container'>

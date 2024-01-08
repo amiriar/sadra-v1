@@ -69,6 +69,16 @@ app.get('/blogdetail/:id', async (req, res) => {
 //     }
 // });
 
+app.get('/employment/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `careeropportunities` ORDER BY `id` DESC LIMIT 0,7');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
