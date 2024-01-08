@@ -7,6 +7,7 @@ import EmploymentDetailCard from '../components/modules/EventDetailModule/Employ
 import VideoComponent from '../components/modules/succes-modules/VideoComponent'
 import QuestionIcon from '../components/layouts/svg/QuestionIcon'
 import JobTeamCard from '../components/modules/Employment-modules/JobTeamCard'
+import StudentCard from '../components/modules/succes-modules/StudentCard'
 // Icons
 // export {Table , GrowArrow , PowerIcon , PersonWithHeart}
 import {Table , GrowArrow , PowerIcon , PersonWithHeart} from '../components/layouts/svg/EmploymentIcon'
@@ -20,6 +21,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import { Divider, Grid } from '@mui/material';
 // DataBase
 import CareerOpportunities from '../utils/CareerOpportunities.json'
 import WhysUsDB from '../utils/WhysUsDB.json'
@@ -34,7 +36,7 @@ const Employment = () => {
     setValue(newValue);
   };
 
- const [data , setData] = useState([]);
+  const [data , setData] = useState([]);
 
   useEffect(()=> {
     setValue(1)
@@ -52,7 +54,6 @@ const Employment = () => {
 
   } , [])
 
- console.log(data)
 
   return (
     <div className='Employment_container'>
@@ -66,7 +67,7 @@ const Employment = () => {
         <Line/> <h2>ارزش‌های ما</h2>
         </div>
 
-     <div className='OurValue_Detail'>
+    <div className='OurValue_Detail'>
             <h2 id="textMB">جایی که هم باعث رشد خودت میشی، هم دیگران</h2>
             <p>صدرا، محیطی رو فراهم کرده تا از توانایی‌ها و ویژگی‌هایی که شما رو نسبت به مدرسان دیگه، برتر میکنه به بهترین شکل مورد استفاده قرار بگیره تا شما هم به بهترین شکل ممکن این توانایی‌ها رو در اختیار دیگران قرار بدید و مسیر پیشرفت‌شون رو هموار کنی و  میتونی توانایی‌هات رو بهبود بدی و بهترین نسخه خودت باشی.اینجا همون سرزمین فرصت‌هاست!</p>
 
@@ -79,25 +80,25 @@ const Employment = () => {
             </ul>
         </div>
 
-     </div>
+    </div>
 
 
       </div>
 
       <div className='Chance_container'>
         <div className='ChanceIcon'>
-           <Line/><h2>فرصت‌های شغلی</h2> 
+          <Line/><h2>فرصت‌های شغلی</h2> 
         </div>
 
         <h2>فرصت‌هایی برای رسیدن به رویاهای خود</h2>
 
         <div className='Tabs_job_chances'>
-    <Box sx={{ width: '100%', typography: 'body1' }}>
+    <Box fontFamily={"Yekan , sans-serif"} sx={{ width: '100%', typography: 'body1'}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}}>
-            <Tab label="همه" value="1" />
-            {CareerOpportunities.map(item => <Tab label={item.joMainBranch} value={item.id} />)}
+          <TabList fontFamily={"Yekan , sans-serif"} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}}>
+            <Tab fontFamily={"Yekan , sans-serif"} label="همه" value="1" />
+            {CareerOpportunities.map(item => <Tab fontFamily={"Yekan , sans-serif"} label={item.joMainBranch} value={item.id} />)}
           </TabList>
         </Box>
 
@@ -107,14 +108,13 @@ const Employment = () => {
             <TabPanel value={item.id}><div className='JonsCardsContainer'>{item.opportunities.length ? item.opportunities.map(item => <EmploymentDetailCard job={item.job} place={item.place} category={item.category} time={item.time} />) : <h1>error no job found </h1>}</div></TabPanel>
         ))}      
 
-       
       </TabContext>
     </Box>
         </div>
 
-     <div className='whyUs_container'>
+      <div className='whyUs_container'>
         <div className='ChanceIcon'>
-           <Line/><h2>چرا ما</h2> 
+        <Line/><h2>چرا ما</h2> 
         </div>
 
           <h2>صدرا از نگاه همکاران</h2>
@@ -123,7 +123,7 @@ const Employment = () => {
           
           {
             WhysUsDB.map(item => (
-             <div className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
+            <div className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
 
             ))
           }
@@ -134,13 +134,13 @@ const Employment = () => {
 
       <div className='Question_Container'>
         <div className='ChanceIcon'>
-           <Line/><h2>سوال‌های پرتکرار</h2> 
+          <Line/><h2>سوال‌های پرتکرار</h2> 
         </div>
 
 
         <div className='Questions'>
 
-         {
+        {
         Questions.map(item => (
           <Accordion>
           <AccordionSummary
@@ -149,7 +149,7 @@ const Employment = () => {
           id="panel1a-header"
           key={item.id}
         >
-         <Typography>{item.title}</Typography>
+        <Typography>{item.title}</Typography>
         </AccordionSummary>
 
         <AccordionDetails>
@@ -157,8 +157,8 @@ const Employment = () => {
             {item.question}
           </Typography>
         </AccordionDetails>
-         
-       </Accordion>
+      
+        </Accordion>
 
         ))
       }
@@ -166,21 +166,29 @@ const Employment = () => {
       
       </div>
 
-      <div className='TeamContainer'>
+      <div>
         <h1>اعضای تیم جذب و استخدام</h1>
-        <div className='Cardss'>
-          {
+        <div>
+          {/* {
             JobTeam.map(item => (
               <JobTeamCard key={item.id} {...item} />
             ))
-          }
+          } */}
+
+          <Grid container spacing={2} >
+              {JobTeam.map((student) => (
+                  <Grid item xs={12} sm={6} md={6} lg={3} key={student.name} onClick={() => clickHandler({name: student.name})}>
+                    <StudentCard student={student} account={student.account}  accountLink={student.accountLink}  />
+                  </Grid>
+              ))}
+          </Grid>
         </div>
         <div>
           
         </div>
       </div>
 
-     </div>
+    </div>
     </div>
   )
 }

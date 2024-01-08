@@ -1,7 +1,8 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-function StudentCard({ student }) {
+function StudentCard({ student , account , accountLink }) {
     return (
         <Card sx={{padding:"1.5rem", cursor:"pointer"}}>
             <CardMedia
@@ -18,6 +19,13 @@ function StudentCard({ student }) {
                 <Typography fontFamily={'Yekan,sans-serif'} variant="subtitle1" color="text.secondary" sx={{textAlign:"center", fontSize:"0.875rem"}}>
                     {student.afterJob}
                 </Typography>
+                {
+                    account && (
+                        <Typography fontFamily={'Yekan,sans-serif'} variant="subtitle1" color="text.secondary" sx={{textAlign:"center", fontSize:"0.875rem"}}>
+                            <Link to={`${student.accountLink}`} >{student.account}</Link>
+                        </Typography>
+                    )
+                }
             </CardContent>
         </Card>
     )
