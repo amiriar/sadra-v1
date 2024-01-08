@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { IoPlayOutline } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
-function VideoComponent({ UrlAutorName,video }) {
+function VideoComponent({ UrlAutorName, videoSrc, videoTitle, videoJob, videoThumbnail }) {
     const videoRef = useRef();
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -35,11 +35,11 @@ function VideoComponent({ UrlAutorName,video }) {
                 className='successVideo'
                 ref={videoRef}
                 width='100%'
-                poster={video.thumbnail ? video.thumbnail : ''}
+                poster={videoThumbnail ? videoThumbnail : ''}
                 controls={isPlaying}
                 onEnded={handleVideoEnded}
             >
-                <source src={video.src} type='video/mp4' />
+                <source src={videoSrc} type='video/mp4' />
                 Your browser does not support the video tag.
             </video>
             <div
@@ -47,12 +47,12 @@ function VideoComponent({ UrlAutorName,video }) {
                 style={{ display: isPlaying ? 'none' : 'block' }}
             ></div>
             <div className='successVideoInformation' style={{ display: isPlaying ? 'none' : 'flex' }}>
-                <div className='responsiveVideoTexts' onClick={() => clickHandlerUrl({name: UrlAutorName.name})}>
+                <div className='responsiveVideoTexts' onClick={() => clickHandlerUrl({name: UrlAutorName})}>
                     <Typography fontFamily={'Yekan,sans-serif'} variant='h6'>
-                        {video.title}
+                        {videoTitle}
                     </Typography>
                     <Typography fontFamily={'Yekan,sans-serif'} variant='subtitle1'>
-                        {video.job}
+                        {videoJob}
                     </Typography>
                 </div>
                 <div>
