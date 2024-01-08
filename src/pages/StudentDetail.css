@@ -155,6 +155,11 @@
     padding: 3.5rem 4rem !important;
 }
 
+.StuExtraInformation p{
+    font-size: 1rem;
+    color: var(--Gray-500, #667085);
+}
+
 .StuExtraInformationText{
     display: flex;
     flex-direction: column;

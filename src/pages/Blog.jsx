@@ -13,7 +13,6 @@ import BlogDB from '../utils/BlogDB.json'
 function Blog() {
 
     const [data, setData] = useState([]);
-    console.log(data);
 
     useEffect(() => {
         const fetchData = async () => {
