@@ -18,7 +18,7 @@ function Blog() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3001/api/data');
+                const response = await fetch('http://localhost:3001/blog/data');
                 const jsonData = await response.json();
                 setData(jsonData);
             } catch (error) {
