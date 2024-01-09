@@ -14,12 +14,11 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
 import { showToast } from './Toastify';
 import { ToastContainer } from 'react-toastify';
-import { Login, Register } from '../../../helper/validation';
 
 const AuthForm = ({ isRegister }) => {
 
     const navigate = useNavigate()
-    
+
     const [values, setValues] = useState({
         name: '',
         email: '',
