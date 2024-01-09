@@ -4,6 +4,7 @@ import cors from 'cors';
 
 const app = express();
 const PORT = 3001;
+app.use(express.json())
 
 const allowedOrigins = ['http://localhost:3000'];
 
@@ -82,6 +83,25 @@ app.get('/events/data', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM `events` ORDER BY `id` DESC');
         res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+app.post('/register', async (req, res) => {
+    const { name, password, email } = req.body
+    try {
+        console.log(name,password,email);
+
+        res.status(200).json({ statusCode:200 ,message: 'User Created' });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+app.post('/login', async (req, res) => {
+    try {
+        
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
