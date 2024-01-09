@@ -3,11 +3,12 @@ import mysql from 'mysql2/promise';
 import cors from 'cors';
 import moment from 'jalali-moment';
 import bcrypt from 'bcryptjs';
-
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = 3001;
 app.use(express.json())
+app.use(cookieParser());
 
 const allowedOrigins = ['http://localhost:3000'];
 
@@ -148,10 +149,9 @@ app.post('/login', async (req, res) => {
                 WHERE id = ${userResult[0][0].id};
             `;
             await db.query(updateQuery);
+            res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
         }
-    
-    
-        res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+        
     } catch (error) {
         console.error('Error updating user:', error);
         res.status(500).json({ error: 'Internal Server Error' });
