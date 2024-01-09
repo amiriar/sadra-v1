@@ -24,8 +24,6 @@ import { RenderCategory } from '../components/modules/HomePageModule/CardPopTuDa
 import { Link } from 'react-router-dom';
 
 const Events = () => {
-  const popularEvnet = EventDb.PopularEvent ;
-  const TabData = EventDb.tutorilEvent ;
   const [status , setStatus] = useState(true)
   const [status2 , setStatus2] = useState(true)
   const [status3 , setStatus3] = useState(true)

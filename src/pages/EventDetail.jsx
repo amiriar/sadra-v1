@@ -88,8 +88,20 @@ const teachers = data.teachers
 //     }
 //   } , [])
 
-
-
+const [eventDetailData , setEventDetailData] = useState([]);
+useEffect(()=> {
+  const fetchData = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/events/data');
+        const jsonData = await response.json();
+        setData(jsonData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+fetchData();
+} , [])
+console.log(eventDetailData)
   return (
 <div className='Events_container'>
     <div className='Head_container'>
