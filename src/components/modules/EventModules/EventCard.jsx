@@ -5,7 +5,7 @@ import './EventCard.css'
 const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
   return (
     <div className="CardEvent">
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345}}>
       <CardMedia
         component="img"
         maxHeight = {60}
@@ -37,20 +37,22 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
       </CardContent>
       </div>
       <Divider />
+        <div className="bottom">
       <CardActions disableSpacing>
         <IconButton aria-label="date">
           <BiCalendar />
         </IconButton>
-        <Typography variant="body2" color="text.secondary">
+        <Typography sx={{fontSize : 15}} variant="h6" color="text.secondary">
           {date}
         </Typography>
         <IconButton aria-label="time">
           <BiTime />
         </IconButton>
-        <Typography variant="body2" color="text.secondary">
+        <Typography sx={{fontSize : 15}} variant="h6" color="text.secondary">
           {time}
         </Typography>
       </CardActions>
+        </div>
     </Card>
     </div>
   );
