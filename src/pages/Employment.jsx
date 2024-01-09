@@ -63,7 +63,7 @@ const Employment = () => {
     setValue(newValue);
   };
   const [data , setData] = useState([]);
-  const [data2 , setData2] = useState([])
+  const [data2 , setData2] = useState([]);
   useEffect(()=> {
     setValue(2)
     const fetchData = async () => {
@@ -71,12 +71,16 @@ const Employment = () => {
           const response = await fetch('http://localhost:3001/employment/data');
           const jsonData = await response.json();
           setData(jsonData);
+          const Response2 = await fetch('http://localhost:3001/jobTeam/data');
+          const CardData = await Response2.json();
+          setData2(CardData)
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   };
   fetchData();
   } , [])
+  console.log(data2)
 
   return (
     <div className='Employment_container'>
@@ -202,9 +206,9 @@ const Employment = () => {
         <div>
     
           <Grid container spacing={2} >
-              {JobTeam.map((student) => (
-                  <Grid key={student.id} item xs={12} sm={6} md={6} lg={3}  onClick={() => clickHandler({name: student.name})}>
-                    <StudentCard student={student} account={student.account}  accountLink={student.accountLink}  />
+              {data2.map((item) => (
+                  <Grid key={item.id} item xs={12} sm={6} md={6} lg={3}>
+                    <StudentCard student={item} account={item.account}  accountLink={item.accountLink}  />
                   </Grid>
               ))}
           </Grid>

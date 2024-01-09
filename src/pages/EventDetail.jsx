@@ -16,26 +16,38 @@ import VideoPlayer from '../components/modules/VideoPlayer'
 import EventDetailTeacherCard from '../components/modules/EventDetailModule/EventDetailTeacherCard';
 
 const EventDetail = () => {
- const {id} = useParams();
- const eventdetailId = parseInt(id , 10);
- const findData = EventDb.tutorilEvent[1].EventsData;
- const data = findData.find((item) => item.id === eventdetailId);
- const TimeData = data.time;
- const CardDirection = data.cardName;
- const CardDirection1 = EventDb.tutorilEvent[1].title;
- const descriptiontitleCard = data.descriptiontitleCard
- const CardImage = data.thumbnail
- const CardMaster = data.Master
- const CardPrice = data.price
- const teachers = data.teachers
+const {id} = useParams();
+const eventdetailId = parseInt(id , 10);
+const findData = EventDb.tutorilEvent[1].EventsData;
+const data = findData.find((item) => item.id === eventdetailId);
+const TimeData = data.time;
+const CardDirection = data.cardName;
+const CardDirection1 = EventDb.tutorilEvent[1].title;
+const descriptiontitleCard = data.descriptiontitleCard
+const CardImage = data.thumbnail
+const CardMaster = data.Master
+const CardPrice = data.price
+const teachers = data.teachers
 // Method two
 //  const CardData = EventDb.tutorilEvent[1];
 //  const TimeData = CardData.EventsData[id - 1].time;
 //  const CardDirection = CardData.EventsData[id - 1].cardName;
 //  const CardDirection1 = CardData.title;
 
-
-
+  const [DetailData , setDetailData] = useState([]);
+  useEffect(()=> {
+    const fetchData = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/eventDetail/data');
+          const jsonData = await response.json();
+          setDetailData(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+  fetchData();
+  } , [])
+  console.log(DetailData)
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
   const [timerMinuts , setTimerMinuts] = useState("00");
@@ -82,11 +94,11 @@ const EventDetail = () => {
 <div className='Events_container'>
     <div className='Head_container'>
       <span className='direction'><span id='lessColor'>{CardDirection1}</span> <IoIosArrowBack/> <span id='pain'>{CardDirection}</span> </span>
-     <div className="head_content">
+      <div className="head_content">
       <Typography id="headH1" variant="h1" >اصول اساسی طراحی User Exprience</Typography>
       <Typography id="headParag">برای محصولات امروزی User Experience تاثیرگذاری در دنیای دیجیتال طراحی کنید. نمونه کارهایی بسازید که توانایی شما را در مسیر کشف مشکل کاربر و رسیدن به بهترین راه‌حل را نشان دهد.</Typography>
-     </div>
-     <div className='timer'>
+      </div>
+      <div className='timer'>
         <div className='dayes_container'>
             <p className='timePara'>{timerDays}</p>
             <span className='timeSpan'>روز</span>
@@ -103,21 +115,21 @@ const EventDetail = () => {
             <p className='timePara'>{timerSecounds}</p>
             <span className='timeSpan'>ثانیه</span>
         </div>
-     </div>
+      </div>
     </div>
 
 
     <div className='Event_detail_body'>
 
     <div className='DetailCardLeft'>
-               <img src={CardImage} />
-               <div className='cardDetail1'>
+              <img src={CardImage} />
+              <div className='cardDetail1'>
                 <p>{CardMaster}</p>
                 <span>
-                   <span>{CardPrice}</span>
-                   <span>هزار تومان</span>
+                  <span>{CardPrice}</span>
+                  <span>هزار تومان</span>
                 </span>
-               </div>
+              </div>
 
             <Button variant="contained">همین حالا ثبت نام کن</Button>
 
@@ -173,7 +185,7 @@ const EventDetail = () => {
                 <p>{description5}</p>
              </div> */}
 
-            {
+            {/* {
                 data.DescriptionsData.map(item =>(
                 
                 <div className='Box_Text1' key={item.id}>
@@ -183,7 +195,7 @@ const EventDetail = () => {
                 </div>
                 
                 ))
-            }
+            } */}
           </div>
         </div>
 
@@ -193,7 +205,7 @@ const EventDetail = () => {
                 <div className='textContainer'>
                 <h2>مروری بر دوره‌های پیشین</h2>
                 </div>
-                <VideoPlayer video={data.video} poster="" />
+                {/* <VideoPlayer video={data.video} poster="" /> */}
             </div>
 
 
@@ -202,11 +214,11 @@ const EventDetail = () => {
 
                 <div className='teachersBox'>
                     
-                    {
+                    {/* {
                         teachers.map(item => (
-                            <EventDetailTeacherCard key={item.id} {...item}/>
+                          <EventDetailTeacherCard key={item.id} {...item}/>
                         ))
-                    }
+                    } */}
                 </div>
             </div>
 

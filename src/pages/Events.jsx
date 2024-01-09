@@ -7,7 +7,7 @@ import Tab from '@mui/material/Tab'
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import EventCar from '../components/modules/EventModules/EventCar';
+import EventCar from '../components/modules/EventModules/EventCard';
 import MenuIcon from '../components/layouts/svg/MenuIcon';
 import MobileSettingIcon from '../components/layouts/svg/MobileSettingIcon';
 // import { Box, Drawer, Typography } from '@mui/material'
@@ -29,14 +29,12 @@ const Events = () => {
   const [status , setStatus] = useState(true)
   const [status2 , setStatus2] = useState(true)
   const [status3 , setStatus3] = useState(true)
-  const CardData = EventDb.tutorilEvent[1].EventsData
   const [setting , setSetting] = useState(false)
-  const [isOpen , setIsopen] = useState(false)
   const [value, setValue] = React.useState('1');
   const [TabHeaders , setTabHeaders] = useState([
     {
       id : 1 ,
-      title : "رویداد ها"
+      title : "رویدادها"
     }
     ,
     {
@@ -46,7 +44,7 @@ const Events = () => {
     ,
     {
       id : 3 ,
-      title : "مدرس ها"
+      title : "مدرس‌ها"
     }
     
   ])
@@ -88,9 +86,22 @@ const [popularEvent , setPopularEvent] = useState([
     setSetting(e => !e);
   }
 
-  useEffect(()=> {setValue(2)} , [])
 
-
+  const [data , setData] = useState([]);
+  useEffect(()=> {
+    setValue(1)
+    const fetchData = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/events/data');
+          const jsonData = await response.json();
+          setData(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+  fetchData();
+  } , [])
+  
   return (
     <div className='eventContainer'>
       <div className='eventHeader'>
@@ -108,26 +119,25 @@ const [popularEvent , setPopularEvent] = useState([
   <TabContext value={value}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
-      {TabHeaders.map(item => <Tab label={item.title} value={item.id} />)}
-      {console.log(TabHeaders)}
+      {TabHeaders.map(item => <Tab label={`${item.title}`} value={item.id} />)}
       </TabList>
     </Box>
-    {EventDb.tutorilEvent.map((item , index) => (
-      <TabPanel value={item.id} key={item.id}> {/* Added key prop */}
-        <div className='event_card_info'>
-          {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیچ نتیجه‌ای یافت نشد</h1>}
-          <div id='sortFilter'>
-            <p id='pain'>مرتب‌سازی براساس :</p>
-            <select>
-              <option value="popular">محبوب‌ترین‌ها</option>
-            </select>
-          </div>
-        </div>
-        <div className='EventCardCon'>
-          {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
-        </div>
-      </TabPanel>
-    ))}
+   
+    {
+      TabHeaders.map((Tab) => (
+        <TabPanel value={Tab.id} key={Tab.id}>
+    <div className='event_card_info'>
+          {
+            data.filter((item)=> item.category === Tab.title).map((item)=>(
+              <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
+            ))
+          }
+    </div>
+        </TabPanel>
+      ))
+    }
+
+
   </TabContext>
 </Box>
 

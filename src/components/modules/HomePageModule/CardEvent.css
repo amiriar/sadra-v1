@@ -125,3 +125,8 @@ img{
     padding: 70px 0px 0px 0px;
 }
 
+
+#free{
+    font-size: 20px;
+    color: var(--Gray-900);
+}

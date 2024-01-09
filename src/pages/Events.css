@@ -1,5 +1,6 @@
 .eventContainer{
-    max-width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
     text-align: right;
 }
 .eventHeader{
@@ -57,8 +58,9 @@
 
 .event_card_info{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 
@@ -279,6 +281,10 @@
         display: inline-block;
         position: absolute;
         left: 0;
+    }
+    .event_card_info{
+        align-items: center;
+        justify-content: center;
     }
 }
 
