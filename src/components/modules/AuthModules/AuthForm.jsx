@@ -87,9 +87,9 @@ const AuthForm = ({ isRegister }) => {
                 </Button>
                 <Button variant="text" color="primary" type="submit">
                     {isRegister ? 
-                        <Link to={'/auth/login'}>Already have an account ?</Link>
+                        <Link className='buttonsClass' to={'/auth/login'}>Already have an account ?</Link>
                         :
-                        <Link to={'/auth/register'}>new Here ?</Link>}
+                        <Link className='buttonsClass' to={'/auth/register'}>new Here ?</Link>}
                 </Button>
             </div>
         </form>
