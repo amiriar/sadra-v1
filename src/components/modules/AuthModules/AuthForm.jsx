@@ -63,11 +63,10 @@ const AuthForm = ({ isRegister }) => {
                 } else {
                     isPassOK = true
                 }
-
-                const saltRounds = 10; 
-                const hashedPassword = await bcrypt.hash(values.password, saltRounds);
-            
-                if(isOK === true){
+                
+                if(isemailOK === true || isPassOK === true){
+                    const saltRounds = 10; 
+                    const hashedPassword = await bcrypt.hash(values.password, saltRounds);
                     const response = await fetch('http://localhost:3001/register', {
                         method:"POST",
                         headers:{ "Content-type": "application/json" },
