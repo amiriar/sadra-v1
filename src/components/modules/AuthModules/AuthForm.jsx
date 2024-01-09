@@ -67,8 +67,6 @@ const AuthForm = ({ isRegister }) => {
                 // hashed password:
                 const saltRounds = 10; 
                 const hashedPassword = await bcrypt.hash(values.password, saltRounds);
-                // console.log(await bcrypt.hash('agnetgame123', saltRounds));
-                console.log(await bcrypt.compare('agnetgame123', '$2a$10$gqTgSFkCBb72b.4cAnnNgexWROGSG.j9fCqWRPP.S1OcFQg47KA1K'));
                 //
             
                 if(isOK === true){
