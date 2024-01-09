@@ -8,13 +8,13 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        maxHeight = "12"
+        maxHeight = {60}
         image={image}
         alt={title}
       />
       <div className="MainDetial">
       <CardContent>
-        <Typography sx={{minWidth : 240 , maxWidth : 240 , height : 60 , maxHeight : 60}} gutterBottom variant="h5">
+        <Typography sx={{minWidth : 240 , maxWidth : 240 , minHeight : 60 , maxHeight : 60}} gutterBottom variant="h5">
          <span id="eventCardTitle">{title}</span>
         </Typography>
         <div className="CardEventDetail">
