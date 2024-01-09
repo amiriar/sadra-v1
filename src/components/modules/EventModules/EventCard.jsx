@@ -14,7 +14,7 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
       />
       <div className="MainDetial">
       <CardContent>
-        <Typography sx={{minWidth : 240 , maxWidth : 240 , minHeight : 60 , maxHeight : 60}} gutterBottom variant="h5">
+        <Typography sx={{minWidth : 240 , maxWidth : 240 , minHeight : 60 , maxHeight : 60 , fontSize : 19 }} gutterBottom variant="h6">
          <span id="eventCardTitle">{title}</span>
         </Typography>
         <div className="CardEventDetail">
