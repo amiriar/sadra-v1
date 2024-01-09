@@ -14,6 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
 import { showToast } from './Toastify';
 import { ToastContainer } from 'react-toastify';
+import bcrypt from 'bcryptjs';
 
 const AuthForm = ({ isRegister }) => {
 
@@ -51,12 +52,6 @@ const AuthForm = ({ isRegister }) => {
             
                 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
                 
-                if(values.name.length > 32 || values.name.length === 0) {
-                    isNameOK = false
-                    showToast('نام نمیتواند خالی و یا بیشتر از 32 نویسه باشد.', 'error');
-                } else {
-                    isNameOK = true
-                }
                 if(!(emailRegex.test(values.email))) {
                     isemailOK = false
                     showToast('لطفا از درست بودن ایمیل خود اطمینان حاصل کنید.', 'error');
@@ -69,6 +64,12 @@ const AuthForm = ({ isRegister }) => {
                 } else {
                     isPassOK = true
                 }
+                // hashed password:
+                const saltRounds = 10; 
+                const hashedPassword = await bcrypt.hash(values.password, saltRounds);
+                // console.log(await bcrypt.hash('agnetgame123', saltRounds));
+                console.log(await bcrypt.compare('agnetgame123', '$2a$10$gqTgSFkCBb72b.4cAnnNgexWROGSG.j9fCqWRPP.S1OcFQg47KA1K'));
+                //
             
                 if(isOK === true){
                     const response = await fetch('http://localhost:3001/register', {
@@ -127,17 +128,6 @@ const AuthForm = ({ isRegister }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            {isRegister && (
-                <TextField
-                    label="Name ( Maximum 32 letters )"
-                    fullWidth
-                    margin="normal"
-                    value={values.name}
-                    onChange={handleChange('name')}
-                    autoComplete='true'
-                    inputProps={{ maxLength: 32 }}
-                />            
-            )}
             <TextField
                 label="Email"
                 fullWidth
