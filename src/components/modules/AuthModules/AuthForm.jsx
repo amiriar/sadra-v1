@@ -36,6 +36,13 @@ const AuthForm = ({ isRegister }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Add your registration or login logic here
+        if(isRegister){
+            // register
+            const response = fetch("")
+        }else{
+            // login
+
+        }
         console.log(values);
     };
 
