@@ -28,7 +28,6 @@ const EventDetail = () => {
  const CardMaster = data.Master
  const CardPrice = data.price
  const teachers = data.teachers
-console.log()
 // Method two
 //  const CardData = EventDb.tutorilEvent[1];
 //  const TimeData = CardData.EventsData[id - 1].time;

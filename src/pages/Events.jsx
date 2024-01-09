@@ -33,6 +33,41 @@ const Events = () => {
   const [setting , setSetting] = useState(false)
   const [isOpen , setIsopen] = useState(false)
   const [value, setValue] = React.useState('1');
+  const [TabHeaders , setTabHeaders] = useState([
+    {
+      id : 1 ,
+      title : "رویداد ها"
+    }
+    ,
+    {
+      id : 2 ,
+      title : "دوره ها"
+    }
+    ,
+    {
+      id : 3 ,
+      title : "مدرس ها"
+    }
+    
+  ])
+
+const [popularEvent , setPopularEvent] = useState([
+  {
+      id : 1 ,
+      title : "UI Design"
+  }
+  ,
+  {
+      id : 2 ,
+      title : "UX Design"
+  } 
+  ,
+  {
+      id : 3 ,
+      title : "Front-end"
+  }
+])
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -53,8 +88,7 @@ const Events = () => {
     setSetting(e => !e);
   }
 
-
-  useEffect(()=> {setValue("2")} , [])
+  useEffect(()=> {setValue(2)} , [])
 
 
   return (
@@ -63,60 +97,23 @@ const Events = () => {
         <h1>رویدادهای صدرا</h1>
         <p>صدرا با فراهم کردن شرایطی ایده‌آل، سالانه رویدادهای زیادی در حوزه‌ی تکنولوژی در شهرهای بزرگی مثل تهران، اصفهان، مشهد و شیراز برگزار می‌کند که مدرسان این رویدادها از بهترین‌ مدرسان کشور بوده و آماده‌ی انتقال دانش خود به دانشجویان می‌باشند. </p>
         <SearchBox dir="ltr" />
-        {/* populars */}
-        <span id='popStyle'> {popularEvnet && popularEvnet.map((item , index) => <span key={index} >{`${item.title} , `}</span> )} : محبوب‌ها</span>
+        <span id='popStyle'> {popularEvent && popularEvent.map((item , index) => <span key={index} >{`${item.title} , `}</span> )} : محبوب‌ها</span>
       </div>
 
     <div className='eventBody'>
       <div className='tutorialBox'>
 
-    {/* <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
-            {TabData.map((item)=> (
-              <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
-              
-            ))}
-          
-          </TabList>
-        </Box>
-        {
-          EventDb.tutorilEvent.map((item , index) => (
-            <TabPanel value={item.id.toString()}>
-              <div className='event_card_info'>
-                {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیج نتیجه ای یافت شد</h1> }
-                <div id='sortFilter' >
-                  <p id='pain'>مرتب‌سازی براساس :</p>
-                  <select>
-                    <option value="poular" >محبوب‌ترین‌ها</option>
-                  </select>
-                </div>
-              </div>
-              <div className='EventCardCon'>
-                    {item.EventsData ? item.EventsData.map((item , index) => <EventCar key={item.id} {...item} /> ): <h1>error</h1>}
-              </div>
-            </div>
-          <div className='EventCardCon'>
-                {item.EventsData ? item.EventsData.map((item , index) => <Link to={`/event/${item.id}`}><EventCar key={item.id} {...item} /></Link> ): <h1>error</h1>}
-          </div>
-            </TabPanel>
-          ))
-        }
-      </TabContext>
-    </Box> */}
 
 <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
   <TabContext value={value}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
-        {TabData.map((item)=> (
-          <Tab key={item.id} label={`${item.title } (${ item.quantity }) `} value={item.id.toString()} /> 
-        ))}
+      {TabHeaders.map(item => <Tab label={item.title} value={item.id} />)}
+      {console.log(TabHeaders)}
       </TabList>
     </Box>
     {EventDb.tutorilEvent.map((item , index) => (
-      <TabPanel value={item.id.toString()} key={item.id}> {/* Added key prop */}
+      <TabPanel value={item.id} key={item.id}> {/* Added key prop */}
         <div className='event_card_info'>
           {item.quantity ? <h1 id='foundData'>{item.quantity} نتیجه یافت شد</h1> : <h1>هیچ نتیجه‌ای یافت نشد</h1>}
           <div id='sortFilter'>
@@ -222,37 +219,35 @@ const Events = () => {
             <Typography variant='h6' component="div">
             <ul>
             {
-              RenderCategory.map((item , index)=>(
-               
-               <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
+              RenderCategory.map((item , index)=>( 
+              <li className='searchItem'>
+              <label className='container'>
+              <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
+              <input type="checkbox"  />
+              <span className="checkmark"></span>
+              </label>
               </li>
-                         
-
-               ))
+                  
+              ))
             }
           </ul>
 
 
         <ul>
           <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>(18) رایگان</p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
+              <label className='container'>
+              <p id='lable_text'>(18) رایگان</p>
+              <input type="checkbox"  />
+              <span className="checkmark"></span>
+              </label>
           </li>
 
           <li className='searchItem'>
-               <label className='container'>
-               <p id='lable_text'>(18) تخفیف‌دارها</p>
-               <input type="checkbox"  />
-               <span className="checkmark"></span>
-               </label>
+              <label className='container'>
+              <p id='lable_text'>(18) تخفیف‌دارها</p>
+              <input type="checkbox"  />
+              <span className="checkmark"></span>
+              </label>
           </li>
         </ul>   
 

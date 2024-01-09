@@ -6,9 +6,7 @@ import Line from '../components/modules/Line'
 import EmploymentDetailCard from '../components/modules/EventDetailModule/EmploymentDetailCard'
 import VideoComponent from '../components/modules/succes-modules/VideoComponent'
 import QuestionIcon from '../components/layouts/svg/QuestionIcon'
-import JobTeamCard from '../components/modules/Employment-modules/JobTeamCard'
 import StudentCard from '../components/modules/succes-modules/StudentCard'
-// Icons
 // export {Table , GrowArrow , PowerIcon , PersonWithHeart}
 import {Table , GrowArrow , PowerIcon , PersonWithHeart} from '../components/layouts/svg/EmploymentIcon'
 // Mui
@@ -23,23 +21,51 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { Divider, Grid } from '@mui/material';
 // DataBase
-import CareerOpportunities from '../utils/CareerOpportunities.json'
 import WhysUsDB from '../utils/WhysUsDB.json'
 import Questions from '../utils/Questions.json'
 import JobTeam from '../utils/JobTeam.json'
 const Employment = () => {
   const [value, setValue] = React.useState(1);
-  const DB = CareerOpportunities
-  const JobData = CareerOpportunities[0].opportunities
-//   console.log(JobData)
+  const [tabHeader , setTabheader] = useState([
+    {
+      id : 1 ,
+      TabTitle : "همه"
+    }
+    ,
+    {
+      id : 2 ,
+      TabTitle : "محصول"
+    }
+    ,
+    {
+      id : 3 ,
+      TabTitle : "آموزش"
+    }
+    ,
+    {
+      id : 4 ,
+      TabTitle : "مارکتینگ"
+    }
+    ,
+    {
+      id : 5 ,
+      TabTitle : "منابع انسانی"
+    }
+    ,
+    {
+      id : 6 ,
+      TabTitle : "مالی"
+    }
+    ,
+
+  ])
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   const [data , setData] = useState([]);
-
+  const [data2 , setData2] = useState([])
   useEffect(()=> {
-    setValue(1)
+    setValue(2)
     const fetchData = async () => {
       try {
           const response = await fetch('http://localhost:3001/employment/data');
@@ -49,11 +75,8 @@ const Employment = () => {
           console.error('Error fetching data:', error);
       }
   };
-
   fetchData();
-
   } , [])
-
 
   return (
     <div className='Employment_container'>
@@ -97,17 +120,25 @@ const Employment = () => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList fontFamily={"Yekan , sans-serif"} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}}>
-            <Tab fontFamily={"Yekan , sans-serif"} label="همه" value="1" />
-            {CareerOpportunities.map(item => <Tab fontFamily={"Yekan , sans-serif"} label={item.joMainBranch} value={item.id} />)}
+            {tabHeader.map(item => <Tab key={item.id}  fontFamily={"Yekan , sans-serif"} label={item.TabTitle} value={item.id} />)}
           </TabList>
         </Box>
+        {
+          tabHeader.map(Tab => (
+            <TabPanel key={Tab.id} value={Tab.id}>
+            <div className='JonsCardsContainer'>
+            
 
-        <TabPanel value="1">همه</TabPanel>
-
-        {DB.map(item=> (
-            <TabPanel value={item.id}><div className='JonsCardsContainer'>{item.opportunities.length ? item.opportunities.map(item => <EmploymentDetailCard job={item.job} place={item.place} category={item.category} time={item.time} />) : <h1>error no job found </h1>}</div></TabPanel>
-        ))}      
-
+              {
+                Tab.TabTitle === "همه" ? data.map(item =><EmploymentDetailCard key={item.id} job={item.jobTitle} place={item.jobPlace} category={item.jobCategory} time={item.jobTime} />) :
+                data.filter((item) => item.jobCategory === Tab.TabTitle).map((filteredItem) => (
+                  <EmploymentDetailCard key={filteredItem.id} job={filteredItem.jobTitle} place={filteredItem.jobPlace} category={filteredItem.jobCategory} time={filteredItem.jobTime} />
+              ))
+              }      
+            </div>    
+            </TabPanel>
+            ))
+        }
       </TabContext>
     </Box>
         </div>
@@ -123,7 +154,7 @@ const Employment = () => {
           
           {
             WhysUsDB.map(item => (
-            <div className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
+            <div key={item.id} className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
 
             ))
           }
@@ -169,15 +200,10 @@ const Employment = () => {
       <div>
         <h1>اعضای تیم جذب و استخدام</h1>
         <div>
-          {/* {
-            JobTeam.map(item => (
-              <JobTeamCard key={item.id} {...item} />
-            ))
-          } */}
-
+    
           <Grid container spacing={2} >
               {JobTeam.map((student) => (
-                  <Grid item xs={12} sm={6} md={6} lg={3} key={student.name} onClick={() => clickHandler({name: student.name})}>
+                  <Grid key={student.id} item xs={12} sm={6} md={6} lg={3}  onClick={() => clickHandler({name: student.name})}>
                     <StudentCard student={student} account={student.account}  accountLink={student.accountLink}  />
                   </Grid>
               ))}
