@@ -102,14 +102,13 @@ app.get('/eventsDetail/data', async (req, res) => {
 app.post('/register', async (req, res) => {
     const { email, hashedPassword } = req.body
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
-    console.log(todaySolar);
     try {
-        const insertQuery = `
+        const insertQuery = db.query(`
         INSERT INTO users (email, password, lastDateIn, isAdmin)
-        VALUES ('${email}', '${hashedPassword}', '${todaySolar}, 0');
-        `;
+        VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 0);
+        `);
         // res.json(rows);
-        res.status(200).json({ statusCode:200 ,message: 'User Created' });
+        res.status(200).json({ statusCode:200 ,message: 'User Created', data:insertQuery });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });

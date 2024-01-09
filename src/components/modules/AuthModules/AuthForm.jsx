@@ -72,7 +72,7 @@ const AuthForm = ({ isRegister }) => {
                     const response = await fetch('http://localhost:3001/register', {
                         method:"POST",
                         headers:{ "Content-type": "application/json" },
-                        body: JSON.stringify({name:values.name, hashedPassword}),
+                        body: JSON.stringify({email:values.email, hashedPassword}),
                     });
                     const result = await response.json();
                     console.log(result);
