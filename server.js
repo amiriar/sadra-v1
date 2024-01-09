@@ -1,6 +1,8 @@
 import express from 'express';
 import mysql from 'mysql2/promise';
 import cors from 'cors';
+import moment from 'jalali-moment';
+
 
 const app = express();
 const PORT = 3001;
@@ -98,10 +100,15 @@ app.get('/eventsDetail/data', async (req, res) => {
     }
 });
 app.post('/register', async (req, res) => {
-    const { name, password, email } = req.body
+    const { email, hashedPassword } = req.body
+    const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
+    console.log(todaySolar);
     try {
-        console.log(name,password,email);
-
+        const insertQuery = `
+        INSERT INTO users (email, password, lastDateIn, isAdmin)
+        VALUES ('${email}', '${hashedPassword}', '${todaySolar}, 0');
+        `;
+        // res.json(rows);
         res.status(200).json({ statusCode:200 ,message: 'User Created' });
     } catch (error) {
         console.error('Error fetching data:', error);
