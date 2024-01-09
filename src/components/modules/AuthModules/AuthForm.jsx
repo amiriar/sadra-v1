@@ -11,12 +11,15 @@ import {
 } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { showToast } from './Toastify';
 import { ToastContainer } from 'react-toastify';
 import { Login, Register } from '../../../helper/validation';
 
 const AuthForm = ({ isRegister }) => {
+
+    const navigate = useNavigate()
+    
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -85,8 +88,40 @@ const AuthForm = ({ isRegister }) => {
             }
             Register({ values })
         }else{
-            const test = Login({ values })
-            console.log(test);
+            const Login = async ({ values }) => {
+
+                let isemailOK = true
+                let isPassOK = true
+
+                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+
+                if(!(emailRegex.test(values.email))) {
+                    isemailOK = false
+                    showToast('لطفا از درست بودن ایمیل خود اطمینان حاصل کنید.', 'error');
+                } else {
+                    isemailOK = true
+                }
+                if(values.password.length > 32 || values.password.length === 0) {
+                    isPassOK = false
+                    showToast('رمز عبور نمیتواند خالی یا بیشتر از 32 نویسه باشد.', 'error');
+                } else {
+                    isPassOK = true
+                }
+
+                if(isemailOK && isPassOK){
+                    const response = await fetch('http://localhost:3001/login', {
+                        method:"POST",
+                        headers:{ "Content-type": "application/json" },
+                        body: JSON.stringify({values}),
+                    });
+                    const loginResult = await response.json();
+                    if(loginResult.statusCode === 200){
+                        window.URL("/dashboard")
+                    }
+                    }else{
+                        console.log("didnt");
+                    }
+            }
         }
         // console.log(values);
     };
