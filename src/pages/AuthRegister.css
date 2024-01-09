@@ -9,6 +9,12 @@
     flex-direction: column;
     justify-self: center;
 }
+.buttonsClass{
+    color: #4ca773;
+    background-color: #e5e8ec;
+    border-radius: 0.5rem;
+    padding: 6px 10px;
+}
 
 
 @media (max-width : 900px) {
