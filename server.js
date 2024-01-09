@@ -101,7 +101,7 @@ app.post('/register', async (req, res) => {
 });
 app.post('/login', async (req, res) => {
     try {
-        
+        console.log("login triggered");
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
