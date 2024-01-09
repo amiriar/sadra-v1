@@ -108,7 +108,7 @@ app.post('/register', async (req, res) => {
         VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 0);
         `);
         // res.json(rows);
-        res.status(200).json({ statusCode:200 ,message: 'User Created', data:insertQuery });
+        res.status(200).json({ statusCode:200 ,message: 'User Created' });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
