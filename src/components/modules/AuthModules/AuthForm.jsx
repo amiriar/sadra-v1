@@ -46,7 +46,6 @@ const AuthForm = ({ isRegister }) => {
         if(isRegister){
             const Register = async ({ values }) => {
                 let isOK = true
-                let isNameOK = true
                 let isemailOK = true
                 let isPassOK = true
             
