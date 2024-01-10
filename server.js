@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
 import crypto from 'crypto';
+import 'dotenv/config';
+
 
 const app = express();
 const PORT = 3001;
@@ -165,9 +167,13 @@ app.post('/login', async (req, res) => {
 
 
 app.get('/dashboard/token', (req, res) => {
-    const accessToken = req.cookies;
+    const accessToken = req.cookies.accessID;
+
+    const secretKey = process.env.BLOGS_SECRET_KEY;
+
+    const decodedToken = Jwt.verify(accessToken, secretKey);
     
-    res.json(accessToken);
+    res.json(decodedToken);
 });
 
 
