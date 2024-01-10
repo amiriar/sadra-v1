@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': {
+      '/dashbaord': {
         target: 'http://localhost:3001', // Adjust the target URL according to your backend
         changeOrigin: true,
         withCredentials: true,

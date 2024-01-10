@@ -5,16 +5,16 @@ function UserDashboard() {
     const [userRole, setUserRole] = useState(null);
 
     useEffect(() => {
-            axios.get('http://localhost:3001/dashboard')
-                .then(response => {
-                const result = response.data;
-                // setUserRole(role);
-                console.log(result);
-            })
-        .catch(error => {
-            console.error('Error:', error.response ? error.response.data : error.message);
-            setUserRole('error');
-        });
+        axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
+            .then(response => {
+            const result = response.data;
+            setUserRole(result.accessID);
+            console.log(result);
+        })
+    .catch(error => {
+        console.error('Error:', error.response ? error.response.data : error.message);
+        setUserRole('error');
+    });
     }, []); 
 
     return (

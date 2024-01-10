@@ -143,14 +143,13 @@ app.post('/login', async (req, res) => {
                 await db.query(updateQuery);
 
                 // Generate a random secret key for JWT
-                const secretKey = crypto.randomBytes(32).toString('hex');
+                const secretKey = process.env.BLOGS_SECRET_KEY;
 
                 const token = Jwt.sign(
                     { id: userResult[0][0].id, email: userResult[0][0].email, role: userResult[0][0].role },
                     secretKey,
                     { expiresIn: '24h' }
                 );
-
                 // Set the JWT token as a cookie using res.cookie
                 res.cookie('accessID', token, { httpOnly: false, maxAge: 86400000, sameSite: 'None', secure: true });
                 
@@ -165,8 +164,8 @@ app.post('/login', async (req, res) => {
 });
 
 
-app.get('/dashboard', (req, res, next) => {
-    const accessToken = req.cookies.accessID;
+app.get('/dashboard/token', (req, res) => {
+    const accessToken = req.cookies;
     
     res.json(accessToken);
 });
