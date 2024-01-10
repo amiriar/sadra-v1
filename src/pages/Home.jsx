@@ -69,26 +69,17 @@ const Home = () => {
 
   return (
     <>
-    <div className='Home' id='maxWidth'>
-        <div className='image_container'>
-            <img src={image} alt={image} />
-        </div>
+    <div className='Home'>
+      <div className='BoxData'>
+        <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
+        <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
+        <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
+        <SearchBox firstWidth="80%" />
+      </div>
 
-        <div className='Data_Container' >
-            <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
-            <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
-            <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
-            <SearchBox firstWidth={'75%'}/>
-        </div>
-    </div>
-
-    <div className='Home_corporations' id='maxWidth'>
-        <p>فارغ التحصیلان دوره‌های ما، در . بهترین شرکت‌های کشور مشغول به کارند</p>
-    <div className='companiese'>
-        <Mokhaberat />
-        <Tapci  />
-        <Mokhaberat />
-    </div>
+      <div className='BoxImage'>
+        <img src={"/assets/manLaptop.png"} />
+      </div>
     </div>
 
     {/* Why US */}
