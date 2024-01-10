@@ -107,7 +107,7 @@
     .Home{
         max-width: 1920px;
         margin: 0 auto;
-        min-height: 120vh;
+        min-height: 100vh;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 15%;
@@ -139,7 +139,7 @@
         color: var(--Gray-300);
         font-size: 1rem;
         padding: 12px;
-        margin-bottom: 62px;
+        margin-bottom: 32px;
     }
     .BoxImage{
         width: 100%;
