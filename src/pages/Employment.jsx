@@ -23,7 +23,6 @@ import { Divider, Grid } from '@mui/material';
 // DataBase
 import WhysUsDB from '../utils/WhysUsDB.json'
 import Questions from '../utils/Questions.json'
-import JobTeam from '../utils/JobTeam.json'
 const Employment = () => {
   const [value, setValue] = React.useState(1);
   const [tabHeader , setTabheader] = useState([
@@ -56,8 +55,6 @@ const Employment = () => {
       id : 6 ,
       TabTitle : "مالی"
     }
-    ,
-
   ])
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -80,7 +77,6 @@ const Employment = () => {
   };
   fetchData();
   } , [])
-  console.log(data2)
 
   return (
     <div className='Employment_container'>
