@@ -29,9 +29,6 @@ const AppRoutes = () => {
             <Route path="/auth/register" element={<AuthRegister/>} />
             <Route path="/auth/login" element={<AuthLogin/>} />
             <Route path="/dashboard" element={<DashboardHandler/>} />
-            <Route path="/panel/user" element={<UserDashboard/>} />
-            <Route path="/panel/teacher" element={<TeacherDashboard/>} />
-            <Route path="/panel/admin" element={<AdminDashboard/>} />
         </Routes> 
     );
 };

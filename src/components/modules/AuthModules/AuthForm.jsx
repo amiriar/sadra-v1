@@ -78,7 +78,7 @@ const AuthForm = ({ isRegister }) => {
                         console.log(result);
             
                         if (result.statusCode === 200) {
-                            navigate('/login');
+                            navigate('/auth/login');
                         }
             
                         if (result.error) {

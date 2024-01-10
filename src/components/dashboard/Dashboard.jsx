@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserDashboard from './user/UserDashboard';
+import TeacherDashbaord from './teacher/TeacherDashboard';
+import AdminDashboard from './admin/AdminDashboard';
 
 function DashboardHandler() {
     const [userId, setUserId] = useState(null);
@@ -23,18 +26,20 @@ function DashboardHandler() {
 
     const navigate = useNavigate()
 
-    if(userRole === "user"){
-        console.log(userRole);
-        navigate("/panel/user", { replace:true })
-    }else if(userRole === "teacher"){
-        console.log(userRole);
-        navigate("/panel/teacher", { replace:true })
-    }else if(userRole === "admin"){
-        console.log(userRole);
-        navigate("/panel/admin", { replace:true })
-    }else{
-        navigate("/")
-    }
+    return (
+        <div>
+            {
+                userRole === "user" ? 
+                    <UserDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
+                : userRole === "teacher" ?
+                    <TeacherDashbaord userId={userId} userEmail={userEmail} userRole={userRole} />
+                : userRole === "admin" ?
+                    <AdminDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
+                :
+                <h1>Login First</h1>
+            }
+        </div>
+    );
 }
 
 export default DashboardHandler;
