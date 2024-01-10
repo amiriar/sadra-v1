@@ -10,6 +10,7 @@ import VideoPlayer from '../components/modules/VideoPlayer';
 import CardPopTu from '../components/modules/HomePageModule/CardPopTu';
 import CardEvent from '../components/modules/HomePageModule/CardEvent';
 import CommentCard from '../components/modules/HomePageModule/CommentCard';
+import filterCategoryFunc from '../components/modules/HomePageModule/FilterData';
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -17,13 +18,17 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import { Button } from '@mui/material';
+// Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css/navigation';
+import 'swiper/css';
+import { Navigation } from 'swiper/modules';
+
 // Icons
 import { Mokhaberat , Tapci } from '../components/layouts/svg/workingCorporate';
 import Hamrah from '/assets/hamrahaval.png'
 import { TiMessages } from "react-icons/ti";
 import { CiCalendar } from "react-icons/ci";
-import { FaArrowLeft } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 // Media
 import Video from '/assets/Media.mp4'
@@ -37,12 +42,11 @@ import Comments from '../components/modules/HomePageModule/CommentsData';
 import { Link } from 'react-router-dom';
 // Variabels
 
-                  
 const Home = () => {
-  const [index , setIndex] = useState(0)
-  const [people] = useState(contacts)
-  const lastIndex = people.length - 1 ;
-  const sliderHandler1 = (event)=> {
+const [index , setIndex] = useState(0)
+const [people] = useState(contacts)
+const lastIndex = people.length - 1 ;
+const sliderHandler1 = (event)=> {
     if(index >= lastIndex ){
       setIndex(0)
       return ;
@@ -64,7 +68,31 @@ const Home = () => {
     setValue(newValue);
   };
 
-
+  const [dataEvent , setdataEvent] = useState([]);
+  const [commentData , setCommentData] = useState([]);
+  useEffect(()=> {
+    const fetchData = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/HomeEventData/data');
+          const jsonData = await response.json();
+          setdataEvent(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+  const fetchData2 = async () => {
+      try {
+          const response = await fetch('http://localhost:3001/HomeContactsDetail/data');
+          const jsonData = await response.json();
+          setCommentData(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
+  fetchData();
+  fetchData2();
+  } , [])
+  dataEvent.filter(item => console.log(item))
 
 
   return (
@@ -82,19 +110,26 @@ const Home = () => {
       </div>
     </div>
 
+
+    <div className='Boxgraduate'>
+      <p>فارغ التحصیلان دوره‌های ما، در . بهترین شرکت‌های کشور مشغول به کارند</p>
+      <div className='BoxgraduateIcon'>
+      <Mokhaberat/>
+      <Tapci/>
+      <Mokhaberat/>
+      </div>
+    </div>
+
     {/* Why US */}
 
     <div className='why_Container' id='maxWidth'>
       <div className='why_us'>
-
         <div className='why_us_Icons' id='maxWidth'>
           <Line/>
           <h2>چرا ما</h2>
         </div>
-
         <h1>شرکت در دوره‌ها مساوی با ورود قطعی به بازار کار</h1>
         <p>صدرا، از متدهایی استفاده می‌کنه که مسیر یادگیری برای شما هموارتر می‌کنه و نیروی کاری تربیت می‌کنه که صدرا با افتخار به شرکت‌های موفق معرفی می‌کنه و اشتغال به کار شما رو، بعد از دوره تضمین می‌کنه.</p>
-        
         <div className='Box_Container' >
           <div className='data_Box1'>
             <h1 style={{color : '#fff'}} >پشتیبانی بعد از اتمام دوره</h1>
@@ -111,9 +146,7 @@ const Home = () => {
         </div>
       </div>    
     </div>
-
 {/* part Three Media vidoe */}
-
     <div className='learn_container' id='maxWidth'>
       <div className='learn_icon'>
         <h2>آموزش ما</h2>
@@ -134,12 +167,18 @@ const Home = () => {
       </div>
 
       <h1>بیش از 500 دانش‌آموخته از مسیر خود راضی بودند</h1>
-
-      <div className='contact_container'>
-      <button onClick={sliderHandler1}  id='contact_Btn1'><FaArrowLeft name='left' style={{color : "white" , width : 30  , height : 30 }} /></button>
-      <ContactSlider index={index} />
-      <button onClick={sliderHandler2}  name='right' id='contact_Btn2' ><FaArrowRight style={{color : "white" , width : 30  , height : 30 }} /></button>
-      </div>
+  <div className='Slider'>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+        {commentData.map((item)=> (
+          <SwiperSlide>
+            <p id='cardComment'>{item.comment}</p>
+            <img src={item.profile} />
+            <p id='cardName'>{item.name}</p>
+            <p id='cardJob'>{item.job}</p>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+  </div>
 
       <div className='contact_corporates'>
         <Tapci className="icons_contact"/>
@@ -164,18 +203,29 @@ const Home = () => {
         <h1>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h1>
       </div>
     </div>
-    
+    {/* dataEvent */}
     <Box  sx={{ minHeight : '602px' ,  width: '100%', typography: 'body1', direction : "rtl" , mt : "6rem"}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
 
-            {
+            {/* {
               RenderCategory.map((item , index) => (
                 <Tab label={item.CatTitle} value={index.toString()} />
               ))
-            }
+            } */}
 
+            {/* {dataEvent.map((item)=> (
+              <Tab label={item.category} value={index.toString()} />
+            ))} */}
+
+            {/* {console.log(filterCategoryFunc(dataEvent))} */}
+             {/* {
+              dataEvent.map((item)=> filterCategoryFunc(item.category))
+            }  */}
+            {/* {
+              dataEvent.map((item)=> console.log(item.category))
+            } */}
           </TabList>
         </Box>
         <TabPanel value="1" >
