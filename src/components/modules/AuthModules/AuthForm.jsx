@@ -116,17 +116,21 @@ const AuthForm = ({ isRegister }) => {
             
                 if (isemailOK === true && isPassOK === true) {
                     try {
-                        const response = await axios.post('http://localhost:3001/login', {
-                            email: values.email,
-                            password: values.password,
-                        });
+                        let response = await axios({
+                            method: 'post',
+                            url: 'http://localhost:3001/login', 
+                            data: {
+                                email : values.email,
+                                password: values.password,
+                            },
+                            withCredentials: true
+                        })
             
                         const result = response.data;
                         console.log(result);
             
                         if (result.statusCode === 200) {
-                            console.log('Document Cookies:', document.cookie);
-                            // navigate("/dashboard")
+                            navigate("/dashboard")
                         }
             
                         if (result.error) {

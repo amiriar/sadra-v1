@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
 import crypto from 'crypto';
+import 'dotenv/config';
+
 
 const app = express();
 const PORT = 3001;
@@ -161,36 +163,40 @@ app.post('/login', async (req, res) => {
                 await db.query(updateQuery);
 
                 // Generate a random secret key for JWT
-                const secretKey = crypto.randomBytes(32).toString('hex');
+                const secretKey = process.env.BLOGS_SECRET_KEY;
 
                 const token = Jwt.sign(
                     { id: userResult[0][0].id, email: userResult[0][0].email, role: userResult[0][0].role },
                     secretKey,
                     { expiresIn: '24h' }
                 );
-
                 // Set the JWT token as a cookie using res.cookie
-                res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
-
+                res.cookie('accessID', token, { httpOnly: false, maxAge: 86400000, sameSite: 'None', secure: true });
+                
                 // Send a success response
-                res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+                res.status(200).json({ statusCode: 200, message: 'User updated successfully'});
             }
         }
     } catch (error) {
         console.error('Error updating user:', error);
-        res.status(500).json({ error: 'Internal Server Error 2' });
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
 
-app.get('/dashboard', (req, res) => {
-    const accessToken = req.cookies.access_token;
-    console.log(accessToken);
+app.get('/dashboard/token', (req, res) => {
+    const accessToken = req.cookies.accessID;
+
+    if(!(req.cookies[0])){
+        const secretKey = process.env.BLOGS_SECRET_KEY;
     
-    // Now you can use the access token for authentication or authorization.
-    // Check user roles, permissions, etc.
-    
-    res.send('Dashboard content');
+        const decodedToken = Jwt.verify(accessToken, secretKey);
+        
+        res.json(decodedToken);
+    }else{
+        res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !', path:"/login" });
+    }
+
 });
 
 
