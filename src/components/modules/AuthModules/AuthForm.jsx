@@ -76,8 +76,9 @@ const AuthForm = ({ isRegister }) => {
                     console.log(result);
                     if(result.statusCode === 200){
                         navigate("/dashboard")
-                    }else if(result.statusCode){
-                        showToast(`${result.message}`, 'error')
+                    }
+                    if(result.error){
+                        showToast(`${result.error}`, 'error')
                     }
                 }else{
                     console.log("didnt");
@@ -115,8 +116,9 @@ const AuthForm = ({ isRegister }) => {
                     console.log(result);
                     if(result.statusCode === 200){
                         navigate("/dashboard")
-                    }else if(result.statusCode){
-                        showToast(`${result.message}`, 'error')
+                    }
+                    if(result.error){
+                        showToast(`${result.error}`, 'error')
                     }
                 }else{
                     console.log("didnt");

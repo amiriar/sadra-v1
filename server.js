@@ -129,8 +129,10 @@ app.post('/login', async (req, res) => {
     
         if (userResult.length === 0) {
           // User not found
-            res.status(404).json({ error: 'User not found' });
+            res.status(404).json({ error: 'کاربری با این مشخصات پیدا نشد !' });
             return;
+        }else{
+            
         }
     
         const storedHashedPassword = userResult[0][0].password;
@@ -139,7 +141,7 @@ app.post('/login', async (req, res) => {
 
         if (!passwordMatch) {
           // Passwords don't match
-            res.status(401).json({ error: 'Invalid credentials' });
+            res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
             return;
         }else{
             // Update lastDateIn if everything is okay
