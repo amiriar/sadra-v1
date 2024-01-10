@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function UserDashboard() {
+function DashboardHandler() {
     const [userId, setUserId] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
     const [userRole, setUserRole] = useState(null);
@@ -20,13 +21,20 @@ function UserDashboard() {
     });
     }, []); 
 
-    return (
-        <div>
-            <h1>id: {userId}</h1>
-            <h1>email: {userEmail}</h1>
-            <h1>role: {userRole}</h1>
-        </div>
-    );
+    const navigate = useNavigate()
+
+    if(userRole === "user"){
+        console.log(userRole);
+        navigate("/panel/user", { replace:true })
+    }else if(userRole === "teacher"){
+        console.log(userRole);
+        navigate("/panel/teacher", { replace:true })
+    }else if(userRole === "admin"){
+        console.log(userRole);
+        navigate("/panel/admin", { replace:true })
+    }else{
+        navigate("/")
+    }
 }
 
-export default UserDashboard;
+export default DashboardHandler;

@@ -156,7 +156,7 @@ app.post('/login', async (req, res) => {
                 res.cookie('accessID', token, { httpOnly: false, maxAge: 86400000, sameSite: 'None', secure: true });
                 
                 // Send a success response
-                res.status(200).json({ statusCode: 200, message: 'User updated successfully', cookie: {token, attr: { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true }} });
+                res.status(200).json({ statusCode: 200, message: 'User updated successfully'});
             }
         }
     } catch (error) {
@@ -169,11 +169,16 @@ app.post('/login', async (req, res) => {
 app.get('/dashboard/token', (req, res) => {
     const accessToken = req.cookies.accessID;
 
-    const secretKey = process.env.BLOGS_SECRET_KEY;
-
-    const decodedToken = Jwt.verify(accessToken, secretKey);
+    if(!(req.cookies[0])){
+        const secretKey = process.env.BLOGS_SECRET_KEY;
     
-    res.json(decodedToken);
+        const decodedToken = Jwt.verify(accessToken, secretKey);
+        
+        res.json(decodedToken);
+    }else{
+        res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !', path:"/login" });
+    }
+
 });
 
 
