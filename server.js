@@ -160,7 +160,7 @@ app.post('/login', async (req, res) => {
         }
     } catch (error) {
         console.error('Error updating user:', error);
-        res.status(500).json({ error: 'Internal Server Error 2' });
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
