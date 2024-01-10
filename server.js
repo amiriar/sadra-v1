@@ -152,10 +152,10 @@ app.post('/login', async (req, res) => {
                 );
 
                 // Set the JWT token as a cookie using res.cookie
-                res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
-
+                res.cookie('accessID', token, { httpOnly: false, maxAge: 86400000, sameSite: 'None', secure: true });
+                
                 // Send a success response
-                res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+                res.status(200).json({ statusCode: 200, message: 'User updated successfully', cookie: {token, attr: { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true }} });
             }
         }
     } catch (error) {
@@ -165,14 +165,10 @@ app.post('/login', async (req, res) => {
 });
 
 
-app.get('/dashboard', (req, res) => {
-    const accessToken = req.cookies.access_token;
-    console.log(accessToken);
+app.get('/dashboard', (req, res, next) => {
+    const accessToken = req.cookies.accessID;
     
-    // Now you can use the access token for authentication or authorization.
-    // Check user roles, permissions, etc.
-    
-    res.send('Dashboard content');
+    res.json(accessToken);
 });
 
 

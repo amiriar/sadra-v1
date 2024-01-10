@@ -10,7 +10,7 @@ import AdminDashboard from '../admin/AdminDashboard'
 import Employment from '../../pages/Employment';
 import AuthRegister from '../../pages/AuthRegister';
 import AuthLogin from '../../pages/AuthLogin';
-import UserDashboard from '../dashboard/UserDashboard';
+import Dashboard from '../dashboard/Dashboard';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -27,7 +27,7 @@ const AppRoutes = () => {
             <Route path="/employment" element={<Employment/>} />
             <Route path="/auth/register" element={<AuthRegister/>} />
             <Route path="/auth/login" element={<AuthLogin/>} />
-            <Route path="/dashboard" element={<UserDashboard/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
         </Routes> 
     );
 };
