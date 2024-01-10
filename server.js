@@ -117,57 +117,7 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-// app.post('/login', async (req, res) => {
-//     const { email, password } = req.body
-//     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
-//     try {
-//         // Check if the email exists and the hashed password matches
-//         const checkUserQuery = `
-//             SELECT id, email, password
-//             FROM users
-//             WHERE email = '${email}';
-//         `;
-//         const userResult = await db.query(checkUserQuery);
 
-//         if (userResult[0].length === 0) {
-//           // User not found
-//             res.status(404).json({ error: 'کاربری با این مشخصات پیدا نشد !' });
-//             return;
-//         }else{
-//             const storedHashedPassword = userResult[0][0].password;
-//             const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
-    
-//             if (!passwordMatch) {
-//               // Passwords don't match
-//                 res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
-//                 return;
-//             }else if(userResult.length !== 0){
-//                 // Update lastDateIn if everything is okay
-//                 const updateQuery = `
-//                     UPDATE users
-//                     SET lastDateIn = '${todaySolar}'
-//                     WHERE id = ${userResult[0][0].id};
-//                 `;
-//                 await db.query(updateQuery);
-//                 res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
-
-                
-                
-//                 const secretKey = ""
-//                 const token = Jwt.sign(
-//                     { userId: userResult[0][0].id, userEmail: userResult[0][0].email, isAdmin: "user" },
-//                     secretKey,
-//                     { expiresIn: '24h' }
-//                 );
-//                 res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000 });
-//             }
-//         }
-    
-//     } catch (error) {
-//         console.error('Error updating user:', error);
-//         res.status(500).json({ error: 'Internal Server Error 2' });
-//     }
-// });
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
@@ -175,7 +125,7 @@ app.post('/login', async (req, res) => {
     try {
         // Check if the email exists and the hashed password matches
         const checkUserQuery = `
-            SELECT id, email, password
+            SELECT id, email, password, role
             FROM users
             WHERE email = '${email}';
         `;
@@ -205,15 +155,19 @@ app.post('/login', async (req, res) => {
                 // Generate a random secret key for JWT
                 const secretKey = crypto.randomBytes(32).toString('hex');
 
-                // Generate a JWT token
                 const token = Jwt.sign(
-                    { userId: userResult[0][0].id, userEmail: userResult[0][0].email, isAdmin: "user" },
+                    { id: userResult[0][0].id, email: userResult[0][0].email, role: userResult[0][0].role },
                     secretKey,
                     { expiresIn: '24h' }
                 );
 
-                // Set the JWT token as a cookie
-                res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000 });
+                // Set the JWT token as a cookie using res.cookie
+                res.cookie('access_token', token, {
+                    maxAge: 86400000,  // 24 hours in milliseconds
+                    httpOnly: true,
+                    secure: true,  // Set to true if your app is served over HTTPS
+                    sameSite: 'None',  // Adjust according to your needs
+                });
 
                 // Send a success response
                 res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
@@ -223,6 +177,17 @@ app.post('/login', async (req, res) => {
         console.error('Error updating user:', error);
         res.status(500).json({ error: 'Internal Server Error 2' });
     }
+});
+
+
+app.get('/dashboard', (req, res) => {
+    const accessToken = req.cookies.access_token;
+    console.log(accessToken);
+    
+    // Now you can use the access token for authentication or authorization.
+    // Check user roles, permissions, etc.
+    
+    res.send('Dashboard content');
 });
 
 

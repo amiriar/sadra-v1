@@ -115,6 +115,7 @@ const AuthForm = ({ isRegister }) => {
                     const result = await response.json();
                     console.log(result);
                     if(result.statusCode === 200){
+                        console.log('Document Cookies:', document.cookie);
                         navigate("/dashboard")
                     }
                     if(result.error){
