@@ -46,7 +46,6 @@ const AuthForm = ({ isRegister }) => {
         if(isRegister){
             const Register = async ({ values }) => {
                 let isOK = true
-                let isNameOK = true
                 let isemailOK = true
                 let isPassOK = true
             
@@ -58,72 +57,73 @@ const AuthForm = ({ isRegister }) => {
                 } else {
                     isemailOK = true
                 }
-                if(values.password.length > 32 || values.password.length === 0) {
+                if(values.password.length > 32 || values.password.length === 0 ||values.password.length < 8) {
                     isPassOK = false
-                    showToast('رمز عبور نمیتواند خالی یا بیشتر از 32 نویسه باشد.', 'error');
+                    showToast('رمز عبور نمیتواند خالی، بیشتر از 32 نویسه و یا کمتر از 8 نویسه باشد.', 'error');
                 } else {
                     isPassOK = true
                 }
-                // hashed password:
-                const saltRounds = 10; 
-                const hashedPassword = await bcrypt.hash(values.password, saltRounds);
-                // console.log(await bcrypt.hash('agnetgame123', saltRounds));
-                console.log(await bcrypt.compare('agnetgame123', '$2a$10$gqTgSFkCBb72b.4cAnnNgexWROGSG.j9fCqWRPP.S1OcFQg47KA1K'));
-                //
-            
-                if(isOK === true){
+                
+                if(isemailOK === true && isPassOK === true){
+                    const saltRounds = 10; 
+                    const hashedPassword = await bcrypt.hash(values.password, saltRounds);
                     const response = await fetch('http://localhost:3001/register', {
                         method:"POST",
                         headers:{ "Content-type": "application/json" },
-                        body: JSON.stringify(values),
+                        body: JSON.stringify({email:values.email, hashedPassword}),
                     });
                     const result = await response.json();
                     console.log(result);
-                    // if(result.statusCode === 200){
-                    //     console.log("EZ");
-                    // }
+                    if(result.statusCode === 200){
+                        navigate("/dashboard")
+                    }else if(result.statusCode){
+                        showToast(`${result.message}`, 'error')
+                    }
                 }else{
                     console.log("didnt");
                 }
             }
             Register({ values })
+
         }else{
             const Login = async ({ values }) => {
-
                 let isemailOK = true
                 let isPassOK = true
-
+            
                 const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-
+                
                 if(!(emailRegex.test(values.email))) {
                     isemailOK = false
                     showToast('لطفا از درست بودن ایمیل خود اطمینان حاصل کنید.', 'error');
                 } else {
                     isemailOK = true
                 }
-                if(values.password.length > 32 || values.password.length === 0) {
+                if(values.password.length > 32 || values.password.length === 0 ||values.password.length < 8) {
                     isPassOK = false
-                    showToast('رمز عبور نمیتواند خالی یا بیشتر از 32 نویسه باشد.', 'error');
+                    showToast('رمز عبور نمیتواند خالی، بیشتر از 32 نویسه و یا کمتر از 8 نویسه باشد.', 'error');
                 } else {
                     isPassOK = true
                 }
-
-                if(isemailOK && isPassOK){
+                
+                if(isemailOK === true && isPassOK === true){
                     const response = await fetch('http://localhost:3001/login', {
                         method:"POST",
                         headers:{ "Content-type": "application/json" },
-                        body: JSON.stringify({values}),
+                        body: JSON.stringify({email: values.email, password: values.password}),
                     });
-                    const loginResult = await response.json();
-                    if(loginResult.statusCode === 200){
-                        window.URL("/dashboard")
+                    const result = await response.json();
+                    console.log(result);
+                    if(result.statusCode === 200){
+                        navigate("/dashboard")
+                    }else if(result.statusCode){
+                        showToast(`${result.message}`, 'error')
                     }
-                    }else{
-                        console.log("didnt");
-                    }
+                }else{
+                    console.log("didnt");
+                }
             }
+            Login({ values })
         }
-        // console.log(values);
     };
 
     return (
