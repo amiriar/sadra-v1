@@ -15,6 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { showToast } from './Toastify';
 import { ToastContainer } from 'react-toastify';
 import bcrypt from 'bcryptjs';
+import axios from 'axios';
 
 const AuthForm = ({ isRegister }) => {
 
@@ -45,85 +46,99 @@ const AuthForm = ({ isRegister }) => {
 
         if(isRegister){
             const Register = async ({ values }) => {
-                let isemailOK = true
-                let isPassOK = true
+                let isemailOK = true;
+                let isPassOK = true;
             
-                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-                
-                if(!(emailRegex.test(values.email))) {
-                    isemailOK = false
+                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            
+                if (!(emailRegex.test(values.email))) {
+                    isemailOK = false;
                     showToast('لطفا از درست بودن ایمیل خود اطمینان حاصل کنید.', 'error');
                 } else {
-                    isemailOK = true
+                    isemailOK = true;
                 }
-                if(values.password.length > 32 || values.password.length === 0 ||values.password.length < 8) {
-                    isPassOK = false
+                if (values.password.length > 32 || values.password.length === 0 || values.password.length < 8) {
+                    isPassOK = false;
                     showToast('رمز عبور نمیتواند خالی، بیشتر از 32 نویسه و یا کمتر از 8 نویسه باشد.', 'error');
                 } else {
-                    isPassOK = true
+                    isPassOK = true;
                 }
-                
-                if(isemailOK === true && isPassOK === true){
-                    const saltRounds = 10; 
-                    const hashedPassword = await bcrypt.hash(values.password, saltRounds);
-                    const response = await fetch('http://localhost:3001/register', {
-                        method:"POST",
-                        headers:{ "Content-type": "application/json" },
-                        body: JSON.stringify({email:values.email, hashedPassword}),
-                    });
-                    const result = await response.json();
-                    console.log(result);
-                    if(result.statusCode === 200){
-                        navigate("/dashboard")
+            
+                if (isemailOK === true && isPassOK === true) {
+                    try {
+                        const saltRounds = 10;
+                        const hashedPassword = await bcrypt.hash(values.password, saltRounds);
+            
+                        const response = await axios.post('http://localhost:3001/register', {
+                            email: values.email,
+                            hashedPassword,
+                        });
+            
+                        const result = response.data;
+                        console.log(result);
+            
+                        if (result.statusCode === 200) {
+                            navigate('/login');
+                        }
+            
+                        if (result.error) {
+                            showToast(`${result.error}`, 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error during registration:', error);
                     }
-                    if(result.error){
-                        showToast(`${result.error}`, 'error')
-                    }
-                }else{
-                    console.log("didnt");
+                } else {
+                    console.log('didnt');
                 }
-            }
+            };
+            
             Register({ values })
 
         }else{
             const Login = async ({ values }) => {
-                let isemailOK = true
-                let isPassOK = true
+                let isemailOK = true;
+                let isPassOK = true;
             
-                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-                
-                if(!(emailRegex.test(values.email))) {
-                    isemailOK = false
+                const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            
+                if (!(emailRegex.test(values.email))) {
+                    isemailOK = false;
                     showToast('لطفا از درست بودن ایمیل خود اطمینان حاصل کنید.', 'error');
                 } else {
-                    isemailOK = true
+                    isemailOK = true;
                 }
-                if(values.password.length > 32 || values.password.length === 0 ||values.password.length < 8) {
-                    isPassOK = false
+                if (values.password.length > 32 || values.password.length === 0 || values.password.length < 8) {
+                    isPassOK = false;
                     showToast('رمز عبور نمیتواند خالی، بیشتر از 32 نویسه و یا کمتر از 8 نویسه باشد.', 'error');
                 } else {
-                    isPassOK = true
+                    isPassOK = true;
                 }
-                
-                if(isemailOK === true && isPassOK === true){
-                    const response = await fetch('http://localhost:3001/login', {
-                        method:"POST",
-                        headers:{ "Content-type": "application/json" },
-                        body: JSON.stringify({email: values.email, password: values.password}),
-                    });
-                    const result = await response.json();
-                    console.log(result);
-                    if(result.statusCode === 200){
-                        console.log('Document Cookies:', document.cookie);
-                        navigate("/dashboard")
+            
+                if (isemailOK === true && isPassOK === true) {
+                    try {
+                        const response = await axios.post('http://localhost:3001/login', {
+                            email: values.email,
+                            password: values.password,
+                        });
+            
+                        const result = response.data;
+                        console.log(result);
+            
+                        if (result.statusCode === 200) {
+                            console.log('Document Cookies:', document.cookie);
+                            // navigate("/dashboard")
+                        }
+            
+                        if (result.error) {
+                            showToast(`${result.error}`, 'error');
+                        }
+                    } catch (error) {
+                        console.error('Error during login:', error);
                     }
-                    if(result.error){
-                        showToast(`${result.error}`, 'error')
-                    }
-                }else{
-                    console.log("didnt");
+                } else {
+                    console.log('didnt');
                 }
-            }
+            };
             Login({ values })
         }
     };

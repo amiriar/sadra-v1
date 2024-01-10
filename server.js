@@ -94,14 +94,14 @@ app.get('/eventsDetail/data', async (req, res) => {
     }
 });
 app.post('/register', async (req, res) => {
-    const { email, hashedPassword } = req.body
+    const { email, hashedPassword } = req.body;
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
     try {
         const insertQuery = db.query(`
-        INSERT INTO users (email, password, lastDateIn, role)
-        VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user');
+            INSERT INTO users (email, password, lastDateIn, role)
+            VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user');
         `);
-        res.status(200).json({ statusCode:200 ,message: 'User Created' });
+        res.status(200).json({ statusCode: 200, message: 'User Created' });
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -152,12 +152,7 @@ app.post('/login', async (req, res) => {
                 );
 
                 // Set the JWT token as a cookie using res.cookie
-                res.cookie('access_token', token, {
-                    maxAge: 86400000,  // 24 hours in milliseconds
-                    httpOnly: true,
-                    secure: true,  // Set to true if your app is served over HTTPS
-                    sameSite: 'None',  // Adjust according to your needs
-                });
+                res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
 
                 // Send a success response
                 res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
