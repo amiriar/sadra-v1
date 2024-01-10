@@ -4,6 +4,8 @@ import cors from 'cors';
 import moment from 'jalali-moment';
 import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
+import Jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 
 const app = express();
 const PORT = 3001;
@@ -106,8 +108,8 @@ app.post('/register', async (req, res) => {
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
     try {
         const insertQuery = db.query(`
-        INSERT INTO users (email, password, lastDateIn, isAdmin)
-        VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 0);
+        INSERT INTO users (email, password, lastDateIn, role)
+        VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user');
         `);
         res.status(200).json({ statusCode:200 ,message: 'User Created' });
     } catch (error) {
@@ -115,9 +117,61 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+// app.post('/login', async (req, res) => {
+//     const { email, password } = req.body
+//     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
+//     try {
+//         // Check if the email exists and the hashed password matches
+//         const checkUserQuery = `
+//             SELECT id, email, password
+//             FROM users
+//             WHERE email = '${email}';
+//         `;
+//         const userResult = await db.query(checkUserQuery);
+
+//         if (userResult[0].length === 0) {
+//           // User not found
+//             res.status(404).json({ error: 'کاربری با این مشخصات پیدا نشد !' });
+//             return;
+//         }else{
+//             const storedHashedPassword = userResult[0][0].password;
+//             const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
+    
+//             if (!passwordMatch) {
+//               // Passwords don't match
+//                 res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
+//                 return;
+//             }else if(userResult.length !== 0){
+//                 // Update lastDateIn if everything is okay
+//                 const updateQuery = `
+//                     UPDATE users
+//                     SET lastDateIn = '${todaySolar}'
+//                     WHERE id = ${userResult[0][0].id};
+//                 `;
+//                 await db.query(updateQuery);
+//                 res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+
+                
+                
+//                 const secretKey = ""
+//                 const token = Jwt.sign(
+//                     { userId: userResult[0][0].id, userEmail: userResult[0][0].email, isAdmin: "user" },
+//                     secretKey,
+//                     { expiresIn: '24h' }
+//                 );
+//                 res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000 });
+//             }
+//         }
+    
+//     } catch (error) {
+//         console.error('Error updating user:', error);
+//         res.status(500).json({ error: 'Internal Server Error 2' });
+//     }
+// });
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
+
     try {
         // Check if the email exists and the hashed password matches
         const checkUserQuery = `
@@ -126,40 +180,50 @@ app.post('/login', async (req, res) => {
             WHERE email = '${email}';
         `;
         const userResult = await db.query(checkUserQuery);
-    
-        if (userResult.length === 0) {
-          // User not found
+
+        if (userResult[0].length === 0) {
+            // User not found
             res.status(404).json({ error: 'کاربری با این مشخصات پیدا نشد !' });
             return;
-        }else{
-            
-        }
-    
-        const storedHashedPassword = userResult[0][0].password;
+        } else {
+            const storedHashedPassword = userResult[0][0].password;
+            const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
 
-        const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
+            if (!passwordMatch) {
+                // Passwords don't match
+                res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
+                return;
+            } else if (userResult.length !== 0) {
+                // Update lastDateIn if everything is okay
+                const updateQuery = `
+                    UPDATE users
+                    SET lastDateIn = '${todaySolar}'
+                    WHERE id = ${userResult[0][0].id};
+                `;
+                await db.query(updateQuery);
 
-        if (!passwordMatch) {
-          // Passwords don't match
-            res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
-            return;
-        }else{
-            // Update lastDateIn if everything is okay
-            const updateQuery = `
-                UPDATE users
-                SET lastDateIn = '${todaySolar}'
-                WHERE id = ${userResult[0][0].id};
-            `;
-            await db.query(updateQuery);
-            res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+                // Generate a random secret key for JWT
+                const secretKey = crypto.randomBytes(32).toString('hex');
+
+                // Generate a JWT token
+                const token = Jwt.sign(
+                    { userId: userResult[0][0].id, userEmail: userResult[0][0].email, isAdmin: "user" },
+                    secretKey,
+                    { expiresIn: '24h' }
+                );
+
+                // Set the JWT token as a cookie
+                res.cookie('access_token', token, { httpOnly: true, maxAge: 86400000 });
+
+                // Send a success response
+                res.status(200).json({ statusCode: 200, message: 'User updated successfully' });
+            }
         }
-        
     } catch (error) {
         console.error('Error updating user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error 2' });
     }
 });
-
 
 
 app.listen(PORT, () => {
