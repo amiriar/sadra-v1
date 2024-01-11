@@ -211,7 +211,8 @@ app.post('/signout', (req, res) => {
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, birth } = req.body;
     try {
-        await db.query(`UPDATE users SET name = "${name}", lastName= "${lastName}", email = "${email}", birthDate = "${birth}" WHERE id = ${id};`);
+        await db.query(`UPDATE users 
+        SET name = "${name}", lastName= "${lastName}", email = "${email}", birthDate = "${birth}", level1 = "true" WHERE id = ${id};`);
         res.json({ statusCode: 200, message: 'اطلاعات کاربر بروزرسانی شد !', path:"/dashboard/infos/2" }).status(200);
     } catch (error) {
         console.error('Error fetching data:', error);
