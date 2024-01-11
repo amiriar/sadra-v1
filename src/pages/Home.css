@@ -628,6 +628,7 @@
     justify-content: flex-start;
     align-items: flex-end;
     flex-direction: column;
+    padding-bottom: 0%;
 }
 
 .popular_Tutorial .popular_Icon{
@@ -662,7 +663,14 @@
     text-align: right;
 }
 
-
+.popCardEvent{
+    padding: 1% 0%;
+    display: flex;
+    align-items : center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 25px;
+}
 /* Part Five Responsive popular tutorial */
 
 @media (max-width : 1200px) {

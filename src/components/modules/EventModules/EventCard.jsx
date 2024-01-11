@@ -24,7 +24,7 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
             Number(discount) ? (
                 <div>
                 <span id="price_discount">{price}</span>
-                <span id="price">{!price * (100 - Number(discount)) / 100 ? null : <span>رایگان</span> }</span>
+                <span id="price">{!price * (100 - Number(discount)) / 100 ? `${price * (100 - Number(discount)) / 100}` : <span>رایگان</span> }</span>
                 </div>
             ) : <span id="price">{price} <span id="rial">هزارتومان</span> </span>
            }

@@ -10,14 +10,14 @@ import VideoPlayer from '../components/modules/VideoPlayer';
 import CardPopTu from '../components/modules/HomePageModule/CardPopTu';
 import CardEvent from '../components/modules/HomePageModule/CardEvent';
 import CommentCard from '../components/modules/HomePageModule/CommentCard';
-import filterCategoryFunc from '../components/modules/HomePageModule/FilterData';
+import CardPopular from '../components/modules/HomePageModule/CardPopular';
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Button } from '@mui/material';
+import { Button, Card } from '@mui/material';
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/navigation';
@@ -45,6 +45,38 @@ import { Link } from 'react-router-dom';
 const Home = () => {
 const [index , setIndex] = useState(0)
 const [people] = useState(contacts)
+const [TabHeaders , setTabHeaders] = useState([
+  {
+    id : 1 ,
+    title : "طراحی UI/UX"
+  }
+  ,
+  {
+    id : 2 ,
+    title : "طراحی گرافیک"
+  }
+  ,
+  {
+    id : 3 ,
+    title : "انیمیشن و 3D"
+  }
+  ,
+  {
+    id : 4 ,
+    title : "فرانت‌اند"
+  }
+  ,
+  {
+    id : 5 ,
+    title : "بک‌اند"
+  }
+  ,
+  {
+    id : 6 ,
+    title : "IOT"
+  }
+  
+])
 const lastIndex = people.length - 1 ;
 const sliderHandler1 = (event)=> {
     if(index >= lastIndex ){
@@ -70,6 +102,7 @@ const sliderHandler1 = (event)=> {
 
   const [dataEvent , setdataEvent] = useState([]);
   const [commentData , setCommentData] = useState([]);
+  const [popularEvents , setPopularEvents] = useState([])
   useEffect(()=> {
     const fetchData = async () => {
       try {
@@ -89,12 +122,20 @@ const sliderHandler1 = (event)=> {
           console.error('Error fetching data:', error);
       }
   };
+  const fetchData3 = async () => {
+    try {
+        const response = await fetch('http://localhost:3001/HomePopularData/data');
+        const jsonData = await response.json();
+        setPopularEvents(jsonData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
   fetchData();
   fetchData2();
+  fetchData3();
   } , [])
-  dataEvent.filter(item => console.log(item))
-
-
+console.log(popularEvents)
   return (
     <>
     <div className='Home'>
@@ -208,50 +249,43 @@ const sliderHandler1 = (event)=> {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
-
-            {/* {
-              RenderCategory.map((item , index) => (
-                <Tab label={item.CatTitle} value={index.toString()} />
-              ))
-            } */}
-
-            {/* {dataEvent.map((item)=> (
-              <Tab label={item.category} value={index.toString()} />
-            ))} */}
-
-            {/* {console.log(filterCategoryFunc(dataEvent))} */}
-             {/* {
-              dataEvent.map((item)=> filterCategoryFunc(item.category))
-            }  */}
-            {/* {
-              dataEvent.map((item)=> console.log(item.category))
-            } */}
+            {
+              TabHeaders.map((item) => <Tab label={item.title} value={item.id.toString()} /> )
+            }
           </TabList>
         </Box>
-        <TabPanel value="1" >
+        {/* <TabPanel value="1" >
         <div style={{display : "flex" , alignContent : "center" , justifyContent : "space-evenly" , flexWrap : "wrap"}}>
           {
             CardData.map((Item)=> <CardPopTu key={Item.id} {...Item}  />)
-          }
+          } 
+          {
+            dataEvent.filter((item)=> item.category === TabHeaders.title).map((item)=> (
+              <>
+                <EventCard key={item.id} {...item} />
+              </>
+            ))
+          } 
         </div>
-
         <div className='more_btn_con'>
         <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >دوره‌های بیشتر</Button>
         </div>
-
-        </TabPanel>
-        <TabPanel value="2">طراحی UI/UX</TabPanel>
-        <TabPanel value="3">طراحی گرافیک</TabPanel>
-        <TabPanel value="4">
-        <Stack backgroundColor="red" flexWrap="warp" spacing={20} direction="row">
-          {
-            CardData.map((Item)=> <CardPopTu key={Item.id} id={Item} {...Item}  />)
-          }
-
-        </Stack>
-        </TabPanel>
-        <TabPanel value="5">فرانت‌اند</TabPanel>
-        <TabPanel value="6">بک‌اند</TabPanel>
+        </TabPanel> */}
+        {
+          TabHeaders.map((Tab)=> (
+            <TabPanel value={Tab.id.toString()} >
+            <div className='popCardEvent'>
+              {
+                popularEvents.filter((item)=> item.category === Tab.title).map((item)=> (
+                  <>
+                    <CardPopular {...item} />
+                  </>
+                ))
+              }
+            </div>
+            </TabPanel>
+          ))
+        }
       </TabContext>
       </Box>
     </div>
@@ -272,7 +306,6 @@ const sliderHandler1 = (event)=> {
                 <p>مربی مجرب که به شما آموزش می‌دهند</p>
               </div>
               </div>
-
             <div className='about_img_container'>
               <img src={imageAbout} alt='man' />
             </div>
@@ -286,17 +319,13 @@ const sliderHandler1 = (event)=> {
             <p>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
             <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >بیشتر بدانیم</Button>
           </div>
-
         </div>
-
     {/* part Seven  */}
-
         <div className='event_container'>
               <div className='event_icons'>
                 <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events">رویدادهای بیشتر</Link></p></button>
                 <h2>رویدادهای آینده</h2>
               </div>
-
               <div className='event_card_data'>
                 {
                   eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
@@ -304,7 +333,6 @@ const sliderHandler1 = (event)=> {
               </div>
         </div>
     </div>
-
 
   {/* Part Eight */}
           
