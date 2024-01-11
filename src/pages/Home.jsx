@@ -220,7 +220,7 @@ const fetchData4 = async () => {
       </div>
 
     <div className='data_pop_container'>
-      <div className='Box_1'>
+      <div className='Box_1' dir='rtl'>
         <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از 100 دوره شما را از پایه راهنمایی می کند.</p>
       </div>
 
@@ -234,7 +234,7 @@ const fetchData4 = async () => {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
             {
-              TabHeaders.map((item) => <Tab label={item.title} value={item.id.toString()} /> )
+              TabHeaders.map((item) => <Tab sx={{fontFamily:"Yekan,sans-serif"}} label={item.title} value={item.id.toString()} /> )
             }
           </TabList>
         </Box>
