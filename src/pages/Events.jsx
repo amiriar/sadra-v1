@@ -18,7 +18,6 @@ import { Drawer, Typography } from '@mui/material'
 import './Events.css'
 
 // DB
-import EventDb from '../utils/EventDb.json'
 import { RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
 
 import { Link } from 'react-router-dom';
@@ -184,7 +183,7 @@ const [popularEvent , setPopularEvent] = useState([
             </li>
             <li className='searchItem'>
               <label className='container'>
-              <p id='lable_text'>(18) تخفیف‌دارها</p>
+              <p id='lable_text'>(0) تخفیف‌دارها</p>
               <input type="checkbox"  />
               <span className="checkmark"></span>
               </label>

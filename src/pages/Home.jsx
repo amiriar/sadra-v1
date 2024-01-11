@@ -7,17 +7,16 @@ import image from '/assets/manLaptop.png'
 import SearchBox from '../components/modules/SearchBox';
 import Line from '../components/modules/Line';
 import VideoPlayer from '../components/modules/VideoPlayer';
-import CardPopTu from '../components/modules/HomePageModule/CardPopTu';
-import CardEvent from '../components/modules/HomePageModule/CardEvent';
 import CommentCard from '../components/modules/HomePageModule/CommentCard';
 import CardPopular from '../components/modules/HomePageModule/CardPopular';
+import EventCard from '../components/modules/EventModules/EventCard';
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { Button, Card } from '@mui/material';
+import { Button} from '@mui/material';
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css/navigation';
@@ -26,25 +25,16 @@ import { Navigation } from 'swiper/modules';
 
 // Icons
 import { Mokhaberat , Tapci } from '../components/layouts/svg/workingCorporate';
-import Hamrah from '/assets/hamrahaval.png'
 import { TiMessages } from "react-icons/ti";
 import { CiCalendar } from "react-icons/ci";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 // Media
 import Video from '/assets/Media.mp4'
-import ContactSlider from '../components/modules/HomePageModule/ContactSlider';
-import { contacts } from '../components/modules/HomePageModule/Contact';
-import { Stack } from '@mui/system';
-import { CardData , RenderCategory } from '../components/modules/HomePageModule/CardPopTuData';
-import imageAbout from '/public/assets/image_about_us.png'
-import {eventData} from '../components/modules/HomePageModule/EventsContent'
-import Comments from '../components/modules/HomePageModule/CommentsData';
+import imageAbout from '/assets/image_about_us.png'
 import { Link } from 'react-router-dom';
 // Variabels
 
 const Home = () => {
-const [index , setIndex] = useState(0)
-const [people] = useState(contacts)
 const [TabHeaders , setTabHeaders] = useState([
   {
     id : 1 ,
@@ -77,25 +67,8 @@ const [TabHeaders , setTabHeaders] = useState([
   }
   
 ])
-const lastIndex = people.length - 1 ;
-const sliderHandler1 = (event)=> {
-    if(index >= lastIndex ){
-      setIndex(0)
-      return ;
-    }
-    setIndex(e => e + 1)
-  } 
-  const sliderHandler2 = (event)=> {
-    if(index <= 0 ){
-      setIndex(lastIndex)
-      return ;
-    }
-    setIndex(e => e - 1)
-
-  } 
 
   const [value, setValue] = React.useState('1');
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -103,6 +76,7 @@ const sliderHandler1 = (event)=> {
   const [dataEvent , setdataEvent] = useState([]);
   const [commentData , setCommentData] = useState([]);
   const [popularEvents , setPopularEvents] = useState([])
+  const [CommentData , setCommetData] = useState([]);
   useEffect(()=> {
     const fetchData = async () => {
       try {
@@ -131,11 +105,21 @@ const sliderHandler1 = (event)=> {
         console.error('Error fetching data:', error);
     }
 };
+const fetchData4 = async () => {
+  try {
+      const response = await fetch('http://localhost:3001/HomeComment/data');
+      const jsonData = await response.json();
+      setCommetData(jsonData);
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+};
   fetchData();
   fetchData2();
   fetchData3();
+  fetchData4();
   } , [])
-console.log(popularEvents)
+
   return (
     <>
     <div className='Home'>
@@ -328,7 +312,11 @@ console.log(popularEvents)
               </div>
               <div className='event_card_data'>
                 {
-                  eventData.map((Item)=> <CardEvent key={Item.id} id={Item} {...Item}  />)
+                window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
+                    <EventCard key={item.id} {...item} />
+                  )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
+                    <EventCard key={item.id} {...item} />
+                  ))
                 }
               </div>
         </div>
@@ -346,28 +334,26 @@ console.log(popularEvents)
 
 <div className='test'>
     <div className='comment_card_container'>
-      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
-
+      {CommentData.map((item)=> <CommentCard key={item.id} {...item} />)}
       <div className='comment_card_container2'>
-      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+      {CommentData.map((item)=> <CommentCard key={item.id} {...item} />)}
       </div>
-    </div>
+</div>
 
     
-   <hr/>
+    <hr/>
 
-   <div className='comment_card_container3'>
-      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
-
+    <div className='comment_card_container3'>
+      {CommentData.map((item)=> <CommentCard key={item.id} {...item} />)}
       <div className='comment_card_container4'>
-      {Comments.map((item)=> <CommentCard key={item.id} {...item} />)}
+      {CommentData.map((item)=> <CommentCard key={item.id} {...item} />)}
+      
       </div>
     </div>
 
 </div>
 
   </div>
-            
     </>
   )
 }

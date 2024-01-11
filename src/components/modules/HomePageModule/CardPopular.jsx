@@ -6,19 +6,19 @@ import { GoStack } from "react-icons/go";
 import { MdOutlineStackedBarChart } from "react-icons/md";
 const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , title , discount}) => {
   return (
-    <Card sx={{ maxWidth: 300 , minWidth : 300 , borderRadius : 3.9 }}>
+    <Card sx={{ maxWidth: 300 , minWidth : 300 , maxHeight : 412 , minHeight : 412 ,  borderRadius : 3.9 }}>
     <CardMedia
-        sx={{maxHeight : 160}}
+        sx={{maxHeight : 170}}
         component="img"
-        height="140"
+        height="170"
         image={thumbnail}
         alt={teacher}
     />
     <CardContent>
     <Typography gutterBottom variant="h5" component="div">
-        {title}
+      <span>{title}</span>
     </Typography>
-    <div style={{display : "flex" , alignItems : "center" , justifyContent : "space-between"}}>
+    <div style={{display : "flex" , alignItems : "center" , justifyContent : "space-between" , height : 112}}>
     <Typography gutterBottom variant="h5" component="div">
     <span style={{display : "flex" , alignItems : "center" , justifyContent : "center"}} >
     <p>استاد {teacher}</p>
@@ -34,16 +34,15 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
            {
             Number(discount) ? (
             <div>
-            <span id="price_discount">{price}</span>
             <span id="price">{price * (100 - Number(discount)) / 100 ? (
             <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
               <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
-            <span style={{fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
-            <span style={{position : "absolute" , top : -220 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{discount}%</span>
+            <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+            <span style={{position : "absolute" , top : -250 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{discount}%</span>
             </div>
             ) : (
                 <div style={{position : "relative"}}>
-                <span style={{position : "absolute" , top : -40 , right : 15 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -17, top : 14}} >هزارتومان</span></span>
+                <span style={{ opacity : 0.5 ,position : "absolute" , top : -45 , right : 15 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -17, top : 14}} >هزارتومان</span></span>
                 <span style={{fontWeight : 700}} >رایگان</span>
                 </div>
                 )}</span>
@@ -59,7 +58,7 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
     <Divider />
     <CardActions>
       <IconButton aria-label="time">
-        <CiClock2 /> <Typography><p>{time}</p></Typography>
+        <CiClock2 /> <Typography> <p>{time} دقیقه </p></Typography>
       </IconButton>
       <IconButton aria-label="lessons">
         <GoStack style={{padding : 1}} /> <Typography><p> <span>درس</span> {lessons}</p></Typography>
