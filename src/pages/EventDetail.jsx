@@ -2,6 +2,7 @@ import React, { useState , useRef, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 // Styles
 import './EventDetailStyle.css';
+import axios from 'axios';
 // Components
 
 // Icons
@@ -11,20 +12,22 @@ const {id} = useParams();
 const eventdetailId = parseInt(id , 10);
 
 const [eventDetailData , setEventDetailData] = useState([]);
-useEffect(()=> {
+useEffect(() => {
   const fetchData = async () => {
-    try {
-        const response = await fetch('http://localhost:3001/eventsDetail/data');
-        const jsonData = await response.json();
-        setEventDetailData(jsonData);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
-fetchData();
-} , [])
+      try {
+          const response = await axios.get('http://localhost:3001/eventsDetail/data');
+          const jsonData = response.data;
+          setEventDetailData(jsonData);
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
+  };
 
-const data = eventDetailData.find((item) => item.id === eventdetailId);
+  fetchData();
+}, []);
+
+const data = eventDetailData && eventDetailData.find((item) => item.id === eventdetailId) ;
+console.log(data?.category);
 
 const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");

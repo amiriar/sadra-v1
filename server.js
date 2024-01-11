@@ -5,9 +5,7 @@ import moment from 'jalali-moment';
 import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
-import crypto from 'crypto';
 import 'dotenv/config';
-import { serialize } from 'cookie';
 
 
 
