@@ -55,7 +55,7 @@ function BlogDetails() {
                 {
                     data && 
                         <React.Fragment>
-                            <div className='BlogDetailsHero' id='heroBlogDetails'>
+                            {/* <div className='BlogDetailsHero' id='heroBlogDetails'>
                                 <div>
                                     <div className='image_container_blog_details'>
                                         <img src={data.imageData} alt={data.imageData} id='imageResponsive' />
@@ -74,6 +74,17 @@ function BlogDetails() {
                                         <h2 style={{color:"#D0D5DD !important"}} dir='rtl'>{data.description}</h2>
                                         <p style={{color:"#FFF !important"}} dir='rtl'>نوشته شده توسط {data.authorName}</p>
                                     </div>
+                                </div>
+                            </div> */}
+                            <div className='Home'>
+                                <div className='BoxData'>
+                                    <h1>مؤسسه آموزشی و پژوهشی صدرا</h1>
+                                    <h2>دوره مورد علاقت رو شرکت کن، گارانتی پیدا کردن کار با ما</h2>
+                                    <p>با شرکت در دوره‌های آموزشی صدرا، از صفر شروع کن و در مسیر یادگیری با بهترین متد‌های آموزشی ما همراه شو، تا ما پلی باشیم برای ورود تضمینی به بازار کار</p>
+                                </div>
+
+                                <div className='BoxImage'>
+                                    <img src={data.imageData} alt={data.imageData} />
                                 </div>
                             </div>
                             <div className='mainContentBlogDetails'>
