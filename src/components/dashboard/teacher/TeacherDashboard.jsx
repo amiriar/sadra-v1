@@ -1,9 +1,22 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-function TeacherDashboard() {
+function TeacherDashbaord({ userId, userEmail, userRole }) {
+
     return (
-        <div>TeacherDashboard</div>
-    )
+        <div>
+            <h1>
+                {userId}
+            </h1>
+            <h1>
+                {userEmail}
+            </h1>
+            <h1>
+                {userRole}
+            </h1>
+        </div>
+    );
 }
 
-export default TeacherDashboard
+export default TeacherDashbaord

@@ -1,20 +1,20 @@
 import axios from 'axios';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AdminDashboard = () => {
-    useEffect(() => {
-        axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
-            .then(response => {
-            console.log(response);
-        })
-    .catch(error => {
-        console.error('Error:', error.response ? error.response.data : error.message);
-        setUserRole('error');
-    });
-    }, []); 
+const AdminDashboard = ({ userId, userEmail, userRole }) => {
+
     return (
         <div>
-            AdminDashboard
+            <h1>
+                {userId}
+            </h1>
+            <h1>
+                {userEmail}
+            </h1>
+            <h1>
+                {userRole}
+            </h1>
         </div>
     );
 };

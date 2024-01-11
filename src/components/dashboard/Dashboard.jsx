@@ -1,6 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserDashboard from './user/UserDashboard';
+import TeacherDashbaord from './teacher/TeacherDashboard';
+import AdminDashboard from './admin/AdminDashboard';
+
+//css
+import './Dashboard.css'
 
 function DashboardHandler() {
     const [userId, setUserId] = useState(null);
@@ -23,18 +29,27 @@ function DashboardHandler() {
 
     const navigate = useNavigate()
 
-    if(userRole === "user"){
-        console.log(userRole);
-        navigate("/panel/user", { replace:true })
-    }else if(userRole === "teacher"){
-        console.log(userRole);
-        navigate("/panel/teacher", { replace:true })
-    }else if(userRole === "admin"){
-        console.log(userRole);
-        navigate("/panel/admin", { replace:true })
-    }else{
-        navigate("/")
+    const clickHandler = () => {
+        navigate("/auth/login")
     }
+
+    return (
+        <div dir='rtl' className='panelContainer'>
+            {
+                userRole === "user" ? 
+                    <UserDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
+                : userRole === "teacher" ?
+                    <TeacherDashbaord userId={userId} userEmail={userEmail} userRole={userRole} />
+                : userRole === "admin" ?
+                    <AdminDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
+                :
+                <>
+                    <h1>ابتدا باید وارد شوید !</h1>
+                    <button className='login_Btn' style={{cursor:"pointer"}} onClick={clickHandler}>ورود</button>
+                </>
+            }
+        </div>
+    );
 }
 
 export default DashboardHandler;
