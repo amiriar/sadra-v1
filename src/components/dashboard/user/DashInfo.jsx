@@ -52,10 +52,10 @@ function DashInfo() {
             setUserEmail(email);
             setUserRole(role);
         })
-    .catch(error => {
-        console.error('Error:', error.response ? error.response.data : error.message);
-        setUserRole('error');
-    });
+        .catch(error => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+            setUserRole('error');
+        });
     }, []); 
 
     const navigate = useNavigate()
@@ -82,6 +82,7 @@ function DashInfo() {
             birth: Birth,
         });
         console.log(response);
+        navigate(response.data.path)
     }
 
     return (
@@ -105,8 +106,8 @@ function DashInfo() {
                             <h1>مرحله 1 ثبت اطلاعات تکمیلی:</h1>
                                 <ThemeProvider theme={theme}>
                                     <div className='formPanel'>
-                                        <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="first-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
+                                    <FormControl variant="outlined" sx={{ marginTop: "1rem", '&:focus-within': { borderColor: 'green !important' } }}>
+                                        <InputLabel htmlFor="first-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan, sans-serif" }}>
                                             نام
                                         </InputLabel>
                                         <Input
@@ -117,7 +118,8 @@ function DashInfo() {
                                             value={userName}
                                             onChange={(e) => setUserName(e.target.value)}
                                         />
-                                        </FormControl>
+                                    </FormControl>
+
 
                                         <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
                                         <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>

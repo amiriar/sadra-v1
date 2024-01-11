@@ -14,6 +14,7 @@ import DashboardHandler from '../dashboard/Dashboard';
 import UserDashboard from '../dashboard/user/UserDashboard';
 import TeacherDashboard from '../dashboard/teacher/TeacherDashboard';
 import DashInfo from '../dashboard/user/DashInfo';
+import DashInfo2 from '../dashboard/user/DashInfos2';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -31,6 +32,7 @@ const AppRoutes = () => {
             <Route path="/auth/login" element={<AuthLogin/>} />
             <Route path="/dashboard" element={<DashboardHandler/>} />
             <Route path="/dashboard/infos" element={<DashInfo/>} />
+            <Route path="/dashboard/infos/2" element={<DashInfo2/>} />
         </Routes> 
     );
 };

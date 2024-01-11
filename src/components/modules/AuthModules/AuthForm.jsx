@@ -127,7 +127,6 @@ const AuthForm = ({ isRegister }) => {
                         })
             
                         const result = response.data;
-                        console.log(result);
             
                         if (result.statusCode === 200) {
                             navigate("/dashboard")

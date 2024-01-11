@@ -118,8 +118,8 @@ app.post('/register', async (req, res) => {
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
     try {
         const insertQuery = db.query(`
-            INSERT INTO users (email, password, lastDateIn, role)
-            VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user');
+            INSERT INTO users (email, password, lastDateIn, role, level1, level2)
+            VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user', false, false);
         `);
         res.status(200).json({ statusCode: 200, message: 'User Created' });
     } catch (error) {
@@ -136,52 +136,49 @@ app.post('/login', async (req, res) => {
     try {
         // Check if the email exists and the hashed password matches
         const checkUserQuery = `
-            SELECT id, email, password, role
+            SELECT id, email, password, role, level1, level2
             FROM users
             WHERE email = '${email}';
         `;
         const userResult = await db.query(checkUserQuery);
 
         if (userResult[0].length === 0) {
-            // User not found
-            res.status(404).json({ error: 'کاربری با این مشخصات پیدا نشد !' });
+            res.json({ error: 'کاربری با این مشخصات پیدا نشد !' }).status(404);
             return;
-        } else {
-            const storedHashedPassword = userResult[0][0].password;
-            const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
+        }
+        const storedHashedPassword = userResult[0][0].password;
+        const passwordMatch = await bcrypt.compare(password, storedHashedPassword);
 
-            if (!passwordMatch) {
-                // Passwords don't match
-                res.status(401).json({ error: 'ایمیل یا رمز عبور معتبر نیست !' });
-                return;
-            } else if (userResult.length !== 0) {
-                // Update lastDateIn if everything is okay
-                const updateQuery = `
-                    UPDATE users
-                    SET lastDateIn = '${todaySolar}'
-                    WHERE id = ${userResult[0][0].id};
-                `;
-                await db.query(updateQuery);
+        if (!passwordMatch) {
+            res.json({ error: 'ایمیل یا رمز عبور معتبر نیست !' }).status(401);
+            return;
+        } else if (userResult.length !== 0) {
+            // Update lastDateIn if everything is okay
+            const updateQuery = `
+                UPDATE users
+                SET lastDateIn = '${todaySolar}'
+                WHERE id = ${userResult[0][0].id};
+            `;
+            await db.query(updateQuery);
 
                 // Generate a random secret key for JWT
-                const secretKey = process.env.BLOGS_SECRET_KEY;
+            const secretKey = process.env.BLOGS_SECRET_KEY;
 
-                const token = Jwt.sign(
-                    { id: userResult[0][0].id, email: userResult[0][0].email, role: userResult[0][0].role },
-                    secretKey,
-                    { expiresIn: '24h' }
-                );
+            const token = Jwt.sign(
+                { id: userResult[0][0].id, email: userResult[0][0].email, role: userResult[0][0].role },
+                secretKey,
+                { expiresIn: '24h' }
+            );
 
-                // Set the JWT token as a cookie using res.cookie
-                res.cookie('accessID', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
-                
-                // Send a success response
-                res.status(200).json({ statusCode: 200, message: 'User updated successfully'});
+            // Set the JWT token as a cookie using res.cookie
+            res.cookie('accessID', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
+            
+            // Send a success response
+            res.status(200).json({ statusCode: 200, message: 'User updated successfully'});
             }
-        }
     } catch (error) {
         console.error('Error updating user:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.json({ error: 'مشکلی پیش آمد!' }).status(500);
     }
 });
 
@@ -204,13 +201,17 @@ app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, birth } = req.body;
     try {
         await db.query(`UPDATE users SET name = "${name}", lastName= "${lastName}", email = "${email}", birthDate = "${birth}" WHERE id = ${id};`);
-        res.status(200).json({ statusCode: 200, message: 'اطلاعات کاربر بروزرسانی شد !', path:"/dashboard/infos/2" });
+        res.json({ statusCode: 200, message: 'اطلاعات کاربر بروزرسانی شد !', path:"/dashboard/infos/2" }).status(200);
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 
+app.get('/users/data', async (req, res) => {
+    const selectQuery = await db.query(`SELECT * FROM users`)
+    res.json(selectQuery).status(200)
+});
 
 
 
