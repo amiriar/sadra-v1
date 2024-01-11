@@ -128,6 +128,7 @@ app.post('/register', async (req, res) => {
     }
 });
 
+
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
@@ -170,6 +171,7 @@ app.post('/login', async (req, res) => {
                     secretKey,
                     { expiresIn: '24h' }
                 );
+
                 // Set the JWT token as a cookie using res.cookie
                 res.cookie('accessID', token, { httpOnly: true, maxAge: 86400000, sameSite: 'None', secure: true });
                 
@@ -192,6 +194,24 @@ app.get('/dashboard/token', (req, res) => {
     
     res.json(decodedToken);
 });
+
+app.post('/signout', (req, res) => {
+    res.clearCookie('accessID', { httpOnly: true, secure: true });
+    res.status(200).json({ message: 'Sign-out successful', path: '/' });
+});
+
+app.post('/fullInfo', async (req, res) => {
+    const { id, name, lastName, email, birth } = req.body;
+    try {
+        await db.query(`UPDATE users SET name = "${name}", lastName= "${lastName}", email = "${email}", birthDate = "${birth}" WHERE id = ${id};`);
+        res.status(200).json({ statusCode: 200, message: 'اطلاعات کاربر بروزرسانی شد !', path:"/dashboard/infos/2" });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 
 
 app.listen(PORT, () => {

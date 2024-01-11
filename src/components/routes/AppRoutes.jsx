@@ -13,6 +13,7 @@ import AuthLogin from '../../pages/AuthLogin';
 import DashboardHandler from '../dashboard/Dashboard';
 import UserDashboard from '../dashboard/user/UserDashboard';
 import TeacherDashboard from '../dashboard/teacher/TeacherDashboard';
+import DashInfo from '../dashboard/user/DashInfo';
 const AppRoutes = () => {
     return (
         <Routes>
@@ -29,6 +30,7 @@ const AppRoutes = () => {
             <Route path="/auth/register" element={<AuthRegister/>} />
             <Route path="/auth/login" element={<AuthLogin/>} />
             <Route path="/dashboard" element={<DashboardHandler/>} />
+            <Route path="/dashboard/infos" element={<DashInfo/>} />
         </Routes> 
     );
 };

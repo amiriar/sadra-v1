@@ -5,6 +5,9 @@ import UserDashboard from './user/UserDashboard';
 import TeacherDashbaord from './teacher/TeacherDashboard';
 import AdminDashboard from './admin/AdminDashboard';
 
+//css
+import './Dashboard.css'
+
 function DashboardHandler() {
     const [userId, setUserId] = useState(null);
     const [userEmail, setUserEmail] = useState(null);
@@ -26,8 +29,12 @@ function DashboardHandler() {
 
     const navigate = useNavigate()
 
+    const clickHandler = () => {
+        navigate("/auth/login")
+    }
+
     return (
-        <div>
+        <div dir='rtl' className='panelContainer'>
             {
                 userRole === "user" ? 
                     <UserDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
@@ -36,7 +43,10 @@ function DashboardHandler() {
                 : userRole === "admin" ?
                     <AdminDashboard userId={userId} userEmail={userEmail} userRole={userRole} />
                 :
-                <h1>Login First</h1>
+                <>
+                    <h1>ابتدا باید وارد شوید !</h1>
+                    <button className='login_Btn' style={{cursor:"pointer"}} onClick={clickHandler}>ورود</button>
+                </>
             }
         </div>
     );
