@@ -126,6 +126,16 @@ app.get('/HomePopularData/data', async (req, res) => {
     }
 });
 
+app.get('/HomeComment/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `comment` ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.post('/register', async (req, res) => {
     const { email, hashedPassword } = req.body;
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
