@@ -6,13 +6,10 @@ import Events from '../../pages/Events';
 import StudentSuccess from '../../pages/StudentSuccess';
 import StudentDetail from '../../pages/StudentDetail';
 import EventDetail from '../../pages/EventDetail';
-import AdminDashboard from '../dashboard/admin/AdminDashboard'
 import Employment from '../../pages/Employment';
 import AuthRegister from '../../pages/AuthRegister';
 import AuthLogin from '../../pages/AuthLogin';
 import DashboardHandler from '../dashboard/Dashboard';
-import UserDashboard from '../dashboard/user/UserDashboard';
-import TeacherDashboard from '../dashboard/teacher/TeacherDashboard';
 import DashInfo from '../dashboard/user/DashInfo';
 import DashInfo2 from '../dashboard/user/DashInfos2';
 const AppRoutes = () => {

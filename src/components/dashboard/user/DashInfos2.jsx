@@ -17,7 +17,7 @@ function DashInfo2() {
 
     console.log(users);
     return (
-        <div dir='rtl' className='panelContainer'>
+        <div dir='rtl' className='panelContainer' style={{padding:"1rem"}}>
             {
                 users ? 
                 users.map((item) => (
