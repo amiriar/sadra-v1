@@ -22,7 +22,7 @@ app.use(cors({
     credentials: true,
 }));
 
-const db = mysql.createPool({
+const db = mysql.createPool({ 
     host: 'localhost',
     user: 'root',
     password: '',
