@@ -119,17 +119,17 @@ const [popularEvent , setPopularEvent] = useState([
       {TabHeaders.map(item => <Tab label={`${item.title}`} value={item.id} />)}
       </TabList>
     </Box>
-   
+
     {
       TabHeaders.map((Tab) => (
         <TabPanel value={Tab.id} key={Tab.id}>
-    <div className='event_card_info'>
-          {
-            data.filter((item)=> item.category === Tab.title).map((item)=>(
-              <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
-            ))
-          }
-    </div>
+          <div className='event_card_info'>
+                {
+                  data.filter((item)=> item.category === Tab.title).map((item)=>(
+                    <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
+                  ))
+                }
+          </div>
         </TabPanel>
       ))
     }
