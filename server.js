@@ -40,6 +40,15 @@ app.get('/blog/data', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+app.get('/blog/data/asc', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM blog ORDER BY `id` ASC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 app.get('/stusuccess/data', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM `student-success` ORDER BY `id` DESC');
