@@ -21,10 +21,10 @@ function DashboardHandler() {
             setUserEmail(email);
             setUserRole(role);
         })
-    .catch(error => {
-        console.error('Error:', error.response ? error.response.data : error.message);
-        setUserRole('error');
-    });
+        .catch(error => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+            setUserRole('error');
+        });
     }, []); 
 
     const navigate = useNavigate()

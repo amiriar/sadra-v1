@@ -112,7 +112,35 @@
     }
 }
 
+@media (max-width : 740px) {
+    .NavBar{
+        padding: 12px 32px;
+    }
+    .List_Logo ul li{
+        display: none;
+    }
+    .login_Btn{
+        display: none;
+    }
+    .burgur{
+        display: inline-flex;
+        font-size: 30px;
+    }   
+}
 
+.login_Btn_No_Hid_2{
+    background-color: var(--prime-green);
+    color: var(--base-white);
+    display: flex;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    font-family: inherit;
+}
 .active {
     color: var(--base-white);
     font-weight: 900;

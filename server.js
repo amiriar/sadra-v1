@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import 'dotenv/config';
+import { serialize } from 'cookie';
+
 
 
 const app = express();
@@ -203,7 +205,7 @@ app.get('/dashboard/token', (req, res) => {
     res.json(decodedToken);
 });
 
-app.post('/signout', (req, res) => {
+app.get('/signout', (req, res) => {
     res.clearCookie('accessID', { httpOnly: true, secure: true });
     res.status(200).json({ message: 'Sign-out successful', path: '/' });
 });

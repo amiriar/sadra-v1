@@ -1,5 +1,5 @@
 // AuthForm.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     TextField,
     Button,
@@ -18,6 +18,21 @@ import bcrypt from 'bcryptjs';
 import axios from 'axios';
 
 const AuthForm = ({ isRegister }) => {
+    const [userId, setUserId] = useState(null);
+    const [userEmail, setUserEmail] = useState(null);
+    const [userRole, setUserRole] = useState(null);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
+            .then(response => {
+            const { id } = response.data;
+            setUserId(id);
+        })
+        .catch(error => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+            setUserRole('error');
+        });
+    }, []); 
 
     const navigate = useNavigate()
 
@@ -146,63 +161,78 @@ const AuthForm = ({ isRegister }) => {
         }
     };
 
+    const dashboardLink = () => {
+        navigate("/dashboard")
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
-                label="Email"
-                fullWidth
-                margin="normal"
-                value={values.email}
-                onChange={handleChange('email')}
-                autoComplete='true'
-            />
-            <FormControl variant="outlined" fullWidth margin='normal'>
-                <InputLabel htmlFor="outlined-adornment-password">Password  ( Maximum 32 letters )</InputLabel>
-                <OutlinedInput
-                    id="outlined-adornment-password"
-                    type={values.showPassword ? 'text' : 'password'}
-                    value={values.password}
-                    onChange={handleChange('password')}
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
-                    label="Password ( Maximum 32 letters )"
-                    inputProps={{ maxLength: 32 }}
+        <>
+        {
+            !userId ? (
+                <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Email"
+                    fullWidth
+                    margin="normal"
+                    value={values.email}
+                    onChange={handleChange('email')}
+                    autoComplete='true'
                 />
-            </FormControl>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <Button variant="contained" color="primary" type="submit" sx={{background:"#4ca773"}}>
-                    {isRegister ? 'Register' : 'Login'}
-                </Button>
-                <Button variant="text" color="primary" type="button">
-                    {isRegister ? 
-                        <Link className='buttonsClass' to={'/auth/login'}>Already have an account ?</Link>
-                        :
-                        <Link className='buttonsClass' to={'/auth/register'}>new Here ?</Link>}
-                </Button>
+                <FormControl variant="outlined" fullWidth margin='normal'>
+                    <InputLabel htmlFor="outlined-adornment-password">Password  ( Maximum 32 letters )</InputLabel>
+                    <OutlinedInput
+                        id="outlined-adornment-password"
+                        type={values.showPassword ? 'text' : 'password'}
+                        value={values.password}
+                        onChange={handleChange('password')}
+                        endAdornment={
+                            <InputAdornment position="end">
+                                <IconButton
+                                    aria-label="toggle password visibility"
+                                    onClick={handleClickShowPassword}
+                                    onMouseDown={handleMouseDownPassword}
+                                    edge="end"
+                                >
+                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                </IconButton>
+                            </InputAdornment>
+                        }
+                        label="Password ( Maximum 32 letters )"
+                        inputProps={{ maxLength: 32 }}
+                    />
+                </FormControl>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <Button variant="contained" color="primary" type="submit" sx={{background:"#4ca773"}}>
+                        {isRegister ? 'Register' : 'Login'}
+                    </Button>
+                    <Button variant="text" color="primary" type="button">
+                        {isRegister ? 
+                            <Link className='buttonsClass' to={'/auth/login'}>Already have an account ?</Link>
+                            :
+                            <Link className='buttonsClass' to={'/auth/register'}>new Here ?</Link>}
+                    </Button>
+                </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+                </form>
+            )
+            : 
+            <div style={{direction:"rtl"}}>
+                <h1>شما قبلا وارد شده اید! از دکمه زیر وارد داشبور خود شوید .</h1>
+                <button style={{cursor:"pointer"}} onClick={dashboardLink} className='login_Btn_No_Hid'>داشبورد</button>
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop
-                closeOnClick
-                rtl
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-            />
-        </form>
+        }
+        </>
     );
 };
 

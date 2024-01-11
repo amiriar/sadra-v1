@@ -8,14 +8,15 @@ const SignOutButton = () => {
 
     const signOut = async () => {
         try {
-            await axios.post('http://localhost:3001/signout').then((res) => navigate(res.data.path))
+            await axios.get('http://localhost:3001/signout', {withCredentials: true})
+            .then((res) => navigate(res.data.path))
         } catch (error) {
             console.error('Error signing out:', error);
         }
     }
 
     return (
-        <button style={{cursor:"pointer"}} className='login_Btn' onClick={signOut}>
+        <button style={{cursor:"pointer"}} className='login_Btn_No_Hid_2' onClick={signOut}>
             خروج از حساب کاربری
         </button>
     );
