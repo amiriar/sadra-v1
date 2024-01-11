@@ -310,7 +310,7 @@ const fetchData4 = async () => {
                 <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events">رویدادهای بیشتر</Link></p></button>
                 <h2>رویدادهای آینده</h2>
               </div>
-              <div className='event_card_data'>
+              <div className='event_card_data' dir='rtl'>
                 {
                 window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
                     <EventCard key={item.id} {...item} />
