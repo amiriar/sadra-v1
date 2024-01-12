@@ -307,7 +307,7 @@ const fetchData4 = async () => {
     {/* part Seven  */}
         <div className='event_container'>
               <div className='event_icons'>
-                <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events">رویدادهای بیشتر</Link></p></button>
+                <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events" style={{fontFamily:"Yekan, sans-serif"}}>رویدادهای بیشتر</Link></p></button>
                 <h2>رویدادهای آینده</h2>
               </div>
               <div className='event_card_data' dir='rtl'>
