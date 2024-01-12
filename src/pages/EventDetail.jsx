@@ -71,9 +71,9 @@ const [timerDays , setTimerDays] = useState("00");
     <>
     <div className='Details'>
       <div className='HeadDetail'>
-        <span>
+          <span>
           
-        </span>
+          </span>
         <div className='HeadDetailData'>
           <p>برای محصولات امروزی User Experience تاثیرگذاری در دنیای دیجیتال طراحی کنید. نمونه کارهایی بسازید که توانایی شما را در مسیر کشف مشکل کاربر و رسیدن به بهترین راه‌حل را نشان دهد.</p>
         </div>

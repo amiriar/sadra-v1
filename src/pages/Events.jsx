@@ -119,7 +119,6 @@ const [popularEvent , setPopularEvent] = useState([
       {TabHeaders.map(item => <Tab label={`${item.title}`} value={item.id} />)}
       </TabList>
     </Box>
-   
     {
       TabHeaders.map((Tab) => (
         <TabPanel value={Tab.id} key={Tab.id}>
