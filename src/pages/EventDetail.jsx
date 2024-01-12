@@ -6,6 +6,7 @@ import axios from 'axios';
 // Components
 
 // Icons
+import { FaChevronLeft } from "react-icons/fa";
 
 const EventDetail = () => {
 const {id} = useParams();
@@ -27,7 +28,7 @@ useEffect(() => {
 }, []);
 
 const data = eventDetailData && eventDetailData.find((item) => item.id === eventdetailId) ;
-console.log(data?.category);
+console.log(data);
 
 const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
@@ -72,17 +73,35 @@ const [timerDays , setTimerDays] = useState("00");
 
   return (
     <>
-    <div className='Details'>
-      <div className='HeadDetail'>
-        <span>
-          
-        </span>
-        <div className='HeadDetailData'>
-          <p>برای محصولات امروزی User Experience تاثیرگذاری در دنیای دیجیتال طراحی کنید. نمونه کارهایی بسازید که توانایی شما را در مسیر کشف مشکل کاربر و رسیدن به بهترین راه‌حل را نشان دهد.</p>
+      <div className='Details' dir='rtl'>
+        <div className='HeadDetail'>
+          <div>
+            <p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{data?.category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{data?.title}</span></p>
+          </div>
+          <div className='HeadDetailData'>
+            <h1 style={{color:"#F9F9F9"}}>{data?.title}</h1>
+            <p style={{color:"#E0E0E0"}}>{data?.detailSubtitle}</p>
+          </div>
+          <div className='timeLeft'>
+            <div className='timerStyle'>
+              <p>17</p>
+              <p style={{color:"#E0E0E0", fontSize: '1rem'}}>ثانیه</p>
+            </div>
+            <div className='timerStyle'>
+              <p>44</p>
+              <p style={{color:"#E0E0E0", fontSize: '1rem'}}>دقیقه</p>
+            </div>
+            <div className='timerStyle'>
+              <p>22</p>
+              <p style={{color:"#E0E0E0", fontSize: '1rem'}}>ساعت</p>
+            </div>
+            <div className='timerStyle'>
+              <p>06</p>
+              <p style={{color:"#E0E0E0", fontSize: '1rem'}}>روز</p>
+            </div>
+          </div>
         </div>
       </div>
-
-    </div>
     </>
   )
 }
