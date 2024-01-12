@@ -11,8 +11,8 @@ function DashInfo() {
     const [userRole, setUserRole] = useState(null);
     const [userName, setUserName] = useState('');
     const [userLastName, setUserLastName] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedDay, setSelectedDay] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState('');
     const [selectedYear, setSelectedYear] = useState('');
 
     const persianMonths = [
@@ -57,6 +57,22 @@ function DashInfo() {
             setUserRole('error');
         });
     }, []); 
+
+    useEffect(() => {
+        userId && axios.get(`http://localhost:3001/users/data/${userId}`)
+            .then(response => {
+                setUserName(response.data[0][0].name)
+                setUserLastName(response.data[0][0].lastName)
+                let dates = response.data[0][0].birthDate.split("/")
+                setSelectedYear(dates[0])
+                setSelectedMonth(dates[1])
+                setSelectedDay(dates[2])
+        })
+        .catch(error => {
+            console.error('Error:', error.response ? error.response.data : error.message);
+            setUserRole('error');
+        });
+    }, [userId])
 
     const navigate = useNavigate()
 
@@ -106,47 +122,49 @@ function DashInfo() {
                             <h1>مرحله 1 ثبت اطلاعات تکمیلی:</h1>
                                 <ThemeProvider theme={theme}>
                                     <div className='formPanel'>
-                                    <FormControl variant="outlined" sx={{ marginTop: "1rem", '&:focus-within': { borderColor: 'green !important' } }}>
-                                        <InputLabel htmlFor="first-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan, sans-serif" }}>
-                                            نام
-                                        </InputLabel>
-                                        <Input
-                                            id="first-name"
-                                            label="نام"
-                                            variant="outlined"
-                                            sx={{ position: 'relative' }}
-                                            value={userName}
-                                            onChange={(e) => setUserName(e.target.value)}
-                                        />
-                                    </FormControl>
-
-
-                                        <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            نام خانوادگی
-                                        </InputLabel>
-                                        <Input
-                                            id="last-name"
-                                            label="نام خانوادگی"
-                                            variant="outlined"
-                                            sx={{ position: 'relative' }}
-                                            value={userLastName}
-                                            onChange={(e) => setUserLastName(e.target.value)}
-                                        />
+                                        <FormControl variant="outlined" sx={{ marginTop: "1rem", '&:focus-within': { borderColor: 'green !important' } }}>
+                                            <InputLabel htmlFor="first-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan, sans-serif" }}>
+                                                نام
+                                            </InputLabel>
+                                            <Input
+                                                id="first-name"
+                                                label="نام"
+                                                variant="outlined"
+                                                sx={{ position: 'relative' }}
+                                                value={userName}
+                                                onChange={(e) => setUserName(e.target.value)}
+                                                required
+                                            />
                                         </FormControl>
 
                                         <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            پست الکترونیکی
-                                        </InputLabel>
-                                        <Input
-                                            id="email"
-                                            label="پست الکترونیکی"
-                                            variant="outlined"
-                                            sx={{ position: 'relative' }}
-                                            value={userEmail}
-                                            onChange={(e) => setUserEmail(e.target.value)}
-                                        />
+                                            <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
+                                                نام خانوادگی
+                                            </InputLabel>
+                                            <Input
+                                                id="last-name"
+                                                label="نام خانوادگی"
+                                                variant="outlined"
+                                                sx={{ position: 'relative' }}
+                                                value={userLastName}
+                                                onChange={(e) => setUserLastName(e.target.value)}
+                                                required
+                                            />
+                                        </FormControl>
+
+                                        <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
+                                            <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
+                                                پست الکترونیکی
+                                            </InputLabel>
+                                            <Input
+                                                id="email"
+                                                label="پست الکترونیکی"
+                                                variant="outlined"
+                                                sx={{ position: 'relative' }}
+                                                value={userEmail}
+                                                onChange={(e) => setUserEmail(e.target.value)}
+                                                required
+                                            />
                                         </FormControl>
                                         
                                         <h2 style={{marginTop:"1rem"}}>تاریخ تولد:</h2>
@@ -162,6 +180,7 @@ function DashInfo() {
                                                     sx={{ position: 'relative' }}
                                                     value={selectedDay}
                                                     onChange={(e) => setSelectedDay(e.target.value)}
+                                                    required
                                                 >
                                                 {generateDays().map(day => (
                                                     <MenuItem key={day} value={day}>{day}</MenuItem>
@@ -180,6 +199,7 @@ function DashInfo() {
                                                     sx={{ position: 'relative' }}
                                                     value={selectedMonth}
                                                     onChange={handleMonthChange}
+                                                    required
                                                 >
                                                 {persianMonths.map((month, index) => (
                                                     <MenuItem key={index + 1} value={index + 1}>{month}</MenuItem>
@@ -198,6 +218,7 @@ function DashInfo() {
                                                     sx={{ position: 'relative'}}
                                                     value={selectedYear}
                                                     onChange={(e) => setSelectedYear(e.target.value)}
+                                                    required
                                                 >
                                                 {Array.from({ length: 83 }, (_, index) => index + 1320).map(year => (
                                                     <MenuItem key={year} value={year}>{year}</MenuItem>

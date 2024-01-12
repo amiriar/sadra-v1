@@ -212,6 +212,10 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.get('/signout', (req, res) => {
+    res.clearCookie('accessID', { httpOnly: true, secure: true });
+    res.status(200).json({ message: 'Sign-out successful', path: '/' });
+});
 
 app.get('/dashboard/token', (req, res) => {
     const accessToken = req.cookies.accessID;
@@ -222,10 +226,6 @@ app.get('/dashboard/token', (req, res) => {
     res.json(decodedToken);
 });
 
-app.get('/signout', (req, res) => {
-    res.clearCookie('accessID', { httpOnly: true, secure: true });
-    res.status(200).json({ message: 'Sign-out successful', path: '/' });
-});
 
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, birth } = req.body;
@@ -241,6 +241,12 @@ app.post('/fullInfo', async (req, res) => {
 
 app.get('/users/data', async (req, res) => {
     const selectQuery = await db.query(`SELECT * FROM users`)
+    res.json(selectQuery).status(200)
+});
+
+app.get('/users/data/:id', async (req, res) => {
+    const { id } = req.params
+    const selectQuery = await db.query(`SELECT * FROM users WHERE id = ${id}`)
     res.json(selectQuery).status(200)
 });
 
