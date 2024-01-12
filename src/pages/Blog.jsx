@@ -78,7 +78,7 @@ function Blog() {
                                     authorName={card.authorName}
                                     authorDescription={card.authorDescription}
                                     authorPicture={card.authorPicture}
-                                    // hashtags={card.hashtags}
+                                    hashtags={card.hashtags}
                                 />
                             </Grid>
                         ))

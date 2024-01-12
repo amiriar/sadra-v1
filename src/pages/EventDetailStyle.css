@@ -1,6 +1,26 @@
 .Details{
     max-width: 1920px;
     margin: 0 auto;
-    padding: 56px 80px;
-    text-align: right;
+    padding: 3.5rem 5rem;
+    background: var(--Neutral-100, #1C1C1C);
+}
+.HeadDetail{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    gap: 2rem;
+}
+.timeLeft{
+    display: flex;
+    gap: 2rem;
+}
+.timerStyle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--Neutral-20, #F9F9F9);
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.5rem; /* 140% */
 }

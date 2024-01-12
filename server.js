@@ -5,9 +5,7 @@ import moment from 'jalali-moment';
 import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
-import crypto from 'crypto';
 import 'dotenv/config';
-import { serialize } from 'cookie';
 
 
 
@@ -24,7 +22,7 @@ app.use(cors({
     credentials: true,
 }));
 
-const db = mysql.createPool({
+const db = mysql.createPool({ 
     host: 'localhost',
     user: 'root',
     password: '',
@@ -34,6 +32,15 @@ const db = mysql.createPool({
 app.get('/blog/data', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM blog ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+app.get('/blog/data/asc', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM blog ORDER BY `id` ASC');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching data:', error);

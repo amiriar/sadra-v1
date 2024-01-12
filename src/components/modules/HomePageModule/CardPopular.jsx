@@ -4,6 +4,7 @@ import { FaStar, FaCalendarAlt, FaLevelUpAlt } from 'react-icons/fa';
 import { CiClock2 } from "react-icons/ci";
 import { GoStack } from "react-icons/go";
 import { MdOutlineStackedBarChart } from "react-icons/md";
+
 const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , title , discount}) => {
   return (
     <Card sx={{ maxWidth: 300 , minWidth : 300 , maxHeight : 412 , minHeight : 412 ,  borderRadius : 3.9 }}>
@@ -15,19 +16,19 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
         alt={teacher}
     />
     <CardContent>
-    <Typography gutterBottom variant="h5" component="div">
+    <Typography fontFamily={'Yekan,sans-serif'} gutterBottom variant="h5" component="div">
       <span>{title}</span>
     </Typography>
-    <div style={{display : "flex" , alignItems : "center" , justifyContent : "space-between" , height : 112}}>
-    <Typography gutterBottom variant="h5" component="div">
+    <div fontFamily={'Yekan,sans-serif'} style={{display : "flex" , alignItems : "center" , justifyContent : "space-between" , height : 112}}>
+    <Typography fontFamily={'Yekan,sans-serif'} gutterBottom variant="h5" component="div">
     <span style={{display : "flex" , alignItems : "center" , justifyContent : "center"}} >
     <p>استاد {teacher}</p>
     </span>
     </Typography>
-    <Typography sx={{display : "flex" , alignItems : "center" , justifyContent : "space-between"}} variant="body2" color="text.secondary">
+    <Typography fontFamily={'Yekan,sans-serif'} sx={{display : "flex" , alignItems : "center" , justifyContent : "space-between"}} variant="body2" color="text.secondary">
         <FaStar style={{color : "gold" , margin : 5}} /> {rate}
       </Typography>
-      <Typography variant="h6" component="div">
+      <Typography fontFamily={'Yekan,sans-serif'} variant="h6" component="div">
       <div>
         
       <span style={{display : "flex"}}>
@@ -58,13 +59,13 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
     <Divider />
     <CardActions>
       <IconButton aria-label="time">
-        <CiClock2 /> <Typography> <p>{time} دقیقه </p></Typography>
+        <CiClock2 /> <Typography fontFamily={'Yekan,sans-serif'}> <p>{time} دقیقه </p></Typography>
       </IconButton>
       <IconButton aria-label="lessons">
-        <GoStack style={{padding : 1}} /> <Typography><p> <span>درس</span> {lessons}</p></Typography>
+        <GoStack style={{padding : 1}} /> <Typography fontFamily={'Yekan,sans-serif'}><p> <span>درس</span> {lessons}</p></Typography>
       </IconButton>
       <IconButton aria-label="level">
-        <MdOutlineStackedBarChart  /> <Typography><p> <span>سطح</span> {level}</p></Typography>
+        <MdOutlineStackedBarChart  /> <Typography fontFamily={'Yekan,sans-serif'}><p> <span>سطح</span> {level}</p></Typography>
       </IconButton>
     </CardActions>
   </Card>

@@ -220,7 +220,7 @@ const fetchData4 = async () => {
       </div>
 
     <div className='data_pop_container'>
-      <div className='Box_1'>
+      <div className='Box_1' dir='rtl'>
         <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از 100 دوره شما را از پایه راهنمایی می کند.</p>
       </div>
 
@@ -234,7 +234,7 @@ const fetchData4 = async () => {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
             {
-              TabHeaders.map((item) => <Tab label={item.title} value={item.id.toString()} /> )
+              TabHeaders.map((item) => <Tab sx={{fontFamily:"Yekan,sans-serif"}} label={item.title} value={item.id.toString()} /> )
             }
           </TabList>
         </Box>
@@ -299,18 +299,18 @@ const fetchData4 = async () => {
               <h1>درباره  ما</h1>
               <Line/>
             </div>
-            <h1>افزایش رشد فردی و تقویت استعداد شما</h1>
-            <p>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
+            <h1 dir='rtl'>افزایش رشد فردی و تقویت استعداد شما</h1>
+            <p dir='rtl'>با بیش از یک دهه فعالیت زیرا همیشه می خواهیم خدمات آموزشی ارائه دهیم که در مدارس آموزش داده نمی شود.</p>
             <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >بیشتر بدانیم</Button>
           </div>
         </div>
     {/* part Seven  */}
         <div className='event_container'>
               <div className='event_icons'>
-                <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events">رویدادهای بیشتر</Link></p></button>
+                <button><p><FaLongArrowAltLeft style={{margin : 12}} /><Link to="/events" style={{fontFamily:"Yekan, sans-serif"}}>رویدادهای بیشتر</Link></p></button>
                 <h2>رویدادهای آینده</h2>
               </div>
-              <div className='event_card_data'>
+              <div className='event_card_data' dir='rtl'>
                 {
                 window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
                     <EventCard key={item.id} {...item} />

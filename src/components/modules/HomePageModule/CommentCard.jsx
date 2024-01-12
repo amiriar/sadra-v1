@@ -22,7 +22,7 @@ const CommentCard = ({id , name , job , comment , image}) => {
         </div>
       </div>
 
-      <div className='footer'>
+      <div className='footer' dir='rtl'>
         <p>{comment}</p>
       </div>
     </div>

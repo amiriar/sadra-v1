@@ -115,20 +115,21 @@ const [popularEvent , setPopularEvent] = useState([
 <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
   <TabContext value={value}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <TabList   variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
-      {TabHeaders.map(item => <Tab label={`${item.title}`} value={item.id} />)}
+      <TabList  variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
+      {TabHeaders.map(item => <Tab sx={{fontFamily:"Yekan, sans-serif"}} label={`${item.title}`} value={item.id} />)}
       </TabList>
     </Box>
+
     {
       TabHeaders.map((Tab) => (
         <TabPanel value={Tab.id} key={Tab.id}>
-    <div className='event_card_info'>
-          {
-            data.filter((item)=> item.category === Tab.title).map((item)=>(
-              <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
-            ))
-          }
-    </div>
+          <div className='event_card_info'>
+                {
+                  data.filter((item)=> item.category === Tab.title).map((item)=>(
+                    <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
+                  ))
+                }
+          </div>
         </TabPanel>
       ))
     }

@@ -14,14 +14,14 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
       />
       <div className="MainDetial" style={{height : 200}}>
       <CardContent>
-        <Typography sx={{minWidth : 240 , maxWidth : 240 , minHeight : 90 , maxHeight : 90 , fontSize : 19 }} gutterBottom variant="h6">
+        <Typography fontFamily={'Yekan, sans-serif'} sx={{minWidth : 240 , maxWidth : 240 , minHeight : 90 , maxHeight : 90 , fontSize : 19 }} gutterBottom variant="h6">
         <span id="eventCardTitle" style={{fontSize : 20 , fontWeight : 500}} >{title}</span>
         </Typography>
         <div className="CardEventDetail"  >
-        <Typography sx={{fontSize : 17 , fontWeight : 700}} variant="h6" color="text.secondary">
+        <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 17 , fontWeight : 700}} variant="h6" color="text.secondary">
           <span>{teacher}</span>
         </Typography>
-        <Typography variant="h6" sx={{paddingLeft : 2}} color="text.secondary">
+        <Typography fontFamily={'Yekan, sans-serif'} variant="h6" sx={{paddingLeft : 2}} color="text.secondary">
         <span style={{display : "flex"}}>
           {
             Number(discount) ? (
@@ -55,13 +55,13 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
         <IconButton aria-label="date">
           <BiCalendar />
         </IconButton>
-        <Typography sx={{fontSize : 15}} variant="h1" color="text.secondary">
+        <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
           <p style={{fontSize : 15}} >{date.split(" ")[0]}/{date.split(" ")[1]}/{date.split(" ")[2]}</p>
         </Typography> 
         <IconButton aria-label="time">
           <BiTime />
         </IconButton>
-        <Typography sx={{fontSize : 15}} variant="h1" color="text.secondary">
+        <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
           <p style={{fontSize : 15}}>{time.split(" ")[0]}:{time.split(" ")[1]}:{time.split(" ")[2]}</p>
           
         </Typography>
