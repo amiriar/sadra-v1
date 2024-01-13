@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import './EventDetailStyle.css';
 import axios from 'axios';
 // Components
-import moment from 'jalali-moment';
+import VideoPlayer from '../components/modules/VideoPlayer';
 // Icons
 import { FaChevronLeft } from "react-icons/fa";
 import { Button } from '@mui/material';
@@ -184,6 +184,12 @@ const {
             </div>
            </div>
           </div>
+      </div>
+      <div className='detailFooter' dir='rtl'>
+        <div className='detailFooterTitle'>
+          <h2>مروری بر دوره‌های پیشین</h2>
+        </div>
+          <VideoPlayer  video={videoSrc} poster={thumbnail}   />
       </div>
     </>
   )
