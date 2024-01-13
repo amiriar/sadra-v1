@@ -7,6 +7,11 @@ import axios from 'axios';
 
 // Icons
 import { FaChevronLeft } from "react-icons/fa";
+import { Button } from '@mui/material';
+import { color } from '@mui/system';
+import { CiCalendarDate } from "react-icons/ci";
+import { FaRegClock } from "react-icons/fa6";
+import { FaPercentage } from "react-icons/fa";
 
 const EventDetail = () => {
 const {id} = useParams();
@@ -27,10 +32,33 @@ useEffect(() => {
   fetchData();
 }, []);
 
-const data = eventDetailData && eventDetailData.find((item) => item.id === eventdetailId) ;
-console.log(data);
+const data = eventDetailData?.length && eventDetailData.find((item) => item.id === eventdetailId) ;
+const {
+  category ,
+  title , 
+  teacher ,
+  image ,
+  price ,
+  discount ,
+  Detail_Head_Title ,
+  title_description1 ,
+  description1 ,
+  title_description2 ,
+  description2 ,
+  title_description3 ,
+  description3 ,
+  title_description4 ,
+  description4 ,
+  videoSrc ,
+  thumbnail ,
+  place ,
+  date , 
+  time ,
+  detailSubtitle ,
+} = data;
 
-const [timerDays , setTimerDays] = useState("00");
+
+  const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
   const [timerMinuts , setTimerMinuts] = useState("00");
   const [timerSecounds , setTimerSecounds] = useState("00");
@@ -76,31 +104,81 @@ const [timerDays , setTimerDays] = useState("00");
       <div className='Details' dir='rtl'>
         <div className='HeadDetail'>
           <div>
-            <p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{data?.category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{data?.title}</span></p>
+            <p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{title}</span></p>
           </div>
           <div className='HeadDetailData'>
-            <h1 style={{color:"#F9F9F9"}}>{data?.title}</h1>
-            <p style={{color:"#E0E0E0"}}>{data?.detailSubtitle}</p>
+            <h1 style={{color:"#F9F9F9"}}>{title}</h1>
+            <p style={{color:"#E0E0E0"}}>{Detail_Head_Title}</p>
           </div>
           <div className='timeLeft'>
             <div className='timerStyle'>
-              <p>17</p>
+              <p>{timerSecounds}</p>
               <p style={{color:"#E0E0E0", fontSize: '1rem'}}>ثانیه</p>
             </div>
             <div className='timerStyle'>
-              <p>44</p>
+              <p>{timerMinuts}</p>
               <p style={{color:"#E0E0E0", fontSize: '1rem'}}>دقیقه</p>
             </div>
             <div className='timerStyle'>
-              <p>22</p>
+              <p>{timerHours}</p>
               <p style={{color:"#E0E0E0", fontSize: '1rem'}}>ساعت</p>
             </div>
             <div className='timerStyle'>
-              <p>06</p>
+              <p>{timerDays}</p>
               <p style={{color:"#E0E0E0", fontSize: '1rem'}}>روز</p>
             </div>
           </div>
         </div>
+      </div>
+      {/* Body */}
+      <div className='bodyDetailContainer' dir='rtl' >
+        <div className='infoContainer'>
+          <h2 style={{fontSize : 34 , marginBottom : 24 }} >چه چیزی یاد می‌گیریم؟</h2>
+            <div className='info1'>
+              <h3>{title_description1}</h3>
+              <p>{description1}</p>
+            </div>
+            <div className='info2'>
+              <h3>{title_description2}</h3>
+              <p>{description2}</p>
+            </div>
+            <div className='info3'>
+              <h3>{title_description3}</h3>
+              <p>{description3}</p>
+            </div>
+            <div className='info4'>
+              <h3>{title_description4}</h3>
+              <p>{description4}</p>
+            </div>
+        </div>
+          {/* Card */}
+          <div className='CardContainer'>
+           <div className='CardDetail'>
+              <img src={image} alt={title} />
+            <div className='topCard'>
+              <p>{teacher}</p>
+              <span id='price'><span>{price}</span><span>هزار تومان</span></span>
+            </div>
+              <Button variant={"outlined"}>همین حالا ثبت نام کن</Button>
+            <div className='cadTitle'>
+              <h3>توضیحات رویداد</h3>
+              <h1>{detailSubtitle}</h1>
+            </div>
+            <div className='CardFooter'>
+              <h2>جزئیات رویداد</h2>
+            <div className='time'>
+              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                {`${date?.split(" ")[0]}/${date?.split(" ")[1]}/${date?.split(" ")[2]}`}
+              </span>
+              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                {`${time?.split(" ")[0]}:${time?.split(" ")[1]}`}
+              </span>
+            </div>
+            </div>
+           </div>
+          </div>
       </div>
     </>
   )

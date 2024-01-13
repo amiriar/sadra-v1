@@ -18,9 +18,212 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--Neutral-20, #F9F9F9);
+    color: var(--Neutral-20);
     font-size: 2.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 3.5rem; /* 140% */
+    margin-bottom: 10%;
+    
+}
+.bodyDetailContainer{
+    padding: 3.5rem 5rem 3.5rem 3rem;
+    display: flex;
+    flex-direction: row;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+.info1 , .info2 , .info3 , .info4{
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    min-width: 100%;
+    max-width: 100%;
+    padding-left: 4%;
+}
+.info1 h3 , .info2 h3, .info3 h3, .info4 h3 {
+    color: var(--Gray-800);
+    margin-bottom: 1rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    line-height: 28px;
+}
+.info1 p , .info2 p, .info3 p, .info4 p {
+    color: var(--Gray-500);
+    font-size: 1rem ;
+    font-weight: 400;
+    line-height: 24px;
+    
+}
+
+/* Card */
+
+.CardContainer{
+    padding: 1.5rem;
+    min-width: 25rem;
+    max-width: 25rem;
+    min-height: 100vh;
+    position: relative;
+
+}
+.CardDetail{
+    border: 1px solid var(--Neutral-40);
+    background: var(--Neutral-10);
+    padding: 1.5rem;
+    width: 100%;
+    top: -60%;
+    left: 1.5%;
+    position: absolute;
+    border-radius: 1rem;
+    margin-bottom: 1.1rem;
+}
+.topCard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+.topCard p{
+    color: var(--Gray-500);
+    font-size: 1rem;
+}
+#price span:first-child {
+    color: var(--Gray-900);
+    font-size: 1.7rem;
+}
+#price span:last-child {
+    color: var(--Gray-900);
+    font-size: 0.75rem;
+}
+.CardDetail img {
+    border-radius: 1rem;
+    width: 100%;
+    max-height: 400px;
+}
+.CardDetail button {
+    background-color: var(--Primary-500);
+    padding: 1rem 3rem;
+    color: var(--base-white);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 24px;
+    border-radius: 2rem;
+    width: 100%;
+    margin-bottom: 3rem;
+    font-family: "Yekan";
+
+}
+.CardDetail button:hover{
+    background-color: green;
+    
+}
+.cadTitle h3 {
+    color: var(--Gray-700);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+.cadTitle h1{
+    color: var(--Gray-600);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+.CardFooter h2{
+    color: var(--Gray-700);
+    font-size: 1.25rem;
+    padding-bottom: 1rem;
+}
+/* @media (max-width : 1440px){
+    .info1 , .info2 , .info3 , .info4{
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    min-width: 95%;
+    max-width: 95%;
+    
+    }
+    .CardDetail{
+        top: -50%;
+
+    }
+    .CardContainer{
+        padding: 1.5rem;
+        min-width: 35%;
+        max-width: 35%;
+        min-height: 100vh;
+        position: relative;
+    
+    }
+    .CardContainer{
+        padding: 1px;
+    
+    }
+}
+@media (max-width : 900px){
+    .CardDetail{
+        min-width: 155%;
+    }
+    .CardDetail{
+        left: -7%;
+    }
+}
+@media (max-width : 1024px){
+    .CardDetail{
+        width: 142%;
+    }
+    
+} */
+@media (max-width : 768px){
+    .infoContainer{
+        margin-top: 200px;
+    }
+    .Details{
+        max-width: 1920px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: var(--Neutral-100, #1C1C1C);
+    }
+    .HeadDetail{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 2rem;
+    }
+    .bodyDetailContainer{
+        padding: 0px;
+        display: flex;
+        flex-direction: column-reverse;
+        max-width: 1920px;
+        margin: 0 auto;
+    }
+    .CardContainer{
+        padding: 1px;
+        min-width: 100%;
+        max-width: 100%;
+        position: static;
+    
+    }
+    .CardDetail{
+        border: 1px solid var(--Neutral-40);
+        background: var(--Neutral-10);
+        padding: 1.5rem;
+        width: 1%;
+        position: static;
+        border-radius: 1rem;
+        margin-bottom: 1.1rem;
+    }
+    .CardDetail{
+        min-width: 100%;
+        margin: 0 auto;
+    }
+    .CardDetail{
+        left: 0px;
+    }
+    .infoContainer{
+        padding: 0.5rem 1.5rem;
+        width: 120%;
+        
+    }
 }
