@@ -1,10 +1,10 @@
 import React, { useState , useRef, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 // Styles
 import './EventDetailStyle.css';
 import axios from 'axios';
 // Components
-
+import moment from 'jalali-moment';
 // Icons
 import { FaChevronLeft } from "react-icons/fa";
 import { Button } from '@mui/material';
@@ -63,9 +63,11 @@ const {
   const [timerMinuts , setTimerMinuts] = useState("00");
   const [timerSecounds , setTimerSecounds] = useState("00");
 
+
+
 //   let interval = useRef();
 
-//   const startTimer = ()=> {
+//    const startTimer = ()=> {
 //    const countdownDate = new Date(`${TimeData.month} ${TimeData.day} , ${TimeData.year} ${TimeData.hour}:${TimeData.minuts}:${TimeData.secounds}`).getTime()
     
 //     interval = setInterval(()=> {
@@ -104,7 +106,7 @@ const {
       <div className='Details' dir='rtl'>
         <div className='HeadDetail'>
           <div>
-            <p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{title}</span></p>
+          <Link to={"/events"} ><p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{title}</span></p></Link>
           </div>
           <div className='HeadDetailData'>
             <h1 style={{color:"#F9F9F9"}}>{title}</h1>
