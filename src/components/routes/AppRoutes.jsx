@@ -13,6 +13,7 @@ import DashboardHandler from '../dashboard/Dashboard';
 import DashInfo from '../dashboard/user/DashInfo';
 import DashInfo2 from '../dashboard/user/DashInfos2';
 import ScrollToTop from '../../helper/ScrollToTop';
+import PersianNumbers from '../../helper/PersianNumbers';
 
 const AppRoutes = () => {
     return (

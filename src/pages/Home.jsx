@@ -10,6 +10,7 @@ import VideoPlayer from '../components/modules/VideoPlayer';
 import CommentCard from '../components/modules/HomePageModule/CommentCard';
 import CardPopular from '../components/modules/HomePageModule/CardPopular';
 import EventCard from '../components/modules/EventModules/EventCard';
+import usePersianNumber from '../helper/PersianNumbers';
 
 // MUI 
 import Box from '@mui/material/Box';
@@ -192,7 +193,7 @@ const fetchData4 = async () => {
         <Line/>
       </div>
 
-      <h1>بیش از 500 دانش‌آموخته از مسیر خود راضی بودند</h1>
+      <h1>بیش از {usePersianNumber('500')} دانش‌آموخته از مسیر خود راضی بودند</h1>
   <div className='Slider'>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {commentData.map((item)=> (
@@ -222,11 +223,11 @@ const fetchData4 = async () => {
 
     <div className='data_pop_container'>
       <div className='Box_1' dir='rtl'>
-        <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از 100 دوره شما را از پایه راهنمایی می کند.</p>
+        <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از {usePersianNumber('100')} دوره شما را از پایه راهنمایی می کند.</p>
       </div>
 
       <div className='Box_2'>
-        <h1>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h1>
+        <h1>بیش از {usePersianNumber('100')} دوره‌ی فعال برای پیشرفت شما</h1>
       </div>
     </div>
     {/* dataEvent */}
