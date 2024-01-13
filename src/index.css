@@ -59,6 +59,7 @@ button{
 }
 body{
   font-family: 'Yekan', sans-serif !important;
+  font-variant-numeric: lining-nums;
 }
 #maxWidth{
   max-width: 1920px;
