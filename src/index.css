@@ -78,22 +78,36 @@ select {
   background:  none;
 }
 
-
+/* Style for Webkit (Chrome, Safari) */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: #bbbbbb; 
-}
-
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background-color: #4ca773;
+  border-radius: 6px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+::-webkit-scrollbar-track {
+  background-color: #1c1c1c;
+}
+
+/* Style for Firefox */
+* {
+  scrollbar-color: #4ca773 #1c1c1c;
+  scrollbar-width: thin;
+}
+
+/* Style for Edge and IE */
+*::-ms-scrollbar {
+  width: 12px;
+}
+
+*::-ms-thumb {
+  background-color: #4ca773;
+  border-radius: 6px;
+}
+
+*::-ms-track {
+  background-color: #1c1c1c;
 }
