@@ -191,6 +191,10 @@ console.log(todaySolar);
           <h2>مروری بر دوره‌های پیشین</h2>
         </div>
           <VideoPlayer  video={videoSrc} poster={thumbnail}   />
+
+        <div>
+                  
+        </div>
       </div>
     </>
   )
