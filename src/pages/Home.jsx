@@ -10,6 +10,7 @@ import VideoPlayer from '../components/modules/VideoPlayer';
 import CommentCard from '../components/modules/HomePageModule/CommentCard';
 import CardPopular from '../components/modules/HomePageModule/CardPopular';
 import EventCard from '../components/modules/EventModules/EventCard';
+
 // MUI 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
