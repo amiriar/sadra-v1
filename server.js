@@ -226,7 +226,6 @@ app.get('/dashboard/token', (req, res) => {
     res.json(decodedToken);
 });
 
-
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, birth } = req.body;
     try {
