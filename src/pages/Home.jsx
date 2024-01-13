@@ -236,7 +236,7 @@ const fetchData4 = async () => {
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
             {
-              TabHeaders.map((item) => <Tab sx={{fontFamily:"Yekan,sans-serif"}} label={item.title} value={item.id.toString()} /> )
+              TabHeaders.map((item) => <Tab key={item.id} sx={{fontFamily:"Yekan,sans-serif"}} label={item.title} value={item.id.toString()} /> )
             }
           </TabList>
         </Box>
@@ -264,7 +264,7 @@ const fetchData4 = async () => {
               {
                 popularEvents.filter((item)=> item.category === Tab.title).map((item)=> (
                   <>
-                    <CardPopular {...item} />
+                    <CardPopular key={item.id} {...item} />
                   </>
                 ))
               }
