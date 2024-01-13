@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardContent, CardMedia, Typography, CardActions, IconButton, Divider } from "@mui/material";
 import { BiCalendar, BiTime } from "react-icons/bi";
 import './EventCard.css'
+import usePersianNumber from "../../../helper/PersianNumbers";
 const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
   return (
     <div className="CardEvent" >
@@ -28,20 +29,20 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
             <div>
             <span id="price">{price * (100 - Number(discount)) / 100 ? (
             <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
-            <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
-            <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
-            <span style={{position : "absolute" , top : -270 ,left : -28, color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{discount}%</span>
+            <span>{usePersianNumber(price * (100 - Number(discount)) / 100)}</span><span style={{fontSize : 12}} >هزارتومان</span>
+            <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} > {usePersianNumber(price)}<span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+            <span style={{position : "absolute" , top : -270 ,left : -20 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
             </div>
             ) : (
                 <div style={{position : "relative"}}>
-                <span style={{ opacity : 0.5 ,position : "absolute" , top : -45 , right : 15 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -17, top : 14}} >هزارتومان</span></span>
+                <span style={{ opacity : 0.5 ,position : "absolute" , top : -38 , right : 15 , fontSize : 17 , textDecoration : "line-through"}} >{usePersianNumber(price)} <span style={{position : "absolute" , right : -10, top : 14}} >هزارتومان</span></span>
                 <span style={{fontWeight : 700}} >رایگان</span>
-            <span style={{position : "absolute" , top : -278 ,left : -28, color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{discount}%</span>
+                <span style={{position : "absolute" , top : -278 ,left : -30, color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
                 </div>
                 )}</span>
             </div>
             ) : (
-              <span id="price">{price} <span id="rial">هزارتومان</span></span>
+              <span id="price"> {usePersianNumber(price)}  <span id="rial">هزارتومان</span></span>
             )
           }
       </span>
@@ -56,13 +57,13 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
           <BiCalendar />
         </IconButton>
         <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
-          <p style={{fontSize : 15}} >{date.split(" ")[0]}/{date.split(" ")[1]}/{date.split(" ")[2]}</p>
+          <p style={{fontSize : 15}} >{usePersianNumber(date.split(" ")[0])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split(" ")[1])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split(" ")[2])}</p>
         </Typography> 
         <IconButton aria-label="time">
           <BiTime />
         </IconButton>
         <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
-          <p style={{fontSize : 15}}>{time.split(" ")[0]}:{time.split(" ")[1]}:{time.split(" ")[2]}</p>
+          <p style={{fontSize : 15}}>{usePersianNumber(time.split(" ")[0])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[1])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[2])}</p>
           
         </Typography>
       </CardActions>

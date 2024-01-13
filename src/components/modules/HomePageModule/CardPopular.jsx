@@ -4,7 +4,7 @@ import { FaStar, FaCalendarAlt, FaLevelUpAlt } from 'react-icons/fa';
 import { CiClock2 } from "react-icons/ci";
 import { GoStack } from "react-icons/go";
 import { MdOutlineStackedBarChart } from "react-icons/md";
-
+import usePersianNumber from '../../../helper/PersianNumbers';
 const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , title , discount}) => {
   return (
     <Card sx={{ maxWidth: 300 , minWidth : 300 , maxHeight : 412 , minHeight : 412 ,  borderRadius : 3.9 }}>
@@ -37,18 +37,18 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
             <div>
             <span id="price">{price * (100 - Number(discount)) / 100 ? (
             <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
-              <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
-            <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
-            <span style={{position : "absolute" , top : -252 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{discount}%</span>
+              <span>{usePersianNumber(price * (100 - Number(discount)) / 100)}</span><span style={{fontSize : 12}} >هزارتومان</span>
+            <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{usePersianNumber(price)} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+            <span style={{position : "absolute" , top : -252 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{usePersianNumber(discount)}%</span>
             </div>
             ) : (
                 <div style={{position : "relative"}}>
-                <span style={{ opacity : 0.5 ,position : "absolute" , top : -40 , right : 20 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -7, top : 17}} >هزارتومان</span></span>
+                <span style={{ opacity : 0.5 ,position : "absolute" , top : -40 , right : 14 , fontSize : 17 , textDecoration : "line-through"}} >{usePersianNumber(price)} <span style={{position : "absolute" , right : -7, top : 17}} >هزارتومان</span></span>
                 <span style={{fontWeight : 700 , fontSize : 23}} >رایگان</span>
                 </div>
                 )}</span>
             </div>
-            ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
+            ) : <span id="price">{usePersianNumber(price)} <span id="rial">هزارتومان</span></span>
            }
       </span>
         
@@ -59,10 +59,10 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
     <Divider />
     <CardActions>
       <IconButton aria-label="time">
-        <CiClock2 /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}}> <p>{time} دقیقه </p></Typography>
+        <CiClock2 /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}}> <p>{usePersianNumber(time)} دقیقه </p></Typography>
       </IconButton>
       <IconButton aria-label="lessons">
-        <GoStack style={{padding : 1}} /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> <span>درس</span> {lessons}</p></Typography>
+        <GoStack style={{padding : 1}} /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> <span>درس</span> {usePersianNumber(lessons)}</p></Typography>
       </IconButton>
       <IconButton aria-label="level">
         <MdOutlineStackedBarChart  /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> <span>سطح</span> {level}</p></Typography>

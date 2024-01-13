@@ -5,6 +5,7 @@ import './EventDetailStyle.css';
 import axios from 'axios';
 // Components
 import VideoPlayer from '../components/modules/VideoPlayer';
+import usePersianNumber from '../helper/PersianNumbers';
 // Icons
 import { FaChevronLeft } from "react-icons/fa";
 import { Button } from '@mui/material';
@@ -12,6 +13,8 @@ import { color } from '@mui/system';
 import { CiCalendarDate } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa6";
 import { FaPercentage } from "react-icons/fa";
+import moment from 'jalali-moment';
+import { number } from 'prop-types';
 
 const EventDetail = () => {
 const {id} = useParams();
@@ -22,7 +25,7 @@ useEffect(() => {
   const fetchData = async () => {
       try {
           const response = await axios.get('http://localhost:3001/eventsDetail/data');
-          const jsonData = response.data;
+          const jsonData = await response.data;
           setEventDetailData(jsonData);
       } catch (error) {
           console.error('Error fetching data:', error);
@@ -51,7 +54,6 @@ const {
   description4 ,
   videoSrc ,
   thumbnail ,
-  place ,
   date , 
   time ,
   detailSubtitle ,
@@ -65,14 +67,10 @@ const {
 
 
 
+//    let interval = useRef();
+//    const startTimer =  ()=> {
 
-  
 
-//   let interval = useRef();
-
-//    const startTimer = ()=> {
-//    const countdownDate = new Date(`${TimeData.month} ${TimeData.day} , ${TimeData.year} ${TimeData.hour}:${TimeData.minuts}:${TimeData.secounds}`).getTime()
-    
 //     interval = setInterval(()=> {
 //         const now = new Date().getTime()
 //         const distance = countdownDate - now
@@ -158,31 +156,57 @@ const {
         </div>
           {/* Card */}
           <div className='CardContainer'>
-           <div className='CardDetail'>
-              <img src={image} alt={title} />
-            <div className='topCard'>
-              <p>{teacher}</p>
-              <span id='price'><span>{price}</span><span>هزار تومان</span></span>
+            <div className='CardDetail'>
+                <img src={image} alt={title} />
+              <div className='topCard'>
+                <p>{teacher}</p>
+                {/* <span id='price'><span>{price}</span><span>هزار تومان</span></span> */}
+                {/* test */}
+        
+                <div>
+                <span style={{display : "flex"}}>
+                    {
+                      Number(discount) ? (
+                      <div>
+                      <span id="price">{price * (100 - Number(discount)) / 100 ? (
+                      <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
+                      <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
+                      <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+                      {/* <span style={{position : "absolute" , top : -270 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{discount}%</span> */}
+                      </div>
+                      ) : (
+                          <div style={{position : "relative"}}>
+                          <span style={{ opacity : 0.5 ,position : "absolute" , top : -40 , right : 14 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -7, top : 17}} >هزارتومان</span></span>
+                          <span style={{fontWeight : 700 , fontSize : 23}} >رایگان</span>
+                          </div>
+                          )}</span>
+                      </div>
+                      ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
+                    }
+                </span>
+                </div>
+
+                {/* test */}
+              </div>
+                <Button variant={"outlined"}>همین حالا ثبت نام کن</Button>
+              <div className='cadTitle'>
+                <h3>توضیحات رویداد</h3>
+                <h1>{detailSubtitle}</h1>
+              </div>
+              <div className='CardFooter'>
+                <h2>جزئیات رویداد</h2>
+              <div className='time'>
+                <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                  <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                  {usePersianNumber(date?.split(" ")[0])}<span style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[1])}<span  style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[2])}
+                </span>
+                <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                  <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                  {usePersianNumber(time?.split(" ")[1])}<span style={{padding : 3}} >:</span>{usePersianNumber(time?.split(" ")[0])}
+                </span>
+              </div>
+              </div>
             </div>
-              <Button variant={"outlined"}>همین حالا ثبت نام کن</Button>
-            <div className='cadTitle'>
-              <h3>توضیحات رویداد</h3>
-              <h1>{detailSubtitle}</h1>
-            </div>
-            <div className='CardFooter'>
-              <h2>جزئیات رویداد</h2>
-            <div className='time'>
-              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
-                <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                {`${date?.split(" ")[0]}/${date?.split(" ")[1]}/${date?.split(" ")[2]}`}
-              </span>
-              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
-                <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                {`${time?.split(" ")[0]}:${time?.split(" ")[1]}`}
-              </span>
-            </div>
-            </div>
-           </div>
           </div>
       </div>
       <div className='detailFooter' dir='rtl'>
