@@ -12,6 +12,7 @@ import { color } from '@mui/system';
 import { CiCalendarDate } from "react-icons/ci";
 import { FaRegClock } from "react-icons/fa6";
 import { FaPercentage } from "react-icons/fa";
+import moment from 'jalali-moment';
 
 const EventDetail = () => {
 const {id} = useParams();
@@ -62,6 +63,9 @@ const {
   const [timerHours , settimerHours] = useState("00");
   const [timerMinuts , setTimerMinuts] = useState("00");
   const [timerSecounds , setTimerSecounds] = useState("00");
+
+  const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
+console.log(todaySolar);
 
 //   let interval = useRef();
 
@@ -153,31 +157,31 @@ const {
         </div>
           {/* Card */}
           <div className='CardContainer'>
-           <div className='CardDetail'>
-              <img src={image} alt={title} />
-            <div className='topCard'>
-              <p>{teacher}</p>
-              <span id='price'><span>{price}</span><span>هزار تومان</span></span>
+            <div className='CardDetail'>
+                <img src={image} alt={title} />
+              <div className='topCard'>
+                <p>{teacher}</p>
+                <span id='price'><span>{price}</span><span>هزار تومان</span></span>
+              </div>
+                <Button variant={"outlined"}>همین حالا ثبت نام کن</Button>
+              <div className='cadTitle'>
+                <h3>توضیحات رویداد</h3>
+                <h1>{detailSubtitle}</h1>
+              </div>
+              <div className='CardFooter'>
+                <h2>جزئیات رویداد</h2>
+              <div className='time'>
+                <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                  <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                  {`${date?.split(" ")[0]}/${date?.split(" ")[1]}/${date?.split(" ")[2]}`}
+                </span>
+                <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
+                  <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
+                  {`${time?.split(" ")[0]}:${time?.split(" ")[1]}`}
+                </span>
+              </div>
+              </div>
             </div>
-              <Button variant={"outlined"}>همین حالا ثبت نام کن</Button>
-            <div className='cadTitle'>
-              <h3>توضیحات رویداد</h3>
-              <h1>{detailSubtitle}</h1>
-            </div>
-            <div className='CardFooter'>
-              <h2>جزئیات رویداد</h2>
-            <div className='time'>
-              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
-                <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                {`${date?.split(" ")[0]}/${date?.split(" ")[1]}/${date?.split(" ")[2]}`}
-              </span>
-              <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
-                <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                {`${time?.split(" ")[0]}:${time?.split(" ")[1]}`}
-              </span>
-            </div>
-            </div>
-           </div>
           </div>
       </div>
     </>
