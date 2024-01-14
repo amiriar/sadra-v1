@@ -62,6 +62,7 @@
     line-height: 24px;
     text-align: justify;
     text-justify: inter-word;
+
     
 }
 
@@ -221,7 +222,16 @@
         position: absolute;
         border-radius: 1rem;
         margin-bottom: 1.1rem;
-
+    }
+    .info1 p , .info2 p, .info3 p, .info4 p {
+        color: var(--Gray-500);
+        font-size: 0.9rem ;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: justify;
+        text-justify: inter-word;
+    
+        
     }
 }
 @media (max-width : 768px){

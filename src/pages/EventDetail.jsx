@@ -6,6 +6,7 @@ import axios from 'axios';
 // Components
 import VideoPlayer from '../components/modules/VideoPlayer';
 import usePersianNumber from '../helper/PersianNumbers';
+import EventDetailTeacherCard from '../components/modules/EventDetailModule/EventDetailTeacherCard';
 // Icons
 import { FaChevronLeft } from "react-icons/fa";
 import { Button } from '@mui/material';
@@ -16,26 +17,49 @@ import { FaPercentage } from "react-icons/fa";
 import moment from 'jalali-moment';
 import { number } from 'prop-types';
 
+// react-query
+import { useQuery } from '@tanstack/react-query';
+
 const EventDetail = () => {
 const {id} = useParams();
 const eventdetailId = parseInt(id , 10);
 
 const [eventDetailData , setEventDetailData] = useState([]);
+const [teachersData , setTeachersData] = useState([])
 useEffect(() => {
   const fetchData = async () => {
       try {
           const response = await axios.get('http://localhost:3001/eventsDetail/data');
-          const jsonData = await response.data;
+          const jsonData = response.data;
           setEventDetailData(jsonData);
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   };
+  const fetchData2 = async () => {
+    try {
+        const response = await axios.get('http://localhost:3001/evetnDetailTeachersData/data');
+        const jsonData = response.data;
+        setTeachersData(jsonData);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
 
+
+fetchData2();
   fetchData();
 }, []);
 
-const data = eventDetailData?.length && eventDetailData.find((item) => item.id === eventdetailId) ;
+// const dataFetcher = async () => {
+//       const response = await axios.get('http://localhost:3001/eventsDetail/data');
+//       return await response.data;
+// }
+// const data = useQuery(["cardDetail"] , fetchData )
+// console.log(data)
+
+
+const dataCard = eventDetailData?.length && eventDetailData?.find((item) => item.id === eventdetailId) ;
 const {
   category ,
   title , 
@@ -57,8 +81,7 @@ const {
   date , 
   time ,
   detailSubtitle ,
-} = data;
-
+} = dataCard;
 
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
@@ -66,7 +89,7 @@ const {
   const [timerSecounds , setTimerSecounds] = useState("00");
 
 
-
+// console.log(test === undefined ? "help" :  test)
 //    let interval = useRef();
 //    const startTimer =  ()=> {
 
@@ -214,9 +237,10 @@ const {
           <h2>مروری بر دوره‌های پیشین</h2>
         </div>
           <VideoPlayer  video={videoSrc} poster={thumbnail}   />
-
-        <div>
-                  
+        <div style={{display : "flex" , alignItems : "center" , justifyContent : "center" , marginTop : 150 , flexWrap : "wrap"}} >
+        {
+          teachersData.map(item =><EventDetailTeacherCard key={item.id} data={item} />)
+        }
         </div>
       </div>
     </>
