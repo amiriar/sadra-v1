@@ -14,6 +14,8 @@ import DashInfo from '../dashboard/user/DashInfo';
 import DashInfo2 from '../dashboard/user/DashInfos2';
 import ScrollToTop from '../../helper/ScrollToTop';
 import PersianNumbers from '../../helper/PersianNumbers';
+import Classes from '../../pages/Classes';
+import ContactUs from '../../pages/ContactUs';
 
 const AppRoutes = () => {
     return (
@@ -25,8 +27,7 @@ const AppRoutes = () => {
                 <Route path="/blog/:id" element={<BlogDetails />} />
                 <Route path="/events" element={<Events />} />
                 <Route path='/events/:id' element={<EventDetail/>} />
-                <Route path="/classes" element={<Home />} />
-                <Route path="/contact" element={<Home />} />
+                <Route path="/classes" element={<Classes />} />
                 <Route path="/success" element={<StudentSuccess />} />
                 <Route path="/student/:name" element={<StudentDetail />} />
                 <Route path="/employment" element={<Employment/>} />
@@ -35,6 +36,7 @@ const AppRoutes = () => {
                 <Route path="/dashboard" element={<DashboardHandler/>} />
                 <Route path="/dashboard/infos" element={<DashInfo/>} />
                 <Route path="/dashboard/infos/2" element={<DashInfo2/>} />
+                <Route path="/contact" element={<ContactUs/>} />
             </Routes> 
         </>
     );
