@@ -2,10 +2,12 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    max-width: 1700px;
+    max-width: 1900px;
     margin: 0 auto !important;
-  }
-  
+}
+.contactDiv{
+    margin: 4.62rem 1rem 6rem 1rem;
+}
   .contactIcon {
     font-weight: 700;
     color: #344054;
@@ -31,10 +33,10 @@
     gap: 2rem;
     box-sizing: border-box !important;
     padding: 6rem 4rem 3rem 2rem;
-    width: 45%;
+    width: 50%;
   }
   .ContactImage{
-    width: 45%;
+    width: 50%;
   }
   .ContactImage img{
     object-fit: cover;
