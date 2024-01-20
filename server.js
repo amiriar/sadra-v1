@@ -176,7 +176,7 @@ app.post('/login', async (req, res) => {
     try {
         // Check if the email exists and the hashed password matches
         const checkUserQuery = `
-            SELECT id, email, password, role, level1, level2
+            SELECT id, email, password, role
             FROM users
             WHERE email = '${email}';
         `;
@@ -238,7 +238,6 @@ app.get('/dashboard/token', (req, res) => {
 
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, age, phoneNumber, education, isStudent } = req.body;
-    console.log(id, name, lastName, email, age, phoneNumber, education, isStudent);
     try {
         await db.query(`UPDATE users 
         SET name = "${name}", lastName= "${lastName}", email = "${email}", age = ${age}, phoneNumber = '${phoneNumber}', education= "${education}",isStudent= ${isStudent} WHERE id = ${id};`);

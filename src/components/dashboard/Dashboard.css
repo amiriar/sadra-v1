@@ -3,7 +3,7 @@
     max-width: 1920px;
 }
 .userPanel{
-    height: fit-content;
+    min-height: fit-content;
     display: flex;
 }
 .sideBarPanel{
