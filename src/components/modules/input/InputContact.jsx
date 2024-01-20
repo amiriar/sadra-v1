@@ -9,7 +9,8 @@ function InputContact({ type, title, placeholder, width, variable, setVariable, 
                 fontSize:"1rem",
                 borderRadius: '0.375rem',
                 border: '1px solid  #D1D5DB',
-                fontFamily:"inherit"
+                fontFamily:"inherit",
+                display:"inline"
             }} 
                 value={variable}
                 onChange={(e) => setVariable(e.target.value)}
