@@ -1,9 +1,9 @@
 import React from 'react'
 
-function InputContact({ type, title, placeholder, width, variable, setVariable }) {
+function InputContact({ type, title, placeholder, width, variable, setVariable, id }) {
     return (
         <div style={{display:'inline-flex', flexDirection:"column", gap:"0.5rem", width:width}}>
-            <span>{title}</span>
+            <label htmlFor={id} style={{cursor:"pointer"}}>{title}</label>
             <input type={type} placeholder={placeholder} style={{
                 padding:"1rem",
                 fontSize:"1rem",
@@ -13,6 +13,7 @@ function InputContact({ type, title, placeholder, width, variable, setVariable }
             }} 
                 value={variable}
                 onChange={(e) => setVariable(e.target.value)}
+                id={id}
             />
         </div>
     )
