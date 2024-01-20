@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SignOutButton from '../SignOutButton';
-import { Divider, FormControl, Input, InputLabel, MenuItem, Select, TextField, ThemeProvider, createTheme } from '@mui/material';
+import { Checkbox, Divider, FormControl, Input, InputLabel, MenuItem, Select, TextField, ThemeProvider, createTheme } from '@mui/material';
 
 
 function DashInfo() {
@@ -11,38 +11,10 @@ function DashInfo() {
     const [userRole, setUserRole] = useState(null);
     const [userName, setUserName] = useState('');
     const [userLastName, setUserLastName] = useState('');
-    const [selectedDay, setSelectedDay] = useState('');
-    const [selectedMonth, setSelectedMonth] = useState('');
-    const [selectedYear, setSelectedYear] = useState('');
-
-    const persianMonths = [
-        'فروردین',
-        'اردیبهشت',
-        'خرداد',
-        'تیر',
-        'مرداد',
-        'شهریور',
-        'مهر',
-        'آبان',
-        'آذر',
-        'دی',
-        'بهمن',
-        'اسفند',
-    ];
-
-    const generateDays = () => {
-        const daysInMonth = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 30, 29];
-        return Array.from({ length: daysInMonth[selectedMonth - 1] }, (_, index) => index + 1);
-    };
-
-    const handleMonthChange = (e) => {
-        setSelectedMonth(e.target.value);
-    
-        // If the selected day is greater than the number of days in the new month, adjust it
-        if (selectedDay > generateDays().length) {
-            setSelectedDay(generateDays().length);
-        }
-    };
+    const [userAge, setUserAge] = useState('');
+    const [userPhone, setUserPhone] = useState('');
+    const [userEducation, setUserEducation] = useState('');
+    const [userIsStudent, setUserIsStudent] = useState(false);
 
     useEffect(() => {
         axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
@@ -61,20 +33,20 @@ function DashInfo() {
     useEffect(() => {
         userId && axios.get(`http://localhost:3001/users/data/${userId}`)
             .then(response => {
-                setUserName(response.data[0][0].name)
-                setUserLastName(response.data[0][0].lastName)
-                let dates = response.data[0][0].birthDate.split("/")
-                setSelectedYear(dates[0])
-                setSelectedMonth(dates[1])
-                setSelectedDay(dates[2])
-        })
+                setUserName(response.data[0][0].name);
+                setUserLastName(response.data[0][0].lastName);
+                setUserAge(response.data[0][0].age)
+                setUserPhone(response.data[0][0].phoneNumber)
+                setUserEducation(response.data[0][0].education)
+                setUserIsStudent(response.data[0][0].isStudent)
+            })
         .catch(error => {
             console.error('Error:', error.response ? error.response.data : error.message);
             setUserRole('error');
         });
     }, [userId])
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const clickHandler = () => {
         navigate("/auth/login")
@@ -85,21 +57,31 @@ function DashInfo() {
     ]
 
     const theme = createTheme({
-        direction: 'rtl', // Set the theme direction to RTL
+        direction: 'rtl',
     });
 
     const insertHandler = async () => {
-        const Birth = `${selectedYear}/${selectedMonth}/${selectedDay}`
         const response = await axios.post('http://localhost:3001/fullInfo', {
             id: userId,
             name: userName,
             lastName: userLastName,
             email: userEmail,
-            birth: Birth,
+            age: userAge,
+            phoneNumber: userPhone,
+            education: userEducation,
+            isStudent: userIsStudent
         });
         console.log(response);
         navigate(response.data.path)
     }
+
+    const handleCheckboxChange = (event) => {
+        setUserIsStudent(event.target.checked);
+    };
+    
+    const handleSelectChange = (event) => {
+        setUserEducation(event.target.value);
+    };
 
     return (
         <div dir='rtl' className='panelContainer'>
@@ -130,10 +112,11 @@ function DashInfo() {
                                                 id="first-name"
                                                 label="نام"
                                                 variant="outlined"
-                                                sx={{ position: 'relative' }}
+                                                sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
                                                 value={userName}
                                                 onChange={(e) => setUserName(e.target.value)}
                                                 required
+                                                
                                             />
                                         </FormControl>
 
@@ -145,7 +128,7 @@ function DashInfo() {
                                                 id="last-name"
                                                 label="نام خانوادگی"
                                                 variant="outlined"
-                                                sx={{ position: 'relative' }}
+                                                sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
                                                 value={userLastName}
                                                 onChange={(e) => setUserLastName(e.target.value)}
                                                 required
@@ -160,14 +143,75 @@ function DashInfo() {
                                                 id="email"
                                                 label="پست الکترونیکی"
                                                 variant="outlined"
-                                                sx={{ position: 'relative' }}
+                                                sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
                                                 value={userEmail}
                                                 onChange={(e) => setUserEmail(e.target.value)}
                                                 required
                                             />
                                         </FormControl>
+
+                                        <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
+                                            <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
+                                                سن
+                                            </InputLabel>
+                                            <Input
+                                                id="age"
+                                                label="سن"
+                                                type='number'
+                                                variant="outlined"
+                                                sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
+                                                value={userAge}
+                                                onChange={(e) => setUserAge(e.target.value)}
+                                                required
+                                            />
+                                        </FormControl>
+
+                                        <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
+                                            <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
+                                                شماره تماس
+                                            </InputLabel>
+                                            <Input
+                                                id="phone"
+                                                label="شماره تماس"
+                                                type='number'
+                                                variant="outlined"
+                                                sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
+                                                value={userPhone}
+                                                onChange={(e) => setUserPhone(e.target.value)}
+                                                required
+                                            />
+                                        </FormControl>
+
+                                        <FormControl variant="outlined" sx={{ marginTop: '2rem' }}>
+                                            <Select
+                                                id="education"
+                                                sx={{ position: 'relative', fontFamily: 'Yekan, sans-serif' }}
+                                                value={userEducation}
+                                                onChange={handleSelectChange}
+                                                required
+                                            >
+                                                <MenuItem value="مقطع تحصیلی" disabled={userEducation !== 'مقطع تحصیلی'} sx={{fontFamily:"Yekan,sans-serif"}}>
+                                                مقطع تحصیلی
+                                                </MenuItem>
+                                                <MenuItem sx={{fontFamily:"Yekan,sans-serif"}} value="دیپلم">دیپلم</MenuItem>
+                                                <MenuItem sx={{fontFamily:"Yekan,sans-serif"}} value="لیسانس">لیسانس</MenuItem>
+                                            </Select>
+                                        </FormControl>
+
+                                        <FormControl sx={{ marginTop: '1rem', display: 'inline', alignItems: 'center' }}>
+                                            <Checkbox
+                                                checked={userIsStudent}
+                                                onChange={handleCheckboxChange}
+                                                inputProps={{ 'aria-label': 'controlled' }}
+                                                sx={{ color: userIsStudent ? '#4ca773' : '' }}
+                                            />
+                                            <label htmlFor="is-student" sx={{ fontFamily: 'Yekan,sans-serif'}}>
+                                                دانشجو هستم
+                                            </label>
+                                        </FormControl>
+
                                         
-                                        <h2 style={{marginTop:"1rem"}}>تاریخ تولد:</h2>
+                                        {/* <h2 style={{marginTop:"1rem"}}>تاریخ تولد:</h2>
                                         <div className="birthdateInputs">
                                             <FormControl variant="standard" sx={{ marginTop: '1rem', width:"20%" }}>
                                                 <InputLabel htmlFor="day" sx={{ left: 'auto', right: 40, fontFamily: 'Yekan,sans-serif' }}>
@@ -225,13 +269,13 @@ function DashInfo() {
                                                 ))}
                                                 </Select>
                                             </FormControl>
-                                        </div>
+                                        </div> */}
                                     </div>
-                            </ThemeProvider>
+                                </ThemeProvider>
                             <button className='login_Btn_No_Hid' onClick={insertHandler} style={{width:"fit-content", marginTop:"2rem", cursor:"pointer"}}>
                                 ثبت اطلاعات نوشته شده
                             </button>
-                            <p className='panelHint'>با کلیک روی این دکمه به مرحله بعد ثبت اطلاعات ارسال میشوید.</p>
+                            {/* <p className='panelHint'>با کلیک روی این دکمه به مرحله بعد ثبت اطلاعات ارسال میشوید.</p> */}
                         </div>
                     </div>
                 :

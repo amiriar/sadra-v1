@@ -3,12 +3,11 @@
     max-width: 1920px;
 }
 .userPanel{
-    height: auto;
+    height: fit-content;
     display: flex;
-    height: calc(60vh + 100px);
 }
 .sideBarPanel{
-    height: calc(100% + 21px);
+    /* height: calc(100% + 21px); */
     min-width: 250px;
     display: flex;
     padding: 3rem 1rem;

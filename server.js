@@ -237,11 +237,12 @@ app.get('/dashboard/token', (req, res) => {
 });
 
 app.post('/fullInfo', async (req, res) => {
-    const { id, name, lastName, email, birth } = req.body;
+    const { id, name, lastName, email, age, phoneNumber, education, isStudent } = req.body;
+    console.log(id, name, lastName, email, age, phoneNumber, education, isStudent);
     try {
         await db.query(`UPDATE users 
-        SET name = "${name}", lastName= "${lastName}", email = "${email}", birthDate = "${birth}", level1 = "true" WHERE id = ${id};`);
-        res.json({ statusCode: 200, message: 'اطلاعات کاربر بروزرسانی شد !', path:"/dashboard/infos/2" }).status(200);
+        SET name = "${name}", lastName= "${lastName}", email = "${email}", age = ${age}, phoneNumber = '${phoneNumber}', education= "${education}",isStudent= ${isStudent} WHERE id = ${id};`);
+        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !', path:"/dashboard" }).status(200);
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
