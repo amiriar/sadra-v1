@@ -313,13 +313,13 @@ const fetchData4 = async () => {
                 <h2>رویدادهای آینده</h2>
               </div>
               <div className='event_card_data' dir='rtl'>
-                {
-                window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
-                    <EventCard key={item.id} {...item} />
-                  )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
-                    <EventCard key={item.id} {...item} />
-                  ))
-                }
+              {
+              window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
+              <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+              )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
+              <Link><EventCard key={item.id} {...item} /></Link>
+              ))
+              }
               </div>
         </div>
     </div>

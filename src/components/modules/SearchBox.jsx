@@ -6,7 +6,7 @@ import { FaSearch } from "react-icons/fa";
 const SearchBox = ({firstWidth}) => {
   return (
     <>
-    <div className="search_Container" style={{width:firstWidth}}>
+    <div className="search_Container" style={{width:firstWidth}} dir='ltr' >
         <button className='search_Btn'><FaSearch  className='search-icon' /></button>
         <div>
           <select className='select_options'>

@@ -31,18 +31,18 @@ const EventCard = ({ image, title, price, teacher, date, time , discount }) => {
             <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
             <span>{usePersianNumber(price * (100 - Number(discount)) / 100)}</span><span style={{fontSize : 12}} >هزارتومان</span>
             <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} > {usePersianNumber(price)}<span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
-            <span style={{position : "absolute" , top : -270 ,left : -20 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
+            <span style={{position : "absolute" , top : -260 ,left : -20 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
             </div>
             ) : (
                 <div style={{position : "relative"}}>
                 <span style={{ opacity : 0.5 ,position : "absolute" , top : -38 , right : 15 , fontSize : 17 , textDecoration : "line-through"}} >{usePersianNumber(price)} <span style={{position : "absolute" , right : -10, top : 14}} >هزارتومان</span></span>
                 <span style={{fontWeight : 700}} >رایگان</span>
-                <span style={{position : "absolute" , top : -278 ,left : -30, color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
+                <span style={{position : "absolute" , top : -268 ,left : -30, color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000}} >{usePersianNumber(discount)}%</span>
                 </div>
                 )}</span>
             </div>
             ) : (
-              <span id="price"> {usePersianNumber(price)}  <span id="rial">هزارتومان</span></span>
+              <span id="price"> {usePersianNumber(price)} <span id="rial">هزارتومان</span></span>
             )
           }
       </span>

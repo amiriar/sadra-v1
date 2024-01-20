@@ -168,6 +168,25 @@ app.post('/register', async (req, res) => {
     }
 });
 
+app.get('/Classes/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `classes` ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.get('/ClassEventData/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `events` ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;

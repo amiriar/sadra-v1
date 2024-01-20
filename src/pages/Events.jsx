@@ -46,7 +46,7 @@ const Events = () => {
     
   ])
 
-const [popularEvent , setPopularEvent] = useState([
+  const [popularEvent , setPopularEvent] = useState([
   {
       id : 1 ,
       title : "UI Design"
