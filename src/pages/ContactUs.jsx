@@ -100,19 +100,19 @@ function ContactUs() {
                                 gap:"1.5rem"
                             }}>
                                 <div style={{display:"flex", justifyContent:"space-between"}}>
-                                    <InputContact className='contactInput' setVariable={setName} variable={name} title={"نام"} type={'text'} width={'47%'} />
-                                    <InputContact className='contactInput' setVariable={setLastName} variable={lastName} title={"نام خانوادگی"} type={'text'} width={'47%'} />
+                                    <InputContact id={'name'} className='contactInput' setVariable={setName} variable={name} title={"نام"} type={'text'} width={'47%'} />
+                                    <InputContact id={'lastName'} className='contactInput' setVariable={setLastName} variable={lastName} title={"نام خانوادگی"} type={'text'} width={'47%'} />
                                 </div>
-                                <InputContact setVariable={setPhoneNumber} variable={phoneNumber} title={"شماره موبایل"} type={'text'} width={'100%'} />
+                                <InputContact id={'phone'} setVariable={setPhoneNumber} variable={phoneNumber} title={"شماره موبایل"} type={'text'} width={'100%'} />
                                 {/* <InputContact title={"ت"} type={'text'} width={'100%'} /> */}
                                 <div style={{display:"flex", flexDirection:"column", gap:"0.5rem"}}>
-                                    <p>توضیحات</p>
+                                    <label htmlFor='description' style={{cursor:"pointer", display:"inline"}}>توضیحات</label>
                                     <textarea cols="30" rows="7" 
+                                        id='description'
                                         className='textArea'
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                     >
-
                                     </textarea>
                                 </div>
                                 <Button variant="contained" sx={{
