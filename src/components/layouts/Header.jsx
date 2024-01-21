@@ -54,6 +54,7 @@ const Header = () => {
       <div>
           <ul>
               <li><NavLink className='link' to={'/contact'}>تماس با ما</NavLink></li>
+              <li><NavLink className='link' to={'/success'}>موفقیت دانشجویان</NavLink></li>
               <li><NavLink className='link' to={'/blog'}>بلاگ</NavLink></li>
               <li><NavLink className='link' to={'/events'}>رویدادها</NavLink></li>
               <li><NavLink className='link' to={'/classes'}>کلاس‌ها</NavLink></li>
