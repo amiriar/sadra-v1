@@ -18,6 +18,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
 import axios from 'axios'
+import usePersianNumber from '../helper/PersianNumbers'
 
 
 function BlogDetails() {
@@ -121,9 +122,9 @@ function BlogDetails() {
                                 </div>
                                 <div className='timeProgressBlogDetails' dir='rtl'>
                                     <div style={{display:"flex", alignItems:"center"}}>
-                                        <span>{data.date}</span>&nbsp;
+                                        <span>{usePersianNumber(data.date)}</span>&nbsp;
                                         <span><Line/></span>&nbsp;
-                                        <span>{data.timeToRead} دقیقه</span>
+                                        <span>{usePersianNumber(data.timeToRead)} دقیقه</span>
                                     </div>
                                     <VerticalProgressBar bgcolor={"#6AD095"} progress={data.timeToRead} width={"5px"}/>
                                     <span id="dissapear" style={{marginRight:"4rem"}}>پایان</span>

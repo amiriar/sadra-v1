@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, Avatar, Typography, Divider } from '@mui
 import './BlogCard.css';
 import { Link, useNavigate } from 'react-router-dom';
 
-const BlogCard = ({ id, imageData, date, title, description, authorName, authorDescription, authorPicture, hashtags }) => {
+const BlogCard = ({ id, imageData, date, title, description, authorName, authorLastName, authorDescription, authorPicture, hashtags }) => {
 
     const navigate = useNavigate() ;
 
@@ -58,7 +58,7 @@ const BlogCard = ({ id, imageData, date, title, description, authorName, authorD
                     <Avatar src={authorPicture} alt={authorName} style={{ marginLeft: 10, objectFit:'cover' }} />
                     <div>
                         <Typography fontFamily={'Yekan, sans-serif'} variant="subtitle1" >
-                            {authorName}
+                            {authorName} {authorLastName}
                         </Typography>
                         <Typography fontFamily={'Yekan, sans-serif'} variant="body2" color="textSecondary" >
                             {authorDescription}

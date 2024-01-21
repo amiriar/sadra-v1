@@ -49,23 +49,6 @@ function Blog() {
             </div>
             <div className='blogCardsContainer' style={{marginTop:"5rem", marginBottom:"2rem"}}> 
                 <Grid container spacing={3}>
-                    {/* {
-                        BlogDB.map((card, index) => (
-                            <Grid item key={index} xs={12} sm={6} md={4}>
-                                <BlogCard
-                                    id={card.id}
-                                    imageData={card.imageData}
-                                    date={card.date}
-                                    title={card.title}
-                                    description={card.description}
-                                    authorName={card.author.name}
-                                    authorDescription={card.author.description}
-                                    authorPicture={card.author.picture}
-                                    hashtags={card.hashtags}
-                                />
-                            </Grid>
-                        ))
-                    } */}
                     {
                         data?.map((card, index) => (
                             <Grid item key={index} xs={12} sm={6} md={4}>
@@ -76,6 +59,7 @@ function Blog() {
                                     title={card.title}
                                     description={card.description}
                                     authorName={card.authorName}
+                                    authorLastName={card.authorLastName}
                                     authorDescription={card.authorDescription}
                                     authorPicture={card.authorPicture}
                                     hashtags={card.hashtags}

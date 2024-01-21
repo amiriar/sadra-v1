@@ -158,8 +158,8 @@ app.post('/register', async (req, res) => {
     const todaySolar = moment().locale('fa').format('YYYY-MM-DD');
     try {
         const insertQuery = db.query(`
-            INSERT INTO users (email, password, lastDateIn, role, level1, level2)
-            VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user', false, false);
+            INSERT INTO users (email, password, lastDateIn, role)
+            VALUES ('${email}', '${hashedPassword}', '${todaySolar}', 'user');
         `);
         res.status(200).json({ statusCode: 200, message: 'User Created' });
     } catch (error) {
@@ -276,6 +276,12 @@ app.get('/users/data/:id', async (req, res) => {
     const { id } = req.params
     const selectQuery = await db.query(`SELECT * FROM users WHERE id = ${id}`)
     res.json(selectQuery).status(200)
+});
+app.get('/dashboard/blogs/:tid', async (req, res) => {
+    const { tid } = req.params
+    const TName = await db.query(`SELECT * FROM users WHERE id = ${tid}`)
+    const blogs = await db.query(`SELECT * FROM blog WHERE authorName = '${TName[0][0].name}' AND authorLastName = '${TName[0][0].lastName}' ORDER BY id DESC`)
+    res.json(blogs).status(200)
 });
 
 

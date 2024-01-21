@@ -213,8 +213,9 @@ function DashInfo() {
                                                     onChange={handleCheckboxChange}
                                                     inputProps={{ 'aria-label': 'controlled' }}
                                                     sx={{ color: '#4ca773' }}
+                                                    id='is-student'
                                                 />
-                                                <label htmlFor="is-student" sx={{ fontFamily: 'Yekan,sans-serif'}}>
+                                                <label htmlFor="is-student" style={{ cursor:"pointer"}}>
                                                     دانشجو هستم
                                                 </label>
                                             </FormControl>
