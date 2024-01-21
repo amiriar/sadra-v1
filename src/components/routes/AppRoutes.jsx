@@ -17,6 +17,7 @@ import PersianNumbers from '../../helper/PersianNumbers';
 import Classes from '../../pages/Classes';
 import ClassDetail from '../../pages/ClassDetail';
 import ContactUs from '../../pages/ContactUs';
+import BlogsList from '../dashboard/teacher/BlogsList';
 
 const AppRoutes = () => {
     return (
@@ -39,6 +40,7 @@ const AppRoutes = () => {
                 <Route path="/dashboard/infos" element={<DashInfo/>} />
                 <Route path="/dashboard/infos/2" element={<DashInfo2/>} />
                 <Route path="/contact" element={<ContactUs/>} />
+                <Route path="/dashboard/blogs" element={<BlogsList/>} />
             </Routes> 
         </>
     );
