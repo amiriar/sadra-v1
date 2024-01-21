@@ -12,6 +12,7 @@
     box-sizing: border-box;
     padding: 12px 124px;
     margin: 0 auto;
+    
 }
 .link{
     color: var(--base-white);
@@ -96,7 +97,7 @@
     }
 }
 
-@media (max-width : 740px) {
+@media (max-width : 900px) {
     .NavBar{
         padding: 12px 32px;
     }
@@ -112,7 +113,7 @@
     }
 }
 
-@media (max-width : 740px) {
+@media (max-width : 900px) {
     .NavBar{
         padding: 12px 32px;
     }
