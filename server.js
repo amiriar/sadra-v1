@@ -180,7 +180,7 @@ app.get('/Classes/data', async (req, res) => {
 
 app.get('/ClassEventData/data', async (req, res) => {
     try {
-        const [rows] = await db.query('SELECT * FROM `events` ORDER BY `id` DESC');
+        const [rows] = await db.query('SELECT * FROM `classes` ORDER BY `id` DESC');
         res.json(rows);
     } catch (error) {
         console.error('Error fetching data:', error);

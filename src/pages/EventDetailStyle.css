@@ -162,45 +162,7 @@
     text-align: justify;
     text-justify: inter-word;
 }
-/* @media (max-width : 1440px){
-    .info1 , .info2 , .info3 , .info4{
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    min-width: 95%;
-    max-width: 95%;
-    
-    }
-    .CardDetail{
-        top: -50%;
 
-    }
-    .CardContainer{
-        padding: 1.5rem;
-        min-width: 35%;
-        max-width: 35%;
-        min-height: 100vh;
-        position: relative;
-    
-    }
-    .CardContainer{
-        padding: 1px;
-    
-    }
-}
-@media (max-width : 900px){
-    .CardDetail{
-        min-width: 155%;
-    }
-    .CardDetail{
-        left: -7%;
-    }
-}
-@media (max-width : 1024px){
-    .CardDetail{
-        width: 142%;
-    }
-    
-} */
 @media (max-width : 1200px) {
     .bodyDetailContainer{
         padding: 2rem 5rem 0rem 0rem;

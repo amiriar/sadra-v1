@@ -107,7 +107,6 @@ function Classes() {
     fetchData();
     fetchData2();
     } , [])
-
     return (
         <div className='classContainer' dir='rtl'>
             <div className='TopClassContainer'>
@@ -143,31 +142,11 @@ function Classes() {
                 </div>
 
                 <div className='CardBoxContainer'>
-                    {/* <div className='CardBox'>
-                        <div className='imgContainer'>
-                            <img src='/public/assets/thumbnail3.jpg' />
-                            <div className='cardInfo'>
-                                <h2>طراحی رابط کاربری در شرکت‌های بزرگ</h2>
-                                <p>مدرس استاد علی بابایی</p>
-                                <div className='moreCardDetail'>
-                                    <span><MdOutlineStackedBarChart style={{marginLeft : 5 , width : 19 , height : 19}} /> سطح مبتدی</span>
-                                    <span><RiStackFill style={{marginLeft : 5 , width : 19 , height : 19}} /> 21 درس</span>
-                                    <span><CiClock2 style={{marginLeft : 5 , width : 19 , height : 19}} /> 40 ساعت  </span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div className='priceContainer'>
-                            <span>128</span>
-                            <span>هزارتومان</span>
-                        </div>
-                    </div> */}
                     {
                     data.slice(0 , 7).map((item)=> (
-                            <ClassCard key={item.id} {...item} />
+                          <Link key={item.id} to={`/classes/${item.id}`} ><ClassCard key={item.id} {...item} /></Link>
                         ))
                     }
-
                 </div>
 
             </div>
