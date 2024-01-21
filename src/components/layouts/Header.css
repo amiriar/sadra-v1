@@ -74,6 +74,16 @@
 
 /* Responsive */
 
+@media (max-width : 1238px) {
+    .NavBar{
+        padding:  12px 20px;
+    }
+    .List_Logo ul li{
+        margin: 12px 10px;
+        cursor: pointer;
+    }
+}
+
 @media (max-width : 1100px) {
     .NavBar{
         padding:  12px 20px;
