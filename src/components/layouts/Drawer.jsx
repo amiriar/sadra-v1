@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 // MUI parts
 import { Box, Drawer, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
 const SideBar = ({isOpen , setIsopen}) => {
+
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+      axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
+          .then(response => {
+          const { id } = response.data;
+          setUserId(id);
+      })
+      .catch(error => {
+          console.error('Error:', error.response ? error.response.data : error.message);
+          setUserRole('error');
+      });
+  }, []); 
 
   return (
     <Drawer anchor='left' open={isOpen} onClose={()=> setIsopen(false)}>
@@ -17,7 +31,12 @@ const SideBar = ({isOpen , setIsopen}) => {
                 <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/blog'}>بلاگ</Link></li>
                 <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/success'}>موفقیت دانشجویان</Link></li>
                 <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/contact'}>تماس با ما</Link></li>
-                <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/auth/login'}>ثبت نام و ورود</Link></li>
+                {
+                  userId ? 
+                    <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/dashboard'}>داشبورد</Link></li>
+                    :
+                    <li style={{margin: 30}}><Link style={{color:"#212121", fontFamily:'Yekan, sans-serif'}} to={'/auth/login'}>ثبت نام و ورود</Link></li>
+                }
               </ul>
             </Typography>
           </Box>

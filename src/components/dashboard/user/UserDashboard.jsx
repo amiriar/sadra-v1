@@ -7,7 +7,7 @@ import { Divider } from '@mui/material';
 const categories = [
     {title:'داشبورد' , link:"/dashboard"},
     {title:'اطلاعات', link:"/dashboard/infos"}
-    ]
+]
 
 function UserDashboard() {
 

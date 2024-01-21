@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 // Styles
 import './Header.css';
 
@@ -15,9 +16,25 @@ import { NavLink } from 'react-router-dom';
 
 const Header = () => {
 
+  const [userId, setUserId] = useState(null);
+  useEffect(() => {
+      axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
+          .then(response => {
+          const { id } = response.data;
+          setUserId(id);
+      })
+      .catch(error => {
+          console.error('Error:', error.response ? error.response.data : error.message);
+          setUserRole('error');
+      });
+  }, []); 
+
   const navigate = useNavigate()
   const clickHandler = () => {
-    navigate('/auth/register')
+    navigate('/auth/register');
+  }
+  const dashboardHandler = () => {
+    navigate('/dashboard');
   }
 
   const [isOpen , setIsopen] = useState(false)
@@ -25,7 +42,12 @@ const Header = () => {
   return (
     <div className='NavBar'>
       <div className='login_Btn_con'>
-          <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => clickHandler()}>ثبت نام و ورود</button>
+        {
+          userId ? 
+            <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => dashboardHandler()}>داشبورد</button>
+            :
+            <button className='login_Btn' style={{cursor:"pointer"}} onClick={() => clickHandler()}>ثبت نام و ورود</button>
+        }
         <RxHamburgerMenu className='burgur' onClick={()=> setIsopen(e => !e)} />
       </div>    
       <div className='List_Logo'>
