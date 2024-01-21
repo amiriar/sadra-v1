@@ -15,6 +15,7 @@ import DashInfo2 from '../dashboard/user/DashInfos2';
 import ScrollToTop from '../../helper/ScrollToTop';
 import PersianNumbers from '../../helper/PersianNumbers';
 import Classes from '../../pages/Classes';
+import ClassDetail from '../../pages/ClassDetail';
 import ContactUs from '../../pages/ContactUs';
 
 const AppRoutes = () => {
@@ -28,6 +29,7 @@ const AppRoutes = () => {
                 <Route path="/events" element={<Events />} />
                 <Route path='/events/:id' element={<EventDetail/>} />
                 <Route path="/classes" element={<Classes />} />
+                <Route path="/classes/:id" element={<ClassDetail />} />
                 <Route path="/success" element={<StudentSuccess />} />
                 <Route path="/student/:name" element={<StudentDetail />} />
                 <Route path="/employment" element={<Employment/>} />
