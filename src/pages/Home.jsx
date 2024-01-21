@@ -215,21 +215,24 @@ const fetchData4 = async () => {
     </div>
     {/* Part Five */}
 
-    <div className='popular_Tutorial' id='maxWidth'>
-      <div className='popular_Icon'>
-        <h2>دوره‌های محبوب</h2>
-        <Line/>
+    <div className='popular_Tutorial' id='maxWidth' dir='rtl' >
+        <div className='popIcons'>
+          <Line/>
+          <h2>دوره‌های محبوب</h2>
+    </div>
+
+
+    <div className='popTexts'>
+      <div className='dataCon1'>
+        <h2>بیش از 100 دوره‌ی فعال برای پیشرفت شما</h2>
       </div>
 
-    <div className='data_pop_container'>
-      <div className='Box_1' dir='rtl'>
-        <p>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از {usePersianNumber('100')} دوره شما را از پایه راهنمایی می کند.</p>
-      </div>
-
-      <div className='Box_2'>
-        <h1>بیش از {usePersianNumber('100')} دوره‌ی فعال برای پیشرفت شما</h1>
+      <div className='dataCon2'>
+        <h2>ما طیف وسیعی از دسته‌ها را برای کمک به شما در انتخاب دوره‌هایی که متناسب با تخصص شما هستند ارائه می‌کنیم. بیش از 100 دوره شما را از پایه راهنمایی می کند.</h2>
       </div>
     </div>
+
+
     {/* dataEvent */}
     <Box  sx={{ minHeight : '602px' ,  width: '100%', typography: 'body1', direction : "rtl" , mt : "6rem"}}>
       <TabContext value={value}>
@@ -313,13 +316,13 @@ const fetchData4 = async () => {
                 <h2>رویدادهای آینده</h2>
               </div>
               <div className='event_card_data' dir='rtl'>
-              {
-              window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
-              <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
-              )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
-              <Link><EventCard key={item.id} {...item} /></Link>
-              ))
-              }
+                {
+                window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
+                    <EventCard key={item.id} {...item} />
+                  )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
+                    <EventCard key={item.id} {...item} />
+                  ))
+                }
               </div>
         </div>
     </div>

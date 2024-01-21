@@ -644,111 +644,81 @@
 
 /* Part Five */
 
-.popular_Tutorial{
-    padding: 5% 10%;
-    max-width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    flex-direction: column;
-    padding-bottom: 0%;
-}
-
-.popular_Tutorial .popular_Icon{
-    display: flex;
-    align-items: center;
-    color: var(--prime-green);   
-    margin: 0px 0px 24px 0px;
-}
-.popular_Icon h2{
-    font-size: 24px;
-}
-
-.data_pop_container{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.Box_1 {
-    max-width: 35%;
-    text-align: right;
-    margin-left: 15%;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 28px;
-    color: var(--Gray-500);
-}
-
-.Box_2 h1{
-    text-align: right;
-}
 
 .popCardEvent{
-    padding: 1% 0%;
     display: flex;
     align-items : center;
     text-align: right;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    gap: 25px;
 }
+
+.popular_Tutorial{
+    max-width: 100%;
+}
+
+.popIcons{
+    display: flex;
+    align-items: center;
+    color: var(--Primary-500)
+}
+
+.popular_Tutorial{
+    padding: 2% 10%;
+}
+
+.popTexts{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 40px;
+}
+
+.dataCon1{
+    max-width: 30%;
+    color: var(--Gray-900);
+    font-size: 20px;
+}
+.dataCon2{
+    max-width: 40%;
+    color: var(--Gray-500);
+    font-size: 12px;
+    
+}
+
 /* Part Five Responsive popular tutorial */
 
-@media (max-width : 1200px) {
+@media (max-width : 768px) {
+    .popIcons{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        color: var(--Primary-500)
+    }
+    
     .popular_Tutorial{
-        padding: 50px 0px;
-
-    }
-    .popular_Tutorial .popular_Icon{
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-    .data_pop_container{
-        flex-direction: column-reverse;
-        text-align: center;
-        justify-content: center;
-        align-items: center;
-    }
-    .data_pop_container p {
-        margin: 30px;
-        width: 100%;
-    }   
-
-    .data_pop_container h1{
-        text-align: center;
+        padding: 2% 10%;
     }
     
-    .Box_1 {
-       max-width: 80%;
-       text-align: center;
-       align-items: center;
-       justify-content: center;
-       margin-right: 10%;
-       margin-left: 0px;
-
+    .popTexts{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-direction: column;
     }
     
-}
-
-
-@media (max-width : 740px) {
-    .Box_1 {
+    .dataCon1{
         max-width: 100%;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15%;
-        margin-left: 0px;
- 
-     }
+        padding: 4%;
+    }
+    .dataCon2{
+        max-width: 100%;
+        color: var(--Gray-500);
+        font-size: 12px;
+    }
 }
-
-
 
 
 /* Part six about Us */
