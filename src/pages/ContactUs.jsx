@@ -104,7 +104,6 @@ function ContactUs() {
                                     <InputContact id={'lastName'} className='contactInput' setVariable={setLastName} variable={lastName} title={"نام خانوادگی"} type={'text'} width={'47%'} />
                                 </div>
                                 <InputContact id={'phone'} setVariable={setPhoneNumber} variable={phoneNumber} title={"شماره موبایل"} type={'text'} width={'100%'} />
-                                {/* <InputContact title={"ت"} type={'text'} width={'100%'} /> */}
                                 <div style={{display:"flex", flexDirection:"column", gap:"0.5rem"}}>
                                     <label htmlFor='description' style={{cursor:"pointer", display:"inline"}}>توضیحات</label>
                                     <textarea cols="30" rows="7" 

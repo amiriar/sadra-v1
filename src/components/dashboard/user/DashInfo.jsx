@@ -5,6 +5,7 @@ import SignOutButton from '../SignOutButton';
 import { Checkbox, Divider, FormControl, Input, InputLabel, MenuItem, Select, TextField, ThemeProvider, createTheme } from '@mui/material';
 import { showToast } from '../../modules/AuthModules/Toastify';
 import { ToastContainer } from 'react-toastify';
+import { userCategories } from '../Categories';
 
 
 function DashInfo() {
@@ -53,10 +54,6 @@ function DashInfo() {
     const clickHandler = () => {
         navigate("/auth/login")
     }
-    const categories = [
-        {title:'داشبورد', link:"/dashboard"},
-        {title:'اطلاعات',  link:"/dashboard/infos"},
-    ]
 
     const theme = createTheme({
         direction: 'rtl',
@@ -98,7 +95,7 @@ function DashInfo() {
                         <div className='sideBarPanel'>
                             <div>
                                 {
-                                    categories.map((item) => (
+                                    userCategories.map((item) => (
                                         <Link key={item.title} to={item.link}>{item.title}</Link>
                                     ))
                                 }

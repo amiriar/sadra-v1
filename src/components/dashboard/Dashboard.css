@@ -55,6 +55,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
+    gap: 1rem;
 }
 .panelHint{
     color: var(--Neutral-70);
@@ -70,6 +71,9 @@
 @media (max-width : 950px) {
     .formPanel {
         width: 70%;
+    }
+    .newBlogForm{
+        width: 95% !important;
     }
 }
 
@@ -87,6 +91,9 @@
     }
     .sideBarPanel{
         display: none;
+    }
+    .newBlogForm{
+        width: 100% !important;
     }
 }
 
@@ -124,4 +131,11 @@
     .card {
         width: 100%; /* 100% width on small screens */
     }
+}
+.newBlogForm{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }

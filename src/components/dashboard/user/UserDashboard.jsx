@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import SignOutButton from '../SignOutButton';
 import { Divider } from '@mui/material';
-
-const categories = [
-    {title:'داشبورد' , link:"/dashboard"},
-    {title:'اطلاعات', link:"/dashboard/infos"}
-]
+import { userCategories } from '../Categories';
 
 function UserDashboard() {
 
@@ -62,7 +58,7 @@ function UserDashboard() {
             <div className='sideBarPanel'>
                 <div>
                     {
-                        categories.map((item) => (
+                        userCategories.map((item) => (
                             <Link key={item.title} to={item.link}>{item.title}</Link>
                         ))
                     }

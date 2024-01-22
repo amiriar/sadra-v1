@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import SignOutButton from '../SignOutButton'
 import DashboardCard from '../DashboardCard';
+import { categories } from '../Categories';
 
 //icons
 import { FaMicroblog } from "react-icons/fa";
@@ -11,16 +12,11 @@ import { SiGoogleclassroom } from "react-icons/si";
 import { Checkbox, Divider, FormControl, Input, InputLabel, MenuItem, Select, ThemeProvider, createTheme } from '@mui/material';
 import { showToast } from '../../modules/AuthModules/Toastify';
 import { ToastContainer } from 'react-toastify';
+import InputContact from '../../modules/input/InputContact';
+import { useDropzone } from 'react-dropzone';
 
 
 function TeacherDashbaord({ userRole, userId }) {
-
-    const categories = [
-        {title:'داشبورد' , link:"/dashboard"},
-        {title:'بلاگ ها', link:"/dashboard/blogs"},
-        {title:'رویداد ها', link:"/dashboard/events"},
-        {title:'کلاس ها', link:"/dashboard/classes"},
-    ]
     const theme = createTheme({
         direction: 'rtl',
     });
@@ -31,12 +27,14 @@ function TeacherDashbaord({ userRole, userId }) {
     const [userAge, setUserAge] = useState('');
     const [userPhone, setUserPhone] = useState('');
     const [userEducation, setUserEducation] = useState('');
-    const [userIsStudent, setUserIsStudent] = useState(false);
+    const [imageData, setImageData] = useState(''); // author picture
+    const [authorDescription, setAuthorDescription] = useState('');
+    const [authorLinkedin, setAuthorLinkedin] = useState('');
+    const [authorPinterest, setAuthorPinterest] = useState('');
+    const [authorTwitterX, setAuthorTwitterX] = useState('');
+    const [authorFacebook, setAuthorFacebook] = useState('');
 
-    const handleCheckboxChange = (e) => {
-        // Convert the checkbox value to 1 (true) or 0 (false)
-        setUserIsStudent(e.target.checked ? 1 : 0);
-    };
+    const [imagePath, setImagePath] = useState('');
     
     const handleSelectChange = (event) => {
         setUserEducation(event.target.value);
@@ -45,35 +43,131 @@ function TeacherDashbaord({ userRole, userId }) {
         if(userEmail === '' || userName === '' || userLastName === '' || userAge === '' || userPhone === '' || userEducation === ''){
             showToast('لطفا تمامی فیلد هارا پرکنید.', 'error');
         } else{
-            const response = await axios.post('http://localhost:3001/fullInfo', {
-                id: userId,
-                name: userName,
-                lastName: userLastName,
-                email: userEmail,
-                age: userAge,
-                phoneNumber: userPhone,
-                education: userEducation,
-                isStudent: userIsStudent
-            });
-            console.log(response);
-            showToast("اطلاعات شما ثبت شد! حالا، به صفحات دیگر دسترسی دارید.","success")
+            if (!imageData) { 
+                showToast('لطفاً یک تصویر را انتخاب کنید.', 'error');
+                return;
+            }
+    
+            const formData = new FormData();
+            formData.append('imageData', imageData);
+    
+            try {
+                const response = await axios.post('http://localhost:3001/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                });
+                // Handle the response as needed
+                setImagePath(await response.data.path)
+                const newImagePath = imagePath.split(`\\`).join("/")
+                const response2 = await axios.post('http://localhost:3001/fullInfo', {
+                    id: userId,
+                    name: userName,
+                    lastName: userLastName,
+                    email: userEmail,
+                    age: userAge,
+                    phoneNumber: userPhone,
+                    education: userEducation,
+                    profile: newImagePath,
+                    description: authorDescription,
+                    linkedin: authorLinkedin,
+                    pinterest: authorPinterest,
+                    twitterX : authorTwitterX,
+                    facebook: authorFacebook
+                });
+                console.log(response2);
+                showToast("اطلاعات شما ثبت شد! حالا، به صفحات دیگر دسترسی دارید.","success")
+            } catch (error) {
+                console.error('Error:', error.response ? error.response.data : error.message);
+                showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
+            }
+
         }
+
+        
+
+        // axios.post(`http://localhost:3001/dashboard/blogs/add`)
+        //     .then(response => {
+        //         showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
+        //         console.log(response);
+        //     })
+        // .catch(error => {
+        //     console.error('Error:', error.response ? error.response.data : error.message);
+        // });
     }
     useEffect(() => {
         userId && axios.get(`http://localhost:3001/users/data/${userId}`)
             .then(response => {
+                console.log(response);
                 setUserName(response.data[0][0].name);
                 setUserLastName(response.data[0][0].lastName);
                 setUserEmail(response.data[0][0].email);
                 setUserAge(response.data[0][0].age)
                 setUserPhone(response.data[0][0].phoneNumber)
                 setUserEducation(response.data[0][0].education)
-                setUserIsStudent(response.data[0][0].isStudent)
+                setAuthorDescription(response.data[0][0].description)
+                setAuthorLinkedin(response.data[0][0].linkedin)
+                setAuthorFacebook(response.data[0][0].facebook)
+                setAuthorTwitterX(response.data[0][0].twitterX)
+                setAuthorPinterest(response.data[0][0].pinterest)
             })
         .catch(error => {
             console.error('Error:', error.response ? error.response.data : error.message);
         });
     }, [userId])
+
+    const [fileName, setFileName] = useState('');
+
+    const onDrop = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setImageData(file);
+        setFileName(file.name); // Set the file name in state
+    };
+    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    const dropzoneStyle = {
+        border: '2px dashed #cccccc',
+        borderRadius: '4px',
+        padding: '20px',
+        textAlign: 'center',
+        cursor: 'pointer',
+        marginTop: '10px',
+    };
+
+    // const handleSubmit = async (e) => {
+        
+    //     if (!imageData) { 
+    //         toast.error('لطفاً یک تصویر را انتخاب کنید.');
+    //         return;
+    //     }
+
+    //     const formData = new FormData();
+    //     formData.append('imageData', imageData);
+
+    //     try {
+    //         const response = await axios.post('http://localhost:3001/upload', formData, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //         },
+    //         });
+    //         // Handle the response as needed
+    //         console.log(response.data);
+    //         setImagePath(await response.data.path)
+    //         showToast('تصویر با موفقیت آپلود شد.', 'success');
+    //     } catch (error) {
+    //         console.error('Error:', error.response ? error.response.data : error.message);
+    //         showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
+    //     }
+        
+
+    //     // axios.post(`http://localhost:3001/dashboard/blogs/add`)
+    //     //     .then(response => {
+    //     //         showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
+    //     //         console.log(response);
+    //     //     })
+    //     // .catch(error => {
+    //     //     console.error('Error:', error.response ? error.response.data : error.message);
+    //     // });
+    // }
 
 
     return (
@@ -104,92 +198,20 @@ function TeacherDashbaord({ userRole, userId }) {
                     <Divider/>
                     <br />
                     <form>
-
                         <h1>ثبت اطلاعات تکمیلی:</h1>
                             <ThemeProvider theme={theme}>
                                 <div className='formPanel'>
-                                    <FormControl variant="outlined" sx={{ marginTop: "1rem", '&:focus-within': { borderColor: 'green !important' } }}>
-                                        <InputLabel htmlFor="first-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan, sans-serif" }}>
-                                            نام
-                                        </InputLabel>
-                                        <Input
-                                            id="first-name"
-                                            label="نام"
-                                            variant="outlined"
-                                            sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
-                                            value={userName}
-                                            onChange={(e) => setUserName(e.target.value)}
-                                            required
-                                            
-                                        />
-                                    </FormControl>
+                                    <InputContact id={'authorName'} setVariable={setUserName} variable={userName} title={'نام'} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorLastName'} setVariable={setUserLastName} variable={userLastName} title={'نام خانوادگی'} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorEmail'} setVariable={setUserEmail} variable={userEmail} title={'پست الکترونیکی'} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorAge'} setVariable={setUserAge} variable={userAge} title={'سن'} type={'number'} width={'100%'} />
+                                    <InputContact id={'authorPhone'} setVariable={setUserPhone} variable={userPhone} title={'شماره تماس'} type={'number'} width={'100%'} />
 
-                                    <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            نام خانوادگی
-                                        </InputLabel>
-                                        <Input
-                                            id="last-name"
-                                            label="نام خانوادگی"
-                                            variant="outlined"
-                                            sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
-                                            value={userLastName}
-                                            onChange={(e) => setUserLastName(e.target.value)}
-                                            required
-                                        />
-                                    </FormControl>
-
-                                    <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            پست الکترونیکی
-                                        </InputLabel>
-                                        <Input
-                                            id="email"
-                                            label="پست الکترونیکی"
-                                            variant="outlined"
-                                            sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
-                                            value={userEmail}
-                                            onChange={(e) => setUserEmail(e.target.value)}
-                                            required
-                                        />
-                                    </FormControl>
-
-                                    <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            سن
-                                        </InputLabel>
-                                        <Input
-                                            id="age"
-                                            label="سن"
-                                            type='number'
-                                            variant="outlined"
-                                            sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
-                                            value={userAge}
-                                            onChange={(e) => setUserAge(e.target.value)}
-                                            required
-                                        />
-                                    </FormControl>
-
-                                    <FormControl variant="outlined" sx={{marginTop:"1rem"}}>
-                                        <InputLabel htmlFor="last-name" sx={{ left: 'auto', right: 40, fontFamily: "Yekan,sans-serif" }}>
-                                            شماره تماس
-                                        </InputLabel>
-                                        <Input
-                                            id="phone"
-                                            label="شماره تماس"
-                                            type='number'
-                                            variant="outlined"
-                                            sx={{ position: 'relative',fontFamily: "Yekan, sans-serif" }}
-                                            value={userPhone}
-                                            onChange={(e) => setUserPhone(e.target.value)}
-                                            required
-                                        />
-                                    </FormControl>
-
-                                    <FormControl variant="outlined" sx={{ marginTop: '2rem' }}>
+                                    <FormControl variant="outlined">
+                                        <p>مقطع تحصیلی</p>
                                         <Select
                                             id="education"
-                                            sx={{ position: 'relative', fontFamily: 'Yekan, sans-serif' }}
+                                            sx={{ position: 'relative', fontFamily: 'Yekan, sans-serif', marginTop:"0.6rem" }}
                                             value={userEducation === '' ? 'مقطع تحصیلی' : userEducation}
                                             onChange={handleSelectChange}
                                             required
@@ -204,18 +226,26 @@ function TeacherDashbaord({ userRole, userId }) {
                                         </Select>
                                     </FormControl>
 
-                                    <FormControl sx={{ marginTop: '1rem', display: 'inline', alignItems: 'center' }}>
-                                        <Checkbox
-                                            checked={userIsStudent === 1 ? true : false}
-                                            onChange={handleCheckboxChange}
-                                            inputProps={{ 'aria-label': 'controlled' }}
-                                            sx={{ color: '#4ca773' }}
-                                            id='is-student'
-                                        />
-                                        <label htmlFor="is-student" style={{ cursor:"pointer"}}>
-                                            دانشجو هستم
-                                        </label>
-                                    </FormControl>
+                                    {/* <InputContact id={'authorPicture'} setVariable={setDescription} variable={authorPicture} title={'عکس پرو'} type={'text'} width={'100%'} /> */}
+                                    <div>
+                                        <p>عکس پروفایل</p>
+                                        <div {...getRootProps()} style={dropzoneStyle}>
+                                            <input {...getInputProps()} />
+                                            <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد</p>
+                                            <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
+                                            {fileName && (
+                                                <p style={{ marginTop: '10px' }}>
+                                                نام فایل انتخابی: {fileName}
+                                                </p>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <InputContact id={'authorDescription'} setVariable={setAuthorDescription} variable={authorDescription} title={'شرح'} subTitle={"توضیح کوتاهی درباره خودتان"} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorLinkedin'} setVariable={setAuthorLinkedin} variable={authorLinkedin} title={'لینک لینکدین'} subTitle={"در صورت نداشتن # بگذارید."} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorPinterest'} setVariable={setAuthorPinterest} variable={authorPinterest} title={'لینک پینترست'} subTitle={"در صورت نداشتن # بگذارید."} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorTwitterX'} setVariable={setAuthorTwitterX} variable={authorTwitterX} title={'لینک توییتر(X)'} subTitle={"در صورت نداشتن # بگذارید."} type={'text'} width={'100%'} />
+                                    <InputContact id={'authorFacebook'} setVariable={setAuthorFacebook} variable={authorFacebook} title={'لینک فیس بوک'} subTitle={"در صورت نداشتن # بگذارید."} type={'text'} width={'100%'} />
                                 </div>
                             </ThemeProvider>
                             <button

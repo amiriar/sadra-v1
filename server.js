@@ -5,6 +5,9 @@ import moment from 'jalali-moment';
 import bcrypt from 'bcryptjs';
 import cookieParser from 'cookie-parser';
 import Jwt from 'jsonwebtoken';
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
 import 'dotenv/config';
 
 
@@ -28,6 +31,28 @@ const db = mysql.createPool({
     password: '',
     database: 'sadra-db-core',
 });
+
+// Set up storage for multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        fs.mkdirSync(path.join(process.cwd(), "public", "upload"), { recursive: true })
+        cb(null, "public/assets/uploads");
+    },
+    filename: function (req, file, cb) {
+    const whiteListFormats = ["image/png", "image/jpg", "image/jpeg", "image/webp"]
+    
+    if (!whiteListFormats.includes(file.mimetype)) {
+        const error = new Error("Invalid file type");
+        error.status = 400; // Set an appropriate status code
+        return cb(error);
+    }
+        const format = path.extname(file.originalname);
+        const filename = new Date().getTime().toString() + format;
+        cb(null, filename);
+    },
+});
+
+const upload = multer({ storage: storage, limits:{ fileSize: 3 * 1000 * 1000 } });
 
 app.get('/blog/data', async (req, res) => {
     try {
@@ -256,11 +281,29 @@ app.get('/dashboard/token', (req, res) => {
 });
 
 app.post('/fullInfo', async (req, res) => {
-    const { id, name, lastName, email, age, phoneNumber, education, isStudent } = req.body;
+    const { id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook } = req.body;
     try {
         await db.query(`UPDATE users 
-        SET name = "${name}", lastName= "${lastName}", email = "${email}", age = ${age}, phoneNumber = '${phoneNumber}', education= "${education}",isStudent= ${isStudent} WHERE id = ${id};`);
-        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !', path:"/dashboard" }).status(200);
+        SET 
+        name = "${name}", 
+        lastName= "${lastName}", 
+        email = "${email}", 
+        age = ${age}, 
+        phoneNumber = '${phoneNumber}', 
+        education= "${education}", 
+        profile= "${profile}",
+        description= "${description}",
+        linkedin= "${linkedin}",
+        pinterest= "${pinterest}",
+        twitterX= "${twitterX}",
+        facebook= "${facebook}"
+        WHERE id = ${id};`).then(
+            await db.query(`UPDATE users 
+            SET 
+            profile= "${profile}"
+            WHERE id = ${id};`)
+        )
+        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !', data: {id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook} }).status(200);
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -284,6 +327,85 @@ app.get('/dashboard/blogs/:tid', async (req, res) => {
     res.json(blogs).status(200)
 });
 
+app.get('/fullDetail/:id', async (req, res) => {
+    const id = req.params.id
+    const TName = await db.query(`SELECT * FROM users WHERE id = ${id}`)
+    res.json(TName).status(200)
+});
+
+app.post('/dashboard/blogs/add', async (req, res) => {
+    const {
+        imageData,
+        date,
+        title,
+        description,
+        authorName,
+        authorLastName,
+        hashtags,
+        detailsDescription1,
+        detailsDescription2,
+        detailsDescription3,
+        descriptionImage1,
+        descriptionImage2,
+        detailsDescription4,
+        detailsDescription5,
+        timeToRead
+    } = req.body;
+    await db.query(`
+        INSERT INTO blog 
+        (imageData, 
+        date,
+        title, 
+        description, 
+        authorName, 
+        authorLastName, 
+        hashtags, 
+        detailsDescription1, 
+        detailsDescription2, 
+        detailsDescription3,
+        descriptionImage1, 
+        descriptionImage2, 
+        detailsDescription4, 
+        detailsDescription5, 
+        timeToRead)
+        VALUES 
+        ('${imageData}', 
+        '${date}', 
+        '${title}', 
+        '${description}', 
+        '${authorName}', 
+        '${authorLastName}', 
+        '${hashtags}', 
+        '${detailsDescription1}', 
+        '${detailsDescription2}', 
+        '${detailsDescription3}', 
+        '${descriptionImage1}',
+        '${descriptionImage2}',
+        '${detailsDescription4}', 
+        '${detailsDescription5}', 
+        '${timeToRead}')
+    `);
+    res.send("test")
+});
+
+// Define your routes
+app.post('/upload', upload.single('imageData'), (req, res, next) => {
+    // Handling file upload
+    if (req.file) {
+        const { filename, path } = req.file;
+        res.json({ success: true, message: 'File uploaded successfully', filename, path });
+    } else {
+      // If no file is uploaded, Multer would have handled the error
+      // Pass the error to the error handling middleware
+        next(req.fileError);
+    }
+});
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err);
+    // Send the error details to the frontend
+    res.status(err.status || 500).json({ error: err.message });
+});
 
 
 app.listen(PORT, () => {

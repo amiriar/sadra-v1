@@ -4,17 +4,13 @@ import { Link } from 'react-router-dom'
 import axios from 'axios';
 import { Divider, Grid } from '@mui/material';
 import BlogCard from '../../modules/Blog-modules/BlogCard'
+import NewBlog from './NewBlog';
+import { categories } from '../Categories';
 
 function BlogsList() {
-    const categories = [
-        {title:'داشبورد' , link:"/dashboard"},
-        {title:'بلاگ ها', link:"/dashboard/blogs"},
-        {title:'رویداد ها', link:"/dashboard/events"},
-        {title:'کلاس ها', link:"/dashboard/classes"},
-    ]
     const [userRole, setUserRole] = useState(null);
     const [userId, setUserId] = useState(null);
-    const [teacherBlog, setTeacherBlog] = useState(null);
+    const [teacherBlog, setTeacherBlog] = useState('');
 
     useEffect(() => {
         axios.get('http://localhost:3001/dashboard/token', { withCredentials: true })
@@ -26,7 +22,6 @@ function BlogsList() {
                 axios.get(`http://localhost:3001/dashboard/blogs/${id}`)
                     .then(secondResponse => {
                     setTeacherBlog(secondResponse.data[0])
-                    console.log('Second Response:', secondResponse.data[0]);
                     })
                     .catch(secondError => {
                     console.error('Second Request Error:', secondError.response ? secondError.response.data : secondError.message);
@@ -60,7 +55,7 @@ function BlogsList() {
                     </div>
                     <div className='mainPanel'>
                         <div className='blogCardsContainer-dash' style={{ marginTop: '5rem', marginBottom: '2rem' }}>
-                            {teacherBlog ? (
+                            {teacherBlog.length !== 0 ? (
                                 <Grid container spacing={3}>
                                 {teacherBlog.map((blog) => (
                                     <Grid item key={blog.id} xs={12} sm={12} md={6} lg={4}>
@@ -79,20 +74,18 @@ function BlogsList() {
                                     </Grid>
                                 ))}
                                 </Grid>
-                            ) : (
-                                <>
+                            ) : 
                                 <p>شما تا به حال بلاگی ثبت نکرده اید.</p>
-                                </>
-                            )}
+                            }
                         </div>
                         <br />
                         <Divider/>
                         <br />
                         <h3>برای ثبت بلاگ از فرم زیر استفاده کنید:</h3>
                         <br />
-                        <form>
-                            {/* form for new blog */}
-                        </form>
+                        <>
+                            <NewBlog/>
+                        </>
                     </div>
                 </div>
             :
