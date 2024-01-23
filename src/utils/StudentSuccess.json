@@ -59,7 +59,7 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../public/assets/Student-Success/author4.png",
+            "picture":"../../assets/Student-Success/author4.png",
             "name":"حسین اشرفی پور",
             "job":"طراح رابط کاربری و تجربه کاربر"
         },
@@ -76,7 +76,7 @@
             "thumbnail":""
         },
         "author":{
-            "picture":"../../public/assets/Student-Success/author2.jpeg",
+            "picture":"../../assets/Student-Success/author2.jpeg",
             "name":"میهن عباسی",
             "job":"Front-End Developer"
         },

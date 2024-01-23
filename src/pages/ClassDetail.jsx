@@ -58,7 +58,6 @@ export default function ClassDetail() {
 
 
   const dataCard = data.length ? data?.find((item)=> item.id == classCardId) : []
-  
   const {
     title , 
     teacher ,

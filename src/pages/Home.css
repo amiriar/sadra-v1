@@ -14,6 +14,7 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
+
 }
 .BoxData h1{
     color: var(--Neutral-20);
@@ -21,11 +22,13 @@
     font-size: 3rem;
     font-weight: 700;
     padding: 24px 0px;
+
 }
 .BoxData h2{
     color: var(--Gray-200);
     font-size: 1.2rem;
     margin-bottom: 24px;
+
 }
 .BoxData p {
     max-width: 716px;
@@ -36,6 +39,7 @@
 }
 .BoxImage{
     width: 40%;
+
 }
 .BoxImage img{
     width: 100%;
@@ -44,6 +48,7 @@
     height: 100%;
     max-height: 100%;
     max-width: 100%;
+
 }
 
 @media (max-width : 1440px) {
@@ -128,11 +133,12 @@
     .Home{
         max-width: 1920px;
         margin: 0 auto;
-        min-height: 100vh;
+        min-height: 800px;
         align-items: center;
         justify-content: space-between;
         text-align: center;
         flex-direction: column;
+
     }
     .BoxData{
         width: 100%;
@@ -179,13 +185,12 @@
     .Home{
         max-width: 1920px;
         margin: 0 auto;
-        min-height: 105vh;
+        min-height: 850px;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 15%;
         text-align: center;
         flex-direction: column;
-
     }
     .BoxData{
         width: 100%;
@@ -200,13 +205,11 @@
     .BoxData h1{
         color: var(--Neutral-20);
         font-size: 1.7rem;
-        margin-bottom: 15px;
         text-align: center;
     }
     .BoxData h2{
         font-size: 0.875rem;
         
-        margin-bottom: 20px;
     }
     .BoxData p {
         max-width: 716px;
@@ -214,11 +217,13 @@
         font-size: 0.75rem;
         padding: 12px;
         margin-bottom: 35px;
+
     }
     .BoxImage{
         width: 100%;
         max-height: 441.5px;
         object-fit: contain;
+
     }
     .BoxImage img{
         object-fit: cover;
@@ -339,23 +344,28 @@
 .BoxgraduateIcon{
     max-width: 100%;
     display: flex;
-    padding: 60px 0px;
+    padding: 2rem;
 }
 .BoxgraduateIcon svg{
     width: 100%;
 }
 @media (max-width : 446px) {
-    .Home{
-        margin-bottom: 200px;
-    }
+
     .Boxgraduate{
-        margin: 50% 0% 5% 0%;
+        margin: 0% 0% 0% 0%;
         height: 35vh;
+        padding: 0;
     }
 }
 @media (max-width : 769px) {
     .Boxgraduate{
-        margin: 20% 0% 5% 0%;
+        margin: 0% 0% 0% 0%;
+        
+    }
+    .BoxgraduateIcon{
+        max-width: 100%;
+        display: flex;
+        padding: 1.5rem 0rem;
     }
 }
 
