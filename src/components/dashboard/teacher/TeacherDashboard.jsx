@@ -52,7 +52,7 @@ function TeacherDashbaord({ userRole, userId }) {
             formData.append('imageData', imageData);
     
             try {
-                const response = await axios.post('http://localhost:3001/upload', formData, {
+                const response = await axios.post('http://localhost:3001/upload/single', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -60,6 +60,7 @@ function TeacherDashbaord({ userRole, userId }) {
                 // Handle the response as needed
                 setImagePath(await response.data.path)
                 const newImagePath = imagePath.split(`\\`).join("/")
+                console.log(newImagePath);
                 const response2 = await axios.post('http://localhost:3001/fullInfo', {
                     id: userId,
                     name: userName,
@@ -83,17 +84,6 @@ function TeacherDashbaord({ userRole, userId }) {
             }
 
         }
-
-        
-
-        // axios.post(`http://localhost:3001/dashboard/blogs/add`)
-        //     .then(response => {
-        //         showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
-        //         console.log(response);
-        //     })
-        // .catch(error => {
-        //     console.error('Error:', error.response ? error.response.data : error.message);
-        // });
     }
     useEffect(() => {
         userId && axios.get(`http://localhost:3001/users/data/${userId}`)

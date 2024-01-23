@@ -15,11 +15,10 @@ function NewBlog() {
                 // First request to get the user ID
                 const responseToken = await axios.get('http://localhost:3001/dashboard/token', { withCredentials: true });
                 const { id } = responseToken.data;
-                console.log('User ID:', id);
     
-                // Second request using the obtained user ID
                 const responseFullDetail = await axios.get(`http://localhost:3001/fullDetail/${id}`);
-                console.log('Full Detail Response:', responseFullDetail.data);
+                setAuthorName(responseFullDetail.data[0][0].name)
+                setAuthorLastName(responseFullDetail.data[0][0].lastName)
             } catch (error) {
                 console.error('Error:', error.response ? error.response.data : error.message);
                 setUserRole('error');
@@ -40,12 +39,12 @@ function NewBlog() {
     const [description, setDescription] = useState('');
     const [authorName, setAuthorName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
-    const [authorPicture, setAuthorPicture] = useState('');
-    const [authorDescription, setAuthorDescription] = useState('');
-    const [authorLinkedin, setAuthorLinkedin] = useState('');
-    const [authorPinterest, setAuthorPinterest] = useState('');
-    const [authorTwitterX, setAuthorTwitterX] = useState('');
-    const [authorFacebook, setAuthorFacebook] = useState('');
+    // const [authorPicture, setAuthorPicture] = useState('');
+    // const [authorDescription, setAuthorDescription] = useState('');
+    // const [authorLinkedin, setAuthorLinkedin] = useState('');
+    // const [authorPinterest, setAuthorPinterest] = useState('');
+    // const [authorTwitterX, setAuthorTwitterX] = useState('');
+    // const [authorFacebook, setAuthorFacebook] = useState('');
     const [hashtags, setHashtags] = useState('');
     const [detailsDescription1, setDetailsDescription1] = useState('');
     const [detailsDescription2, setDetailsDescription2] = useState('');
@@ -57,21 +56,41 @@ function NewBlog() {
     const [timeToRead, setTimeToRead] = useState('');
 
     const [fileName, setFileName] = useState('');
+    const [fileName2, setFileName2] = useState('');
+    const [fileName3, setFileName3] = useState('');
 
     const [imagePath, setImagePath] = useState('');
+    const [imagePath2, setImagePath2] = useState('');
+    const [imagePath3, setImagePath3] = useState('');
+    
+    const [newImagePath1, setNewImagePath1] = useState('');
+    const [newImagePath2, setNewImagePath2] = useState('');
+    const [newImagePath3, setNewImagePath3] = useState('');
 
-    const onDrop = (acceptedFiles) => {
+    const onDropImage1 = (acceptedFiles) => {
         const file = acceptedFiles[0];
         setImageData(file);
-        setFileName(file.name); // Set the file name in state
+        setFileName(file.name);
     };
-    const { getRootProps, getInputProps } = useDropzone({ onDrop });
+    
+    const onDropImage2 = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setDescriptionImage1(file);
+        setFileName2(file.name);
+    };
+    
+    const onDropImage3 = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setDescriptionImage2(file);
+        setFileName3(file.name);
+    };
+    
+    const { getRootProps: getRootPropsImage1, getInputProps: getInputPropsImage1 } = useDropzone({ onDrop: onDropImage1 });
+    const { getRootProps: getRootPropsImage2, getInputProps: getInputPropsImage2 } = useDropzone({ onDrop: onDropImage2 });
+    const { getRootProps: getRootPropsImage3, getInputProps: getInputPropsImage3 } = useDropzone({ onDrop: onDropImage3 });
     
 
     const handleSubmit = async (e) => {
-        console.log(
-            imageData, date, title, description, authorName, authorLastName, authorPicture, authorDescription, authorLinkedin, authorPinterest, authorTwitterX, authorFacebook, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead
-        )
         e.preventDefault()
 
         if (!imageData) { 
@@ -80,55 +99,64 @@ function NewBlog() {
         }
 
         const formData = new FormData();
-        formData.append('imageData', imageData);
+        formData.append('files', imageData);
+        formData.append('files', descriptionImage1);
+        formData.append('files', descriptionImage2);
 
         try {
             const response = await axios.post('http://localhost:3001/upload', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
             });
-            setImagePath(await response.data.path)
-
+        
+            const imagePath1 = response.data.paths[0].split(`\\`).join("/");
+            const imagePath2 = response.data.paths[1].split(`\\`).join("/");
+            const imagePath3 = response.data.paths[2].split(`\\`).join("/");
+        
+            setImagePath(imagePath1);
+            setImagePath2(imagePath2);
+            setImagePath3(imagePath3);
+        
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+            axios.post(`http://localhost:3001/dashboard/blogs/add`, {
+                imageData: imagePath1,
+                date: moment().locale('fa').format('YYYY-MM-DD'),
+                title: title,
+                description: description,
+                authorName: authorName,
+                authorLastName: authorLastName,
+                hashtags: hashtags,
+                detailsDescription1: detailsDescription1,
+                detailsDescription2: detailsDescription2,
+                descriptionImage1: imagePath2,
+                descriptionImage2: imagePath3,
+                detailsDescription3: detailsDescription3,
+                detailsDescription4: detailsDescription4,
+                detailsDescription5: detailsDescription5,
+                timeToRead: timeToRead
+            })
+            .then(response => {
+                showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error:', error.response ? error.response.data : error.message);
+            });
         } catch (error) {
             console.error('Error:', error.response ? error.response.data : error.message);
             showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
         }
         
-        axios.post(`http://localhost:3001/dashboard/blogs/add`, {
-            imageData: imagePath,
-            date: moment().locale('fa').format('YYYY-MM-DD'),
-            title: title,
-            description: description,
-            authorName: authorName,
-            authorLastName: authorLastName,
-            hashtags: hashtags,
-            detailsDescription1: detailsDescription1,
-            detailsDescription2: detailsDescription2,
-            descriptionImage1: descriptionImage1,
-            descriptionImage2: descriptionImage2,
-            detailsDescription3: detailsDescription3,
-            detailsDescription4: detailsDescription4,
-            detailsDescription5: detailsDescription5,
-            timeToRead: timeToRead
-        })
-            .then(response => {
-                showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
-                console.log(response);
-            })
-        .catch(error => {
-            console.error('Error:', error.response ? error.response.data : error.message);
-        });
     }
 
 
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
             
-            <div {...getRootProps()} style={dropzoneStyle}>
-                <input {...getInputProps()} />
-                <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد</p>
+            <div {...getRootPropsImage1()} style={dropzoneStyle}>
+                <input {...getInputPropsImage1()} />
+                <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
                 <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
                 {fileName && (
                     <p style={{ marginTop: '10px' }}>
@@ -174,27 +202,27 @@ function NewBlog() {
             </div>
             {/* pic */}
             <div>
-                <p>عکس شماره 1</p>
-                <div {...getRootProps()} style={dropzoneStyle}>
-                    <input {...getInputProps()} />
-                    <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد</p>
+                <p>عکس شماره 2</p>
+                <div {...getRootPropsImage2()} style={dropzoneStyle}>
+                    <input {...getInputPropsImage2()} />
+                    <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
                     <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
-                    {fileName && (
+                    {fileName2 && (
                         <p style={{ marginTop: '10px' }}>
-                        نام فایل انتخابی: {fileName}
+                            نام فایل انتخابی: {fileName2}
                         </p>
                     )}
                 </div>
             </div>
             <div>
-                <p>عکس شماره 2</p>
-                <div {...getRootProps()} style={dropzoneStyle}>
-                    <input {...getInputProps()} />
-                    <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد</p>
+                <p>عکس شماره 3</p>
+                <div {...getRootPropsImage3()} style={dropzoneStyle}>
+                    <input {...getInputPropsImage3()} />
+                    <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
                     <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
-                    {fileName && (
+                    {fileName3 && (
                         <p style={{ marginTop: '10px' }}>
-                        نام فایل انتخابی: {fileName}
+                            نام فایل انتخابی: {fileName3}
                         </p>
                     )}
                 </div>

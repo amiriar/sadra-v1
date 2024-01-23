@@ -8,6 +8,7 @@ import Jwt from 'jsonwebtoken';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import { v4 as uuidv4 } from 'uuid';
 import 'dotenv/config';
 
 
@@ -32,25 +33,24 @@ const db = mysql.createPool({
     database: 'sadra-db-core',
 });
 
-// Set up storage for multer
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        fs.mkdirSync(path.join(process.cwd(), "public", "upload"), { recursive: true })
+        // Your destination logic here
         cb(null, "public/assets/uploads");
     },
     filename: function (req, file, cb) {
-    const whiteListFormats = ["image/png", "image/jpg", "image/jpeg", "image/webp"]
-    
-    if (!whiteListFormats.includes(file.mimetype)) {
-        const error = new Error("Invalid file type");
-        error.status = 400; // Set an appropriate status code
-        return cb(error);
-    }
-        const format = path.extname(file.originalname);
-        const filename = new Date().getTime().toString() + format;
-        cb(null, filename);
+        const whiteListFormats = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
+        if (whiteListFormats.includes(file.mimetype)) {
+            const format = path.extname(file.originalname);
+            const uniqueFilename = uuidv4() + format; // Generate a unique filename using uuid
+            cb(null, uniqueFilename);
+        } else {
+            console.log("Invalid file type");
+        }
     },
 });
+
 
 const upload = multer({ storage: storage, limits:{ fileSize: 3 * 1000 * 1000 } });
 
@@ -333,6 +333,11 @@ app.get('/fullDetail/:id', async (req, res) => {
     res.json(TName).status(200)
 });
 
+app.get('/TeacherUsers/data', async (req, res) => {
+    const TName = await db.query(`SELECT * FROM users WHERE role = 'teacher'`)
+    res.json(TName).status(200)
+});
+
 app.post('/dashboard/blogs/add', async (req, res) => {
     const {
         imageData,
@@ -351,6 +356,8 @@ app.post('/dashboard/blogs/add', async (req, res) => {
         detailsDescription5,
         timeToRead
     } = req.body;
+    console.log(imageData, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, descriptionImage1, descriptionImage2, detailsDescription3, detailsDescription4, detailsDescription5, timeToRead);
+
     await db.query(`
         INSERT INTO blog 
         (imageData, 
@@ -383,13 +390,13 @@ app.post('/dashboard/blogs/add', async (req, res) => {
         '${descriptionImage2}',
         '${detailsDescription4}', 
         '${detailsDescription5}', 
-        '${timeToRead}')
+        ${timeToRead})
     `);
-    res.send("test")
+    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
 });
 
 // Define your routes
-app.post('/upload', upload.single('imageData'), (req, res, next) => {
+app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
     // Handling file upload
     if (req.file) {
         const { filename, path } = req.file;
@@ -400,6 +407,15 @@ app.post('/upload', upload.single('imageData'), (req, res, next) => {
         next(req.fileError);
     }
 });
+app.post('/upload', upload.array('files', 3), (req, res) => {
+    // req.files will contain an array of files
+    const filePaths = req.files.map(file => file.path);
+    
+    // Process the file paths or save them to the database as needed
+
+    res.json({ success: true, paths: filePaths });
+});
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err);
