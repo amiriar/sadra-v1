@@ -18,21 +18,22 @@
     border-radius: 1000px;
     background: var(--prime-green);
     cursor: pointer;
+
 }
 
 .select_options{
     direction: rtl;
-    padding: 5px 15px;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
     color: var(--primary-black);
     cursor: pointer;
+    width: 100%;
 }
 
 .search_input{
-    width: 65%;
+    width: 80%;
     direction: rtl;
     font-size: 16px;
     font-style: normal;
@@ -49,4 +50,11 @@
     line-height: 24px;
     text-align: right;
 
+}
+
+
+@media (max-width : 768px) {
+    .search_input{
+        width: 50%;
+    }
 }

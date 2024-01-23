@@ -12,7 +12,7 @@ import Logo2 from './svg/Logo2';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-
+import sadraLogo from '/public/sadraLogo.svg'
 
 const Header = () => {
 

@@ -18,7 +18,7 @@
             "id" : 1 ,
             "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
             "Master" : "مدرس استاد علی بابایی" , 
-            "image" : "/public/assets/1.png" ,
+            "image" : "/assets/1.png" ,
             "price" : 128 , 
             "offer" : false , 
             "DescriptionsData" :  [
@@ -43,32 +43,32 @@
             ] 
             ,
             "descriptiontitleCard" : "شما یاد خواهید گرفت که چگونه یک تجربه کاربری دیجیتال ایجاد کنید که برای توسعه آماده است. شما با ایجاد آشنایی و تسلط به اصول تحقیقات طراحی برای شناسایی کاربر و راه حل های مورد نیاز آنها شروع خواهید کرد. سپس تحقیقات خود را ترکیب می‌کنید و از اسپرینت‌های طراحی برای انتقال یک ایده از مفهومی به نمونه اولیه با وفاداری پایین استفاده می‌کنید. در نهایت، یاد خواهید گرفت که چگونه نمونه اولیه خود را با وفاداری پایین به یک طرح با وفاداری بالا تبدیل کنید و عملکرد آن را بر اساس داده ها بهبود بخشید." ,
-            "video" : "/public/assets/Media.mp4" ,
-            "thumbnail" : "/public/assets/prof3.png" ,
+            "video" : "/assets/Media.mp4" ,
+            "thumbnail" : "/assets/prof3.png" ,
             "teachers" : [
                 {
                     "id" : 1 , 
                     "name" : "احسان جلیل زاده" , 
                     "career" : "مدیر محصول - بلوبانک" ,
-                    "techerProfile" : "/public/assets/prof.jpg" 
+                    "techerProfile" : "/assets/prof.jpg" 
                 } ,
                 {
                     "id" : 2 , 
                     "name" : "زهرا فراهانی" , 
                     "career" : "طراح محصول - تپسی" ,
-                    "techerProfile" : "/public/assets/prof2.jpg" 
+                    "techerProfile" : "/assets/prof2.jpg" 
                 } ,
                 {
                     "id" : 3 , 
                     "name" : "زهرا فراهانی" , 
                     "career" : "طراح محصول - تپسی" ,
-                    "techerProfile" : "/public/assets/prof3.png" 
+                    "techerProfile" : "/assets/prof3.png" 
                 } ,
                 {
                     "id" : 4 , 
                     "name" : "احسان جلیل زاده" , 
                     "career" : "مدیر محصول - بلوبانک" ,
-                    "techerProfile" : "/public/assets/prof.jpg" 
+                    "techerProfile" : "/assets/prof.jpg" 
                 } 
             ]
              
@@ -101,7 +101,7 @@
             "id" : 2 ,
             "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
             "Master" : "مدرس استاد علی بابایی" , 
-            "image" : "/public/assets/2.png" ,
+            "image" : "/assets/2.png" ,
             "price" : "رایگان" , 
             "offer" : true , 
             "place" : 
@@ -125,7 +125,7 @@
            "id" : 3 ,
             "cardName" : "Product Design Basic Essentials Principals" ,
             "Master" : "مدرس استاد علی بابایی" , 
-            "image" : "/public/assets/3.png" ,
+            "image" : "/assets/3.png" ,
             "price" : 128 , 
             "offer" : false , 
             "place" : 
@@ -154,7 +154,7 @@
             "id" : 4 ,
             "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
             "Master" : "مدرس استاد علی بابایی" , 
-            "image" : "/public/assets/4.png" ,
+            "image" : "/assets/4.png" ,
             "price" : "" , 
             "offer" : true , 
             "place" : 
@@ -179,7 +179,7 @@
                 "id" : 5 ,
             "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
             "Master" : "مدرس استاد علی بابایی" , 
-            "image" : "/public/assets/5.png" ,
+            "image" : "/assets/5.png" ,
             "price" : 128 , 
             "offer" : false , 
             "place" : 
@@ -198,7 +198,7 @@
     
            { "id" : 6 ,
             "cardName" : "Product Design Basic Essentials Principals" ,
-            "image" : "/public/assets/6.png" ,
+            "image" : "/assets/6.png" ,
             "Master" : "مدرس استاد علی بابایی" , 
             "price" : 128 , 
             "offer" : false , 
@@ -237,7 +237,7 @@
         "id" : 1 ,
         "cardName" : "طراحی رابط کاربری در شرکت‌های بزرگ" ,
         "Master" : "مدرس استاد علی بابایی" , 
-        "image" : "/public/assets/1.png" ,
+        "image" : "/assets/1.png" ,
         "price" : 128 , 
         "offer" : false , 
         "place" :  

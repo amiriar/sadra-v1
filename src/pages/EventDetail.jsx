@@ -206,6 +206,9 @@ const {
                       </div>
                       ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
                     }
+                    {
+                      console.log(typeof price)
+                    }
                 </span>
                 </div>
 

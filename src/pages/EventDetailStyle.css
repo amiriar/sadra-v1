@@ -3,7 +3,6 @@
     margin: 0 auto;
     padding: 3.5rem 5rem;
     background: var(--Neutral-100, #1C1C1C);
-    
 }
 .HeadDetail{
     display: flex;
@@ -62,8 +61,6 @@
     line-height: 24px;
     text-align: justify;
     text-justify: inter-word;
-
-    
 }
 
 /* Card */
@@ -98,6 +95,7 @@
     margin-bottom: 1.5rem;
     text-align: justify;
     text-justify: inter-word;
+
 }
 .topCard p{
     color: var(--Gray-500);
@@ -147,6 +145,7 @@
     padding-bottom: 0.5rem;
     text-align: justify;
     text-justify: inter-word;
+
 }
 .cadTitle h1{
     color: var(--Gray-600);
@@ -161,6 +160,25 @@
     padding-bottom: 1rem;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.detailFooter{
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.detailFooterTitle{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+}
+.detailFooterTitle h2{
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 @media (max-width : 1200px) {
@@ -241,6 +259,7 @@
         position: static;
         border-radius: 1rem;
         margin-bottom: 1.1rem;
+
     }
     .CardDetail{
         min-width: 100%;
@@ -259,23 +278,3 @@
     }
 }
 
-.detailFooter{
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 3.5rem 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.detailFooterTitle{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-}
-.detailFooterTitle h2{
-    font-size: 2rem;
-    font-weight: 500;
-    padding: 0rem 0rem 4rem 0rem;
-}

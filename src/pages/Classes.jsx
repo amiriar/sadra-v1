@@ -84,28 +84,25 @@ function Classes() {
 
     const [data , setData] = useState([]);
     const [dataEvent , setdataEvent] = useState([]);
+    const [future , setFuture] = useState([])
     useEffect(()=> {
         const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:3001/Classes/data');
             const jsonData = await response.json();
             setData(jsonData);
+            const response2 = await fetch('http://localhost:3001/ClassEventData/data');
+            const jsonData2 = await response2.json();
+            setdataEvent(jsonData2);
+            const response3 = await fetch('http://localhost:3001/ClassEventDataFuture/data');
+            const jsonData3 = await response3.json();
+            setFuture(jsonData3);
         }   catch (error) {
             console.error('Error fetching data:', error);
         }
         
     };
-    const fetchData2 = async () => {
-        try {
-            const response = await fetch('http://localhost:3001/ClassEventData/data');
-            const jsonData = await response.json();
-            setdataEvent(jsonData);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    };
     fetchData();
-    fetchData2();
     } , [])
     return (
         <div className='classContainer' dir='rtl'>
@@ -144,8 +141,8 @@ function Classes() {
                 <div className='CardBoxContainer'>
                     {
                     data.slice(0 , 7).map((item)=> (
-                          <Link key={item.id} to={`/classes/${item.id}`} ><ClassCard key={item.id} {...item} /></Link>
-                        ))
+                        <Link to={`/classes/${item.id}`}><ClassCard key={item.id} {...item} /></Link>
+                    ))
                     }
                 </div>
 
@@ -157,13 +154,13 @@ function Classes() {
                 <h2>رویدادهای آینده</h2>
                 </div>
                 <div className='event_card_data' dir='rtl'>
-                    {
-                    window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
-                    <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
-                    )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
-                    <Link key={item.id} to={`/events/${item.id}`}><EventCard key={item.id} {...item} /></Link>
-                    ))
-                    }
+                {
+                window.innerWidth >= 1920 ? future.slice(0 , 4).map((item) => (
+                <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                )) : window.innerWidth <= 1440 && future.slice(0 , 3).map((item) => (
+                <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                ))
+                }
                 </div>
             </div>
 

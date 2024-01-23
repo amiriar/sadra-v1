@@ -243,23 +243,6 @@ const fetchData4 = async () => {
             }
           </TabList>
         </Box>
-        {/* <TabPanel value="1" >
-        <div style={{display : "flex" , alignContent : "center" , justifyContent : "space-evenly" , flexWrap : "wrap"}}>
-          {
-            CardData.map((Item)=> <CardPopTu key={Item.id} {...Item}  />)
-          } 
-          {
-            dataEvent.filter((item)=> item.category === TabHeaders.title).map((item)=> (
-              <>
-                <EventCard key={item.id} {...item} />
-              </>
-            ))
-          } 
-        </div>
-        <div className='more_btn_con'>
-        <Button variant="outlined" sx={{ width : 150 , height : 45 , color : "#4CA773" , borderColor : "#4CA773" , borderRadius : 15}} >دوره‌های بیشتر</Button>
-        </div>
-        </TabPanel> */}
         {
           TabHeaders.map((Tab)=> (
             <TabPanel value={Tab.id.toString()} >
@@ -318,9 +301,9 @@ const fetchData4 = async () => {
               <div className='event_card_data' dir='rtl'>
                 {
                 window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
-                    <EventCard key={item.id} {...item} />
+                  <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
-                    <EventCard key={item.id} {...item} />
+                  <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   ))
                 }
               </div>
