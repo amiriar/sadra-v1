@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import axios from 'axios'
+import usePersianNumber from '../helper/PersianNumbers'
+import VerticalProgressBar from '../components/modules/ProgressBar'
+import { Avatar, CardContent, Divider, Grid, Typography } from '@mui/material'
 
 //css:
 import './BlogDetails.css'
 import Line from '../components/modules/Line'
 
-import VerticalProgressBar from '../components/modules/ProgressBar'
-import { Avatar, CardContent, Divider, Grid, Typography } from '@mui/material'
 
 // cards:
 import BlogCard from '../components/modules/Blog-modules/BlogCard';
@@ -17,11 +19,9 @@ import { FaPinterest } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa";
-import axios from 'axios'
-import usePersianNumber from '../helper/PersianNumbers'
 
 
-function BlogDetails() {
+function NewBlogDetails() {
     
     const { id } = useParams()
 
@@ -29,19 +29,18 @@ function BlogDetails() {
     const [users, setUsers] = useState([]);
     const [relevent, setRelevent] = useState([]);
     const [tags, setTags] = useState([]);
-    const [authorName, setAuthorName] = useState('')
-    const [authorLastName, setAuthorLastName] = useState('')
-    const [targetUser, setTargetUser] = useState('')
+    const [targetUser, setTargetUser] = useState('');
+    const [usersLoaded, setUsersLoaded] = useState(false);  
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/blog/data/asc');
-                const jsonData = response.data;
-                setData(prevData => ({ ...prevData, ...jsonData[id - 1] }));
+                const response = await axios.get(`http://localhost:3001/blogdetail/${id}`);
+                const jsonData = response.data[0];
+                console.log(jsonData);
+                setData(jsonData);
     
-                const relevantItems = jsonData
-                    .filter((item) => item?.hashtags?.split(",")[0] === data?.hashtags?.split(",")[0])
-                    .slice(0, 3);
+                const relevantItems = jsonData?.hashtags?.split(",") ? jsonData?.hashtags?.split(",").slice(0, 3) : [];
     
                 setRelevent(relevantItems);
     
@@ -50,6 +49,7 @@ function BlogDetails() {
                 const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
                 const allUsers = await responseToken2.data[0];
                 setUsers(allUsers);
+                setUsersLoaded(true);
     
                 const targetUser = allUsers.find(user => user.name === data.authorName && user.lastName === data.authorLastName);
                 setTargetUser(targetUser);
@@ -60,8 +60,7 @@ function BlogDetails() {
         };
     
         fetchData();
-        // console.log(data);
-    }, [id, users]);
+    }, [id,usersLoaded]);
     
     const matchAuthorWithUser = (authorName, authorLastName) => {
         const matchedUser = users.find(user => user.name === authorName && user.lastName === authorLastName);
@@ -155,31 +154,9 @@ function BlogDetails() {
                                 </div>
                             </div>
                             <div className='BlogRelatablePosts'>
-                                <h3 dir='rtl' style={{marginBottom:"2rem", marginRight:"1.5rem", fontSize:"1.125rem"}}>پست های مرتبط</h3>
-                                {/* <div className='blogCardsContainer' dir='rtl'>
-                                    <Grid container spacing={3}>
-                                        {
-                                            relevent ? relevent.map((item) => (
-                                                <Grid item xs={12} sm={6} md={4} key={item.id}>
-                                                    <BlogCard
-                                                        id={item.id} 
-                                                        imageData={item.imageData}
-                                                        date={item.date}
-                                                        title={item.title}
-                                                        description={item.description}
-                                                        authorName={item.authorName}
-                                                        authorDescription={item.authorDescription}
-                                                        authorPicture={item.authorPicture}
-                                                        hashtags={item.hashtags}
-                                                    />
-                                                </Grid>
-                                            ))
-                                            :
-                                            <h1>loading ...</h1>
-                                        }
-                                    </Grid>
-                                </div> */}
-                                                            <div className='blogCardsContainer' style={{ marginTop: "5rem", marginBottom: "2rem" }}>
+                            <h3 dir='rtl' style={{marginBottom:"2rem", marginRight:"1.5rem", fontSize:"1.125rem"}}>پست های مرتبط</h3>
+
+                            <div className='blogCardsContainer' style={{ marginTop: "5rem", marginBottom: "2rem" }}>
                                 <Grid container spacing={3}>
                                     {relevent?.map((card, index) => {
                                         const matchedUser = matchAuthorWithUser(card.authorName, card.authorLastName);
@@ -210,4 +187,4 @@ function BlogDetails() {
     )
 }
 
-export default BlogDetails
+export default NewBlogDetails

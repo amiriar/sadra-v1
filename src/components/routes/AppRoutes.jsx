@@ -18,6 +18,8 @@ import Classes from '../../pages/Classes';
 import ClassDetail from '../../pages/ClassDetail';
 import ContactUs from '../../pages/ContactUs';
 import BlogsList from '../dashboard/teacher/BlogsList';
+import NewBlogDetails from '../../pages/NewBlogDetails';
+import EventsList from '../dashboard/teacher/EventsList';
 
 const AppRoutes = () => {
     return (
@@ -26,7 +28,8 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="/blog/:id" element={<NewBlogDetails />} />
+                {/* <Route path="/blog/:id" element={<BlogDetails />} /> */}
                 <Route path="/events" element={<Events />} />
                 <Route path='/events/:id' element={<EventDetail/>} />
                 <Route path="/classes" element={<Classes />} />
@@ -41,6 +44,7 @@ const AppRoutes = () => {
                 <Route path="/dashboard/infos/2" element={<DashInfo2/>} />
                 <Route path="/contact" element={<ContactUs/>} />
                 <Route path="/dashboard/blogs" element={<BlogsList/>} />
+                <Route path="/dashboard/events" element={<EventsList/>} />
             </Routes> 
         </>
     );

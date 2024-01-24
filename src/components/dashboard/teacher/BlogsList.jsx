@@ -12,6 +12,9 @@ function BlogsList() {
     const [userId, setUserId] = useState(null);
     const [teacherBlog, setTeacherBlog] = useState('');
 
+    const [data, setData] = useState([]);
+    const [users, setUsers] = useState([]);
+
     useEffect(() => {
         axios.get('http://localhost:3001/dashboard/token', { withCredentials: true })
             .then(response => {
@@ -32,7 +35,26 @@ function BlogsList() {
             console.error('First Request Error:', firstError.response ? firstError.response.data : firstError.message);
             setUserRole('error');
         });
+
+        const fetchData = async () => {
+            try {
+                const responseToken = await axios.get('http://localhost:3001/blog/data');
+                setData(responseToken.data);
+                console.log(responseToken.data);
+                const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
+                setUsers(await responseToken2.data[0]);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+    
+        fetchData();
     }, []);
+
+    const matchAuthorWithUser = (authorName, authorLastName) => {
+        const matchedUser = users.find(user => user.name === authorName && user.lastName === authorLastName);
+        return matchedUser;
+    };
 
     return (
         <>
@@ -54,30 +76,32 @@ function BlogsList() {
                         </div>
                     </div>
                     <div className='mainPanel'>
-                        <div className='blogCardsContainer-dash' style={{ marginTop: '5rem', marginBottom: '2rem' }}>
-                            {teacherBlog.length !== 0 ? (
+                        
+                            <div className='blogCardsContainer' style={{ marginTop: "5rem", marginBottom: "2rem" }}>
                                 <Grid container spacing={3}>
-                                {teacherBlog.map((blog) => (
-                                    <Grid item key={blog.id} xs={12} sm={12} md={6} lg={4}>
-                                        <BlogCard
-                                            id={blog.id}
-                                            imageData={blog.imageData}
-                                            date={blog.date}
-                                            title={blog.title}
-                                            description={blog.description}
-                                            authorName={blog.authorName}
-                                            authorLastName={blog.authorLastName}
-                                            authorDescription={blog.authorDescription}
-                                            authorPicture={blog.authorPicture}
-                                            hashtags={blog.hashtags}
-                                        />
-                                    </Grid>
-                                ))}
+                                    {data?.map((card, index) => {
+                                        const matchedUser = matchAuthorWithUser(card.authorName, card.authorLastName);
+
+                                        return (
+                                            <Grid item key={index} xs={12} sm={6} md={4}>
+                                                <BlogCard
+                                                    id={card.id}
+                                                    imageData={card.imageData}
+                                                    date={card.date}
+                                                    title={card.title}
+                                                    description={card.description}
+                                                    authorName={card.authorName}
+                                                    authorLastName={card.authorLastName}
+                                                    authorDescription={matchedUser?.description}
+                                                    matchedUser={matchedUser}
+
+                                                    hashtags={card.hashtags}
+                                                />
+                                            </Grid>
+                                        );
+                                    })}
                                 </Grid>
-                            ) : 
-                                <p>شما تا به حال بلاگی ثبت نکرده اید.</p>
-                            }
-                        </div>
+                            </div>
                         <br />
                         <Divider/>
                         <br />

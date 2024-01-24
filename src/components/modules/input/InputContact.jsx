@@ -5,7 +5,7 @@ function InputContact({ type, title, placeholder, width, variable, setVariable, 
         <div style={{display:'inline-flex', flexDirection:"column", gap:"0.5rem", width:width}}>
             <label htmlFor={id} style={{cursor:"pointer"}}>{title} 
             {
-                subTitle && <span style={{color:"#667085"}}> ( {subTitle} )</span>
+                subTitle && <span style={{color:"#667085", cursor:"text"}}> ( {subTitle} )</span>
             }
             </label>
             <input type={type} placeholder={placeholder} style={{

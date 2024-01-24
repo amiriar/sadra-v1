@@ -19,6 +19,13 @@ function NewBlog() {
                 const responseFullDetail = await axios.get(`http://localhost:3001/fullDetail/${id}`);
                 setAuthorName(responseFullDetail.data[0][0].name)
                 setAuthorLastName(responseFullDetail.data[0][0].lastName)
+
+                const responseToken3 = await axios.get('http://localhost:3001/blog/data');
+                setData(responseToken3.data);
+                console.log(responseToken3.data);
+                const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
+                setUsers(await responseToken2.data[0]);
+                console.log(responseToken2.data[0]);
             } catch (error) {
                 console.error('Error:', error.response ? error.response.data : error.message);
                 setUserRole('error');
@@ -29,7 +36,8 @@ function NewBlog() {
     
     }, []); // Empty dependency array to ensure it runs only once when the component mounts
     
-    
+    const [data, setData] = useState([]);
+    const [users, setUsers] = useState([]);
 
     const [userId, setUserId] = useState(null)
 
@@ -39,12 +47,6 @@ function NewBlog() {
     const [description, setDescription] = useState('');
     const [authorName, setAuthorName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
-    // const [authorPicture, setAuthorPicture] = useState('');
-    // const [authorDescription, setAuthorDescription] = useState('');
-    // const [authorLinkedin, setAuthorLinkedin] = useState('');
-    // const [authorPinterest, setAuthorPinterest] = useState('');
-    // const [authorTwitterX, setAuthorTwitterX] = useState('');
-    // const [authorFacebook, setAuthorFacebook] = useState('');
     const [hashtags, setHashtags] = useState('');
     const [detailsDescription1, setDetailsDescription1] = useState('');
     const [detailsDescription2, setDetailsDescription2] = useState('');

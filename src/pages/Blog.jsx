@@ -18,10 +18,8 @@ function Blog() {
             try {
                 const responseToken = await axios.get('http://localhost:3001/blog/data');
                 setData(responseToken.data);
-                console.log(responseToken.data);
                 const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
                 setUsers(await responseToken2.data[0]);
-                console.log(responseToken2.data[0]);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
