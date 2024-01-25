@@ -435,11 +435,14 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
+        time,
         detailSubtitle,
         Detail_Head_Title
     } = req.body;
 
-    console.log(
+    await db.query(`
+        INSERT INTO events 
+        (
         category,
         title,
         image,
@@ -459,36 +462,12 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
+        time,
         detailSubtitle,
         Detail_Head_Title
-    );
-
-    await db.query(`
-        INSERT INTO events 
-        (category,
-        title,
-        image,
-        teacherFirstName,
-        teacherLastName,
-        price,
-        discount,
-        title_description1,
-        description1,
-        title_description2,
-        description2,
-        title_description3,
-        description3,
-        title_description4,
-        description4,
-        videoSrc,
-        thumbnail,
-        place,
-        date,
-        detailSubtitle,
-        Detail_Head_Title)
+        )
         VALUES 
         ('${category}', 
-        '${date}', 
         '${title}', 
         '${image}', 
         '${teacherFirstName}', 
@@ -507,6 +486,7 @@ app.post('/dashboard/events/add', async (req, res) => {
         '${thumbnail}',
         '${place}', 
         '${date}', 
+        '${time}', 
         '${detailSubtitle}', 
         '${Detail_Head_Title}')
     `);
@@ -529,6 +509,7 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
+        time,
         detailSubtitle,
         Detail_Head_Title} }).status(200);
 });

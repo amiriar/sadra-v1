@@ -83,6 +83,8 @@ const {
   detailSubtitle ,
 } = dataCard;
 
+console.log(image && image);
+
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
   const [timerMinuts , setTimerMinuts] = useState("00");
@@ -123,6 +125,7 @@ const {
 //      clearInterval(interval.current)
 //     }
 //   } , [])
+
 
 
   return (
@@ -194,7 +197,7 @@ const {
                       <span id="price">{price * (100 - Number(discount)) / 100 ? (
                       <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
                       <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
-                      <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+                      <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price}<span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
                       {/* <span style={{position : "absolute" , top : -270 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{discount}%</span> */}
                       </div>
                       ) : (

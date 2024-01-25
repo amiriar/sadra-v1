@@ -120,7 +120,7 @@ const Employment = () => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList fontFamily={"Yekan , sans-serif"} onChange={handleChange} variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}}>
-            {tabHeader.map(item => <Tab key={item.id}  fontFamily={"Yekan , sans-serif"} label={item.TabTitle} value={item.id} />)}
+            {tabHeader.map(item => <Tab key={item.id} sx={{fontFamily:"Yekan , sans-serif"}} label={item.TabTitle} value={item.id} />)}
           </TabList>
         </Box>
         {
@@ -180,11 +180,11 @@ const Employment = () => {
           id="panel1a-header"
           key={item.id}
         >
-        <Typography>{item.title}</Typography>
+        <Typography fontFamily={"Yekan , sans-serif"} >{item.title}</Typography>
         </AccordionSummary>
 
         <AccordionDetails>
-          <Typography>
+          <Typography fontFamily={"Yekan , sans-serif"} >
             {item.question}
           </Typography>
         </AccordionDetails>

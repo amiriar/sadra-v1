@@ -69,17 +69,14 @@ function NewEvent() {
     const [video, setVideo] = useState(null); //17
     const [fileName3, setFileName3] = useState('');//17
     const [videoPath3, setVideoPath3] = useState('');//17
-    const [newVideoPath3, setNewVideoPath3] = useState('');//17
 
     const [fileName2, setFileName2] = useState(''); //18
     const [imagePath2, setImagePath2] = useState(''); //18
-    const [newImagePath2, setNewImagePath2] = useState(''); //18
 
     const [place, setPlace] = useState(''); //19
 
-    const [time, setTime] = useState(''); //20
-
-    const [description, setDescription] = useState('');
+    const [date, setDate] = useState(''); //20
+    const [time, setTime] = useState(''); //21
 
     const [authorName, setAuthorName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
@@ -143,6 +140,9 @@ function NewEvent() {
 
                 setImagePath(imagePath1);
                 setImagePath2(imagePath2);
+
+                console.log(imagePath1);
+                console.log(imagePath2);
             })
             .catch(error => {
                 // Handle the error
@@ -166,7 +166,6 @@ function NewEvent() {
                 console.error('Error uploading video:', error.response ? error.response.data : error.message);
                 // Handle the error as needed
             }
-            console.log(imagePath);
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
             axios.post(`http://localhost:3001/dashboard/events/add`, {
                 category: category,
@@ -322,7 +321,8 @@ function NewEvent() {
             </div>
             {/* pic */}
             <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
-            <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"سال، ماه، روز، ساعت، دقیقه، ثانیه"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال، ماه، روز، ساعت، دقیقه، ثانیه"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'time'} setVariable={setTime} variable={time} title={'ساعت'} type={'text'} width={'100%'} />
 
             <button
                 className='login_Btn_No_Hid'
