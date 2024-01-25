@@ -106,7 +106,7 @@ function NewBlog() {
         formData.append('files', descriptionImage2);
 
         try {
-            const response = await axios.post('http://localhost:3001/upload', formData, {
+            const response = await axios.post('http://localhost:3001/upload/multiple/3', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
