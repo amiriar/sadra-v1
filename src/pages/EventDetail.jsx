@@ -86,8 +86,6 @@ const {
 
 const newImage = image?.split('/').splice(1).join('/');
 
-console.log(time);
-
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
   const [timerMinuts , setTimerMinuts] = useState("00");
