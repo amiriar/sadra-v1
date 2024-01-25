@@ -321,7 +321,7 @@ function NewEvent() {
             </div>
             {/* pic */}
             <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
-            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال، ماه، روز، ساعت، دقیقه، ثانیه"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال-ماه-روز"} title={'تاریخ'} type={'text'} width={'100%'} />
             <InputContact id={'time'} setVariable={setTime} variable={time} title={'ساعت'} type={'text'} width={'100%'} />
 
             <button

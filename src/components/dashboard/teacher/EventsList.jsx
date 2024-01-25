@@ -95,52 +95,53 @@ function EventsList() {
 
     return (
         <>
-        {
-            userRole === "teacher" ?
-            <div className='userPanel' dir='rtl'>
-                <div className='sideBarPanel'>
-                    <div>
-                        {
-                            categories.map((item) => (
-                                <Link key={item.title} to={item.link}>{item.title}</Link>
-                            ))
-                        }
-                    </div>
-                    <br /><br /><br />
-                    <div>
-                        <SignOutButton/>
-                    </div>
-                </div>
-                <div className='mainPanel'>
-                    <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
-                        <TabContext value={value}>
+        <div className='panelContainer'>
+            {
+                userRole === "teacher" ?
+                <div className='userPanel' dir='rtl'> 
+                    <div className='sideBarPanel'>
+                        <div>
                             {
-                                TabHeaders.map((Tab) => (
-                                    <TabPanel value={Tab.id} key={Tab.id}>
-                                        <div className='event_card_info'>
-                                                {
-                                                    data2.filter((item)=> item.category === Tab.title).map((item)=>(
-                                                        <Link key={item.id} to={`/events/${item.id}`}><EventCard key={item.id} {...item} /></Link>
-                                                    ))
-                                                }
-                                        </div>
-                                    </TabPanel>
+                                categories.map((item) => (
+                                    <Link key={item.title} to={item.link}>{item.title}</Link>
                                 ))
                             }
-                        </TabContext>
-                    </Box>
+                        </div>
+                        <br /><br /><br />
+                        <div>
+                            <SignOutButton/>
+                        </div>
+                    </div>
+                    <div className='mainPanel'>
+                        <Box sx={{ width: '100%', typography: 'body1' , direction : "rtl" }}>
+                            <TabContext value={value}>
+                                {
+                                    TabHeaders.map((Tab) => (
+                                        <TabPanel value={Tab.id} key={Tab.id}>
+                                            <div className='event_card_info'>
+                                                    {
+                                                        data2.filter((item)=> item.category === Tab.title).map((item)=>(
+                                                            <Link key={item.id} to={`/events/${item.id}`}><EventCard key={item.id} {...item} /></Link>
+                                                        ))
+                                                    }
+                                            </div>
+                                        </TabPanel>
+                                    ))
+                                }
+                            </TabContext>
+                        </Box>
 
-                    <Divider/>
-                    <div style={{marginTop:"2rem"}}>
-                        <h3>برای ثبت رویداد جدید از فرم زیر استفاده کنید:</h3><br />
-                        <NewEvent/>
+                        <Divider/>
+                        <div style={{marginTop:"2rem"}}>
+                            <h3>برای ثبت رویداد جدید از فرم زیر استفاده کنید:</h3><br />
+                            <NewEvent/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            :
-            <h2>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h2>
-        }
-        
+                :
+                <h2>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h2>
+            }
+        </div>
         </>
     )
 }

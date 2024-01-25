@@ -117,7 +117,6 @@ const Events = () => {
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <TabList  variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
       {TabHeaders.map(item => <Tab key={item.id} sx={{fontFamily:"Yekan, sans-serif"}} label={`${item.title}`} value={item.id.toString()} />)}
- 
       </TabList>
     </Box>
 
