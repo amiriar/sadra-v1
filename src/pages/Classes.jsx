@@ -120,7 +120,7 @@ function Classes() {
                     <div className='BoxContainer'>
                         {
                             categories.map((item)=>(
-                                <div className='Box' key={item.id} >
+                                <div key={item.id} className='Box'  >
                                     <span>{item.categorie}</span>
                                     <span><item.iconName style={{width : 25 , height : 25}} /></span>
                                 </div>
@@ -141,7 +141,7 @@ function Classes() {
                 <div className='CardBoxContainer'>
                     {
                     data.slice(0 , 7).map((item)=> (
-                        <Link to={`/classes/${item.id}`}><ClassCard key={item.id} {...item} /></Link>
+                        <Link key={item.id} to={`/classes/${item.id}`}><ClassCard key={item.id} {...item} /></Link>
                     ))
                     }
                 </div>
@@ -156,9 +156,9 @@ function Classes() {
                 <div className='event_card_data' dir='rtl'>
                 {
                 window.innerWidth >= 1920 ? future.slice(0 , 4).map((item) => (
-                <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                 )) : window.innerWidth <= 1440 && future.slice(0 , 3).map((item) => (
-                <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                 ))
                 }
                 </div>

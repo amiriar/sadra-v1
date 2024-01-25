@@ -7,6 +7,8 @@
     flex-direction: row-reverse;
     max-height: calc(100vh - 72px);
     margin-bottom: 2%;
+    min-height: 839px ;
+    max-height: 839px ;
 }
 .BoxData{
     width: 60%;
@@ -55,7 +57,6 @@
     .Home{
         max-width: 1920px;
         margin: 0 auto;
-        height: 100vh;
         margin-bottom: 48px;
     }
     .BoxData{
@@ -81,8 +82,8 @@
         background-color: var(--primary-black);
         text-align: right;
         display: flex;
-        height: 100vh;
-        min-height: 100vh;
+        min-height: 1200px;
+        max-height: 1200px;
         align-items: center;
         justify-content: space-between;
         text-align: center;
@@ -117,12 +118,17 @@
     }
     .BoxImage img{
         object-fit: cover;
+        min-height: 700px;
+        max-height: 700px;
         object-position: center;
+
     }
     .BoxImage{
         width: 100%;
         max-height: 441.5px;
         object-fit: contain;
+            min-height: 800px;
+        max-height: 800px;
     }
     .Boxgraduate{
         margin-top: 6rem !important;
@@ -154,6 +160,7 @@
         color: var(--Neutral-20);
         font-size: 2.125rem;
         text-align: center;
+
     }
     .BoxData h2{
         font-size: 1.25rem;
@@ -171,10 +178,14 @@
         width: 100%;
         max-height: 441.5px;
         object-fit: contain;
+        min-height: 700px;
+        max-height: 700px;
     }
     .BoxImage img{
         object-fit: cover;
         object-position: center;
+        min-height: 700px;
+        max-height: 700px;
     }
 }
 
@@ -185,12 +196,14 @@
     .Home{
         max-width: 1920px;
         margin: 0 auto;
-        min-height: 850px;
+        min-height: 770px;
+        max-height: 770px;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 15%;
         text-align: center;
         flex-direction: column;
+
     }
     .BoxData{
         width: 100%;
@@ -221,12 +234,15 @@
     }
     .BoxImage{
         width: 100%;
-        max-height: 441.5px;
+        min-height: 700px;
+        max-height: 700px;
         object-fit: contain;
 
     }
     .BoxImage img{
         object-fit: cover;
+        min-height: 425px;
+        max-height: 425px;
         object-position: center;
     }
 }
