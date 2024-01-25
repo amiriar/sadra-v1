@@ -121,21 +121,17 @@
 
 
 }
-
 .whyUs_container{
-    max-width: 100%;
-    margin: 83px 0px;
-    padding: 23px 0px;
-    
+    padding: 2rem 0rem;
+    margin-top: 2rem;
 
 }
+
 .VideoContents{
-    max-width: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 2%;
-
+    justify-content: space-between;
     overflow-x: scroll;
 }
 .whyUs_container > h2 {
