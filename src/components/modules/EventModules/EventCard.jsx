@@ -4,13 +4,15 @@ import { BiCalendar, BiTime } from "react-icons/bi";
 import './EventCard.css'
 import usePersianNumber from "../../../helper/PersianNumbers";
 const EventCard = ({ image, title, price, teacherFirstName, teacherLastName, date, time , discount }) => {
+  const newImage = image?.split('/').splice(1).join('/');
+
   return (
     <div className="CardEvent" >
       <Card sx={{ width: 300 , borderRadius : 3}}>
         <CardMedia
           component="img"
           maxheight = {60}
-          image={image}
+          image={`/${newImage}`}
           alt={title}
           sx={{aspectRatio:"2/1 !important"}}
         />
