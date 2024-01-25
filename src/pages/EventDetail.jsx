@@ -26,6 +26,7 @@ const eventdetailId = parseInt(id , 10);
 
 const [eventDetailData , setEventDetailData] = useState([]);
 const [teachersData , setTeachersData] = useState([])
+
 useEffect(() => {
   const fetchData = async () => {
       try {
@@ -83,7 +84,9 @@ const {
   detailSubtitle ,
 } = dataCard;
 
-console.log(image && image);
+const newImage = image?.split('/').splice(1).join('/');
+
+console.log(time);
 
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
@@ -183,7 +186,7 @@ console.log(image && image);
           {/* Card */}
           <div className='CardContainer'>
             <div className='CardDetail'>
-                <img src={image} alt={title} />
+                <img src={`/${newImage}`} alt={title} />
               <div className='topCard'>
                 <p>{teacher}</p>
                 {/* <span id='price'><span>{price}</span><span>هزار تومان</span></span> */}
@@ -210,7 +213,7 @@ console.log(image && image);
                       ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
                     }
                     {
-                      console.log(typeof price)
+                      // console.log(typeof price)
                     }
                 </span>
                 </div>

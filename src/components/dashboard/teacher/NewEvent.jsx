@@ -111,98 +111,188 @@ function NewEvent() {
         }
     });
     
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault()
 
-        if (!imageData || !imageData2) { 
-            showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
-            return;
-        }
-        if (!video) { 
-            showToast('ویدیویی انتخاب نشده است!', 'error');
-            return;
-        }
+    //     if (!imageData || !imageData2) { 
+    //         showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
+    //         return;
+    //     }
+    //     if (!video) { 
+    //         showToast('ویدیویی انتخاب نشده است!', 'error');
+    //         return;
+    //     }
 
-        const formData = new FormData();
-        formData.append('files', imageData); // first pic
-        formData.append('files', imageData2); // first pic
+    //     const formData = new FormData();
+    //     formData.append('files', imageData); // first pic
+    //     formData.append('files', imageData2); // first pic
 
 
-        try {
-            axios.post('http://localhost:3001/upload/multiple/2', formData, {
-            headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
-            .then(response => {
-                const imagePath1 = response.data.paths[0].split(`\\`).join("/");
-                const imagePath2 = response.data.paths[1].split(`\\`).join("/");
+    //     try {
+    //         axios.post('http://localhost:3001/upload/multiple/2', formData, {
+    //         headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         })
+    //         .then(response => {
+    //             const imagePath1 = response.data.paths[0].split(`\\`).join("/");
+    //             const imagePath2 = response.data.paths[1].split(`\\`).join("/");
 
-                setImagePath(imagePath1);
-                setImagePath2(imagePath2);
+    //             setImagePath(imagePath1);
+    //             setImagePath2(imagePath2);
 
-                console.log(imagePath1);
-                console.log(imagePath2);
-            })
-            .catch(error => {
-                // Handle the error
-                console.error(error.response ? error.response.data : error.message);
-            });
+    //             console.log(imagePath1);
+    //             console.log(imagePath2);
+    //         })
+    //         .catch(error => {
+    //             // Handle the error
+    //             console.error(error.response ? error.response.data : error.message);
+    //         });
 
             
-            const formData2 = new FormData();
-            formData2.append('videoData', video);
+    //         const formData2 = new FormData();
+    //         formData2.append('videoData', video);
 
-            try {
-                const response = await axios.post('http://localhost:3001/upload/video', formData2, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                });
+    //         try {
+    //             const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+    //                 headers: {
+    //                     'Content-Type': 'multipart/form-data',
+    //                 },
+    //             });
     
-                const videoPath3 = response.data.path.split(`\\`).join("/");
-                setVideoPath3(videoPath3)
-            } catch (error) {
-                console.error('Error uploading video:', error.response ? error.response.data : error.message);
-                // Handle the error as needed
-            }
-            showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-            axios.post(`http://localhost:3001/dashboard/events/add`, {
-                category: category,
-                title: title,
-                image: imagePath,
-                teacherFirstName: authorName,
-                teacherLastName: authorLastName,
-                price: price,
-                discount: discount,
-                title_description1: qeustion1,
-                description1: answer1,
-                title_description2: qeustion2,
-                description2: answer2,
-                title_description3: qeustion3,
-                description3: answer3,
-                title_description4: qeustion4,
-                description4: answer4,
-                videoSrc: videoPath3,
-                thumbnail: imagePath2,
-                place: place,
-                date: time,
-                detailSubtitle: subtitle,
-                Detail_Head_Title: shortName
-            })
-            .then(response => {
-                showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
-                console.log(response);
-            })
-            .catch(error => {
-                console.error('Error:', error.response ? error.response.data : error.message);
-            });
-        } catch (error) {
-            console.error('Error:', error.response ? error.response.data : error.message);
-            showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
-        }
+    //             const videoPath3 = response.data.path.split(`\\`).join("/");
+    //             setVideoPath3(videoPath3)
+    //         } catch (error) {
+    //             console.error('Error uploading video:', error.response ? error.response.data : error.message);
+    //             // Handle the error as needed
+    //         }
+    //         showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+    //         axios.post(`http://localhost:3001/dashboard/events/add`, {
+    //             category: category,
+    //             title: title,
+    //             image: imagePath,
+    //             teacherFirstName: authorName,
+    //             teacherLastName: authorLastName,
+    //             price: price,
+    //             discount: discount,
+    //             title_description1: qeustion1,
+    //             description1: answer1,
+    //             title_description2: qeustion2,
+    //             description2: answer2,
+    //             title_description3: qeustion3,
+    //             description3: answer3,
+    //             title_description4: qeustion4,
+    //             description4: answer4,
+    //             videoSrc: videoPath3,
+    //             thumbnail: imagePath2,
+    //             place: place,
+    //             date: time,
+    //             detailSubtitle: subtitle,
+    //             Detail_Head_Title: shortName
+    //         })
+    //         .then(response => {
+    //             showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
+    //             console.log(response);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error.response ? error.response.data : error.message);
+    //         });
+    //     } catch (error) {
+    //         console.error('Error:', error.response ? error.response.data : error.message);
+    //         showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
+    //     }
         
-    }
+    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+      
+        try {
+          // Check if images and video are selected
+          if (!imageData || !imageData2) {
+            showToast('لطفاً یک تصویر را انتخاب کنید.', 'error');
+            return;
+          }
+          if (!video) {
+            showToast('ویدیویی انتخاب نشده است!', 'error');
+            return;
+          }
+      
+          // Create an array of promises for image uploads
+          const imageUploadPromises = [imageData, imageData2].map((imageData) => {
+            const formData = new FormData();
+            formData.append('files', imageData);
+            return axios.post('http://localhost:3001/upload/multiple/2', formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            });
+          });
+      
+          // Wait for all image uploads to complete
+          const imageUploadResponses = await Promise.all(imageUploadPromises);
+      
+          // Process image upload responses
+          const imagePath1 = imageUploadResponses[0].data.paths[0].split('\\').join('/');
+          const imagePath2 = imageUploadResponses[1].data.paths[0].split('\\').join('/');
+      
+          // Set image paths in state
+          setImagePath(imagePath1);
+          setImagePath2(imagePath2);
+      
+          console.log(imagePath1);
+          console.log(imagePath2);
+      
+          // Upload video
+          const formData2 = new FormData();
+          formData2.append('videoData', video);
+      
+          const videoUploadResponse = await axios.post('http://localhost:3001/upload/video', formData2, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+      
+          // Set video path in state
+          const videoPath3 = videoUploadResponse.data.path.split('\\').join('/');
+          setVideoPath3(videoPath3);
+      
+          console.log(videoPath3);
+      
+          // Make the final Axios call
+          const response = await axios.post('http://localhost:3001/dashboard/events/add', {
+            category: category,
+            title: title,
+            image: imagePath1,
+            teacherFirstName: authorName,
+            teacherLastName: authorLastName,
+            price: price,
+            discount: discount,
+            title_description1: qeustion1,
+            description1: answer1,
+            title_description2: qeustion2,
+            description2: answer2,
+            title_description3: qeustion3,
+            description3: answer3,
+            title_description4: qeustion4,
+            description4: answer4,
+            videoSrc: videoPath3,
+            thumbnail: imagePath2,
+            place: place,
+            date: date,
+            time: time,
+            detailSubtitle: subtitle,
+            Detail_Head_Title: shortName,
+          });
+      
+          showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+          showToast('بلاگ جدید با موفقیت ثبت شد!', 'success');
+          console.log(response);
+        } catch (error) {
+          console.error('Error:', error.response ? error.response.data : error.message);
+          showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
+        }
+      };
+      
 
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
@@ -321,8 +411,8 @@ function NewEvent() {
             </div>
             {/* pic */}
             <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
-            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال-ماه-روز"} title={'تاریخ'} type={'text'} width={'100%'} />
-            <InputContact id={'time'} setVariable={setTime} variable={time} title={'ساعت'} type={'text'} width={'100%'} />
+            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال ماه روز برای مثال 2024 10 5"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"ساعت دقیقه ثانیه برای مثال ساعت 9 میشود: 21 00 00"} title={'ساعت'} type={'text'} width={'100%'} />
 
             <button
                 className='login_Btn_No_Hid'
