@@ -9,9 +9,15 @@ import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
+import formidable from 'formidable';
 import 'dotenv/config';
 
 
+const uploadDir = path.join(process.cwd(), 'public/assets/uploads/videos');
+// Ensure the upload directory exists
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 const app = express();
 const PORT = 3001;
@@ -33,17 +39,20 @@ const db = mysql.createPool({
     database: 'sadra-db-core',
 });
 
+app.get('/', async (req, res) => {
+    res.send("LEAVE NOW !!!!");
+});
+
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        // Your destination logic here
         cb(null, "public/assets/uploads");
     },
     filename: function (req, file, cb) {
-        const whiteListFormats = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
+        const whiteListFormats = ["image/png", "image/jpg", "image/jpeg", "image/webp", "video/mp4", "video/webm", "video/ogg", "video/mkv", "video/avi"];
         if (whiteListFormats.includes(file.mimetype)) {
             const format = path.extname(file.originalname);
-            const uniqueFilename = uuidv4() + format; // Generate a unique filename using uuid
+            const uniqueFilename = uuidv4() + format;
             cb(null, uniqueFilename);
         } else {
             console.log("Invalid file type");
@@ -51,8 +60,8 @@ const storage = multer.diskStorage({
     },
 });
 
+const upload = multer({ storage: storage, limits: { fileSize: 10 * 1000 * 1000 } });
 
-const upload = multer({ storage: storage, limits:{ fileSize: 3 * 1000 * 1000 } });
 
 app.get('/blog/data', async (req, res) => {
     try {
@@ -339,7 +348,7 @@ app.get('/dashboard/blogs/:tid', async (req, res) => {
 
 app.get('/fullDetail/:id', async (req, res) => {
     const id = req.params.id
-    const TName = await db.query(`SELECT * FROM users WHERE id = ${id}`)
+    const TName = await db.query(`SELECT * FROM users WHERE id = 11`)
     res.json(TName).status(200)
 });
 
@@ -405,25 +414,170 @@ app.post('/dashboard/blogs/add', async (req, res) => {
     res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
 });
 
+app.post('/dashboard/events/add', async (req, res) => {
+    const {
+        category,
+        title,
+        image,
+        teacherFirstName,
+        teacherLastName,
+        price,
+        discount,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail,
+        place,
+        date,
+        detailSubtitle,
+        Detail_Head_Title
+    } = req.body;
+    console.log(
+        category,
+        title,
+        image,
+        teacherFirstName,
+        teacherLastName,
+        price,
+        discount,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail,
+        place,
+        date,
+        detailSubtitle,
+        Detail_Head_Title
+    );
+
+    await db.query(`
+        INSERT INTO events 
+        (category,
+        title,
+        image,
+        teacherFirstName,
+        teacherLastName,
+        price,
+        discount,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail,
+        place,
+        date,
+        detailSubtitle,
+        Detail_Head_Title)
+        VALUES 
+        ('${category}', 
+        '${date}', 
+        '${title}', 
+        '${image}', 
+        '${teacherFirstName}', 
+        '${teacherLastName}', 
+        '${price}', 
+        '${discount}', 
+        '${title_description1}', 
+        '${description1}', 
+        '${title_description2}', 
+        '${description2}', 
+        '${title_description3}', 
+        '${description3}', 
+        '${title_description4}', 
+        '${description4}', 
+        '${videoSrc}',
+        '${thumbnail}',
+        '${place}', 
+        '${date}', 
+        '${detailSubtitle}', 
+        '${Detail_Head_Title}')
+    `);
+    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
+});
+
+// app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
+//     if (req.file) {
+//         const { filename, path } = req.file;
+//         res.json({ success: true, message: 'File uploaded successfully', filename, path });
+//     } else {
+//         next(req.fileError);
+//     }
+// });
+// app.post('/upload', upload.array('files', 3), (req, res) => {
+//     const filePaths = req.files.map(file => file.path);
+
+//     res.json({ success: true, paths: filePaths });
+// });
 // Define your routes
-app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
-    // Handling file upload
+
+app.post('/upload/single', upload.single('file'), (req, res, next) => {
     if (req.file) {
         const { filename, path } = req.file;
         res.json({ success: true, message: 'File uploaded successfully', filename, path });
     } else {
-      // If no file is uploaded, Multer would have handled the error
-      // Pass the error to the error handling middleware
         next(req.fileError);
     }
 });
-app.post('/upload', upload.array('files', 3), (req, res) => {
-    // req.files will contain an array of files
+
+app.post('/upload/multiple/2', upload.array('files', 2), (req, res) => {
     const filePaths = req.files.map(file => file.path);
-    
-    // Process the file paths or save them to the database as needed
 
     res.json({ success: true, paths: filePaths });
+});
+
+app.post('/upload/multiple/3', upload.array('files', 3), (req, res) => {
+    const filePaths = req.files.map(file => file.path);
+
+    res.json({ success: true, paths: filePaths });
+});
+
+
+
+const storage2 = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "public/assets/uploads/videos");
+    },
+    filename: function (req, file, cb) {
+        const whiteListFormats = ["video/mp4", "video/webm", "video/ogg", "video/mkv", "video/avi"];
+        if (whiteListFormats.includes(file.mimetype)) {
+            const format = path.extname(file.originalname);
+            const uniqueFilename = uuidv4() + format;
+            cb(null, uniqueFilename);
+        } else {
+            console.log("Invalid file type");
+        }
+    },
+});
+
+const uploadVideo = multer({ storage: storage2, limits: { fileSize: 10 * 1000 * 1000 }, dest: uploadDir });
+
+app.post('/upload/video', uploadVideo.single('videoData'), (req, res) => {
+    if (req.file) {
+        const { filename, path, originalname } = req.file;
+        const extname = originalname.split(".").splice(-1)[0]
+        const finalName = filename + '.' + extname
+        res.json({ success: true, message: 'Video uploaded successfully', finalName, path });
+    } else {
+        // If no video file is uploaded, multer would have handled the error
+        res.status(400).json({ success: false, message: 'No video file provided' });
+    }
 });
 
 // Error handling middleware

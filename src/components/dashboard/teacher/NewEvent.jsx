@@ -40,6 +40,7 @@ function NewEvent() {
     const [users, setUsers] = useState([]);
     
     const [imageData, setImageData] = useState('');
+    const [imageData2, setImageData2] = useState('');
     
     const [title, setTitle] = useState(''); //1
     const [shortName, setShortName] = useState(''); //2
@@ -67,6 +68,9 @@ function NewEvent() {
     const [answer4, setAnswer4] = useState(''); //16
 
     const [video, setVideo] = useState(null); //17
+    const [fileName3, setFileName3] = useState('');//17
+    const [videoPath3, setVideoPath3] = useState('');//17
+    const [newVideoPath3, setNewVideoPath3] = useState('');//17
 
     const [fileName2, setFileName2] = useState(''); //18
     const [imagePath2, setImagePath2] = useState(''); //18
@@ -80,21 +84,6 @@ function NewEvent() {
 
     const [authorName, setAuthorName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
-    const [hashtags, setHashtags] = useState('');
-    const [detailsDescription1, setDetailsDescription1] = useState('');
-    const [detailsDescription2, setDetailsDescription2] = useState('');
-    const [detailsDescription3, setDetailsDescription3] = useState('');
-    const [descriptionImage1, setDescriptionImage1] = useState('');
-    const [descriptionImage2, setDescriptionImage2] = useState('');
-    const [detailsDescription4, setDetailsDescription4] = useState('');
-    const [detailsDescription5, setDetailsDescription5] = useState('');
-    const [timeToRead, setTimeToRead] = useState('');
-    
-    const [fileName3, setFileName3] = useState('');
-    
-    const [imagePath3, setImagePath3] = useState('');
-    
-    const [newImagePath3, setNewImagePath3] = useState('');
 
     const onDropImage1 = (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -104,7 +93,7 @@ function NewEvent() {
     
     const onDropImage2 = (acceptedFiles) => {
         const file = acceptedFiles[0];
-        setDescriptionImage1(file);
+        setImageData2(file);
         setFileName2(file.name);
     };
     
@@ -116,57 +105,92 @@ function NewEvent() {
         maxFiles: 1,
         maxSize: 10485760, // 10MB in bytes
         onDrop: (acceptedFiles) => {
-            const selectedVideo = acceptedFiles[0];
-            setVideo(selectedVideo);
-            setFileName3(selectedVideo.name);
-        },
+            if (acceptedFiles && acceptedFiles.length > 0) {
+                const selectedVideo = acceptedFiles[0];
+                setVideo(selectedVideo);
+                setFileName3(selectedVideo.name || 'Untitled Video');
+            } else {
+                console.error('No video file selected');
+            }
+        }
     });
     
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!imageData) { 
+        if (!imageData || !imageData2) { 
             showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
+            return;
+        }
+        if (!video) { 
+            showToast('ویدیویی انتخاب نشده است!', 'error');
             return;
         }
 
         const formData = new FormData();
-        formData.append('files', imageData);
-        formData.append('files', descriptionImage1);
-        formData.append('files', descriptionImage2);
+        formData.append('files', imageData); // first pic
+        formData.append('files', imageData2); // first pic
+
 
         try {
-            const response = await axios.post('http://localhost:3001/upload', formData, {
-                headers: {
+            axios.post('http://localhost:3001/upload/multiple/2', formData, {
+            headers: {
                     'Content-Type': 'multipart/form-data',
                 },
+            })
+            .then(response => {
+                const imagePath1 = response.data.paths[0].split(`\\`).join("/");
+                const imagePath2 = response.data.paths[1].split(`\\`).join("/");
+
+                setImagePath(imagePath1);
+                setImagePath2(imagePath2);
+            })
+            .catch(error => {
+                // Handle the error
+                console.error(error.response ? error.response.data : error.message);
             });
-        
-            const imagePath1 = response.data.paths[0].split(`\\`).join("/");
-            const imagePath2 = response.data.paths[1].split(`\\`).join("/");
-            const imagePath3 = response.data.paths[2].split(`\\`).join("/");
-        
-            setImagePath(imagePath1);
-            setImagePath2(imagePath2);
-            setImagePath3(imagePath3);
-        
+
+            
+            const formData2 = new FormData();
+            formData2.append('videoData', video);
+
+            try {
+                const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+    
+                const videoPath3 = response.data.path.split(`\\`).join("/");
+                setVideoPath3(videoPath3)
+            } catch (error) {
+                console.error('Error uploading video:', error.response ? error.response.data : error.message);
+                // Handle the error as needed
+            }
+            
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-            axios.post(`http://localhost:3001/dashboard/blogs/add`, {
-                imageData: imagePath1,
-                date: moment().locale('fa').format('YYYY-MM-DD'),
+            axios.post(`http://localhost:3001/dashboard/events/add`, {
+                category: category,
                 title: title,
-                description: description,
-                authorName: authorName,
-                authorLastName: authorLastName,
-                hashtags: hashtags,
-                detailsDescription1: detailsDescription1,
-                detailsDescription2: detailsDescription2,
-                descriptionImage1: imagePath2,
-                descriptionImage2: imagePath3,
-                detailsDescription3: detailsDescription3,
-                detailsDescription4: detailsDescription4,
-                detailsDescription5: detailsDescription5,
-                timeToRead: timeToRead
+                image: imageData,
+                teacherFirstName: authorName,
+                teacherLastName: authorLastName,
+                price: price,
+                discount: discount,
+                title_description1: qeustion1,
+                description1: answer1,
+                title_description2: qeustion2,
+                description2: answer2,
+                title_description3: qeustion3,
+                description3: answer3,
+                title_description4: qeustion4,
+                description4: answer4,
+                videoSrc: videoPath3,
+                thumbnail: imagePath2,
+                place: place,
+                date: time,
+                detailSubtitle: subtitle,
+                Detail_Head_Title: shortName
             })
             .then(response => {
                 showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
@@ -210,9 +234,9 @@ function NewEvent() {
                 <InputContact id={'question1'} setVariable={setQeustion1} variable={qeustion1} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='detail2' style={{cursor:"pointer"}}>توضیحات شماره 1</label>
+                <label htmlFor='answer1' style={{cursor:"pointer"}}>توضیحات شماره 1</label>
                 <textarea cols="30" rows="5" 
-                    id='detail2'
+                    id='answer1'
                     className='textArea'
                     value={answer1}
                     onChange={(e) => setAnswer1(e.target.value)}
@@ -225,9 +249,9 @@ function NewEvent() {
                 <InputContact id={'question2'} setVariable={setQeustion2} variable={qeustion2} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='detail3' style={{cursor:"pointer"}}>توضیحات شماره 2</label>
+                <label htmlFor='answer2' style={{cursor:"pointer"}}>توضیحات شماره 2</label>
                 <textarea cols="30" rows="5" 
-                    id='detail3'
+                    id='answer2'
                     className='textArea'
                     value={answer2}
                     onChange={(e) => setAnswer2(e.target.value)}
@@ -240,9 +264,9 @@ function NewEvent() {
                 <InputContact id={'question3'} setVariable={setQeustion3} variable={qeustion3} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='detail3' style={{cursor:"pointer"}}>توضیحات شماره 3</label>
+                <label htmlFor='answer3' style={{cursor:"pointer"}}>توضیحات شماره 3</label>
                 <textarea cols="30" rows="5" 
-                    id='detail3'
+                    id='answer3'
                     className='textArea'
                     value={answer3}
                     onChange={(e) => setAnswer3(e.target.value)}
@@ -255,9 +279,9 @@ function NewEvent() {
                 <InputContact id={'question4'} setVariable={setQeustion4} variable={qeustion4} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='detail3' style={{cursor:"pointer"}}>توضیحات شماره 4</label>
+                <label htmlFor='answer4' style={{cursor:"pointer"}}>توضیحات شماره 4</label>
                 <textarea cols="30" rows="5" 
-                    id='detail3'
+                    id='answer4'
                     className='textArea'
                     value={answer4}
                     onChange={(e) => setAnswer4(e.target.value)}
@@ -268,9 +292,9 @@ function NewEvent() {
             <div>
                 <p>فیلم معرفی</p>
                 <div {...getRootPropsImage3()} style={dropzoneStyle}>
-                    <input {...getInputPropsImage3()} />
+                    <input {...getInputPropsImage3()} accept='video/*' />
                     <p>ویدئو رویداد را انتخاب یا اینجا بکشید باید کمتر از 10 مگابایت باشد (فقط یک ویدئو)</p>
-                    <p>باید از یکی از این پسوند ها باشد: ( mp4, webm, ogg )</p>
+                    <p>باید از یکی از این پسوند ها باشد: ( mp4, webm, ogg, mkv, avi )</p>
                     {fileName3 && (
                         <p style={{ marginTop: '10px' }}>
                             نام فایل انتخابی: {fileName3}
@@ -298,8 +322,8 @@ function NewEvent() {
                 </div>
             </div>
             {/* pic */}
-            <InputContact id={'place'} setVariable={setDescription} variable={description} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
-            <InputContact id={'time'} setVariable={setDescription} variable={description} subTitle={"سال، ماه، روز، ساعت، دقیقه، ثانیه"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
+            <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"سال، ماه، روز، ساعت، دقیقه، ثانیه"} title={'تاریخ'} type={'text'} width={'100%'} />
 
             <button
                 className='login_Btn_No_Hid'
