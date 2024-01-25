@@ -346,9 +346,15 @@ app.get('/dashboard/blogs/:tid', async (req, res) => {
     res.json(blogs).status(200)
 });
 
+app.get('/TeacherUsers/data/:id', async (req, res) => {
+    const { id } = req.params
+    const TName = await db.query(`SELECT * FROM users WHERE id = ${id}`)
+    res.json(TName).status(200)
+});
+
 app.get('/fullDetail/:id', async (req, res) => {
     const id = req.params.id
-    const TName = await db.query(`SELECT * FROM users WHERE id = 11`)
+    const TName = await db.query(`SELECT * FROM users WHERE id = ${id}`)
     res.json(TName).status(200)
 });
 

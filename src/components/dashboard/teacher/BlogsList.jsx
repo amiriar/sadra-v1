@@ -58,65 +58,68 @@ function BlogsList() {
 
     return (
         <>
-        <div className='panelContainer'>
         {
-            userRole === "teacher" ?
-                <div className='userPanel' dir='rtl'>
-                    <div className='sideBarPanel'>
-                        <div>
-                            {
-                                categories.map((item) => (
-                                    <Link key={item.title} to={item.link}>{item.title}</Link>
-                                ))
-                            }
-                        </div>
-                        
-                        <div>
-                            <SignOutButton/>
-                        </div>
-                    </div>
-                    <div className='mainPanel'>
-                        
-                            <div className='blogCardsContainer' style={{ marginTop: "5rem", marginBottom: "2rem" }}>
-                                <Grid container spacing={3}>
-                                    {data?.map((card, index) => {
-                                        const matchedUser = matchAuthorWithUser(card.authorName, card.authorLastName);
-
-                                        return (
-                                            <Grid item key={index} xs={12} sm={6} md={4}>
-                                                <BlogCard
-                                                    id={card.id}
-                                                    imageData={card.imageData}
-                                                    date={card.date}
-                                                    title={card.title}
-                                                    description={card.description}
-                                                    authorName={card.authorName}
-                                                    authorLastName={card.authorLastName}
-                                                    authorDescription={matchedUser?.description}
-                                                    matchedUser={matchedUser}
-
-                                                    hashtags={card.hashtags}
-                                                />
-                                            </Grid>
-                                        );
-                                    })}
-                                </Grid>
+            userRole === 'teacher' ?
+            <div className='panelContainer'>
+            {
+                userRole === "teacher" ?
+                    <div className='userPanel' dir='rtl'>
+                        <div className='sideBarPanel'>
+                            <div>
+                                {
+                                    categories.map((item) => (
+                                        <Link key={item.title} to={item.link}>{item.title}</Link>
+                                    ))
+                                }
                             </div>
-                        <br />
-                        <Divider/>
-                        <br />
-                        <h3>برای ثبت بلاگ از فرم زیر استفاده کنید:</h3>
-                        <br />
-                        <>
-                            <NewBlog/>
-                        </>
+                            
+                            <div>
+                                <SignOutButton/>
+                            </div>
+                        </div>
+                        <div className='mainPanel'>
+                            <div className='blogCardsContainer' style={{ marginTop: "5rem", marginBottom: "2rem" }}>
+                                    <Grid container spacing={3}>
+                                        {data?.map((card, index) => {
+                                            const matchedUser = matchAuthorWithUser(card.authorName, card.authorLastName);
+
+                                            return (
+                                                <Grid item key={index} xs={12} sm={6} md={4}>
+                                                    <BlogCard
+                                                        id={card.id}
+                                                        imageData={card.imageData}
+                                                        date={card.date}
+                                                        title={card.title}
+                                                        description={card.description}
+                                                        authorName={card.authorName}
+                                                        authorLastName={card.authorLastName}
+                                                        authorDescription={matchedUser?.description}
+                                                        matchedUser={matchedUser}
+
+                                                        hashtags={card.hashtags}
+                                                    />
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
+                            </div>
+                            <br />
+                            <Divider/>
+                            <br />
+                            <h3>برای ثبت بلاگ از فرم زیر استفاده کنید:</h3>
+                            <br />
+                            <>
+                                <NewBlog/>
+                            </>
+                        </div>
                     </div>
-                </div>
+                :
+                <h2>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h2>
+            }
+            </div>
             :
-            <h2>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h2>
+            <h3>یک بار از حساب کاربری خود خارج شوید و دوباره وارد شوید.</h3>
         }
-        </div>
-        
         </>
     )
 }

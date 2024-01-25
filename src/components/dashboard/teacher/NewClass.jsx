@@ -213,7 +213,7 @@ function NewClass() {
             <InputContact id={'title'} setVariable={setTitle} variable={title} title={'عنوان رویداد'} type={'text'} width={'100%'} />
             <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
             <InputContact id={'level'} setVariable={setLevel} variable={level} subTitle={"سخت، متوسط، آسان"} title={'سطح دشواری'} type={'text'} width={'100%'} />
-            <InputContact id={'lessons'} setVariable={setLessons} variable={lessons} title={'تعداد دروس'} type={'text'} width={'100%'} />
+            <InputContact id={'lessons'} setVariable={setLessons} variable={lessons} title={'تعداد دروس'} type={'number'} width={'100%'} />
             <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"واحد ساعت، مانند 40"} title={'مدت زمان دوره'} type={'number'} width={'100%'} />
             <InputContact id={'price'} setVariable={setPrice} variable={price} subTitle={"براساس واحد تومان، مانند 150000"} title={'قیمت'} type={'number'} width={'100%'} />
 

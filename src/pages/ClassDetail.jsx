@@ -60,7 +60,8 @@ export default function ClassDetail() {
   const dataCard = data.length ? data?.find((item)=> item.id == classCardId) : []
   const {
     title , 
-    teacher ,
+    teacherFirstName ,
+    teacherLastName ,
     image ,
     price ,
     discount ,
@@ -192,7 +193,7 @@ export default function ClassDetail() {
           <div className='CardDetail'>
               <img src={`/${newImage}`} alt={title} />
             <div className='topCard'>
-              <p>{teacher}</p>
+              <p>{teacherFirstName} {teacherLastName}</p>
               {/* <span id='price'><span>{price}</span><span>هزار تومان</span></span> */}
               {/* test */}
       
