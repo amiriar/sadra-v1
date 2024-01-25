@@ -40,7 +40,7 @@ const Header = () => {
   const [isOpen , setIsopen] = useState(false)
 
   return (
-    <div className='NavBar'>
+    <div className='NavBar' >
       <div className='login_Btn_con'>
         {
           userId ? 
@@ -55,6 +55,7 @@ const Header = () => {
           <ul>
               <li><NavLink className='link' to={'/contact'}>تماس با ما</NavLink></li>
               <li><NavLink className='link' to={'/success'}>موفقیت دانشجویان</NavLink></li>
+              <li><NavLink className='link' to={'/employment'}>همکاری با ما</NavLink></li>
               <li><NavLink className='link' to={'/blog'}>بلاگ</NavLink></li>
               <li><NavLink className='link' to={'/events'}>رویدادها</NavLink></li>
               <li><NavLink className='link' to={'/classes'}>کلاس‌ها</NavLink></li>
