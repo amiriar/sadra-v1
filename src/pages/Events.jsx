@@ -12,6 +12,15 @@ import MenuIcon from '../components/layouts/svg/MenuIcon';
 import MobileSettingIcon from '../components/layouts/svg/MobileSettingIcon';
 // import { Box, Drawer, Typography } from '@mui/material'
 import { Drawer, Typography } from '@mui/material'
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { FaMinus } from "react-icons/fa";
+import { pink } from '@mui/material/colors';
+import Checkbox from '@mui/material/Checkbox';
+import { CiSettings } from "react-icons/ci";
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
 // Styles
@@ -63,6 +72,45 @@ const Events = () => {
   }
 ])
 
+const categories = [
+  {
+    id : 1 ,
+    title : "UI/UX طراحی",
+    quantity : 160
+  }
+  ,
+  {
+    id : 2 ,
+    title : "Graphic طراحی",
+    quantity : 90
+  }
+  ,
+  {
+    id : 3 ,
+    title : "Game طراحی",
+    quantity : 25
+  }
+  ,
+  {
+    id : 4 ,
+    title : "Front-End",
+    quantity : 5
+  }
+  ,
+  {
+    id : 5 ,
+    title : "Back-End" ,
+    quantity : 20
+  }
+  ,
+  {
+    id : 6 ,
+    title : "Data Science",
+    quantity : 65
+  }
+
+]
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -108,6 +156,7 @@ const Events = () => {
         <span id='popStyle'> {popularEvent && popularEvent.map((item , index) => <span key={index} >{`${item.title} , `}</span> )} : محبوب‌ها</span>
       </div>
 
+
     <div className='eventBody'>
       <div className='tutorialBox'>
 
@@ -139,147 +188,135 @@ const Events = () => {
 </Box>
 
 
-    </div>
-
-
-      <div className='search_container'>
-
-      {/* Sorting */}
-      <div id='text'>
-        <button onClick={statusHandler} id='menu_Btn' ><MenuIcon/></button>
-        <p>دسته‌بندی‌ ها</p>
-      </div>
-
-      <div className={status ? "sortActive" : "sortDeactive"}>
-          <ul>
-            {
-              RenderCategory.map((item , index)=>(
-                <li key={item.id} className='searchItem'>
-                  <label className='container'>
-                  <span id='lable_text'>({item.quantity})</span><span id='lable_text' dir='rtl'>{item.CatTitle}</span>
-                  <input type="checkbox"  />
-                  <span className="checkmark"></span>
-                  </label>
-                </li>
-              ))
-            }
-          </ul>
-      </div>
-
-      <div className='prices'>
-      <div id='text'>
-        <button onClick={statusHandler2} id='menu_Btn' ><MenuIcon/></button>
-        <p>قیمت</p>
-      </div>
-
-      <div className={status2 ? "sortActive" : "sortDeactive"}>
-          <ul>
-            <li className='searchItem'>
-              <label className='container'>
-              <p id='lable_text'>(18) رایگان</p>
-              <input type="checkbox"  />
-              <span className="checkmark"></span>
-              </label>
-            </li>
-            <li className='searchItem'>
-              <label className='container'>
-              <p id='lable_text'>(0) تخفیف‌دارها</p>
-              <input type="checkbox"  />
-              <span className="checkmark"></span>
-              </label>
-            </li>
-          </ul>
-      </div>
-    </div>
-
-  <div className='times'>
-      <div id='text'>
-        <button onClick={statusHandler3} id='menu_Btn' ><MenuIcon/></button>
-          <p>زمان</p>
-        </div>
-    <div className={status3 ? "sortActive" : "sortDeactive"}>
-          <ul>
-            <li className='searchItem'>
-                <label className='container'>
-                  <p id='lable_text'>(18) رویدادهای آینده</p>
-                  <input type="checkbox"  />
-                  <span className="checkmark"></span>
-                </label>
-            </li>
-            <li className='searchItem'>
-                <label className='container'>
-                  <p id='lable_text'>(18) رویدادهای گذشته </p>
-                  <input type="checkbox"  />
-                  <span className="checkmark"></span>
-                </label>
-            </li>
-          </ul>
-    </div>
-  </div>
+</div>
+<div>
 </div>
 
 
-    <button onClick={mobileSetting} id='mobile_setting'><MobileSettingIcon/></button>
-    <div className={setting ? "mobileS_active" : "mobileS_de"}>
+{/* Mobile  */}
+
+  <div className='MobileFilter'>
+  <button onClick={mobileSetting}> <CiSettings style={{width : 30 , height : 30 , color : "white"}} /></button>
+  </div>
+
+  <div className={setting ? "mobileS_active" : "mobileS_de"}>
     <Drawer anchor='left' open={setting} onClose={()=> setSetting(false)}>
           <Box p={2} width='250px' textAlign='center' role='presentation'>
-            <Typography variant='h6' component="div">
-            <ul>
-            {
-              RenderCategory.map((item , index)=>( 
-              <li key={item.id} className='searchItem'>
-              <label className='container'>
-              <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
-              <input type="checkbox"  />
-              <span className="checkmark"></span>
-              </label>
+          <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >دسته‌ بندی‌ ها</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            {categories.map(Category=>(
+              <li className='ListItems'>
+                <span> <Checkbox {...label} color="success" /> <span>({Category.quantity}) {Category.title}</span></span>
               </li>
-                  
-              ))
+            ))
             }
           </ul>
+        </AccordionDetails>
+      </Accordion>
+      
+      <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >قیمت</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رایگان</span></span></li>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>تخفیف‌دار ها</span></span></li>
+          </ul>
+        </AccordionDetails>
+      </Accordion>
 
-
-        <ul>
-          <li className='searchItem'>
-              <label className='container'>
-              <p id='lable_text'>(18) رایگان</p>
-              <input type="checkbox"  />
-              <span className="checkmark"></span>
-              </label>
-          </li>
-
-          <li className='searchItem'>
-              <label className='container'>
-              <p id='lable_text'>(18) تخفیف‌دارها</p>
-              <input type="checkbox"  />
-              <span className="checkmark"></span>
-              </label>
-          </li>
-        </ul>   
-
-
-        <ul>
-          <li className='searchItem'>
-              <label className='container'>
-                <p id='lable_text'>(18) رویدادهای آینده</p>
-                <input type="checkbox"  />
-                <span className="checkmark"></span>
-              </label>
-          </li>
-          <li className='searchItem'>
-              <label className='container'>
-                <p id='lable_text'>(18) رویدادهای گذشته </p>
-                <input type="checkbox"  />
-                <span className="checkmark"></span>
-              </label>
-          </li>
-        </ul>
-
-            </Typography>
+      <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >زمان</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رویدادهای آینده</span></span></li>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رویدادهای گذشته </span></span></li>
+          </ul>
+        </AccordionDetails>
+      </Accordion>
           </Box>
        </Drawer>
     </div>
+
+
+  
+  {/* Mobile  */}
+  <div className='FilterContainer'>
+
+      <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >دسته‌ بندی‌ ها</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            {categories.map(Category=>(
+              <li className='ListItems'>
+                <span> <Checkbox {...label} color="success" /> <span>({Category.quantity}) {Category.title}</span></span>
+              </li>
+            ))
+            }
+          </ul>
+        </AccordionDetails>
+      </Accordion>
+      
+      <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >قیمت</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رایگان</span></span></li>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>تخفیف‌دار ها</span></span></li>
+          </ul>
+        </AccordionDetails>
+      </Accordion>
+
+      <Accordion defaultExpanded sx={{background : "none"}} >
+        <AccordionSummary
+          expandIcon={<FaMinus />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+        <Typography variant="h6" sx={{fontFamily : "Yekan"}} >زمان</Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <ul>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رویدادهای آینده</span></span></li>
+            <li className='ListItems' > <span> <Checkbox {...label} color="success" /> <span>رویدادهای گذشته </span></span></li>
+          </ul>
+        </AccordionDetails>
+      </Accordion>
+
+
+  </div>
+  
 
 </div>   
 </div>
