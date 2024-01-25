@@ -120,6 +120,16 @@ app.get('/employment/data', async (req, res) => {
     }
 });
 
+app.get('/employmentAbout/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `whyus` ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/events/data', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM `events` ORDER BY `id` DESC');

@@ -111,6 +111,7 @@ const Employment = () => {
   };
   const [data , setData] = useState([]);
   const [data2 , setData2] = useState([]);
+  const [about , setAbout] = useState([]);
   useEffect(()=> {
     setValue(2)
     const fetchData = async () => {
@@ -121,13 +122,15 @@ const Employment = () => {
           const Response2 = await fetch('http://localhost:3001/jobTeam/data');
           const CardData = await Response2.json();
           setData2(CardData)
+          const res = await fetch('http://localhost:3001/employmentAbout/data');
+          const aboutData = await res.json();
+          setAbout(aboutData)
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   };
   fetchData();
   } , [])
-
   return (
     <div className='Employment_container'>
       <div className='Employment_Head'>
@@ -201,13 +204,13 @@ const Employment = () => {
           <h2>صدرا از نگاه همکاران</h2>
 
         <div className='VideoContents'>
-          
+{/*           
           {
             WhysUsDB.map(item => (
             <div key={item.id} className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
 
             ))
-          }
+          } */}
         </div>
 
       </div>
