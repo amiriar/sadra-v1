@@ -86,7 +86,7 @@ const Events = () => {
 
   const [data , setData] = useState([]);
   useEffect(()=> {
-    setValue(1)
+    setValue("1")
     const fetchData = async () => {
       try {
           const response = await fetch('http://localhost:3001/events/data');
@@ -116,17 +116,18 @@ const Events = () => {
   <TabContext value={value}>
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
       <TabList  variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" }}} onChange={handleChange}>
-      {TabHeaders.map(item => <Tab sx={{fontFamily:"Yekan, sans-serif"}} label={`${item.title}`} value={item.id} />)}
+      {TabHeaders.map(item => <Tab key={item.id} sx={{fontFamily:"Yekan, sans-serif"}} label={`${item.title}`} value={item.id.toString()} />)}
+ 
       </TabList>
     </Box>
 
     {
       TabHeaders.map((Tab) => (
-        <TabPanel value={Tab.id} key={Tab.id}>
-          <div className='event_card_info'>
+        <TabPanel key={Tab.id} value={Tab.id.toString()} >
+          <div key={Tab.id} className='event_card_info'>
                 {
                   data.filter((item)=> item.category === Tab.title).map((item)=>(
-                    <Link to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
+                    <Link key={item.id} to={`/events/${item.id}`}><EventCar key={item.id} {...item} /></Link>
                   ))
                 }
           </div>
@@ -154,7 +155,7 @@ const Events = () => {
           <ul>
             {
               RenderCategory.map((item , index)=>(
-                <li className='searchItem'>
+                <li key={item.id} className='searchItem'>
                   <label className='container'>
                   <span id='lable_text'>({item.quantity})</span><span id='lable_text' dir='rtl'>{item.CatTitle}</span>
                   <input type="checkbox"  />
@@ -227,7 +228,7 @@ const Events = () => {
             <ul>
             {
               RenderCategory.map((item , index)=>( 
-              <li className='searchItem'>
+              <li key={item.id} className='searchItem'>
               <label className='container'>
               <p id='lable_text'>({item.quantity} ) { item.CatTitle}  </p>
               <input type="checkbox"  />

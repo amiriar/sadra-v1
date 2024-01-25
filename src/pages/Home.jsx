@@ -122,6 +122,7 @@ const fetchData4 = async () => {
   fetchData4();
   } , [])
 
+
   return (
     <>
     <div className='Home'>
@@ -197,7 +198,7 @@ const fetchData4 = async () => {
   <div className='Slider'>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {commentData.map((item)=> (
-          <SwiperSlide>
+          <SwiperSlide key={item.id} >
             <p id='cardComment'>{item.comment}</p>
             <img src={item.profile} />
             <p id='cardName'>{item.name}</p>
@@ -245,13 +246,11 @@ const fetchData4 = async () => {
         </Box>
         {
           TabHeaders.map((Tab)=> (
-            <TabPanel value={Tab.id.toString()} >
+            <TabPanel key={Tab.id} value={Tab.id.toString()} >
             <div className='popCardEvent'>
               {
                 popularEvents.filter((item)=> item.category === Tab.title).map((item)=> (
-                  <>
                     <CardPopular key={item.id} {...item} />
-                  </>
                 ))
               }
             </div>
@@ -301,9 +300,9 @@ const fetchData4 = async () => {
               <div className='event_card_data' dir='rtl'>
                 {
                 window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
-                  <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                  <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
-                  <Link to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
+                  <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   ))
                 }
               </div>

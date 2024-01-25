@@ -106,12 +106,12 @@ function StudentSuccess() {
                         ) : (
                         <Paper
                             spacing={2}
-                            textAlign={'center'}
+                            textalign={'center'}
                             sx={{
                             boxSizing: 'border-box',
                             padding: '1.5rem 1.25rem',
                             textJustify: 'inter-word',
-                            textAlign: 'justify',
+                            textalign: 'justify',
                             boxShadow:
                                 '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
                             borderRadius: '0.625rem',
@@ -133,7 +133,7 @@ function StudentSuccess() {
                             </div>
                             <Typography sx={{fontSize:"1rem", lineHeight:"1.4rem", marginBottom:"0.5rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.description}</Typography>
                             <Divider/>
-                            <Typography sx={{fontSize:"1rem", textAlign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
+                            <Typography sx={{fontSize:"1rem", textalign:"left",marginTop:"0.75rem"}} className='successPostDesc' variant="body2" fontFamily={'Yekan,sans-serif'}>{item.date}</Typography>
                         </Paper>
                         )}
                     </div>
