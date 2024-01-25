@@ -1,12 +1,12 @@
-import { Divider } from '@mui/material'
-import React, { useEffect, useState } from 'react'
-import { ToastContainer } from 'react-toastify'
-import InputContact from '../../modules/input/InputContact'
-import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useDropzone } from 'react-dropzone';
+import InputContact from '../../modules/input/InputContact';
+import { ToastContainer } from 'react-toastify';
 import { showToast } from '../../modules/AuthModules/Toastify';
+import { Divider } from '@mui/material';
 
-function NewEvent() {
+function NewClass() {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,15 +20,14 @@ function NewEvent() {
                 setAuthorLastName(responseFullDetail.data[0][0].lastName)
                 setTeacher(`${authorName} ${authorLastName}`)
 
-                const responseToken3 = await axios.get('http://localhost:3001/events/data');
+                const responseToken3 = await axios.get('http://localhost:3001/classes/data');
                 setData(responseToken3.data);
-                console.log(responseToken3.data);
 
                 const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
                 setUsers(await responseToken2.data[0]);
-                console.log(responseToken2.data[0]);
             } catch (error) {
                 console.error('Error:', error.response ? error.response.data : error.message);
+                setUserRole('error');
             }
         };
         fetchData();
@@ -37,23 +36,31 @@ function NewEvent() {
     
     const [data, setData] = useState([]);
     const [users, setUsers] = useState([]);
-    const [userRole, setUserRole] = useState([]);
+    const [userRole, setUserRole] = useState('');
     
     const [imageData, setImageData] = useState('');
     const [imageData2, setImageData2] = useState('');
+
     
     const [title, setTitle] = useState(''); //1
-    const [shortName, setShortName] = useState(''); //2
-    const [category, setCategory] = useState(''); //3
-    const [subtitle, setSubTitle] = useState(''); //4
-    const [teacher, setTeacher] = useState(''); //5
+    const [teacher, setTeacher] = useState(''); //2
+    const [level, setLevel] = useState(''); //3
+    const [lessons, setLessons] = useState(''); //4
+    const [time, setTime] = useState(''); //5
+    const [price, setPrice] = useState(''); //6
 
-    const [fileName, setFileName] = useState(''); //6
-    const [newImagePath1, setNewImagePath1] = useState(''); //6
-
-    const [price, setPrice] = useState(''); //7
+    const [fileName, setFileName] = useState(''); //7
+    const [imagePath, setImagePath] = useState(''); //7
+    const [newImagePath1, setNewImagePath1] = useState(''); //7
+    
     const [discount, setDiscount] = useState(''); //8
-
+    const [shortName, setShortName] = useState(''); //9
+    const [subtitle, setSubTitle] = useState(''); //10
+    const [date, setDate] = useState(''); //11
+    const [place, setPlace] = useState(''); //12
+    const [quantity, setQuantity] = useState(''); //13
+    const [language, setLanguage] = useState(''); //14
+    
     const [qeustion1, setQeustion1] = useState(''); //9
     const [answer1, setAnswer1] = useState(''); //10
 
@@ -62,21 +69,16 @@ function NewEvent() {
     
     const [qeustion3, setQeustion3] = useState(''); //13
     const [answer3, setAnswer3] = useState(''); //14
-
+    
     const [qeustion4, setQeustion4] = useState(''); //15
     const [answer4, setAnswer4] = useState(''); //16
-
+    
     const [video, setVideo] = useState(null); //17
     const [fileName3, setFileName3] = useState('');//17
     const [videoPath3, setVideoPath3] = useState('');//17
-
+    
     const [fileName2, setFileName2] = useState(''); //18
     const [imagePath2, setImagePath2] = useState(''); //18
-
-    const [place, setPlace] = useState(''); //19
-
-    const [date, setDate] = useState(''); //20
-    const [time, setTime] = useState(''); //21
 
     const [authorName, setAuthorName] = useState('');
     const [authorLastName, setAuthorLastName] = useState('');
@@ -111,98 +113,7 @@ function NewEvent() {
         }
     });
     
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
 
-    //     if (!imageData || !imageData2) { 
-    //         showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
-    //         return;
-    //     }
-    //     if (!video) { 
-    //         showToast('ویدیویی انتخاب نشده است!', 'error');
-    //         return;
-    //     }
-
-    //     const formData = new FormData();
-    //     formData.append('files', imageData); // first pic
-    //     formData.append('files', imageData2); // first pic
-
-
-    //     try {
-    //         axios.post('http://localhost:3001/upload/multiple/2', formData, {
-    //         headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //             },
-    //         })
-    //         .then(response => {
-    //             const imagePath1 = response.data.paths[0].split(`\\`).join("/");
-    //             const imagePath2 = response.data.paths[1].split(`\\`).join("/");
-
-    //             setImagePath(imagePath1);
-    //             setImagePath2(imagePath2);
-
-    //             console.log(imagePath1);
-    //             console.log(imagePath2);
-    //         })
-    //         .catch(error => {
-    //             // Handle the error
-    //             console.error(error.response ? error.response.data : error.message);
-    //         });
-
-            
-    //         const formData2 = new FormData();
-    //         formData2.append('videoData', video);
-
-    //         try {
-    //             const response = await axios.post('http://localhost:3001/upload/video', formData2, {
-    //                 headers: {
-    //                     'Content-Type': 'multipart/form-data',
-    //                 },
-    //             });
-    
-    //             const videoPath3 = response.data.path.split(`\\`).join("/");
-    //             setVideoPath3(videoPath3)
-    //         } catch (error) {
-    //             console.error('Error uploading video:', error.response ? error.response.data : error.message);
-    //             // Handle the error as needed
-    //         }
-    //         showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-    //         axios.post(`http://localhost:3001/dashboard/events/add`, {
-    //             category: category,
-    //             title: title,
-    //             image: imagePath,
-    //             teacherFirstName: authorName,
-    //             teacherLastName: authorLastName,
-    //             price: price,
-    //             discount: discount,
-    //             title_description1: qeustion1,
-    //             description1: answer1,
-    //             title_description2: qeustion2,
-    //             description2: answer2,
-    //             title_description3: qeustion3,
-    //             description3: answer3,
-    //             title_description4: qeustion4,
-    //             description4: answer4,
-    //             videoSrc: videoPath3,
-    //             thumbnail: imagePath2,
-    //             place: place,
-    //             date: time,
-    //             detailSubtitle: subtitle,
-    //             Detail_Head_Title: shortName
-    //         })
-    //         .then(response => {
-    //             showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
-    //             console.log(response);
-    //         })
-    //         .catch(error => {
-    //             console.error('Error:', error.response ? error.response.data : error.message);
-    //         });
-    //     } catch (error) {
-    //         console.error('Error:', error.response ? error.response.data : error.message);
-    //         showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
-    //     }
-        
-    // }
     const handleSubmit = async (e) => {
         e.preventDefault();
         
@@ -218,7 +129,7 @@ function NewEvent() {
             }
         
           // Create an array of promises for image uploads
-        const imageUploadPromises = [imageData, imageData2].map((imageData) => {
+            const imageUploadPromises = [imageData, imageData2].map((imageData) => {
             const formData = new FormData();
             formData.append('files', imageData);
             return axios.post('http://localhost:3001/upload/multiple/2', formData, {
@@ -257,16 +168,27 @@ function NewEvent() {
         setVideoPath3(videoPath3);
 
         console.log(videoPath3);
+        console.log('all:'+
+        title, teacher, level, lessons, time, price, discount, shortName, subtitle, date, place, quantity, language, qeustion1, answer1, qeustion2, answer2, qeustion3, answer3, qeustion4, answer4, fileName2, authorName, authorLastName
+);
     
-          // Make the final Axios call
-        const response = await axios.post('http://localhost:3001/dashboard/events/add', {
-            category: category,
+        //   Make the final Axios call
+        const response = await axios.post('http://localhost:3001/dashboard/classes/add', {
             title: title,
-            image: imagePath1,
             teacherFirstName: authorName,
             teacherLastName: authorLastName,
+            level: level,
+            lessons: lessons,
             price: price,
+            image: imagePath,
+            time: time,
             discount: discount,
+            Detail_Head_Title: shortName,
+            detailSubtitle: subtitle,
+            date: date,
+            place: place,
+            quantity: quantity,
+            language: language,
             title_description1: qeustion1,
             description1: answer1,
             title_description2: qeustion2,
@@ -277,11 +199,6 @@ function NewEvent() {
             description4: answer4,
             videoSrc: videoPath3,
             thumbnail: imagePath2,
-            place: place,
-            date: date,
-            time: time,
-            detailSubtitle: subtitle,
-            Detail_Head_Title: shortName,
         });
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
             showToast('بلاگ جدید با موفقیت ثبت شد!', 'success');
@@ -289,20 +206,20 @@ function NewEvent() {
             console.error('Error:', error.response ? error.response.data : error.message);
             showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
         }
-    };
-    
+    }
 
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
             <InputContact id={'title'} setVariable={setTitle} variable={title} title={'عنوان رویداد'} type={'text'} width={'100%'} />
-            <InputContact id={'category'} setVariable={setCategory} variable={category} subTitle={"رویدادها یا مدرس‌ها یا دوره‌ها"} title={'دسته بندی'} type={'text'} width={'100%'} />
-            <InputContact id={'headSubTitle'} setVariable={setShortName} variable={shortName} subTitle={"مانند طراحی قالب یا..."} title={'نام کئتاه رویداد'} type={'text'} width={'100%'} />
             <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
-            <InputContact id={'detailSubtitle'} setVariable={setSubTitle} variable={subtitle} title={'اطلاعات کوتاه رویداد'} type={'text'} width={'100%'} />
-            
+            <InputContact id={'level'} setVariable={setLevel} variable={level} subTitle={"سخت، متوسط، آسان"} title={'سطح دشواری'} type={'text'} width={'100%'} />
+            <InputContact id={'lessons'} setVariable={setLessons} variable={lessons} title={'تعداد دروس'} type={'text'} width={'100%'} />
+            <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"واحد ساعت، مانند 40"} title={'مدت زمان دوره'} type={'number'} width={'100%'} />
+            <InputContact id={'price'} setVariable={setPrice} variable={price} subTitle={"براساس واحد تومان، مانند 150000"} title={'قیمت'} type={'number'} width={'100%'} />
+
             <div {...getRootPropsImage1()} style={dropzoneStyle}>
                 <input {...getInputPropsImage1()} />
-                <p>تصویر معرفی رویداد را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
+                <p>تصویر معرفی کلاس را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
                 <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
                 {fileName && (
                     <p style={{ marginTop: '10px' }}>
@@ -310,13 +227,19 @@ function NewEvent() {
                     </p>
                 )}
             </div>
-            {/* <Divider/> */}
-            {/* <p>اطلاعات اصلی:</p> */}
-            <InputContact id={'price'} setVariable={setPrice} variable={price} title={'قیمت'} type={'number'} width={'100%'} />
-            <InputContact id={'discount'} setVariable={setDiscount} variable={discount} subTitle={"بر اساس درصد"} title={'تخفیف'} type={'text'} width={'100%'} />
 
+            <InputContact id={'discount'} setVariable={setDiscount} variable={discount} subTitle={"بر اساس درصد"} title={'تخفیف'} type={'text'} width={'100%'} />
+            <InputContact id={'headSubTitle'} setVariable={setShortName} variable={shortName} subTitle={"مانند طراحی قالب یا..."} title={'نام کوتاه رویداد'} type={'text'} width={'100%'} />
+            <InputContact id={'detailSubtitle'} setVariable={setSubTitle} variable={subtitle} title={'اطلاعات کوتاه رویداد'} type={'text'} width={'100%'} />
+            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال ماه روز برای مثال : 2024 10 5"} title={'تاریخ'} type={'text'} width={'100%'} />
+            <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
+            {/* <InputContact id={'quantity'} setVariable={setQuantity} variable={quantity} title={'تعداد دروس'} type={'number'} width={'100%'} /> */}
+            <InputContact id={'language'} setVariable={setLanguage} variable={language} subTitle={"فارسی، انگلیسی و..."} title={'زبان'} type={'text'} width={'100%'} />
+
+            <Divider/>
+            <h3>سوال ها</h3>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='question1' style={{cursor:"pointer"}}>عنوان سوال شماره 1 <span style={{color:"#667085", cursor:"text"}}>( مانند تحقیقات مبانی و طراحی UX )</span></label>
+                <label htmlFor='question1' style={{cursor:"pointer"}}>عنوان شماره 1 <span style={{color:"#667085", cursor:"text"}}>( مانند تحقیقات مبانی و طراحی UX )</span></label>
                 <InputContact id={'question1'} setVariable={setQeustion1} variable={qeustion1} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
@@ -331,7 +254,7 @@ function NewEvent() {
             </div>
 
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='question2' style={{cursor:"pointer"}}>عنوان سوال شماره 2 <span style={{color:"#667085", cursor:"text"}}>( مانند مفهوم نمونه سازی Low-Fidelity )</span></label>
+                <label htmlFor='question2' style={{cursor:"pointer"}}>عنوان شماره 2 <span style={{color:"#667085", cursor:"text"}}>( مانند مفهوم نمونه سازی Low-Fidelity )</span></label>
                 <InputContact id={'question2'} setVariable={setQeustion2} variable={qeustion2} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
@@ -346,7 +269,7 @@ function NewEvent() {
             </div>
 
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='question3' style={{cursor:"pointer"}}>عنوان سوال شماره 3 <span style={{color:"#667085", cursor:"text"}}>( مانند نمونه سازی High-Fidelity تا تجزیه و تحلیل Post-Launch )</span></label>
+                <label htmlFor='question3' style={{cursor:"pointer"}}>عنوان شماره 3 <span style={{color:"#667085", cursor:"text"}}>( مانند نمونه سازی High-Fidelity تا تجزیه و تحلیل Post-Launch )</span></label>
                 <InputContact id={'question3'} setVariable={setQeustion3} variable={qeustion3} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
@@ -361,7 +284,7 @@ function NewEvent() {
             </div>
 
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
-                <label htmlFor='question4' style={{cursor:"pointer"}}>عنوان سوال شماره 4 <span style={{color:"#667085", cursor:"text"}}>( مانند CAPSTONE - طراحی نمونه کاره )</span></label>
+                <label htmlFor='question4' style={{cursor:"pointer"}}>عنوان شماره 4 <span style={{color:"#667085", cursor:"text"}}>( مانند CAPSTONE - طراحی نمونه کاره )</span></label>
                 <InputContact id={'question4'} setVariable={setQeustion4} variable={qeustion4} type={'text'} width={'100%'} />
             </div>
             <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
@@ -374,6 +297,7 @@ function NewEvent() {
                 >
                 </textarea>
             </div>
+            <Divider/>
             {/* pic */}
             <div>
                 <p>فیلم معرفی</p>
@@ -408,9 +332,6 @@ function NewEvent() {
                 </div>
             </div>
             {/* pic */}
-            <InputContact id={'place'} setVariable={setPlace} variable={place} subTitle={"تهران یا.."} title={'محل برگزاری'} type={'text'} width={'100%'} />
-            <InputContact id={'date'} setVariable={setDate} variable={date} subTitle={"سال ماه روز برای مثال 2024 10 5"} title={'تاریخ'} type={'text'} width={'100%'} />
-            <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"ساعت دقیقه ثانیه برای مثال ساعت 9 میشود: 21 00 00"} title={'ساعت'} type={'text'} width={'100%'} />
 
             <button
                 className='login_Btn_No_Hid'
@@ -433,6 +354,7 @@ function NewEvent() {
         </form>
     )
 }
+
 const dropzoneStyle = {
     border: '2px dashed #cccccc',
     borderRadius: '4px',
@@ -441,4 +363,5 @@ const dropzoneStyle = {
     cursor: 'pointer',
     marginTop: '10px',
 };
-export default NewEvent
+
+export default NewClass

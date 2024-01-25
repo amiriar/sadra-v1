@@ -83,6 +83,7 @@ export default function ClassDetail() {
     language
   } = dataCard;
 
+  const newImage = image?.split('/').splice(1).join('/');
 
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00");
@@ -189,7 +190,7 @@ export default function ClassDetail() {
         {/* Card */}
         <div className='CardContainer'>
           <div className='CardDetail'>
-              <img src={image} alt={title} />
+              <img src={`/${newImage}`} alt={title} />
             <div className='topCard'>
               <p>{teacher}</p>
               {/* <span id='price'><span>{price}</span><span>هزار تومان</span></span> */}
@@ -200,18 +201,18 @@ export default function ClassDetail() {
                   {
                     Number(discount) ? (
                     <div>
-                    <span id="price">{price * (100 - Number(discount)) / 100 ? (
-                    <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
-                    <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
-                    <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
-                    {/* <span style={{position : "absolute" , top : -270 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{discount}%</span> */}
-                    </div>
-                    ) : (
-                        <div style={{position : "relative"}}>
-                        <span style={{ opacity : 0.5 ,position : "absolute" , top : -40 , right : 14 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -7, top : 17}} >هزارتومان</span></span>
-                        <span style={{fontWeight : 700 , fontSize : 23}} >رایگان</span>
-                        </div>
-                        )}</span>
+                      <span id="price">{price * (100 - Number(discount)) / 100 ? (
+                      <div style={{display : "flex" , flexDirection : "column" , position : "relative" , alignItems : "center" , justifyContent : "center"}}>
+                        <span>{price * (100 - Number(discount)) / 100}</span><span style={{fontSize : 12}} >هزارتومان</span>
+                        <span style={{ opacity : 0.5 , fontSize : 16 ,position : "absolute" ,top : -38 , textDecoration : "line-through" , display : "flex" , flexDirection : "column" , alignItems : "center" , justifyContent : "center"}} >{price} <span style={{position : "absolute" , top : 13}} >هزارتومان</span> </span>
+                        {/* <span style={{position : "absolute" , top : -270 , left : -14 , color : "white" , backgroundColor : "#F04438" , fontSize : 17 , padding : 5 , borderRadius : 1000 , display : "flex" , alignItems : "center"}} >{discount}%</span> */}
+                      </div>
+                      ) : (
+                            <div style={{position : "relative"}}>
+                            <span style={{ opacity : 0.5 ,position : "absolute" , top : -40 , right : 14 , fontSize : 17 , textDecoration : "line-through"}} >{price} <span style={{position : "absolute" , right : -7, top : 17}} >هزارتومان</span></span>
+                            <span style={{fontWeight : 700 , fontSize : 23}} >رایگان</span>
+                            </div>
+                          )}</span>
                     </div>
                     ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
                   }

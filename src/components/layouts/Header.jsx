@@ -17,6 +17,7 @@ import sadraLogo from '/public/sadraLogo.svg'
 const Header = () => {
 
   const [userId, setUserId] = useState(null);
+  
   useEffect(() => {
       axios.get('http://localhost:3001/dashboard/token', {withCredentials: true})
           .then(response => {
@@ -25,7 +26,6 @@ const Header = () => {
       })
       .catch(error => {
           console.error('Error:', error.response ? error.response.data : error.message);
-          setUserRole('error');
       });
   }, []); 
 

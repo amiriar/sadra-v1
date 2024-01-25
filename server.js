@@ -514,6 +514,121 @@ app.post('/dashboard/events/add', async (req, res) => {
         Detail_Head_Title} }).status(200);
 });
 
+app.post('/dashboard/classes/add', async (req, res) => {
+    const {
+        title,
+        teacherFirstName,
+        teacherLastName,
+        level,
+        lessons,
+        price,
+        image,
+        time,
+        discount,
+        Detail_Head_Title,
+        detailSubtitle,
+        date,
+        place,
+        quantity,
+        language,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail,
+    } = req.body;
+
+    await db.query(`
+    INSERT INTO classes 
+    (
+        title,
+        teacherFirstName,
+        teacherLastName,
+        level,
+        lessons,
+        price,
+        image,
+        time,
+        discount,
+        Detail_Head_Title,
+        detailSubtitle,
+        date,
+        place,
+        quantity,
+        language,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail
+    )
+    VALUES 
+    (
+        '${title}', 
+        '${teacherFirstName}', 
+        '${teacherLastName}', 
+        '${level}', 
+        '${lessons}', 
+        '${price}', 
+        '${image}', 
+        '${time}', 
+        '${discount}', 
+        '${Detail_Head_Title}', 
+        '${detailSubtitle}', 
+        '${date}', 
+        '${place}', 
+        '${quantity}', 
+        '${language}',
+        '${title_description1}',
+        '${description1}', 
+        '${title_description2}',
+        '${description2}', 
+        '${title_description3}',
+        '${description3}', 
+        '${title_description4}',
+        '${description4}', 
+        '${videoSrc}', 
+        '${thumbnail}'
+    );    
+    `);
+    res.json({ statusCode: 200, message: 'کلاس جدید با موفقیت ثبت شد !', data: {
+        title,
+        teacherFirstName,
+        teacherLastName,
+        level,
+        lessons,
+        price,
+        image,
+        time,
+        discount,
+        Detail_Head_Title,
+        detailSubtitle,
+        date,
+        place,
+        quantity,
+        language,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail} }).status(200);
+});
+
 // app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
 //     if (req.file) {
 //         const { filename, path } = req.file;

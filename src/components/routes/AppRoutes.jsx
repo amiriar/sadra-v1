@@ -20,6 +20,7 @@ import ContactUs from '../../pages/ContactUs';
 import BlogsList from '../dashboard/teacher/BlogsList';
 import NewBlogDetails from '../../pages/NewBlogDetails';
 import EventsList from '../dashboard/teacher/EventsList';
+import ClassList from '../dashboard/teacher/ClassList';
 
 const AppRoutes = () => {
     return (
@@ -45,6 +46,7 @@ const AppRoutes = () => {
                 <Route path="/contact" element={<ContactUs/>} />
                 <Route path="/dashboard/blogs" element={<BlogsList/>} />
                 <Route path="/dashboard/events" element={<EventsList/>} />
+                <Route path="/dashboard/classes" element={<ClassList/>} />
             </Routes> 
         </>
     );
