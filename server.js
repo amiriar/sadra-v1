@@ -438,6 +438,7 @@ app.post('/dashboard/events/add', async (req, res) => {
         detailSubtitle,
         Detail_Head_Title
     } = req.body;
+
     console.log(
         category,
         title,
@@ -509,7 +510,27 @@ app.post('/dashboard/events/add', async (req, res) => {
         '${detailSubtitle}', 
         '${Detail_Head_Title}')
     `);
-    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
+    res.json({ statusCode: 200, message: 'رویداد جدید با موفقیت ثبت شد !', data: {category,
+        title,
+        image,
+        teacherFirstName,
+        teacherLastName,
+        price,
+        discount,
+        title_description1,
+        description1,
+        title_description2,
+        description2,
+        title_description3,
+        description3,
+        title_description4,
+        description4,
+        videoSrc,
+        thumbnail,
+        place,
+        date,
+        detailSubtitle,
+        Detail_Head_Title} }).status(200);
 });
 
 // app.post('/upload/single', upload.single('imageData'), (req, res, next) => {

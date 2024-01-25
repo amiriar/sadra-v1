@@ -31,7 +31,6 @@ function NewEvent() {
                 setUserRole('error');
             }
         };
-    
         fetchData();
     
     }, []);
@@ -167,12 +166,12 @@ function NewEvent() {
                 console.error('Error uploading video:', error.response ? error.response.data : error.message);
                 // Handle the error as needed
             }
-            
+            console.log(imagePath);
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
             axios.post(`http://localhost:3001/dashboard/events/add`, {
                 category: category,
                 title: title,
-                image: imageData,
+                image: imagePath,
                 teacherFirstName: authorName,
                 teacherLastName: authorLastName,
                 price: price,
@@ -211,7 +210,7 @@ function NewEvent() {
             <InputContact id={'title'} setVariable={setTitle} variable={title} title={'عنوان رویداد'} type={'text'} width={'100%'} />
             <InputContact id={'category'} setVariable={setCategory} variable={category} subTitle={"رویدادها یا مدرس‌ها یا دوره‌ها"} title={'دسته بندی'} type={'text'} width={'100%'} />
             <InputContact id={'headSubTitle'} setVariable={setShortName} variable={shortName} subTitle={"مانند طراحی قالب یا..."} title={'نام کوچک رویداد'} type={'text'} width={'100%'} />
-            <InputContact id={'teacher'} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
+            <InputContact id={'teacher'} disabled={true} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
             <InputContact id={'detailSubtitle'} setVariable={setSubTitle} variable={subtitle} title={'اطلاعات کوتاه رویداد'} type={'text'} width={'100%'} />
             
             <div {...getRootPropsImage1()} style={dropzoneStyle}>

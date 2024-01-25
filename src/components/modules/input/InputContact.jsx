@@ -1,6 +1,6 @@
 import React from 'react'
 
-function InputContact({ type, title, placeholder, width, variable, setVariable, id, subTitle }) {
+function InputContact({ disabled,type, title, placeholder, width, variable, setVariable, id, subTitle }) {
     return (
         <div style={{display:'inline-flex', flexDirection:"column", gap:"0.5rem", width:width}}>
             <label htmlFor={id} style={{cursor:"pointer"}}>{title} 
@@ -8,7 +8,7 @@ function InputContact({ type, title, placeholder, width, variable, setVariable, 
                 subTitle && <span style={{color:"#667085", cursor:"text"}}> ( {subTitle} )</span>
             }
             </label>
-            <input type={type} placeholder={placeholder} style={{
+            <input disabled={disabled} type={type} placeholder={placeholder} style={{
                 padding:"1rem",
                 fontSize:"1rem",
                 borderRadius: '0.375rem',
