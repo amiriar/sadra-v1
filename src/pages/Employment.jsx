@@ -22,7 +22,6 @@ import Typography from '@mui/material/Typography';
 import { Divider, Grid } from '@mui/material';
 // DataBase
 import WhysUsDB from '../utils/WhysUsDB.json'
-import Questions from '../utils/Questions.json'
 const Employment = () => {
   const [value, setValue] = React.useState(1);
   const [tabHeader , setTabheader] = useState([
@@ -56,11 +55,63 @@ const Employment = () => {
       TabTitle : "مالی"
     }
   ])
+
+  const Questions = [
+    {
+        id : 1 ,
+        title : "فرصت‌های شغلی صدرا را از کجا ببینم؟ چطور اقدام کنم؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 2 ,
+        title : "فرایند جذب در صدرا چگونه است؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 3 ,
+        title :  "کار در صدرا چه مزایایی دارد؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 4 ,
+        title : "چطور می‌توانم محیط کار و فرهنگ صدرا را بیشتر بشناسم؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 5 ,
+        title : "چطور می‌توانم محیط کار و فرهنگ صدرا را بیشتر بشناسم؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 6 ,
+        title : "فرصت‌های شغلی صدرا را از کجا ببینم؟ چطور اقدام کنم؟",
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 7 ,
+        title : "فرایند جذب در صدرا چگونه است؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    ,
+    {
+        id : 8 ,
+        title : "کار در صدرا چه مزایایی دارد؟" ,
+        question : "می‌توانید این آگهی‌ها را در بخش «فرصت‌های شغلی در صدرا» در همین صفحه و وب‌سایت‌های کاریابی ببینید و رزومه‌تان را ارسال کنید."
+    }
+    
+]
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
   const [data , setData] = useState([]);
   const [data2 , setData2] = useState([]);
+  const [about , setAbout] = useState([]);
   useEffect(()=> {
     setValue(2)
     const fetchData = async () => {
@@ -71,13 +122,15 @@ const Employment = () => {
           const Response2 = await fetch('http://localhost:3001/jobTeam/data');
           const CardData = await Response2.json();
           setData2(CardData)
+          const res = await fetch('http://localhost:3001/employmentAbout/data');
+          const aboutData = await res.json();
+          setAbout(aboutData)
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   };
   fetchData();
   } , [])
-
   return (
     <div className='Employment_container'>
       <div className='Employment_Head'>
@@ -151,13 +204,13 @@ const Employment = () => {
           <h2>صدرا از نگاه همکاران</h2>
 
         <div className='VideoContents'>
-          
+{/*           
           {
             WhysUsDB.map(item => (
             <div key={item.id} className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
 
             ))
-          }
+          } */}
         </div>
 
       </div>

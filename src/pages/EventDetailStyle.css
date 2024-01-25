@@ -35,15 +35,13 @@
     margin: 0 auto;
     text-align: justify;
     text-justify: inter-word;
+
 }
 .info1 , .info2 , .info3 , .info4{
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    min-width: 100%;
-    max-width: 100%;
-    padding-left: 4%;
+    width: calc(100vw - 520px);
     text-align: justify;
     text-justify: inter-word;
+
 }
 .info1 h3 , .info2 h3, .info3 h3, .info4 h3 {
     color: var(--Gray-800);
@@ -133,6 +131,8 @@
     margin-bottom: 3rem;
     font-family: "Yekan";
 
+
+
 }
 .CardDetail button:hover{
     background-color: green;
@@ -185,12 +185,30 @@
     .bodyDetailContainer{
         padding: 2rem 5rem 0rem 0rem;
     }
+    .info1 , .info2 , .info3 , .info4{
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        width: calc(100vw - 500px);
+        padding-left: 4%;
+        text-align: justify;
+        text-justify: inter-word;
+    
+    }
 }
 @media (max-width : 1070px) {
     .HeadDetail{
         max-width: 100%;
         padding-left: 1%;
         width: 100%;
+    }
+    .info1 , .info2 , .info3 , .info4{
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        width: calc(100vw - 480px);
+        padding-left: 4%;
+        text-align: justify;
+        text-justify: inter-word;
+    
     }
     .CardDetail{
         border: 1px solid var(--Neutral-40);
@@ -219,6 +237,7 @@
         padding: 0px;
         max-width: 100%;
     }
+   
     .infoContainer{
         margin-top: 200px;
     }

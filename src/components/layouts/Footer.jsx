@@ -12,10 +12,11 @@ import { CiFacebook } from "react-icons/ci";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa6";
 import { CiLinkedin } from "react-icons/ci";
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div className='Footer'>
+    <div className='Footer' dir='rtl' >
       <div className='Footer_content'>
         <h1 className='Footer_text_1'>در دوره‌هایی که علاقه داری شرکت کن و رشد شغلی خودت رو ببین</h1>
         <p className='Footer_text_2'>مربیان ما همه چیز را به راحتی به شما آموزش می دهند. امروز با ثبت نام در دوره های عالی با قیمت های مقرون به صرفه، مسیر شغلی خود را بهبود ببخشید.</p>
@@ -25,8 +26,12 @@ const Footer = () => {
       </div>
 
       </div>
+      
 
       <div className='corporations'>
+
+
+      
       <ul>
         <li><Corporations1/></li>
         <li><Corporations2/></li>
@@ -38,12 +43,21 @@ const Footer = () => {
 
       <div className='detail_container'>
         <div className='More_Detail'>
-    <div className='lists'>
+        <div className='detail_right' dir='ltr' >
+          <div>
+          <h1>صدرا</h1>
+          <Logo/>
+          </div>
+          <p>صدرا یک پلتفرم یادگیری آنلاین ملی است که به هر کسی و در هر کجا دسترسی به دوره های آنلاین را ارائه می دهد.</p>
+        </div>
+
+      <div className='lists'>
+    
           <div className='Forums'>
             <ul>
               <li><h2>انجمن‌ها</h2></li>
               <li><p>دانشنامه</p></li>
-              <li><p>سوالات پرتکرار</p></li>
+              <li><Link to={"/employment"} ><p>سوالات پرتکرار</p> </Link> </li>
             </ul>
           </div>
           <div className='companiese'>
@@ -58,22 +72,16 @@ const Footer = () => {
           <div className='pages'>
             <ul>
               <li><h2>صفحات</h2></li>
-              <li><p>صفحه نخست</p></li>
-              <li><p>دوره‌ها</p></li>
-              <li><p>رویدادها</p></li>
-              <li><p>اساتید</p></li>
-              <li><p>درباره ما</p></li>
-              <li><p>آموزش در صدرا</p></li>
+              <li><Link to={"/"} ><p>صفحه نخست</p> </Link> </li>
+              <li><Link to={"/classes"} ><p>دوره‌ها</p> </Link> </li>
+              <li><Link to={"/events"} ><p>رویدادها</p> </Link> </li>
+              <li><Link><p>اساتید</p> </Link> </li>
+              <li><Link to={"/contact"} ><p>درباره ما</p> </Link> </li>
+              <li><Link to={"/employment"} ><p>آموزش در صدرا</p> </Link> </li>
             </ul>
           </div>
     </div>
-        <div className='detail_right'>
-          <div>
-          <h1>صدرا</h1>
-          <Logo/>
-          </div>
-          <p>صدرا یک پلتفرم یادگیری آنلاین ملی است که به هر کسی و در هر کجا دسترسی به دوره های آنلاین را ارائه می دهد.</p>
-        </div>
+        
 
 
         </div>
@@ -81,13 +89,16 @@ const Footer = () => {
 
       <div className='footer_end'>
         <div className='end_container'>
-          <p>Made with Love by Rwin & amir</p>
+
           <div className='socialmedia'>
             <CiFacebook className='icons' />
             <FaInstagram className='icons' />
             <FaTwitter className='icons' />
             <CiLinkedin className='icons' />
           </div>
+
+          <p>Made with ❤️ by Rwin & Amir</p>
+          
         </div>
       </div>
 
