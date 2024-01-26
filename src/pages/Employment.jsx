@@ -110,8 +110,8 @@ const Employment = () => {
     setValue(newValue);
   };
   const [data , setData] = useState([]);
-  const [data2 , setData2] = useState([]);
   const [about , setAbout] = useState([]);
+  const [jobTeam , setJobTeam] = useState([])
   useEffect(()=> {
     setValue(2)
     const fetchData = async () => {
@@ -119,19 +119,19 @@ const Employment = () => {
           const response = await fetch('http://localhost:3001/employment/data');
           const jsonData = await response.json();
           setData(jsonData);
-          const Response2 = await fetch('http://localhost:3001/jobTeam/data');
-          const CardData = await Response2.json();
-          setData2(CardData)
-          const res = await fetch('http://localhost:3001/employmentAbout/data');
-          const aboutData = await res.json();
+          const Response3 = await fetch('http://localhost:3001/employmentAbout/data');
+          const aboutData = await Response3.json();
           setAbout(aboutData)
+          const Response2 = await fetch('http://localhost:3001/employmentJobTeam/data');
+          const aboutData2 = await Response2.json();
+          setJobTeam(aboutData2)
       } catch (error) {
           console.error('Error fetching data:', error);
       }
   };
   fetchData();
   } , [])
-  console.log(about);
+
   return (
     <div className='Employment_container'>
       <div className='Employment_Head'>
@@ -205,14 +205,13 @@ const Employment = () => {
           <h2>صدرا از نگاه همکاران</h2>
 
         <div className='VideoContents'>
-{/*           
+          
           {
             about.map(item => (
-              <div key={item.id} className='videoContainer'>
-                <VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} />
-              </div>
+              <div key={item.id} className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} videoJob={item.videoJob} videoTitle={item.videoTitle} videoThumbnail={item.videoThumbnail} videoSrc={item.videoSrc} /></div>
+
             ))
-          } */}
+          }
         </div>
 
       </div>
@@ -257,7 +256,7 @@ const Employment = () => {
         <div>
     
           <Grid container spacing={2} >
-              {data2.map((item) => (
+              {jobTeam.map((item) => (
                   <Grid key={item.id} item xs={12} sm={6} md={6} lg={3}>
                     <StudentCard student={item} account={item.account}  accountLink={item.accountLink}  />
                   </Grid>

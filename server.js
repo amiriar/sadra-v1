@@ -130,6 +130,16 @@ app.get('/employmentAbout/data', async (req, res) => {
     }
 });
 
+app.get('/employmentJobTeam/data', async (req, res) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM `jobteam` ORDER BY `id` DESC');
+        res.json(rows);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.get('/events/data', async (req, res) => {
     try {
         const [rows] = await db.query('SELECT * FROM `events` ORDER BY `id` DESC');
@@ -462,14 +472,10 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
-        time,
         detailSubtitle,
         Detail_Head_Title
     } = req.body;
-
-    await db.query(`
-        INSERT INTO events 
-        (
+    console.log(
         category,
         title,
         image,
@@ -489,35 +495,13 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
-        time,
         detailSubtitle,
         Detail_Head_Title
-        )
-        VALUES 
-        ('${category}', 
-        '${title}', 
-        '${image}', 
-        '${teacherFirstName}', 
-        '${teacherLastName}', 
-        '${price}', 
-        '${discount}', 
-        '${title_description1}', 
-        '${description1}', 
-        '${title_description2}', 
-        '${description2}', 
-        '${title_description3}', 
-        '${description3}', 
-        '${title_description4}', 
-        '${description4}', 
-        '${videoSrc}',
-        '${thumbnail}',
-        '${place}', 
-        '${date}', 
-        '${time}', 
-        '${detailSubtitle}', 
-        '${Detail_Head_Title}')
-    `);
-    res.json({ statusCode: 200, message: 'رویداد جدید با موفقیت ثبت شد !', data: {category,
+    );
+
+    await db.query(`
+        INSERT INTO events 
+        (category,
         title,
         image,
         teacherFirstName,
@@ -536,9 +520,33 @@ app.post('/dashboard/events/add', async (req, res) => {
         thumbnail,
         place,
         date,
-        time,
         detailSubtitle,
-        Detail_Head_Title} }).status(200);
+        Detail_Head_Title)
+        VALUES 
+        ('${category}', 
+        '${date}', 
+        '${title}', 
+        '${image}', 
+        '${teacherFirstName}', 
+        '${teacherLastName}', 
+        '${price}', 
+        '${discount}', 
+        '${title_description1}', 
+        '${description1}', 
+        '${title_description2}', 
+        '${description2}', 
+        '${title_description3}', 
+        '${description3}', 
+        '${title_description4}', 
+        '${description4}', 
+        '${videoSrc}',
+        '${thumbnail}',
+        '${place}', 
+        '${date}', 
+        '${detailSubtitle}', 
+        '${Detail_Head_Title}')
+    `);
+    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
 });
 
 app.post('/dashboard/classes/add', async (req, res) => {
