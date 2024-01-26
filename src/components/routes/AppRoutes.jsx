@@ -21,6 +21,10 @@ import BlogsList from '../dashboard/teacher/BlogsList';
 import NewBlogDetails from '../../pages/NewBlogDetails';
 import EventsList from '../dashboard/teacher/EventsList';
 import ClassList from '../dashboard/teacher/ClassList';
+import UsersList from '../dashboard/admin/UsersList';
+import EditUser from '../dashboard/admin/EditUser';
+import EmploymentList from '../dashboard/admin/EmploymentList';
+import SuccessList from '../dashboard/admin/SuccessList';
 
 const AppRoutes = () => {
     return (
@@ -47,6 +51,11 @@ const AppRoutes = () => {
                 <Route path="/dashboard/blogs" element={<BlogsList/>} />
                 <Route path="/dashboard/events" element={<EventsList/>} />
                 <Route path="/dashboard/classes" element={<ClassList/>} />
+
+                <Route path="/dashboard/users" element={<UsersList/>} />
+                <Route path="/dashboard/users/:id" element={<EditUser/>} />
+                <Route path="/dashboard/employment" element={<EmploymentList/>} />
+                <Route path="/dashboard/student-success" element={<SuccessList/>} />
             </Routes> 
         </>
     );

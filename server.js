@@ -309,6 +309,18 @@ app.get('/dashboard/token', (req, res) => {
     res.json(decodedToken);
 });
 
+app.post('/employment/add', async (req, res) => {
+    const { branch, jobCategory, jobPlace, jobTitle, jobTime } = req.body;
+    try {
+        await db.query(`INSERT INTO careeropportunities (branch, jobCategory, jobPlace, jobTitle, jobTime)
+        VALUES('${branch}', '${jobCategory}', '${jobPlace}', '${jobTitle}', '${jobTime}')`)
+        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !'}).status(200);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook } = req.body;
     try {
@@ -340,7 +352,7 @@ app.post('/fullInfo', async (req, res) => {
 });
 
 app.get('/users/data', async (req, res) => {
-    const selectQuery = await db.query(`SELECT * FROM users`)
+    const selectQuery = await db.query('SELECT * FROM users ORDER BY `id` DESC')
     res.json(selectQuery).status(200)
 });
 
@@ -391,7 +403,6 @@ app.post('/dashboard/blogs/add', async (req, res) => {
         detailsDescription5,
         timeToRead
     } = req.body;
-    console.log(imageData, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, descriptionImage1, descriptionImage2, detailsDescription3, detailsDescription4, detailsDescription5, timeToRead);
 
     await db.query(`
         INSERT INTO blog 
@@ -661,6 +672,14 @@ app.post('/dashboard/classes/add', async (req, res) => {
 // Define your routes
 
 app.post('/upload/single', upload.single('file'), (req, res, next) => {
+    if (req.file) {
+        const { filename, path } = req.file;
+        res.json({ success: true, message: 'File uploaded successfully', filename, path });
+    } else {
+        next(req.fileError);
+    }
+});
+app.post('/upload/single/img', upload.single('imageData'), (req, res, next) => {
     if (req.file) {
         const { filename, path } = req.file;
         res.json({ success: true, message: 'File uploaded successfully', filename, path });

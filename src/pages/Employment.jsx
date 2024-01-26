@@ -21,7 +21,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { Divider, Grid } from '@mui/material';
 // DataBase
-import WhysUsDB from '../utils/WhysUsDB.json'
+// import WhysUsDB from '../utils/WhysUsDB.json'
 const Employment = () => {
   const [value, setValue] = React.useState(1);
   const [tabHeader , setTabheader] = useState([
@@ -131,6 +131,7 @@ const Employment = () => {
   };
   fetchData();
   } , [])
+  console.log(about);
   return (
     <div className='Employment_container'>
       <div className='Employment_Head'>
@@ -206,9 +207,10 @@ const Employment = () => {
         <div className='VideoContents'>
 {/*           
           {
-            WhysUsDB.map(item => (
-            <div key={item.id} className='videoContainer'><VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} /></div>
-
+            about.map(item => (
+              <div key={item.id} className='videoContainer'>
+                <VideoComponent key={item.id} UrlAutorName={item.authorName} video={item.video} />
+              </div>
             ))
           } */}
         </div>

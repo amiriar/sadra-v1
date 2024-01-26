@@ -8,6 +8,53 @@ import { showToast } from '../../modules/AuthModules/Toastify';
 
 function NewEvent() {
 
+    
+    const [data, setData] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [userRole, setUserRole] = useState([]);
+    
+    const [imageData, setImageData] = useState('');
+    const [imageData2, setImageData2] = useState('');
+    
+    const [title, setTitle] = useState(''); //1
+    const [shortName, setShortName] = useState(''); //2
+    const [category, setCategory] = useState(''); //3
+    const [subtitle, setSubTitle] = useState(''); //4
+    const [teacher, setTeacher] = useState(''); //5
+    
+    const [fileName, setFileName] = useState(''); //6
+    const [newImagePath1, setNewImagePath1] = useState(''); //6
+    
+    const [price, setPrice] = useState(''); //7
+    const [discount, setDiscount] = useState(''); //8
+    
+    const [qeustion1, setQeustion1] = useState(''); //9
+    const [answer1, setAnswer1] = useState(''); //10
+    
+    const [qeustion2, setQeustion2] = useState(''); //11
+    const [answer2, setAnswer2] = useState(''); //12
+    
+    const [qeustion3, setQeustion3] = useState(''); //13
+    const [answer3, setAnswer3] = useState(''); //14
+    
+    const [qeustion4, setQeustion4] = useState(''); //15
+    const [answer4, setAnswer4] = useState(''); //16
+    
+    const [video, setVideo] = useState(null); //17
+    const [fileName3, setFileName3] = useState('');//17
+    const [videoPath3, setVideoPath3] = useState('');//17
+    
+    const [fileName2, setFileName2] = useState(''); //18
+    const [imagePath2, setImagePath2] = useState(''); //18
+    
+    const [place, setPlace] = useState(''); //19
+    
+    const [date, setDate] = useState(''); //20
+    const [time, setTime] = useState(''); //21
+    
+    const [authorName, setAuthorName] = useState('');
+    const [authorLastName, setAuthorLastName] = useState('');
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,11 +69,9 @@ function NewEvent() {
 
                 const responseToken3 = await axios.get('http://localhost:3001/events/data');
                 setData(responseToken3.data);
-                console.log(responseToken3.data);
 
                 const responseToken2 = await axios.get('http://localhost:3001/TeacherUsers/data');
                 setUsers(await responseToken2.data[0]);
-                console.log(responseToken2.data[0]);
             } catch (error) {
                 console.error('Error:', error.response ? error.response.data : error.message);
             }
@@ -34,52 +79,10 @@ function NewEvent() {
         fetchData();
     
     }, []);
-    
-    const [data, setData] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [userRole, setUserRole] = useState([]);
-    
-    const [imageData, setImageData] = useState('');
-    const [imageData2, setImageData2] = useState('');
-    
-    const [title, setTitle] = useState(''); //1
-    const [shortName, setShortName] = useState(''); //2
-    const [category, setCategory] = useState(''); //3
-    const [subtitle, setSubTitle] = useState(''); //4
-    const [teacher, setTeacher] = useState(''); //5
 
-    const [fileName, setFileName] = useState(''); //6
-    const [newImagePath1, setNewImagePath1] = useState(''); //6
-
-    const [price, setPrice] = useState(''); //7
-    const [discount, setDiscount] = useState(''); //8
-
-    const [qeustion1, setQeustion1] = useState(''); //9
-    const [answer1, setAnswer1] = useState(''); //10
-
-    const [qeustion2, setQeustion2] = useState(''); //11
-    const [answer2, setAnswer2] = useState(''); //12
-    
-    const [qeustion3, setQeustion3] = useState(''); //13
-    const [answer3, setAnswer3] = useState(''); //14
-
-    const [qeustion4, setQeustion4] = useState(''); //15
-    const [answer4, setAnswer4] = useState(''); //16
-
-    const [video, setVideo] = useState(null); //17
-    const [fileName3, setFileName3] = useState('');//17
-    const [videoPath3, setVideoPath3] = useState('');//17
-
-    const [fileName2, setFileName2] = useState(''); //18
-    const [imagePath2, setImagePath2] = useState(''); //18
-
-    const [place, setPlace] = useState(''); //19
-
-    const [date, setDate] = useState(''); //20
-    const [time, setTime] = useState(''); //21
-
-    const [authorName, setAuthorName] = useState('');
-    const [authorLastName, setAuthorLastName] = useState('');
+    useEffect(() => {
+        setTeacher(`${authorName} ${authorLastName}`)
+    }, [authorName, authorLastName]);
 
     const onDropImage1 = (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -296,10 +299,18 @@ function NewEvent() {
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
             <InputContact id={'title'} setVariable={setTitle} variable={title} title={'عنوان رویداد'} type={'text'} width={'100%'} />
             <InputContact id={'category'} setVariable={setCategory} variable={category} subTitle={"رویدادها یا مدرس‌ها یا دوره‌ها"} title={'دسته بندی'} type={'text'} width={'100%'} />
-            <InputContact id={'headSubTitle'} setVariable={setShortName} variable={shortName} subTitle={"مانند طراحی قالب یا..."} title={'نام کئتاه رویداد'} type={'text'} width={'100%'} />
-            <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
+            <InputContact id={'headSubTitle'} setVariable={setShortName} variable={shortName} subTitle={"مانند طراحی قالب یا..."} title={'نام کوتاه رویداد'} type={'text'} width={'100%'} />
             <InputContact id={'detailSubtitle'} setVariable={setSubTitle} variable={subtitle} title={'اطلاعات کوتاه رویداد'} type={'text'} width={'100%'} />
-            
+            {
+                userRole === 'admin' ?
+                <>
+                <InputContact id={'authorFirstName'} setVariable={setAuthorName} variable={authorName} title={'نام استاد'} type={'text'} width={'100%'} />
+                <InputContact id={'authorLastName'} setVariable={setAuthorLastName} variable={authorLastName} title={'نام خانوادگی استاد'} type={'text'} width={'100%'} />
+                </>
+                :
+                <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} subtitle={"درصورت نداشتن دسترسی در تغییر، به این معنا است که نام از قبل وارد شده است."} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
+            }
+
             <div {...getRootPropsImage1()} style={dropzoneStyle}>
                 <input {...getInputPropsImage1()} />
                 <p>تصویر معرفی رویداد را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
@@ -310,8 +321,7 @@ function NewEvent() {
                     </p>
                 )}
             </div>
-            {/* <Divider/> */}
-            {/* <p>اطلاعات اصلی:</p> */}
+
             <InputContact id={'price'} setVariable={setPrice} variable={price} title={'قیمت'} type={'number'} width={'100%'} />
             <InputContact id={'discount'} setVariable={setDiscount} variable={discount} subTitle={"بر اساس درصد"} title={'تخفیف'} type={'text'} width={'100%'} />
 

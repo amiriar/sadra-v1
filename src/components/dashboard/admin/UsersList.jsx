@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import NewClass from './NewClass'
-import { Divider } from '@mui/material'
 import { adminCategories, categories } from '../Categories'
 import { Link } from 'react-router-dom'
 import SignOutButton from '../SignOutButton'
-import axios from 'axios'
-import ClassCard from '../../modules/classes/ClassCard'
+import axios from 'axios';
+import UserCard from './UserCard';
 
-function ClassList() {
+function UsersList() {
+
     const [userRole, setUserRole] = useState(null);
     const [userId, setUserId] = useState(null);
-    const [teacherBlog, setTeacherBlog] = useState('');
-    
-    const [data, setData] = useState([]);
-    const [users, setUsers] = useState([]);
-
-    const [targetData, setTargetData] = useState([]);
+    const [users, setUsers] = useState(null);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         axios.get('http://localhost:3001/dashboard/token', { withCredentials: true })
@@ -27,17 +22,14 @@ function ClassList() {
                 return axios.get(`http://localhost:3001/fullDetail/${id}`);
             })
             .then(response2 => {
-                setUsers(response2.data);
-                console.log(response2.data);
+                setUsers(response2.data[0]);
+                console.log(response2.data[0]);
     
-                // Fetch data from the third endpoint after the second one is resolved
-                return axios.get('http://localhost:3001/classes/data');
+                return axios.get('http://localhost:3001/users/data');
             })
             .then(response3 => {
-                setData(response3.data);
-                console.log(response3.data);
-    
-                // Add more requests as needed
+                setData(response3.data[0]);
+                console.log(response3.data[0]);
     
             })
             .catch(firstError => {
@@ -45,12 +37,12 @@ function ClassList() {
                 setUserRole('error');
             });
     }, []);
-    
-    
+
+
     return (
         <>
         {
-        (userRole === 'teacher' ||  userRole === 'admin') ?
+            userRole === 'admin' ?
             <div dir='rtl' className='panelContainer'>
                 <div className='userPanel' dir='rtl'> 
                     <div className='sideBarPanel'>
@@ -73,18 +65,9 @@ function ClassList() {
                             </div>
                     </div>
                     <div className='mainPanel'>
-                        <div className='CardBoxContainer'>
-                            {
-                                data.slice(0 , 7).map((item)=> (
-                                    <Link key={item.id} to={`/classes/${item.id}`}><ClassCard key={item.id} {...item} /></Link>
-                                ))
-                            }
-                        </div>
-                        <Divider/>
-                        <br />
-                        <div>
-                            <NewClass/>
-                        </div>
+                        {
+                            data?.map((user) => <UserCard key={user.id} user={user} />)
+                        }
                     </div>
                 </div>
             </div>
@@ -95,4 +78,4 @@ function ClassList() {
     )
 }
 
-export default ClassList
+export default UsersList

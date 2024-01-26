@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import InputContact from '../../modules/input/InputContact'
+import { Divider } from '@mui/material'
+import { ToastContainer } from 'react-toastify'
 import axios from 'axios';
-import { showToast } from '../../modules/AuthModules/Toastify'
-import { ToastContainer } from 'react-toastify';
-import InputContact from '../../modules/input/InputContact';
+import { showToast } from '../../modules/AuthModules/Toastify';
 import { useDropzone } from 'react-dropzone';
-import { Divider } from '@mui/material';
-import moment from 'jalali-moment';
 
-function NewBlog() {
+function NewSuccess() {
 
     useEffect(() => {
         const fetchData = async () => {
@@ -71,6 +70,9 @@ function NewBlog() {
     const [newImagePath2, setNewImagePath2] = useState('');
     const [newImagePath3, setNewImagePath3] = useState('');
 
+    const [video, setVideo] = useState('');
+
+
     const onDropImage1 = (acceptedFiles) => {
         const file = acceptedFiles[0];
         setImageData(file);
@@ -91,7 +93,20 @@ function NewBlog() {
     
     const { getRootProps: getRootPropsImage1, getInputProps: getInputPropsImage1 } = useDropzone({ onDrop: onDropImage1 });
     const { getRootProps: getRootPropsImage2, getInputProps: getInputPropsImage2 } = useDropzone({ onDrop: onDropImage2 });
-    const { getRootProps: getRootPropsImage3, getInputProps: getInputPropsImage3 } = useDropzone({ onDrop: onDropImage3 });
+    const { getRootProps: getRootPropsImage3, getInputProps: getInputPropsImage3 } = useDropzone({
+        accept: 'video/*',
+        maxFiles: 1,
+        maxSize: 10485760, // 10MB in bytes
+        onDrop: (acceptedFiles) => {
+            if (acceptedFiles && acceptedFiles.length > 0) {
+                const selectedVideo = acceptedFiles[0];
+                setVideo(selectedVideo);
+                setFileName3(selectedVideo.name || 'Untitled Video');
+            } else {
+                console.error('No video file selected');
+            }
+        }
+    });
     
 
     const handleSubmit = async (e) => {
@@ -123,7 +138,7 @@ function NewBlog() {
             setImagePath3(imagePath3);
         
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-            axios.post(`http://localhost:3001/dashboard/blogs/add`, {
+            axios.post(`http://localhost:3001/dashboard/success/add`, {
                 imageData: imagePath1,
                 date: moment().locale('fa').format('YYYY-MM-DD'),
                 title: title,
@@ -153,11 +168,122 @@ function NewBlog() {
         }
         
     }
+    const handleSubmit1 = async () =>{
+        
+    }
+
+    const handleSubmit2 = async () =>{
+        
+    }
+
+    const handleSubmit3 = async () =>{
+        
+    }
+
+
+    const dropzoneStyle = {
+        border: '2px dashed #cccccc',
+        borderRadius: '4px',
+        padding: '20px',
+        textAlign: 'center',
+        cursor: 'pointer',
+        marginTop: '10px',
+    };
 
 
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
-            
+            <div>
+                <h3>در این پست باید از یکی از روش های زیر اقدام کنید:</h3>
+                <p style={{textDecoration:"underline"}}>فقط متن</p>
+                <p style={{textDecoration:"underline"}}>تصویر و متن</p>
+                <p style={{textDecoration:"underline"}}>فقط ویدیو</p>
+            </div>
+            <Divider/>
+            <div style={{display:"flex",flexDirection:"column", gap:"1rem"}}>
+                <h2>حالت اول، فقط متن:</h2>
+
+                <InputContact id={'title'} setVariable={setTitle} variable={title} title={'نام نویسنده'} type={'text'} width={'100%'} />
+                <InputContact id={'title'} setVariable={setTitle} variable={title} title={'نام خانوادگی نویسنده'} type={'text'} width={'100%'} />
+                <InputContact id={'title'} setVariable={setTitle} variable={title} title={'شغل نویسنده'} type={'text'} width={'100%'} />
+                <InputContact id={'title'} setVariable={setTitle} variable={title} title={'شغل نویسنده'} type={'text'} width={'100%'} />
+                <p>عکس نویسنده بعد از ثبت به صورت خودکار روی پست قرار میگیرد.</p>
+
+                <div style={{display:"flex", flexDirection:"column", gap:"0.6rem"}}>
+                    <label htmlFor='mainText' style={{cursor:"pointer"}}>توضیحات اصلی</label>
+                    <textarea cols="30" rows="5" 
+                        id='mainText'
+                        className='textArea'
+                        value={detailsDescription3}
+                        onChange={(e) => setDetailsDescription3(e.target.value)}
+                    >
+                    </textarea>
+                </div>
+
+                {/* <InputContact id={'title'} setVariable={setTitle} variable={title} title={'شغل نویسنده'} type={'text'} width={'100%'} /> */}
+
+                <button
+                    className='login_Btn_No_Hid'
+                    onClick={handleSubmit1}
+                    style={{ width: 'fit-content', marginTop: '2rem', cursor: 'pointer' }}
+                type="button">
+                    ثبت
+                </button>
+            </div>
+
+
+            <Divider/>
+
+
+            <div>
+                <h2>حالت دوم، تصویر و متن:</h2>
+                <button
+                    className='login_Btn_No_Hid'
+                    onClick={handleSubmit2}
+                    style={{ width: 'fit-content', marginTop: '2rem', cursor: 'pointer' }}
+                    type="button">
+                        ثبت
+                </button>
+            </div>
+
+
+            <Divider/>
+
+
+            <div>
+                <h2>حالت سوم، فقط ویدیو:</h2>
+                <div>
+                    <p>فیلم معرفی</p>
+                    <div {...getRootPropsImage3()} style={dropzoneStyle}>
+                        <input {...getInputPropsImage3()} accept='video/*' />
+                        <p>ویدئو رویداد را انتخاب یا اینجا بکشید باید کمتر از 10 مگابایت باشد (فقط یک ویدئو)</p>
+                        <p>باید از یکی از این پسوند ها باشد: ( mp4, webm, ogg, mkv, avi )</p>
+                        {fileName3 && (
+                            <p style={{ marginTop: '10px' }}>
+                                نام فایل انتخابی: {fileName3}
+                            </p>
+                        )}
+                        {video && (
+                            <video width="320" height="240" controls>
+                                <source src={URL.createObjectURL(video)} type={video.type} />
+                                Your browser does not support the video tag.
+                            </video>
+                        )}
+                    </div>
+                </div>
+                <button
+                    className='login_Btn_No_Hid'
+                    onClick={handleSubmit3}
+                    style={{ width: 'fit-content', marginTop: '2rem', cursor: 'pointer' }}
+                    type="button">
+                        ثبت
+                </button>
+            </div>
+
+
+            <Divider/>
+
+
             <div {...getRootPropsImage1()} style={dropzoneStyle}>
                 <input {...getInputPropsImage1()} />
                 <p>تصویر مقاله را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
@@ -264,12 +390,7 @@ function NewBlog() {
             <Divider/>
             <InputContact id={'ttr'} setVariable={setTimeToRead} variable={timeToRead} subTitle={"عددی بین 1 تا 100"} title={'زمان مورد نیاز برای خواندن'} type={'number'} width={'100%'} />
             
-            <button
-                className='login_Btn_No_Hid'
-                onClick={handleSubmit}
-                style={{ width: 'fit-content', marginTop: '2rem', cursor: 'pointer' }}
-                type="button"
-            >ثبت</button>
+
             <ToastContainer
                 position="top-right"
                 autoClose={5000}
@@ -282,19 +403,8 @@ function NewBlog() {
                 pauseOnHover
                 theme="light"
             />
-        </form>
+    </form>
     )
 }
 
-
-const dropzoneStyle = {
-    border: '2px dashed #cccccc',
-    borderRadius: '4px',
-    padding: '20px',
-    textAlign: 'center',
-    cursor: 'pointer',
-    marginTop: '10px',
-};
-
-
-export default NewBlog
+export default NewSuccess

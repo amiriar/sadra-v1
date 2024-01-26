@@ -8,6 +8,56 @@ import { Divider } from '@mui/material';
 
 function NewClass() {
 
+    
+    const [data, setData] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [userRole, setUserRole] = useState('');
+    
+    const [imageData, setImageData] = useState('');
+    const [imageData2, setImageData2] = useState('');
+    
+    
+    const [title, setTitle] = useState(''); //1
+    const [teacher, setTeacher] = useState(''); //2
+    const [level, setLevel] = useState(''); //3
+    const [lessons, setLessons] = useState(''); //4
+    const [time, setTime] = useState(''); //5
+    const [price, setPrice] = useState(''); //6
+    
+    const [fileName, setFileName] = useState(''); //7
+    const [imagePath, setImagePath] = useState(''); //7
+    const [newImagePath1, setNewImagePath1] = useState(''); //7
+    
+    const [discount, setDiscount] = useState(''); //8
+    const [shortName, setShortName] = useState(''); //9
+    const [subtitle, setSubTitle] = useState(''); //10
+    const [date, setDate] = useState(''); //11
+    const [place, setPlace] = useState(''); //12
+    const [quantity, setQuantity] = useState(''); //13
+    const [language, setLanguage] = useState(''); //14
+    
+    const [qeustion1, setQeustion1] = useState(''); //9
+    const [answer1, setAnswer1] = useState(''); //10
+    
+    const [qeustion2, setQeustion2] = useState(''); //11
+    const [answer2, setAnswer2] = useState(''); //12
+    
+    const [qeustion3, setQeustion3] = useState(''); //13
+    const [answer3, setAnswer3] = useState(''); //14
+    
+    const [qeustion4, setQeustion4] = useState(''); //15
+    const [answer4, setAnswer4] = useState(''); //16
+    
+    const [video, setVideo] = useState(null); //17
+    const [fileName3, setFileName3] = useState('');//17
+    const [videoPath3, setVideoPath3] = useState('');//17
+    
+    const [fileName2, setFileName2] = useState(''); //18
+    const [imagePath2, setImagePath2] = useState(''); //18
+    
+    const [authorName, setAuthorName] = useState('');
+    const [authorLastName, setAuthorLastName] = useState('');
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -34,54 +84,9 @@ function NewClass() {
     
     }, []);
     
-    const [data, setData] = useState([]);
-    const [users, setUsers] = useState([]);
-    const [userRole, setUserRole] = useState('');
-    
-    const [imageData, setImageData] = useState('');
-    const [imageData2, setImageData2] = useState('');
-
-    
-    const [title, setTitle] = useState(''); //1
-    const [teacher, setTeacher] = useState(''); //2
-    const [level, setLevel] = useState(''); //3
-    const [lessons, setLessons] = useState(''); //4
-    const [time, setTime] = useState(''); //5
-    const [price, setPrice] = useState(''); //6
-
-    const [fileName, setFileName] = useState(''); //7
-    const [imagePath, setImagePath] = useState(''); //7
-    const [newImagePath1, setNewImagePath1] = useState(''); //7
-    
-    const [discount, setDiscount] = useState(''); //8
-    const [shortName, setShortName] = useState(''); //9
-    const [subtitle, setSubTitle] = useState(''); //10
-    const [date, setDate] = useState(''); //11
-    const [place, setPlace] = useState(''); //12
-    const [quantity, setQuantity] = useState(''); //13
-    const [language, setLanguage] = useState(''); //14
-    
-    const [qeustion1, setQeustion1] = useState(''); //9
-    const [answer1, setAnswer1] = useState(''); //10
-
-    const [qeustion2, setQeustion2] = useState(''); //11
-    const [answer2, setAnswer2] = useState(''); //12
-    
-    const [qeustion3, setQeustion3] = useState(''); //13
-    const [answer3, setAnswer3] = useState(''); //14
-    
-    const [qeustion4, setQeustion4] = useState(''); //15
-    const [answer4, setAnswer4] = useState(''); //16
-    
-    const [video, setVideo] = useState(null); //17
-    const [fileName3, setFileName3] = useState('');//17
-    const [videoPath3, setVideoPath3] = useState('');//17
-    
-    const [fileName2, setFileName2] = useState(''); //18
-    const [imagePath2, setImagePath2] = useState(''); //18
-
-    const [authorName, setAuthorName] = useState('');
-    const [authorLastName, setAuthorLastName] = useState('');
+    useEffect(() => {
+        setTeacher(`${authorName} ${authorLastName}`)
+    }, [authorName, authorLastName]);
 
     const onDropImage1 = (acceptedFiles) => {
         const file = acceptedFiles[0];
@@ -211,7 +216,15 @@ function NewClass() {
     return (
         <form onSubmit={handleSubmit} encType='multipart/form-data' className='newBlogForm'>
             <InputContact id={'title'} setVariable={setTitle} variable={title} title={'عنوان رویداد'} type={'text'} width={'100%'} />
-            <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
+            {
+                userRole === 'admin' ?
+                <>
+                <InputContact id={'authorFirstName'} setVariable={setAuthorName} variable={authorName} title={'نام نویسنده'} type={'text'} width={'100%'} />
+                <InputContact id={'authorLastName'} setVariable={setAuthorLastName} variable={authorLastName} title={'نام خانوادگی نویسنده'} type={'text'} width={'100%'} />
+                </>
+                :
+                <InputContact id={'teacher'} disabled={userRole === 'teacher' ? true : false} setVariable={setTeacher} subtitle={"درصورت نداشتن دسترسی در تغییر، به این معنا است که نام از قبل وارد شده است."}  variable={teacher} title={'استاد دوره'} type={'text'} width={'100%'} />
+            }
             <InputContact id={'level'} setVariable={setLevel} variable={level} subTitle={"سخت، متوسط، آسان"} title={'سطح دشواری'} type={'text'} width={'100%'} />
             <InputContact id={'lessons'} setVariable={setLessons} variable={lessons} title={'تعداد دروس'} type={'number'} width={'100%'} />
             <InputContact id={'time'} setVariable={setTime} variable={time} subTitle={"واحد ساعت، مانند 40"} title={'مدت زمان دوره'} type={'number'} width={'100%'} />

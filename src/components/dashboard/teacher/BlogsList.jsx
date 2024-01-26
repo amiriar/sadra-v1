@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Divider, Grid } from '@mui/material';
 import BlogCard from '../../modules/Blog-modules/BlogCard'
 import NewBlog from './NewBlog';
-import { categories } from '../Categories';
+import { adminCategories, categories } from '../Categories';
 
 function BlogsList() {
     const [userRole, setUserRole] = useState(null);
@@ -59,18 +59,25 @@ function BlogsList() {
     return (
         <>
         {
-            userRole === 'teacher' ?
+            (userRole === 'teacher' ||  userRole === 'admin') ?
             <div className='panelContainer'>
             {
-                userRole === "teacher" ?
+                (userRole === 'teacher' ||  userRole === 'admin') ?
                     <div className='userPanel' dir='rtl'>
                         <div className='sideBarPanel'>
                             <div>
-                                {
-                                    categories.map((item) => (
-                                        <Link key={item.title} to={item.link}>{item.title}</Link>
-                                    ))
-                                }
+                            {
+                                userRole === 'teacher' ?
+                                categories.map((item) => (
+                                    <Link key={item.title} to={item.link}>{item.title}</Link>
+                                ))
+                                : userRole === 'admin' ?
+                                adminCategories.map((item) => (
+                                    <Link key={item.title} to={item.link}>{item.title}</Link>
+                                ))
+                                :
+                                <h3>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h3>
+                            }
                             </div>
                             
                             <div>

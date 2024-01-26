@@ -218,7 +218,6 @@ function TeacherDashbaord({ userRole, userId }) {
                                         </Select>
                                     </FormControl>
 
-                                    {/* <InputContact id={'authorPicture'} setVariable={setDescription} variable={authorPicture} title={'عکس پرو'} type={'text'} width={'100%'} /> */}
                                     <div>
                                         <p>عکس پروفایل</p>
                                         <div {...getRootProps()} style={dropzoneStyle}>

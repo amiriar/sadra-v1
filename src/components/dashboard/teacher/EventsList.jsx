@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { categories } from '../Categories';
+import { adminCategories, categories } from '../Categories';
 import { Link } from 'react-router-dom';
 import SignOutButton from '../SignOutButton';
 import { Box, Divider, Tab } from '@mui/material';
@@ -96,18 +96,25 @@ function EventsList() {
     return (
         <>
         {
-            userRole === 'teacher' ?
+            (userRole === 'teacher' ||  userRole === 'admin') ?
             <div className='panelContainer'>
                 {
-                    userRole === "teacher" ?
+                (userRole === 'teacher' ||  userRole === 'admin') ?
                     <div className='userPanel' dir='rtl'> 
                         <div className='sideBarPanel'>
                             <div>
-                                {
-                                    categories.map((item) => (
-                                        <Link key={item.title} to={item.link}>{item.title}</Link>
-                                    ))
-                                }
+                            {
+                                userRole === 'teacher' ?
+                                categories.map((item) => (
+                                    <Link key={item.title} to={item.link}>{item.title}</Link>
+                                ))
+                                : userRole === 'admin' ?
+                                adminCategories.map((item) => (
+                                    <Link key={item.title} to={item.link}>{item.title}</Link>
+                                ))
+                                :
+                                <h3>ابتدا از حساب کاربری خود خارج شده و دوباره وارد شوید.</h3>
+                            }
                             </div>
                             <br /><br /><br />
                             <div>

@@ -26,6 +26,6 @@ export default function ClassCard({id, title , teacherFirstName, teacherLastName
         <span>{usePersianNumber(price)}</span>
         <span>هزارتومان</span>
     </div>
-  </div>
+    </div>
   )
 }
