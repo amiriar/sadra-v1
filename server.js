@@ -707,31 +707,28 @@ app.post('/dashboard/success/add/2', async (req, res) => {
 
 app.post('/dashboard/success/add/3', async (req, res) => {
     const {
-        authorPicture,
-        authorName,
-        authorJob,
-        description,
-        additionalPicture,
+        videoTitle,
+        videoJob,
+        videoSrc,
+        videoThumbnail,
         date
     } = req.body;
 
     await db.query(`
     INSERT INTO \`student-success\`
     (
-        authorPicture,
-        authorName,
-        authorJob,
-        description,
-        additionalPicture,
+        videoTitle,
+        videoJob,
+        videoSrc,
+        videoThumbnail,
         date
     )
     VALUES 
     (
-        '${authorPicture}',
-        '${authorName}', 
-        '${authorJob}',
-        '${description}', 
-        '${additionalPicture}', 
+        '${videoTitle}', 
+        '${videoJob}',
+        '${videoSrc}', 
+        '${videoThumbnail}', 
         '${date}'
     );
     `);

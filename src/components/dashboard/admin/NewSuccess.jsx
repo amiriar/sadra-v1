@@ -95,6 +95,7 @@ function NewSuccess() {
     const [videoAuthorName, setVideoAuthorName] = useState('');
     const [videoJobTitle, setVideoJobTitle] = useState('');
     const [video, setVideo] = useState('');
+    const [imagePath4, setImagePath4] = useState('');
     
     
     
@@ -288,33 +289,132 @@ function NewSuccess() {
         }
     }
 
+    // const handleSubmit3 = async () => {
+    //     if (!descriptionImage1) { 
+    //         showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
+    //         return;
+    //     }
+
+    //     const formData2 = new FormData();
+    //     formData2.append('videoData', video);
+
+    //     try {
+    //         const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         });
+
+    //         const videoPath = response.data.paths[0].split(`\\`).join("/");
+
+    //         setImagePath3(videoPath);
+        
+    //         showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+    //         axios.post(`http://localhost:3001/dashboard/success/add/2`, {
+    //             authorPicture: imagePath2,
+    //             authorName: addPicName,
+    //             authorJob: addPicJob,
+    //             description: addPicDesc,
+    //             additionalPicture: imagePath3,
+    //             date: moment().locale('fa').format('YYYY-MM-DD'),
+    //         })
+    //         .then(response => {
+    //             showToast("پست جدید با موفقیت ثبت شد !", "success")
+    //             console.log(response);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error.response ? error.response.data : error.message);
+    //         });
+    //     } catch (error) {
+    //         console.error('Error:', error.response ? error.response.data : error.message);
+    //         showToast(`خطا در آپلود پست: ${error.response ? error.response.data.error : error.message}`, 'error');
+    //     }
+    // }
+
+    // const handleSubmit3 = async () => {
+    //     if (!video) { 
+    //         showToast('لطفاً یک ویدیو را انتخاب کنید.', 'error');
+    //         return;
+    //     }
+    
+    //     const formData2 = new FormData();
+    //     formData2.append('videoData', video);
+    
+    //     try {
+    //         const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         });
+    
+    //         const videoPath = response.data.path.split(`\\`).join("/");
+    
+    //         setImagePath3(videoPath);
+    
+    //         showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+            
+    //         // Make sure to handle imagePath2, addPicName, addPicJob, and addPicDesc
+    //         axios.post(`http://localhost:3001/dashboard/success/add/3`, {
+    //             videoTitle: videoAuthorName,
+    //             videoJob: videoJobTitle,
+    //             videoSrc: imagePath3,
+    //             videoThumbnail: imagePath3,
+    //             date: moment().locale('fa').format('YYYY-MM-DD'),
+    //         })
+    //         .then(response => {
+    //             showToast("پست جدید با موفقیت ثبت شد !", "success")
+    //             console.log(response);
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error.response ? error.response.data : error.message);
+    //         });
+    //     } catch (error) {
+    //         console.error('Error:', error.response ? error.response.data : error.message);
+    //         showToast(`خطا در آپلود ویدیو: ${error.response ? error.response.data.error : error.message}`, 'error');
+    //     }
+    // };
+    
+
     const handleSubmit3 = async () => {
-        if (!descriptionImage1) { 
-            showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
+        if (!video) { 
+            showToast('لطفاً یک ویدیو را انتخاب کنید.', 'error');
             return;
         }
-
-        const formData2 = new FormData();
-        formData2.append('videoData', video);
-
+    
+        const formData = new FormData();
+        formData.append('videoData', video);
+    
         try {
-            const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+            // Upload video
+            const videoResponse = await axios.post('http://localhost:3001/upload/video', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-
-            const videoPath = response.data.paths[0].split(`\\`).join("/");
-
+    
+            const videoPath = videoResponse.data.path.split(`\\`).join("/");
             setImagePath3(videoPath);
-        
+    
+            // Handle image upload (assuming you have the image file in descriptionImage2)
+            const imageFormData = new FormData();
+            imageFormData.append('imageData', descriptionImage2);
+    
+            const imageResponse = await axios.post('http://localhost:3001/upload/single/img', imageFormData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+    
+            const imagePath = imageResponse.data.path.split(`\\`).join("/");
+            setImagePath4(imagePath);
+    
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-            axios.post(`http://localhost:3001/dashboard/success/add/2`, {
-                authorPicture: imagePath2,
-                authorName: addPicName,
-                authorJob: addPicJob,
-                description: addPicDesc,
-                additionalPicture: imagePath3,
+    
+            axios.post(`http://localhost:3001/dashboard/success/add/3`, {
+                videoTitle: videoAuthorName,
+                videoJob: videoJobTitle,
+                videoSrc: imagePath3,
+                videoThumbnail: imagePath4,
                 date: moment().locale('fa').format('YYYY-MM-DD'),
             })
             .then(response => {
@@ -326,10 +426,10 @@ function NewSuccess() {
             });
         } catch (error) {
             console.error('Error:', error.response ? error.response.data : error.message);
-            showToast(`خطا در آپلود پست: ${error.response ? error.response.data.error : error.message}`, 'error');
+            showToast(`خطا در آپلود ویدیو: ${error.response ? error.response.data.error : error.message}`, 'error');
         }
-    }
-
+    };
+    
     const dropzoneStyle = {
         border: '2px dashed #cccccc',
         borderRadius: '4px',
