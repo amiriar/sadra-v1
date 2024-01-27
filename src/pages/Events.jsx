@@ -273,7 +273,7 @@ const categories = [
         <AccordionDetails>
           <ul>
             {categories.map(Category=>(
-              <li className='ListItems'>
+              <li className='ListItems' key={Category.item} >
                 <span> <Checkbox {...label} color="success" /> <span>({Category.quantity}) {Category.title}</span></span>
               </li>
             ))

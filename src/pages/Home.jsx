@@ -35,6 +35,7 @@ import Video from '/assets/Media.mp4'
 import imageAbout from '/assets/image_about_us.png'
 import { Link } from 'react-router-dom';
 // Variabels
+import Loading from '../helper/Loading';
 
 const Home = () => {
 const [TabHeaders , setTabHeaders] = useState([
@@ -121,6 +122,7 @@ const fetchData4 = async () => {
   fetchData3();
   fetchData4();
   } , [])
+
 
 
   return (

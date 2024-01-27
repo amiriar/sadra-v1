@@ -17,8 +17,7 @@ import { FaPercentage } from "react-icons/fa";
 import moment from 'jalali-moment';
 import { number } from 'prop-types';
 
-// react-query
-import { useQuery } from '@tanstack/react-query';
+
 
 const EventDetail = () => {
 const {id} = useParams();
@@ -40,8 +39,8 @@ useEffect(() => {
   const fetchData2 = async () => {
     try {
         const response = await axios.get('http://localhost:3001/evetnDetailTeachersData/data');
-        const jsonData = response.data;
-        setTeachersData(jsonData);
+        const jsonData = await response.data;
+        setTeachersData( await jsonData);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
@@ -60,7 +59,7 @@ fetchData2();
 // console.log(data)
 
 
-const dataCard = eventDetailData?.length && eventDetailData?.find((item) => item.id === eventdetailId) ;
+const dataCard = eventDetailData?.length ? eventDetailData?.find((item) => item.id === eventdetailId) : [] ;
 const {
   category ,
   title , 
@@ -84,48 +83,52 @@ const {
   detailSubtitle ,
 } = dataCard;
 
+
+const test1 = date?.split(" ")[2];
+
+const test2 = "2024"
+
+console.log(test1 === test2)
+
 const newImage = image?.split('/').splice(1).join('/');
 
   const [timerDays , setTimerDays] = useState("00");
-  const [timerHours , settimerHours] = useState("00");
+  const [timerHours , settimerHours] = useState("00"); 
   const [timerMinuts , setTimerMinuts] = useState("00");
   const [timerSecounds , setTimerSecounds] = useState("00");
 
+    let interval = useRef();
+    const startTimer =  ()=> {
+      const countdownDate = new Date(`${date?.split(" ")[0]} ${date?.split(" ")[1]} , ${test1} 00:00:00`).getTime();
+        interval = setInterval(()=> {
+        const now = new Date().getTime()
+        const distance = countdownDate - now;
 
-// console.log(test === undefined ? "help" :  test)
-//    let interval = useRef();
-//    const startTimer =  ()=> {
-
-
-//     interval = setInterval(()=> {
-//         const now = new Date().getTime()
-//         const distance = countdownDate - now
-
-//         const days = Math.floor(distance / (1000 * 60 * 60 * 24))
-//         const hours = Math.floor((distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)))
-//         const minuts = Math.floor((distance % (1000 * 60 * 60) / (1000 * 60)))
-//         const secounds = Math.floor((distance % (1000 * 60)) / 1000)
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24) / (1000 * 60 * 60)))
+        const minuts = Math.floor((distance % (1000 * 60 * 60) / (1000 * 60)))
+        const secounds = Math.floor((distance % (1000 * 60)) / 1000)
         
-//         if(distance < 0){
-//             // time stoper
-//             clearInterval(interval.current)
-//         }else {
-//             setTimerDays(days)
-//             settimerHours(hours)
-//             setTimerMinuts(minuts)
-//             setTimerSecounds(secounds)
-//         }
+        if(distance < 0){
+            // time stoper
+            clearInterval(interval.current)
+        }else {
+            setTimerDays(days)
+            settimerHours(hours)
+            setTimerMinuts(minuts)
+            setTimerSecounds(secounds)
+        }
 
-//     } , 1000)
-//   }
+    } , 1000)
+  }
   
-// // when site loaded
-//   useEffect(()=> {
-//     startTimer()
-//     return () => {
-//      clearInterval(interval.current)
-//     }
-//   } , [])
+// when site loaded
+  useEffect(()=> {
+    startTimer()
+    return () => {
+      clearInterval(interval.current)
+    }
+  } , [])
 
 
 
