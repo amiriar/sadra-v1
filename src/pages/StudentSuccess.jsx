@@ -5,8 +5,6 @@ import { Avatar, Divider, Grid, Paper, Typography } from '@mui/material';
 //css
 import './StudentSuccess.css'
 
-//DB
-import StudentDB from '../utils/StudentSuccess.json'
 import VideoComponent from '../components/modules/succes-modules/VideoComponent';
 import { Link, useNavigate } from 'react-router-dom';
 

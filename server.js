@@ -475,30 +475,6 @@ app.post('/dashboard/events/add', async (req, res) => {
         detailSubtitle,
         Detail_Head_Title
     } = req.body;
-    console.log(
-        category,
-        title,
-        image,
-        teacherFirstName,
-        teacherLastName,
-        price,
-        discount,
-        title_description1,
-        description1,
-        title_description2,
-        description2,
-        title_description3,
-        description3,
-        title_description4,
-        description4,
-        videoSrc,
-        thumbnail,
-        place,
-        date,
-        detailSubtitle,
-        Detail_Head_Title
-    );
-
     await db.query(`
         INSERT INTO events 
         (category,
@@ -662,6 +638,68 @@ app.post('/dashboard/classes/add', async (req, res) => {
         description4,
         videoSrc,
         thumbnail} }).status(200);
+});
+
+app.post('/dashboard/success/add/1', async (req, res) => {
+    const {
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        date,
+    } = req.body;
+
+    await db.query(`
+    INSERT INTO \`student-success\`
+    (
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        date
+    )
+    VALUES 
+    (
+        '${authorPicture}',
+        '${authorName}', 
+        '${authorJob}',
+        '${description}', 
+        '${date}'
+    );
+    `);
+    
+    res.json({ statusCode: 200, message: 'پست جدید با موفقیت ثبت شد !' }).status(200);
+});
+
+app.post('/dashboard/success/add/2', async (req, res) => {
+    const {
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        date,
+    } = req.body;
+
+    await db.query(`
+    INSERT INTO \`student-success\`
+    (
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        date
+    )
+    VALUES 
+    (
+        '${authorPicture}',
+        '${authorName}', 
+        '${authorJob}',
+        '${description}', 
+        '${date}'
+    );
+    `);
+    
+    res.json({ statusCode: 200, message: 'پست جدید با موفقیت ثبت شد !' }).status(200);
 });
 
 // app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
