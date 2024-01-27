@@ -2,21 +2,30 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Layout from './components/layouts/Layout';
 import AppRoutes from './components/routes/AppRoutes';
-
+import { useState , useEffect } from 'react';
+import Loading from './helper/Loading';
 // react-query
-import { QueryClient , QueryClientProvider } from '@tanstack/react-query';
 
 const App = () => {
-  const queryClient = new QueryClient();
+
+  const [loading , setLoading] = useState(true);
+
+
+  useEffect(()=> {
+      setLoading(false)
+  } , [])
+
 
   return (
-    <QueryClientProvider client={queryClient} >
+    <>
+  {loading && <Loading/>}
+
     <Router>
       <Layout>
         <AppRoutes />
       </Layout>
     </Router>
-    </QueryClientProvider>
+    </>
   );
 };
 
