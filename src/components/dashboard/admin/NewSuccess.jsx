@@ -91,6 +91,7 @@ function NewSuccess() {
     //
     
     const [fileName4, setFileName4] = useState('');
+    const [fileName5, setFileName5] = useState('');
     const [videoAuthorName, setVideoAuthorName] = useState('');
     const [videoJobTitle, setVideoJobTitle] = useState('');
     const [video, setVideo] = useState('');
@@ -133,6 +134,15 @@ function NewSuccess() {
             }
         }
     });
+
+    const onDropImage5 = (acceptedFiles) => {
+        const file = acceptedFiles[0];
+        setDescriptionImage2(file);
+        setFileName3(file.name);
+    };
+
+    const { getRootProps: getRootPropsImage5, getInputProps: getInputPropsImage5 } = useDropzone({ onDrop: onDropImage5 });
+
     
 
     const handleSubmit = async (e) => {
@@ -193,7 +203,8 @@ function NewSuccess() {
         }
         
     }
-    const handleSubmit1 = async () =>{
+
+    const handleSubmit1 = async () => {
         if (!imageData) { 
             showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
             return;
@@ -232,7 +243,7 @@ function NewSuccess() {
         }
     }
 
-    const handleSubmit2 = async () =>{
+    const handleSubmit2 = async () => {
         if (!descriptionImage1) { 
             showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
             return;
@@ -256,7 +267,7 @@ function NewSuccess() {
             setImagePath3(imagePath3);
         
             showToast('اطلاعات با موفقیت آپلود شد.', 'success');
-            axios.post(`http://localhost:3001/upload/multiple/2`, {
+            axios.post(`http://localhost:3001/dashboard/success/add/2`, {
                 authorPicture: imagePath2,
                 authorName: addPicName,
                 authorJob: addPicJob,
@@ -277,10 +288,47 @@ function NewSuccess() {
         }
     }
 
-    const handleSubmit3 = async () =>{
-        console.log(fileName4, videoAuthorName, videoJobTitle, video);
-    }
+    const handleSubmit3 = async () => {
+        if (!descriptionImage1) { 
+            showToast('لطفاً یک تصویر را انتخاب کنید.', "error");
+            return;
+        }
 
+        const formData2 = new FormData();
+        formData2.append('videoData', video);
+
+        try {
+            const response = await axios.post('http://localhost:3001/upload/video', formData2, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            const videoPath = response.data.paths[0].split(`\\`).join("/");
+
+            setImagePath3(videoPath);
+        
+            showToast('اطلاعات با موفقیت آپلود شد.', 'success');
+            axios.post(`http://localhost:3001/dashboard/success/add/2`, {
+                authorPicture: imagePath2,
+                authorName: addPicName,
+                authorJob: addPicJob,
+                description: addPicDesc,
+                additionalPicture: imagePath3,
+                date: moment().locale('fa').format('YYYY-MM-DD'),
+            })
+            .then(response => {
+                showToast("پست جدید با موفقیت ثبت شد !", "success")
+                console.log(response);
+            })
+            .catch(error => {
+                console.error('Error:', error.response ? error.response.data : error.message);
+            });
+        } catch (error) {
+            console.error('Error:', error.response ? error.response.data : error.message);
+            showToast(`خطا در آپلود پست: ${error.response ? error.response.data.error : error.message}`, 'error');
+        }
+    }
 
     const dropzoneStyle = {
         border: '2px dashed #cccccc',
@@ -421,6 +469,17 @@ function NewSuccess() {
                     )}
                 </div>
 
+                <div {...getRootPropsImage5()} style={dropzoneStyle}>
+                    <input {...getInputPropsImage5()} />
+                    <p>تصویر نمایشی فیلم را انتخاب یا اینجا بکشید باید کمتر از 3 مگابایت باشد (فقط یک تصویر)</p>
+                    <p>باید از یکی از این پسوند ها باشد: ( png, jpg, jpeg, webp )</p>
+                    {fileName5 && (
+                        <p style={{ marginTop: '10px' }}>
+                        نام فایل انتخابی: {fileName5}
+                        </p>
+                    )}
+                </div>
+
                 <button
                     className='login_Btn_No_Hid'
                     onClick={handleSubmit3}
@@ -431,7 +490,6 @@ function NewSuccess() {
             </div>
 
 
-            <Divider/>
 
             <ToastContainer
                 position="top-right"

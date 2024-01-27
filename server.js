@@ -677,7 +677,8 @@ app.post('/dashboard/success/add/2', async (req, res) => {
         authorName,
         authorJob,
         description,
-        date,
+        additionalPicture,
+        date
     } = req.body;
 
     await db.query(`
@@ -687,6 +688,7 @@ app.post('/dashboard/success/add/2', async (req, res) => {
         authorName,
         authorJob,
         description,
+        additionalPicture,
         date
     )
     VALUES 
@@ -695,6 +697,41 @@ app.post('/dashboard/success/add/2', async (req, res) => {
         '${authorName}', 
         '${authorJob}',
         '${description}', 
+        '${additionalPicture}', 
+        '${date}'
+    );
+    `);
+    
+    res.json({ statusCode: 200, message: 'پست جدید با موفقیت ثبت شد !' }).status(200);
+});
+
+app.post('/dashboard/success/add/3', async (req, res) => {
+    const {
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        additionalPicture,
+        date
+    } = req.body;
+
+    await db.query(`
+    INSERT INTO \`student-success\`
+    (
+        authorPicture,
+        authorName,
+        authorJob,
+        description,
+        additionalPicture,
+        date
+    )
+    VALUES 
+    (
+        '${authorPicture}',
+        '${authorName}', 
+        '${authorJob}',
+        '${description}', 
+        '${additionalPicture}', 
         '${date}'
     );
     `);
