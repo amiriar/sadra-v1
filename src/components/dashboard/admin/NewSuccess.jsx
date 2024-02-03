@@ -139,7 +139,7 @@ function NewSuccess() {
     const onDropImage5 = (acceptedFiles) => {
         const file = acceptedFiles[0];
         setDescriptionImage2(file);
-        setFileName3(file.name);
+        setFileName5(file.name);
     };
 
     const { getRootProps: getRootPropsImage5, getInputProps: getInputPropsImage5 } = useDropzone({ onDrop: onDropImage5 });

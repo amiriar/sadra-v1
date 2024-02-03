@@ -118,9 +118,10 @@ function EditUser() {
                         imagePath = response.data.path.split(`\\`).join("/");
                     }
     
-                    const response2 = await axios.post('http://localhost:3001/fullInfo', {
+                    const response2 = await axios.post('http://localhost:3001/fullInfoRole', {
                         id: userId,
                         name: userName,
+                        role: userRole,
                         lastName: userLastName,
                         email: userEmail,
                         age: userAge,

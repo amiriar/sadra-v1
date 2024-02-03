@@ -7,11 +7,13 @@ import NewSuccess from './NewSuccess'
 import axios from 'axios'
 import { Masonry } from '@mui/lab'
 import VideoComponent from '../../modules/succes-modules/VideoComponent'
+import SuccessCard from '../../modules/successModuels/SuccessCard'
 
 function SuccessList() {
 
     const [userRole, setUserRole] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [user, setUser] = useState(null);
     const [users, setUsers] = useState(null);
     const [data, setData] = useState(null);
 
@@ -25,12 +27,12 @@ function SuccessList() {
                 return axios.get(`http://localhost:3001/fullDetail/${id}`);
             })
             .then(response2 => {
-                setUsers(response2.data[0]);
+                setUser(response2.data[0]);
     
                 return axios.get('http://localhost:3001/users/data');
             })
             .then(response3 => {
-                setData(response3.data[0]);
+                setUsers(response3.data[0]);
 
                 return axios.get('http://localhost:3001/stusuccess/data');
             }).then(response4 => {
@@ -41,12 +43,12 @@ function SuccessList() {
                 setUserRole('error');
             });
     }, []);
+    console.log();
 
     const navigate = useNavigate()
     function clickHandler({ name }) {
         navigate(`/student/${name}`)
     }
-
     return (
         <>
         {
@@ -71,14 +73,14 @@ function SuccessList() {
                     <div className='mainPanel'>
                         <div style={{display:"flex", flexDirection:"column", gap:"10px"}}>
                             <Masonry
-                                columns={{ sm: 1, md: 2, lg: 2, xl:3 }}
+                                columns={{ sm: 1, md: 1, lg: 2, xl:3 }}
                                 gutter={2}
                                 style={{ width: '100%' }}
                             >
                                 {data?.map((item) => (
                                 <div key={item.id}>
                                     {item?.videoSrc ? (
-                                        <VideoComponent UrlAutorName={item.authorName} videoSrc={`/${item.videoSrc.split("/").splice(1).join('/')}`} videoTitle={item.videoTitle} videoJob={item.videoJob} videoThumbnail={item.videoThumbnail} />
+                                        <VideoComponent UrlAutorName={item.authorName} videoSrc={`/${item.videoSrc.split("/").splice(1).join('/')}`} videoTitle={item.videoTitle} videoJob={item.videoJob} videoThumbnail={`/${item.videoThumbnail.split("/").splice(1).join('/')}`} />
                                     ) : (
                                     <Paper
                                         spacing={2}
@@ -116,6 +118,8 @@ function SuccessList() {
                                 ))}
                             </Masonry>
                         </div>
+
+                        {/* <SuccessCard data={data && data} /> */}
                         <br />
                         <Divider/>
                         <br />

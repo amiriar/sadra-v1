@@ -169,61 +169,61 @@ const AuthForm = ({ isRegister }) => {
         <>
         {
             !userId ? (
-                <form onSubmit={handleSubmit}>
-                <TextField
-                    label="Email"
-                    fullWidth
-                    margin="normal"
-                    value={values.email}
-                    onChange={handleChange('email')}
-                    autoComplete='true'
-                />
-                <FormControl variant="outlined" fullWidth margin='normal'>
-                    <InputLabel htmlFor="outlined-adornment-password">Password  ( Maximum 32 letters )</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        type={values.showPassword ? 'text' : 'password'}
-                        value={values.password}
-                        onChange={handleChange('password')}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label="Password ( Maximum 32 letters )"
-                        inputProps={{ maxLength: 32 }}
+                <form onSubmit={handleSubmit} style={{minHeight:"250px"}}>
+                    <TextField
+                        label="Email"
+                        fullWidth
+                        margin="normal"
+                        value={values.email}
+                        onChange={handleChange('email')}
+                        autoComplete='true'
                     />
-                </FormControl>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <Button variant="contained" color="primary" type="submit" sx={{background:"#4ca773"}}>
-                        {isRegister ? 'Register' : 'Login'}
-                    </Button>
-                    <Button variant="text" color="primary" type="button">
-                        {isRegister ? 
-                            <Link className='buttonsClass' to={'/auth/login'}>Already have an account ?</Link>
-                            :
-                            <Link className='buttonsClass' to={'/auth/register'}>new Here ?</Link>}
-                    </Button>
-                </div>
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop
-                    closeOnClick
-                    rtl
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light"
-                />
+                    <FormControl variant="outlined" fullWidth margin='normal'>
+                        <InputLabel htmlFor="outlined-adornment-password">Password  ( Maximum 32 letters )</InputLabel>
+                        <OutlinedInput
+                            id="outlined-adornment-password"
+                            type={values.showPassword ? 'text' : 'password'}
+                            value={values.password}
+                            onChange={handleChange('password')}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                            label="Password ( Maximum 32 letters )"
+                            inputProps={{ maxLength: 32 }}
+                        />
+                    </FormControl>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Button variant="contained" color="primary" type="submit" sx={{background:"#4ca773"}}>
+                            {isRegister ? 'Register' : 'Login'}
+                        </Button>
+                        <Button variant="text" color="primary" type="button">
+                            {isRegister ? 
+                                <Link className='buttonsClass' to={'/auth/login'}>Already have an account ?</Link>
+                                :
+                                <Link className='buttonsClass' to={'/auth/register'}>new Here ?</Link>}
+                        </Button>
+                    </div>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop
+                        closeOnClick
+                        rtl
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                    />
                 </form>
             )
             : 

@@ -62,7 +62,6 @@ function TeacherDashbaord({ userRole, userId }) {
                 // Handle the response as needed
                 setImagePath(await response.data.path)
                 const newImagePath = imagePath.split(`\\`).join("/")
-                console.log(newImagePath);
                 const response2 = await axios.post('http://localhost:3001/fullInfo', {
                     id: userId,
                     name: userName,
@@ -78,13 +77,11 @@ function TeacherDashbaord({ userRole, userId }) {
                     twitterX : authorTwitterX,
                     facebook: authorFacebook
                 });
-                console.log(response2);
                 showToast("اطلاعات شما ثبت شد! حالا، به صفحات دیگر دسترسی دارید.","success")
             } catch (error) {
                 console.error('Error:', error.response ? error.response.data : error.message);
                 showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
             }
-
         }
     }
     useEffect(() => {
@@ -124,42 +121,6 @@ function TeacherDashbaord({ userRole, userId }) {
         cursor: 'pointer',
         marginTop: '10px',
     };
-
-    // const handleSubmit = async (e) => {
-        
-    //     if (!imageData) { 
-    //         toast.error('لطفاً یک تصویر را انتخاب کنید.');
-    //         return;
-    //     }
-
-    //     const formData = new FormData();
-    //     formData.append('imageData', imageData);
-
-    //     try {
-    //         const response = await axios.post('http://localhost:3001/upload', formData, {
-    //         headers: {
-    //             'Content-Type': 'multipart/form-data',
-    //         },
-    //         });
-    //         // Handle the response as needed
-    //         console.log(response.data);
-    //         setImagePath(await response.data.path)
-    //         showToast('تصویر با موفقیت آپلود شد.', 'success');
-    //     } catch (error) {
-    //         console.error('Error:', error.response ? error.response.data : error.message);
-    //         showToast(`خطا در آپلود تصویر: ${error.response ? error.response.data.error : error.message}`, 'error');
-    //     }
-        
-
-    //     // axios.post(`http://localhost:3001/dashboard/blogs/add`)
-    //     //     .then(response => {
-    //     //         showToast("بلاگ جدید با موفقیت ثبت شد !", "success")
-    //     //         console.log(response);
-    //     //     })
-    //     // .catch(error => {
-    //     //     console.error('Error:', error.response ? error.response.data : error.message);
-    //     // });
-    // }
 
 
     return (
@@ -247,7 +208,6 @@ function TeacherDashbaord({ userRole, userId }) {
                             >
                                 ثبت اطلاعات نوشته شده
                             </button>
-                        {/* <p className='panelHint'>با کلیک روی این دکمه به مرحله بعد ثبت اطلاعات ارسال میشوید.</p> */}
                         </form>
                     <ToastContainer
                         position="top-right"

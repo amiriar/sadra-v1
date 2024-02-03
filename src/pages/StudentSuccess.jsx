@@ -7,6 +7,7 @@ import './StudentSuccess.css'
 
 import VideoComponent from '../components/modules/succes-modules/VideoComponent';
 import { Link, useNavigate } from 'react-router-dom';
+import SuccessCard from '../components/modules/successModuels/SuccessCard';
 
 function StudentSuccess() {
 
@@ -32,8 +33,6 @@ function StudentSuccess() {
         navigate(`/student/${name}`)
     }
 
-    // const imagePath = data.additionalPicture.split('\\').join('/');
-
     return (
         <div>
             <div className='successHero' dir='rtl'>
@@ -48,7 +47,9 @@ function StudentSuccess() {
                     <div className='successHeroImageSmall'></div>
             </div>
             <div className='successMain'>
-                <div
+                <SuccessCard data={data && data} />
+
+                {/* <div
                     className='successMainContent'
                     dir='rtl'
                     style={{ maxWidth: '1920px', margin: '0 auto',overflow: 'hidden'}}
@@ -98,7 +99,7 @@ function StudentSuccess() {
                     </div>
                     ))}
                 </Masonry>
-                </div>
+                </div> */}
             </div>
         </div>
     )

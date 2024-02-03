@@ -333,6 +333,7 @@ app.post('/employment/add', async (req, res) => {
 
 app.post('/fullInfo', async (req, res) => {
     const { id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook } = req.body;
+    console.log(id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook);
     try {
         await db.query(`UPDATE users 
         SET 
@@ -354,7 +355,38 @@ app.post('/fullInfo', async (req, res) => {
             profile= "${profile}"
             WHERE id = ${id};`)
         )
-        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !', data: {id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook} }).status(200);
+        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !'}).status(200);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+app.post('/fullInfoRole', async (req, res) => {
+    const { role,id, name, lastName, email, age, phoneNumber, education, profile, description, linkedin, pinterest, twitterX, facebook } = req.body;
+    try {
+        await db.query(`UPDATE users 
+        SET 
+        name = "${name}", 
+        lastName= "${lastName}", 
+        email = "${email}", 
+        age = ${age},
+        role = '${role}', 
+        phoneNumber = '${phoneNumber}', 
+        education= "${education}", 
+        profile= "${profile}",
+        description= "${description}",
+        linkedin= "${linkedin}",
+        pinterest= "${pinterest}",
+        twitterX= "${twitterX}",
+        facebook= "${facebook}"
+        WHERE id = ${id};`).then(
+            await db.query(`UPDATE users 
+            SET 
+            profile= "${profile}"
+            WHERE id = ${id};`)
+        )
+        res.json({ statusCode: 200, message: 'اطلاعات شما بروزرسانی شد !'}).status(200);
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -448,7 +480,7 @@ app.post('/dashboard/blogs/add', async (req, res) => {
         '${detailsDescription5}', 
         ${timeToRead})
     `);
-    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
+    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !' }).status(200);
 });
 
 app.post('/dashboard/events/add', async (req, res) => {
@@ -522,7 +554,7 @@ app.post('/dashboard/events/add', async (req, res) => {
         '${detailSubtitle}', 
         '${Detail_Head_Title}')
     `);
-    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !', data: {imageData, date, title, description, authorName, authorLastName, hashtags, detailsDescription1, detailsDescription2, detailsDescription3, descriptionImage1, descriptionImage2, detailsDescription4, detailsDescription5, timeToRead} }).status(200);
+    res.json({ statusCode: 200, message: 'بلاگ جدید با موفقیت ثبت شد !' }).status(200);
 });
 
 app.post('/dashboard/classes/add', async (req, res) => {
@@ -612,32 +644,7 @@ app.post('/dashboard/classes/add', async (req, res) => {
         '${thumbnail}'
     );    
     `);
-    res.json({ statusCode: 200, message: 'کلاس جدید با موفقیت ثبت شد !', data: {
-        title,
-        teacherFirstName,
-        teacherLastName,
-        level,
-        lessons,
-        price,
-        image,
-        time,
-        discount,
-        Detail_Head_Title,
-        detailSubtitle,
-        date,
-        place,
-        quantity,
-        language,
-        title_description1,
-        description1,
-        title_description2,
-        description2,
-        title_description3,
-        description3,
-        title_description4,
-        description4,
-        videoSrc,
-        thumbnail} }).status(200);
+    res.json({ statusCode: 200, message: 'کلاس جدید با موفقیت ثبت شد !'}).status(200);
 });
 
 app.post('/dashboard/success/add/1', async (req, res) => {
@@ -735,21 +742,6 @@ app.post('/dashboard/success/add/3', async (req, res) => {
     
     res.json({ statusCode: 200, message: 'پست جدید با موفقیت ثبت شد !' }).status(200);
 });
-
-// app.post('/upload/single', upload.single('imageData'), (req, res, next) => {
-//     if (req.file) {
-//         const { filename, path } = req.file;
-//         res.json({ success: true, message: 'File uploaded successfully', filename, path });
-//     } else {
-//         next(req.fileError);
-//     }
-// });
-// app.post('/upload', upload.array('files', 3), (req, res) => {
-//     const filePaths = req.files.map(file => file.path);
-
-//     res.json({ success: true, paths: filePaths });
-// });
-// Define your routes
 
 app.post('/upload/single', upload.single('file'), (req, res, next) => {
     if (req.file) {
