@@ -84,11 +84,10 @@ const {
 } = dataCard;
 
 
-const test1 = date?.split(" ")[2];
+const test = async ()=>{
+  
+}
 
-const test2 = "2024"
-
-console.log(test1 === test2)
 
 const newImage = image?.split('/').splice(1).join('/');
 
@@ -96,10 +95,24 @@ const newImage = image?.split('/').splice(1).join('/');
   const [timerHours , settimerHours] = useState("00"); 
   const [timerMinuts , setTimerMinuts] = useState("00");
   const [timerSecounds , setTimerSecounds] = useState("00");
+  
 
     let interval = useRef();
-    const startTimer =  ()=> {
-      const countdownDate = new Date(`${date?.split(" ")[0]} ${date?.split(" ")[1]} , ${test1} 00:00:00`).getTime();
+    const startTimer = async ()=> {
+
+      const dateMonth = await date.split(" ")[0];
+      const dateDay = await date.split(" ")[1];
+      const dateYear= await date.split(" ")[2];
+      
+
+      const timeHour = await time.split(" ")[0];
+      const timeMin = await time.split(" ")[1];
+      const timeSecound= await time.split(" ")[2];
+
+      const allTime = `${ dateYear } ${ dateDay } ${ dateMonth } ${timeHour}:${timeMin}:${timeSecound }`
+
+      setTimeout(() => {
+        const countdownDate = new Date(allTime).getTime();
         interval = setInterval(()=> {
         const now = new Date().getTime()
         const distance = countdownDate - now;
@@ -118,6 +131,7 @@ const newImage = image?.split('/').splice(1).join('/');
             setTimerMinuts(minuts)
             setTimerSecounds(secounds)
         }
+      }, 1000);
 
     } , 1000)
   }
@@ -128,7 +142,7 @@ const newImage = image?.split('/').splice(1).join('/');
     return () => {
       clearInterval(interval.current)
     }
-  } , [])
+  } , [startTimer])
 
 
 
