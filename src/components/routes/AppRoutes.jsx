@@ -26,6 +26,7 @@ import EditUser from '../dashboard/admin/EditUser';
 import EmploymentList from '../dashboard/admin/EmploymentList';
 import SuccessList from '../dashboard/admin/SuccessList';
 import PageNotFound from '../../pages/404';
+import Search from '../../pages/search';
 const AppRoutes = () => {
     return (
         <>
@@ -51,7 +52,8 @@ const AppRoutes = () => {
                 <Route path="/dashboard/blogs" element={<BlogsList/>} />
                 <Route path="/dashboard/events" element={<EventsList/>} />
                 <Route path="/dashboard/classes" element={<ClassList/>} />
-
+                <Route path="/search" element={<Search/>} />
+                <Route path="/search/:query" element={<Search/>} />
                 <Route path="/dashboard/users" element={<UsersList/>} />
                 <Route path="/dashboard/users/:id" element={<EditUser/>} />
                 <Route path="/dashboard/employment" element={<EmploymentList/>} />

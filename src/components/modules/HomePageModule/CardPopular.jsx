@@ -32,7 +32,7 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
       <div>
         
       <span style={{display : "flex"}}>
-           {
+          {
             Number(discount) ? (
             <div>
             <span id="price">{price * (100 - Number(discount)) / 100 ? (
@@ -49,7 +49,7 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
                 )}</span>
             </div>
             ) : <span id="price">{usePersianNumber(price)} <span id="rial">هزارتومان</span></span>
-           }
+          }
       </span>
         
       </div>
@@ -62,7 +62,7 @@ const CardPopular = ({ thumbnail, teacher, rate, price, time, level , lessons , 
         <CiClock2 /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}}> <p>{usePersianNumber(time)} دقیقه </p></Typography>
       </IconButton>
       <IconButton aria-label="lessons">
-        <GoStack style={{padding : 1}} /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> <span>درس</span> {usePersianNumber(lessons)}</p></Typography>
+        <GoStack style={{padding : 1}} /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> {usePersianNumber(lessons)} <span>درس</span> </p></Typography>
       </IconButton>
       <IconButton aria-label="level">
         <MdOutlineStackedBarChart  /> <Typography fontFamily={'Yekan,sans-serif'} sx={{fontSize : 14}} ><p> <span>سطح</span> {level}</p></Typography>

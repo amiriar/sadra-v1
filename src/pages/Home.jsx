@@ -198,7 +198,7 @@ const fetchData4 = async () => {
 
       <h1>بیش از {usePersianNumber('500')} دانش‌آموخته از مسیر خود راضی بودند</h1>
   <div className='Slider'>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      {/* <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {commentData.map((item)=> (
           <SwiperSlide key={item.id} >
             <p id='cardComment'>{item.comment}</p>
@@ -207,7 +207,41 @@ const fetchData4 = async () => {
             <p id='cardJob'>{item.job}</p>
           </SwiperSlide>
         ))}
+      </Swiper> */}
+
+
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+          <SwiperSlide>
+            <p id='cardComment'>سلام رضا هستم از سال 1400 با این شرکت اشنا شدم و این مسیر زندگی من عوض شد</p>
+            <img src={"/assets/1.png"} />
+            <p id='cardName'>رضا</p>
+            <p id='cardJob'>programmer</p>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <p id='cardComment'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+            <img src={"/assets/2.png"} />
+            <p id='cardName'>امیر</p>
+            <p id='cardJob'>fullstack developer</p>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <p id='cardComment'>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد،</p>
+            <img src={"/assets/3.png"} />
+            <p id='cardName'>محمد</p>
+            <p id='cardJob'>programmer</p>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <p id='cardComment'>this is ellon musk</p>
+            <img src={"/assets/1.png"} />
+            <p id='cardName'>rwin</p>
+            <p id='cardJob'>programmer</p>
+          </SwiperSlide>
       </Swiper>
+
+      
+
   </div>
 
       <div className='contact_corporates'>
@@ -240,13 +274,19 @@ const fetchData4 = async () => {
     <Box  sx={{ minHeight : '602px' ,  width: '100%', typography: 'body1', direction : "rtl" , mt : "6rem"}}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
+          {/* <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange}>
             {
               TabHeaders.map((item) => <Tab key={item.id} sx={{fontFamily:"Yekan,sans-serif"}} label={item.title} value={item.id.toString()} /> )
             }
+          </TabList> */}
+          <TabList variant="scrollable" scrollButtons="auto" aria-label="scrollable auto tabs example" TabIndicatorProps={{style:{ backgroundColor: "#4CA773" ,  }}} onChange={handleChange} >
+            <Tab  sx={{fontFamily:"Yekan,sans-serif"}} label={"طراحی UI/UX"} value={"1"} >طراحی UI/UX</Tab>
+            <Tab  sx={{fontFamily:"Yekan,sans-serif"}} label={"طراحی گرافیک"} value={"2"} >طراحی گرافیک</Tab>
+            <Tab  sx={{fontFamily:"Yekan,sans-serif"}} label={"انیمیشن 3D"} value={"3"} >انیمیشن و 3D</Tab>
+            <Tab  sx={{fontFamily:"Yekan,sans-serif"}} label={"فرانت‌اند"} value={"4"} >فرانت‌اند</Tab>
           </TabList>
         </Box>
-        {
+        {/* {
           TabHeaders.map((Tab)=> (
             <TabPanel key={Tab.id} value={Tab.id.toString()} >
             <div className='popCardEvent'>
@@ -258,7 +298,39 @@ const fetchData4 = async () => {
             </div>
             </TabPanel>
           ))
-        }
+        } */}
+        {/* thumbnail, teacher, rate, price, time, level , lessons , title , discount */}
+        <TabPanel value='1'>
+        <div className='popCardEvent'>
+          <CardPopular title={"طراحی UI"} teacher={"یزدانی"} thumbnail={"/assets/blog-images/1.jpeg"} price={"530"} level={"مبتدی"} time={"20"} lessons={"9"} />
+          <CardPopular title={"طراحی UX"} teacher={"یزدانی"} thumbnail={"/assets/blog-images/2.jpeg"} price={"800"} level={"دشوار"} time={"80"} lessons={"15"} />
+          <CardPopular title={"رنگ شناسی"} teacher={"اصغری"} thumbnail={"/assets/blog-images/3.jpeg"} price={"430"} level={"مبتدی"} time={"45"} lessons={"12"} />
+        </div>
+        </TabPanel>
+
+        <TabPanel value='2'>
+        <div className='popCardEvent'>
+          <CardPopular title={"طراحی گرافیک ساده"} teacher={"محمدی"} thumbnail={"/assets/blog-images/2.jpeg"} price={"250"} level={"دشوار"} time={"95"} lessons={"30"} />
+          <CardPopular title={"طراحی گرافیک پیشرفته"} teacher={"محمدی"} thumbnail={"/assets/blog-images/1.jpeg"} price={"700"} level={"مبتدی"} time={"65"} lessons={"24"} />
+          <CardPopular title={"طراحی پوسته"} teacher={"محمدی"} thumbnail={"/assets/blog-images/3.jpeg"} price={"600"} level={"متوسط"} time={"35"} lessons={"7"} />
+        </div>
+        </TabPanel>
+
+        <TabPanel value='3'>
+        <div className='popCardEvent'>
+          <CardPopular title={"طراحی انیمیشن"} teacher={"یزدانی"} thumbnail={"/assets/blog-images/2.jpeg"} price={"400"} level={"مبتدی"} time={"20"} lessons={"19"} />
+          <CardPopular title={"طراحی کاراکتر"} teacher={"یزدانی"} thumbnail={"/assets/blog-images/7.jpeg"} price={"320"} level={"متوسط"} time={"78"} lessons={"12"} />
+          <CardPopular title={"طراحی صحنه"} teacher={"یزدانی"} thumbnail={"/assets/blog-images/8.jpeg"} price={"280"} level={"مبتدی"} time={"87"} lessons={"9"} />
+        </div>
+        </TabPanel>
+
+        <TabPanel value='4'>
+        <div className='popCardEvent'>
+          <CardPopular title={"طراحی صفحات وب"} teacher={"اقاپور"} thumbnail={"/assets/blog-images/6.jpeg"} price={"900"} level={"متوسط"} time={"70"} lessons={"50"} />
+        </div>
+        </TabPanel>
+
+
       </TabContext>
       </Box>
     </div>
@@ -300,13 +372,39 @@ const fetchData4 = async () => {
                 <h2>رویدادهای آینده</h2>
               </div>
               <div className='event_card_data' dir='rtl'>
-                {
+                {/* {
                 window.innerWidth >= 1920 ? dataEvent.slice(0 , 4).map((item) => (
                   <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   )) : window.innerWidth <= 1440 && dataEvent.slice(0 , 3).map((item) => (
                   <Link key={item.id} to={`/events/${item.id}`} ><EventCard key={item.id} {...item} /></Link>
                   ))
-                }
+                } */}
+                {/* image, title, price, teacherFirstName, teacherLastName, date, time , discount  */}
+                // category ,
+//   title , 
+//   teacher ,
+//   image ,
+//   price ,
+//   discount ,
+//   Detail_Head_Title ,
+//   title_description1 ,
+//   description1 ,
+//   title_description2 ,
+//   description2 ,
+//   title_description3 ,
+//   description3 ,
+//   title_description4 ,
+//   description4 ,
+//   videoSrc ,
+//   thumbnail ,
+//   date , 
+//   time ,
+//   detailSubtitle ,
+//   = dataCard;
+              <Link to={`/events/1`} ><EventCard thumbnail={"/assets/thumbnail1.jpg"} videoSrc={"/assets/Media.mp4"} description4={"راحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد"} title_description4={"هدف نهایی"} description3="اگر شما یک طراح هستین و یا با طراحی های گرافیکی سروکار دارید به متن های برخورده اید که با نام لورم ایپسوم شناخته می‌شوند. لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) متنی ساختگی و بدون مع" title_description3={"داستان این اموزش"} description2={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description2={"هدف اموزش"} description1={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description1={"این دوره دوره کامل و جامع هست"} Detail_Head_Title={"مبانی اموزش"} category="help" title={"دوره html"} image={"/assets/blog-images/9.jpeg"} price={"300"} time={"18 00 00"} teacher={"ابرونی"} date={"06/02/2024"} /></Link>
+              <Link to={`/events/2`} ><EventCard thumbnail={"/assets/thumbnail1.jpg"} videoSrc={"/assets/Media.mp4"} description4={"راحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد"} title_description4={"هدف نهایی"} description3="اگر شما یک طراح هستین و یا با طراحی های گرافیکی سروکار دارید به متن های برخورده اید که با نام لورم ایپسوم شناخته می‌شوند. لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) متنی ساختگی و بدون مع" title_description3={"داستان این اموزش"} description2={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description2={"هدف اموزش"} description1={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description1={"این دوره دوره کامل و جامع هست"} Detail_Head_Title={"مبانی اموزش"} category="help" title={"دوره JavaScript"} image={"/assets/blog-images/7.jpeg"} price={"800"} time={"7 00 00"} teacher={"ابرونی"} date={"06/02/2024"} /></Link>
+              <Link to={`/events/3`} ><EventCard thumbnail={"/assets/thumbnail1.jpg"} videoSrc={"/assets/Media.mp4"} description4={"راحان سایت هنگام طراحی قالب سایت معمولا با این موضوع رو برو هستند که محتوای اصلی صفحات آماده نیست. در نتیجه طرح کلی دید درستی به کار فرما نمیدهد. اگر طراح بخواهد"} title_description4={"هدف نهایی"} description3="اگر شما یک طراح هستین و یا با طراحی های گرافیکی سروکار دارید به متن های برخورده اید که با نام لورم ایپسوم شناخته می‌شوند. لورم ایپسوم یا طرح‌نما (به انگلیسی: Lorem ipsum) متنی ساختگی و بدون مع" title_description3={"داستان این اموزش"} description2={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description2={"هدف اموزش"} description1={"لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد."} title_description1={"این دوره دوره کامل و جامع هست"} Detail_Head_Title={"مبانی اموزش"} category="help" title={"دوره css"} image={"/assets/blog-images/5.jpeg"} price={"400"} time={"12 00 00"} teacher={"ابرونی"} date={"06/02/2024"} /></Link>
+
               </div>
         </div>
     </div>

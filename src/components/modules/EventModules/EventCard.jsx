@@ -4,15 +4,16 @@ import { BiCalendar, BiTime } from "react-icons/bi";
 import './EventCard.css'
 import usePersianNumber from "../../../helper/PersianNumbers";
 const EventCard = ({ image, title, price, teacherFirstName, teacherLastName, date, time , discount }) => {
-  const newImage = image?.split('/').splice(1).join('/');
-
+  // const newImage = image?.split('/').splice(1).join('/');
+  console.log(date.split("/"))
   return (
     <div className="CardEvent" >
       <Card sx={{ width: 300 , borderRadius : 3}}>
         <CardMedia
           component="img"
           maxheight = {60}
-          image={`/${newImage}`}
+          // image={`/${newImage}`}
+          image={image}
           alt={title}
           sx={{aspectRatio:"2/1 !important"}}
         />
@@ -60,16 +61,14 @@ const EventCard = ({ image, title, price, teacherFirstName, teacherLastName, dat
             <BiCalendar />
           </IconButton>
           <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
-            <p style={{fontSize : 15}} >{usePersianNumber(date.split(" ")[0])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split(" ")[1])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split(" ")[2])}</p>
+            <p style={{fontSize : 15}} >{usePersianNumber(date?.split("/")[0])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split("/")[1])} <span style={{padding : 1}} >/</span> {usePersianNumber(date.split("/")[2])}</p>
           </Typography> 
           
           <IconButton aria-label="time">
             <BiTime />
           </IconButton>
           <Typography fontFamily={'Yekan, sans-serif'} sx={{fontSize : 15}} variant="h1" color="text.secondary">
-            {
-            }
-            <p style={{fontSize : 15}}>{usePersianNumber(time.split(" ")[0])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[1])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[2])}</p>
+            <p style={{fontSize : 15}}>{usePersianNumber(time?.split(" ")[0])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[1])}<span style={{padding : 2}} >:</span>{usePersianNumber(time.split(" ")[2])}</p>
           </Typography>
         </CardActions>
           </div>

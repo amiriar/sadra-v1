@@ -18,38 +18,62 @@ import moment from 'jalali-moment';
 import { number } from 'prop-types';
 
 
+                {/* image, title, price, teacherFirstName, teacherLastName, date, time , discount  */}
 
-const EventDetail = () => {
+                // category ,
+//   title , 
+//   teacher ,
+//   image ,
+//   price ,
+//   discount ,
+//   Detail_Head_Title ,
+//   title_description1 ,
+//   description1 ,
+//   title_description2 ,
+//   description2 ,
+//   title_description3 ,
+//   description3 ,
+//   title_description4 ,
+//   description4 ,
+//   videoSrc ,
+//   thumbnail ,
+//   date , 
+//   time ,
+//   detailSubtitle ,
+// } = dataCard;
+
+const EventDetail = ({title , category , teacher , image , price , discount  , Detail_Head_Title , title_description1 , description1 , title_description2 , description2 , title_description3 , description3 , title_description4 , description4 , videoSrc , thumbnail ,date , time , detailSubtitle}) => {
 const {id} = useParams();
-const eventdetailId = parseInt(id , 10);
+console.log(description4)
+// const eventdetailId = parseInt(id , 10);
 
 const [eventDetailData , setEventDetailData] = useState([]);
 const [teachersData , setTeachersData] = useState([])
 
-useEffect(() => {
-  const fetchData = async () => {
-      try {
-          const response = await axios.get('http://localhost:3001/eventsDetail/data');
-          const jsonData = response.data;
-          setEventDetailData(jsonData);
-      } catch (error) {
-          console.error('Error fetching data:', error);
-      }
-  };
-  const fetchData2 = async () => {
-    try {
-        const response = await axios.get('http://localhost:3001/evetnDetailTeachersData/data');
-        const jsonData = await response.data;
-        setTeachersData( await jsonData);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-};
+// useEffect(() => {
+//   const fetchData = async () => {
+//       try {
+//           const response = await axios.get('http://localhost:3001/eventsDetail/data');
+//           const jsonData = response.data;
+//           setEventDetailData(jsonData);
+//       } catch (error) {
+//           console.error('Error fetching data:', error);
+//       }
+//   };
+//   const fetchData2 = async () => {
+//     try {
+//         const response = await axios.get('http://localhost:3001/evetnDetailTeachersData/data');
+//         const jsonData = await response.data;
+//         setTeachersData( await jsonData);
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//     }
+// };
 
 
-fetchData2();
-  fetchData();
-}, []);
+// fetchData2();
+//   fetchData();
+// }, []);
 
 // const dataFetcher = async () => {
 //       const response = await axios.get('http://localhost:3001/eventsDetail/data');
@@ -59,37 +83,34 @@ fetchData2();
 // console.log(data)
 
 
-const dataCard = eventDetailData?.length ? eventDetailData?.find((item) => item.id === eventdetailId) : [] ;
-const {
-  category ,
-  title , 
-  teacher ,
-  image ,
-  price ,
-  discount ,
-  Detail_Head_Title ,
-  title_description1 ,
-  description1 ,
-  title_description2 ,
-  description2 ,
-  title_description3 ,
-  description3 ,
-  title_description4 ,
-  description4 ,
-  videoSrc ,
-  thumbnail ,
-  date , 
-  time ,
-  detailSubtitle ,
-} = dataCard;
+// const dataCard = eventDetailData?.length ? eventDetailData?.find((item) => item.id === eventdetailId) : [] ;
+// const {
+//   category ,
+//   title , 
+//   teacher ,
+//   image ,
+//   price ,
+//   discount ,
+//   Detail_Head_Title ,
+//   title_description1 ,
+//   description1 ,
+//   title_description2 ,
+//   description2 ,
+//   title_description3 ,
+//   description3 ,
+//   title_description4 ,
+//   description4 ,
+//   videoSrc ,
+//   thumbnail ,
+//   date , 
+//   time ,
+//   detailSubtitle ,
+// } = dataCard;
 
 
-const test = async ()=>{
-  
-}
 
 
-const newImage = image?.split('/').splice(1).join('/');
+// const newImage = image?.split('/').splice(1).join('/');
 
   const [timerDays , setTimerDays] = useState("00");
   const [timerHours , settimerHours] = useState("00"); 
@@ -100,18 +121,18 @@ const newImage = image?.split('/').splice(1).join('/');
     let interval = useRef();
     const startTimer = async ()=> {
 
-      const dateMonth = await date.split(" ")[0];
-      const dateDay = await date.split(" ")[1];
-      const dateYear= await date.split(" ")[2];
+      // const dateMonth = await date.split(" ")[0];
+      // const dateDay = await date.split(" ")[1];
+      // const dateYear= await date.split(" ")[2];
       
 
-      const timeHour = await time.split(" ")[0];
-      const timeMin = await time.split(" ")[1];
-      const timeSecound= await time.split(" ")[2];
+      // const timeHour = await time.split(" ")[0];
+      // const timeMin = await time.split(" ")[1];
+      // const timeSecound= await time.split(" ")[2];
 
-      const allTime = `${ dateYear } ${ dateDay } ${ dateMonth } ${timeHour}:${timeMin}:${timeSecound }`
+      // const allTime = `${ dateYear } ${ dateDay } ${ dateMonth } ${timeHour}:${timeMin}:${timeSecound }`
+      const allTime = "2024/4/4 12:00:0"
 
-      setTimeout(() => {
         const countdownDate = new Date(allTime).getTime();
         interval = setInterval(()=> {
         const now = new Date().getTime()
@@ -133,7 +154,6 @@ const newImage = image?.split('/').splice(1).join('/');
         }
       }, 1000);
 
-    } , 1000)
   }
   
 // when site loaded
@@ -151,11 +171,14 @@ const newImage = image?.split('/').splice(1).join('/');
       <div className='Details' dir='rtl'>
         <div className='HeadDetail'>
           <div>
-          <Link to={"/events"} ><p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{title}</span></p></Link>
+          {/* <Link to={"/events"} ><p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>{category}</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>{title}</span></p></Link> */}
+          <Link to={"/events"} ><p style={{ display:"flex", alignItems:"center"}}><span style={{color:"#98A2B3"}}>دوره ها</span> &nbsp; <FaChevronLeft color='#FFF' /> &nbsp; <span style={{color:"#FFF"}}>رویداد</span></p></Link>
           </div>
           <div className='HeadDetailData'>
-            <h1 style={{color:"#F9F9F9"}}>{title}</h1>
-            <p style={{color:"#E0E0E0"}}>{Detail_Head_Title}</p>
+            {/* <h1 style={{color:"#F9F9F9"}}>{title}</h1> */}
+            <h1 style={{color:"#F9F9F9"}}>دوره صدرا </h1>
+            {/* <p style={{color:"#E0E0E0"}}>{Detail_Head_Title}</p> */}
+            <p style={{color:"#E0E0E0"}}>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است</p>
           </div>
           <div className='timeLeft'>
             <div className='timerStyle'>
@@ -182,33 +205,46 @@ const newImage = image?.split('/').splice(1).join('/');
         <div className='infoContainer'>
           <h2 style={{fontSize : 34 , marginBottom : 24 }} >چه چیزی یاد می‌گیریم؟</h2>
             <div className='info1'>
-              <h3>{title_description1}</h3>
-              <p>{description1}</p>
+              {/* <h3>{title_description1}</h3> */}
+              <h3>لورم ایپسوم چیست؟</h3>
+              {/* <p>{description1}</p> */}
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
             </div>
             <div className='info2'>
-              <h3>{title_description2}</h3>
-              <p>{description2}</p>
+              {/* <h3>{title_description2}</h3> */}
+              <h3>لورم ایپسوم چیست؟</h3>
+
+              {/* <p>{description2}</p> */}
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
             </div>
             <div className='info3'>
-              <h3>{title_description3}</h3>
-              <p>{description3}</p>
+              {/* <h3>{title_description3}</h3> */}
+              <h3>لورم ایپسوم چیست؟</h3>
+
+              {/* <p>{description3}</p> */}
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
             </div>
             <div className='info4'>
-              <h3>{title_description4}</h3>
-              <p>{description4}</p>
+              {/* <h3>{title_description4}</h3> */}
+              <h3>لورم ایپسوم چیست؟</h3>
+
+              {/* <p>{description4}</p> */}
+              <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
             </div>
         </div>
           {/* Card */}
           <div className='CardContainer'>
             <div className='CardDetail'>
-                <img src={`/${newImage}`} alt={title} />
+                {/* <img src={image} alt={title} /> */}
+                <img src={"/public/assets/blog-images/1.jpeg"} alt={title} />
+
               <div className='topCard'>
                 <p>{teacher}</p>
                 {/* <span id='price'><span>{price}</span><span>هزار تومان</span></span> */}
                 {/* test */}
         
                 <div>
-                <span style={{display : "flex"}}>
+                <span style={{display : "flex" , flexDirection : "column-reverse"}}>
                     {
                       Number(discount) ? (
                       <div>
@@ -227,9 +263,9 @@ const newImage = image?.split('/').splice(1).join('/');
                       </div>
                       ) : <span id="price">{price} <span id="rial">هزارتومان</span></span>
                     }
-                    {
-                      // console.log(typeof price)
-                    }
+
+                    <span id="price" style={{display : "flex"}} >{usePersianNumber("160")}</span>
+                    
                 </span>
                 </div>
 
@@ -245,11 +281,13 @@ const newImage = image?.split('/').splice(1).join('/');
               <div className='time'>
                 <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
                   <CiCalendarDate style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                  {usePersianNumber(date?.split(" ")[0])}<span style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[1])}<span  style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[2])}
+                  {/* {usePersianNumber(date?.split(" ")[0])}<span style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[1])}<span  style={{padding : 3}} >/</span>{usePersianNumber(date?.split(" ")[2])} */}
+                  {usePersianNumber("25 / اسفند /1402 ")}
                 </span>
                 <span style={{display : "flex" , alignItems : "center" , justifyContent : "flex-start" }} >
                   <FaRegClock style={{width : 25 , height : 25 , marginLeft : 5 , marginBottom : 4}} />
-                  {usePersianNumber(time?.split(" ")[1])}<span style={{padding : 3}} >:</span>{usePersianNumber(time?.split(" ")[0])}
+                  {/* {usePersianNumber(time?.split(" ")[1])}<span style={{padding : 3}} >:</span>{usePersianNumber(time?.split(" ")[0])} */}
+                  {usePersianNumber("9:00:00")}
                 </span>
               </div>
               </div>
@@ -260,7 +298,8 @@ const newImage = image?.split('/').splice(1).join('/');
         <div className='detailFooterTitle'>
           <h2>مروری بر دوره‌های پیشین</h2>
         </div>
-          <VideoPlayer  video={videoSrc} poster={thumbnail}   />
+          {/* <VideoPlayer  video={videoSrc} poster={thumbnail}   /> */}
+          <VideoPlayer  video={"/public/assets/Media.mp4"} poster={"/public/assets/blog-images/3.jpeg"}   />
         <div style={{display : "flex" , alignItems : "center" , justifyContent : "center" , marginTop : 150 , flexWrap : "wrap"}} >
         {
           teachersData.map(item =><EventDetailTeacherCard key={item.id} data={item} />)
